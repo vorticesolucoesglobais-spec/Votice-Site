@@ -18,8 +18,8 @@ body{background:#0a1223;background-image:radial-gradient(circle at 20% 15%,rgba(
 .container{max-width:1280px;margin:0 auto;padding:24px 18px 100px}
 .tab-pane{display:none}.tab-pane.active{display:block}
 .card{background:linear-gradient(145deg,rgba(18,26,46,0.95) 0%,rgba(12,18,35,0.98) 100%);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:28px}
-.hero{min-height:500px;display:grid;place-items:center;padding:40px 30px;border-radius:14px;border:1px solid rgba(255,255,255,0.07)}
-.hero h1{font-size:52px;font-weight:800;background:linear-gradient(100deg,#e8c765 0%,#f5e6a3 25%,#d4af37 50%,#e8c765 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero{min-height:auto;display:block;padding:60px 40px;width:100%;border-radius:14px;border:1px solid rgba(255,255,255,0.07);}
+.hero h1{  font-size: 58px;  font-weight: 800; white-space: nowrap; /* FORÇA FICAR TUDO NA MESMA LINHA */  width: 100%;  max-width: none;  display: block; text-align: left; letter-spacing: 1px; background: linear-gradient(100deg,#e8c765 0%,#f5e6a3 50%,#d4af37 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 .hero p{margin-top:16px;color:var(--muted);font-size:17px;max-width:480px}
 .btn{padding:14px 26px;border-radius:10px;border:1px solid rgba(0,212,255,0.15);background:linear-gradient(180deg,rgba(18,30,54,0.9) 0%,rgba(12,20,36,0.9) 100%);color:#fff;font-weight:600;font-size:14px;cursor:pointer;text-decoration:none;display:inline-flex;gap:8px}
 .btn-primary{background:linear-gradient(180deg,#0f203a 0%,#0a1629 100%);border-color:rgba(0,212,255,0.4)}
@@ -52,7 +52,7 @@ body{background:#0a1223;background-image:radial-gradient(circle at 20% 15%,rgba(
 </style>
 </head>
 <body>
-<div class="header"><div class="logo-text">VÓRTICE</div><div class="logo-sub">SOLUÇÕES GLOBAIS</div></div>
+<img src="logo.png" alt="Vórtice" style="height:55px; margin:0 auto; display:block; filter: drop-shadow(0 0 12px rgba(232,199,101,0.4));">
 <div class="nav-wrap">
 <button class="nav-tab active" data-tab="inicio">INÍCIO</button>
 <button class="nav-tab" data-tab="sobre">SOBRE</button>
@@ -64,7 +64,7 @@ body{background:#0a1223;background-image:radial-gradient(circle at 20% 15%,rgba(
 <div class="hero card">
 <div>
 <span class="badge">INÍCIO</span>
-<h1>Eficiência,<br>Tecnologia<br>e Produção</h1>
+<h1>Eficiência,Tecnologia e Produção</h1>
 <p>Transformamos processos em resultados para sua empresa.<br><strong style="color:#e8c765">Gestão, tecnologia e produção em um só lugar.</strong></p>
 <div style="margin-top:30px;display:flex;gap:16px;flex-wrap:wrap">
 <a class="btn btn-primary" href="#" onclick="switchTab('contato')">→ Fale Conosco</a>
