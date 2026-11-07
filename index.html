@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VÓRTICE SOLUÇÕES GLOBAIS - Gestão, Tecnologia e Produção</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#E6C78A;--dark:#0E0E10;--card:#17171A;--border:#2A2A2E}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#0E0E10;color:#fff;overflow-x:hidden}
+header{position:sticky;top:0;z-index:100;background:rgba(14,14,16,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:18px 0;text-align:center}
+.logo{font-weight:900;letter-spacing:2px;font-size:22px}
+.logo span{font-size:10px;display:block;font-weight:600;opacity:.7;letter-spacing:1px}
+nav{display:flex;justify-content:center;gap:12px;margin-top:14px;background:#9A9A9A22;padding:8px;border-radius:10px;width:fit-content;margin-left:auto;margin-right:auto}
+nav a{padding:8px 18px;border-radius:8px;text-decoration:none;color:#000;font-weight:700;font-size:14px;transition:.3s}
+nav a.active,nav a:hover{background:#D9D9D9;color:#000}
+.section{padding:80px 6%;max-width:1400px;margin:auto}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:0;align-items:center;min-height:520px;background:radial-gradient(circle at 20% 30%, #1C1C22, #0E0E10);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://grainy-gradients.vercel.app/noise.svg');opacity:.05}
+.hero-text{position:relative;z-index:2}
+.hero h1{font-size:56px;line-height:1.05;color:var(--gold);font-weight:900;margin-bottom:18px}
+.hero h2{font-size:20px;font-weight:400;line-height:1.5;opacity:.9;margin-bottom:8px}
+.hero h2 b{color:#fff;font-weight:600}
+.hero-btns{display:flex;gap:16px;margin-top:28px;flex-wrap:wrap}
+.btn{padding:14px 26px;border-radius:10px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.3s;cursor:pointer;border:1px solid var(--border)}
+.btn-primary{background:#D9D9D9;color:#000}
+.btn-secondary{background:transparent;color:#fff;border-color:#fff}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(230,199,138,.2)}
+.sobre{background:#0E0E10;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.sobre-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px}
+.sobre h2{font-size:28px;margin-bottom:16px;color:#fff;border-bottom:2px solid #00B4FF22;padding-bottom:8px;display:inline-block}
+.sobre p{line-height:1.7;opacity:.85;font-size:15px;margin-bottom:14px}
+.fundador{display:flex;gap:28px;align-items:center}
+.fundador img{width:220px;height:280px;object-fit:cover;border-radius:16px;background:#222}
+.fundador h3{font-size:22px;margin-bottom:6px}
+.fundador small{color:var(--gold);font-weight:600;display:block;margin-bottom:12px}
+.servicos{background:#0E0E10;text-align:center}
+.servicos h2{font-size:32px;margin-bottom:36px;letter-spacing:1px}
+.grid5{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:auto}
+.card{border:1px solid #2A2A2E;background:#111;padding:24px;border-radius:14px;transition:.3s;text-align:left}
+.card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.card .icon{font-size:28px;margin-bottom:10px;color:var(--gold)}
+.card h3{font-size:16px;margin-bottom:8px;letter-spacing:.5px}
+.card p{font-size:13.5px;opacity:.75;line-height:1.5}
+.grid5 .card:nth-child(4){grid-column:1 / span 1; margin-left:auto; width:100%; max-width:320px; justify-self:end}
+.grid5 .card:nth-child(5){grid-column:2 / span 1; max-width:320px; justify-self:start}
+.contato{background:#0E0E10;display:grid;grid-template-columns:1.3fr .7fr;gap:30px}
+.form{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px}
+.form input,.form textarea{width:100%;background:#0E0E10;border:1px solid var(--border);border-radius:10px;padding:14px;color:#fff;margin-bottom:14px;outline:none}
+.form input:focus,.form textarea:focus{border-color:var(--gold)}
+.btn-enviar{width:100%;background:#D9D9D9;color:#000;padding:14px;border-radius:10px;font-weight:800;border:none;cursor:pointer}
+.info h3{margin-bottom:18px}
+.info p{margin-bottom:14px;font-size:14px;opacity:.8;display:flex;gap:10px;align-items:center;word-break:break-all}
+footer{text-align:center;padding:20px;opacity:.5;font-size:12px;border-top:1px solid var(--border)}
+.whatsapp-float{position:fixed;bottom:24px;right:24px;width:62px;height:62px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.4);z-index:999;transition:.3s;text-decoration:none;font-size:32px}
+.whatsapp-float:hover{transform:scale(1.1)}
+@media(max-width:900px){.hero,.sobre,.contato{grid-template-columns:1fr}.hero h1{font-size:38px}.grid5{grid-template-columns:1fr}.grid5 .card:nth-child(4),.grid5 .card:nth-child(5){grid-column:auto;margin:0;max-width:100%;justify-self:stretch}.fundador{flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">VÓRTICE <span>SOLUÇÕES GLOBAIS</span></div>
+<nav>
+<a href="#inicio" class="active">INÍCIO</a>
+<a href="#sobre">SOBRE</a>
+<a href="#servicos">SERVIÇOS</a>
+<a href="#contato">CONTATO</a>
+</nav>
+</header>
+
+<section id="inicio" class="section hero">
+<div class="hero-text">
+<h1>Soluções Globais para Acelerar seu Negócio</h1>
+<h2><b>gestão, tecnologia e produção todos em um só lugar</b><br>Transformamos processos em resultados para sua empresa.</h2>
+<div class="hero-btns">
+<a class="btn btn-primary" href="https://wa.me/5511921913395?text=Olá%2C%20vim%20pelo%20site%20da%20Vórtice%20Soluções%20Globais!" target="_blank">→ Fale Conosco</a>
+<a class="btn btn-secondary" href="#servicos">Conheça os Serviços</a>
+</div>
+</div>
+</section>
+
+<section id="sobre" class="section sobre">
+<div class="sobre-card">
+<h2>História da Vórtice</h2>
+<p>Fundada em 2018, a Vórtice Soluções Globais nasceu com a missão de integrar <b>gestão, tecnologia e produção</b> para entregar soluções inovadoras e de alto impacto.</p>
+<p>Nossa missão é otimizar processos, elevar a produtividade e impulsionar o crescimento sustentável das empresas através de tecnologia e automação de alta performance. Atendemos clientes em todo o Brasil com foco em eficiência, segurança e resultados mensuráveis.</p>
+</div>
+<div class="sobre-card fundador">
+<img src="https://i.imgur.com/8Km9tLL.png" alt="Mathews Brito - coloque sua foto aqui">
+<div>
+<h3>SOBRE O FUNDADOR<br>Mathews Brito</h3>
+<small>Founder | Especialista em Gestão e Tecnologia</small>
+<p>Mathews Brito lidera a Vórtice com foco em inovação e eficiência, unindo mais de 10 anos de experiência para conectar tecnologia, processos e resultados.</p>
+<p>Atua na integração de soluções empresariais para transformar desafios em oportunidades de crescimento sustentável, com especialidade em IT Consulting and Management.</p>
+</div>
+</div>
+</section>
+
+<section id="servicos" class="section servicos">
+<h2>NOSSOS SERVIÇOS</h2>
+<div class="grid5">
+<div class="card"><div class="icon">⚙️</div><h3>ADMIN</h3><p>Gestão administrativa e processos empresariais com foco em eficiência, organização e redução de custos.</p></div>
+<div class="card"><div class="icon">🖥️</div><h3>TI</h3><p>Suporte, infraestrutura, redes e segurança da informação. Consultoria completa em TI para sua empresa.</p></div>
+<div class="card"><div class="icon">📱</div><h3>SOCIAL MEDIA</h3><p>Estratégias de conteúdo e gestão profissional de redes sociais para fortalecer sua marca.</p></div>
+<div class="card"><div class="icon">🏭</div><h3>CNC</h3><p>Automação e soluções de precisão para usinagem CNC, otimizando produção e qualidade.</p></div>
+<div class="card"><div class="icon">👔</div><h3>UNIFORMES</h3><p>Fornecimento de uniformes corporativos personalizados de qualidade para sua equipe.</p></div>
+</div>
+</section>
+
+<section id="contato" class="section contato">
+<div class="form">
+<h2 style="margin-bottom:20px">ENTRE EM CONTATO</h2>
+<form action="https://formspree.io/f/xqakpblp" method="POST">
+<input type="text" name="nome" placeholder="Seu nome..." required>
+<input type="email" name="email" placeholder="seu@email.com..." required>
+<textarea name="mensagem" rows="4" placeholder="Como podemos ajudar você?..." required></textarea>
+<button class="btn-enviar" type="submit">Enviar Mensagem</button>
+</form>
+<p style="font-size:12px;opacity:.5;margin-top:12px">* Após publicar, ative em formspree.io com seu email vorticesolucoesglobais@gmail.com para receber as mensagens.</p>
+</div>
+<div class="info">
+<h3>INFORMAÇÕES</h3>
+<p>✉️ vorticesolucoesglobais@gmail.com</p>
+<p>🏢 CNPJ 65.576.566/0001-01</p>
+<p>🔗 linkedin.com/company/vortice-solucoes-globais</p>
+<p>💬 WhatsApp: (11) 92191-3395</p>
+<br>
+<a class="btn btn-primary" href="https://wa.me/5511921913395?text=Olá%2C%20vim%20pelo%20site%20da%20Vórtice!" target="_blank" style="width:100%;justify-content:center">Chamar no WhatsApp</a>
+</div>
+</section>
+
+<footer>© 2024 VÓRTICE SOLUÇÕES GLOBAIS • Todos os direitos reservados • Design premium e profissional</footer>
+
+<a href="https://wa.me/5511921913395?text=Olá%2C%20vim%20pelo%20site%20da%20Vórtice%20Soluções%20Globais!" class="whatsapp-float" target="_blank">💬</a>
+
+</body>
+</html>
