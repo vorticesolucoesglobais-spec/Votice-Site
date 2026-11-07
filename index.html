@@ -424,45 +424,39 @@ opacity:0;transition:opacity 0.3s
 </div>
 </div>
 
-<!-- CARD PRODUÇÃO DE UNIFORMES - VÓRTICE -->
-<div class="card-uniformes-vortice">
+<!-- CARD PRODUÇÃO DE UNIFORMES - VÓRTICE COM IMAGEM DE FUNDO -->
+<div class="card-uniformes-vortice" onclick="openModal('uniformes')">
   <div class="overlay"></div>
   <div class="conteudo">
     <h3>PRODUÇÃO DE UNIFORMES CORPORATIVOS, BRINDES E PERSONALIZADOS</h3>
     <p>Uniformes profissionais, brindes de alto padrão e personalizados com a identidade da sua marca. Do bordado ao acabamento premium, entregamos qualidade que valoriza sua empresa.</p>
-    <a href="#contato" class="btn-vortice">Solicitar Orçamento</a>
+    <a href="#contato" onclick="event.stopPropagation()" class="btn-vortice">Solicitar Orçamento</a>
   </div>
 </div>
 
 <style>
-/* CORREÇÃO - COLE ISSO NO SEU <style> */
+.card-uniformes-vortice {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  background-image: url('vortice-uniformes.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  cursor: pointer;
+}
+
 .card-uniformes-vortice .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.65) 60%, rgba(0,0,0,0.3) 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.65) 60%, rgba(0,0,0,0.2) 100%);
   z-index: 1;
-  pointer-events: none; /* <-- ESSA LINHA LIBERA O CLIQUE */
-}
-
-.card-uniformes-vortice .conteudo {
-  position: relative;
-  z-index: 2;
-  padding: 28px;
-  pointer-events: none; /* texto não bloqueia */
-}
-
-.card-uniformes-vortice .btn-vortice {
-  position: relative;
-  z-index: 3;
-  pointer-events: auto; /* botão volta a ser clicável */
-}
-
-/* Overlay escuro pra dar contraste - imagem atrás, texto na frente */
-.card-uniformes-vortice .overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.92) 30%, rgba(0,0,0,0.65) 60%, rgba(0,0,0,0.3) 100%);
-  z-index: 1;
+  pointer-events: none;
 }
 
 .card-uniformes-vortice .conteudo {
@@ -479,7 +473,6 @@ opacity:0;transition:opacity 0.3s
   margin-bottom: 12px;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .card-uniformes-vortice .conteudo h3::after {
@@ -496,9 +489,12 @@ opacity:0;transition:opacity 0.3s
   line-height: 1.6;
   color: rgba(255,255,255,0.85);
   margin-bottom: 20px;
+  pointer-events: none;
 }
 
 .btn-vortice {
+  position: relative;
+  z-index: 3;
   display: inline-block;
   padding: 10px 22px;
   background: #D4AF37;
@@ -508,18 +504,13 @@ opacity:0;transition:opacity 0.3s
   text-decoration: none;
   border-radius: 6px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: 0.3s;
+  pointer-events: auto;
 }
 
 .btn-vortice:hover {
   background: #fff;
 }
-</style>
-
-<div class="service-card" onclick="openModal('cnc')" style="max-width:360px;width:100%">
-<div style="width:54px;height:54px;margin:0 auto;border-radius:10px;background:linear-gradient(145deg, rgba(77,166,255,0.18), rgba(77,166,255,0.06));border:1px solid rgba(77,166,255,0.22);display:grid;place-items:center;font-size:28px">⚙️</div>
-<h4>CNC, AUTOMAÇÃO E PRODUÇÃO</h4>
+</style><h4>CNC, AUTOMAÇÃO E PRODUÇÃO</h4>
 <p>Usinagem CNC Router e Laser, corte e gravação, impressão 3D, modelagem 3D, prototipagem e automação industrial. Precisão milimétrica.</p>
 <div style="margin-top:10px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
 <span style="padding:3px 8px;border-radius:4px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.15);font-size:9px;color:#4da6ff;font-weight:700">CNC</span>
