@@ -350,105 +350,227 @@ Fale no WhatsApp Agora
 </div>
 
 <div id="tab-servicos" class="tab-pane">
-<div class="card">
-<div style="text-align:center;margin-bottom:30px">
-<span class="badge">✦ SERVIÇOS • 5 SOLUÇÕES COMPLETAS • SEM REPETIÇÃO</span>
-<h2 style="font-size:26px;font-weight:900;margin-top:12px;letter-spacing:0.5px">NOSSOS 5 SERVIÇOS - CLIQUE PARA SABER TUDO</h2>
-<p style="margin-top:10px;color:#9aa3b8;font-size:13.5px;max-width:760px;margin-left:auto;margin-right:auto;line-height:1.6">Cada serviço foi desenhado para resolver uma dor real de PMEs. <strong style="color:#e8c765">Gestão Empresarial e Assessoria Administrativa é UM serviço único e completo</strong>, não dois separados. Clique para ver detalhes, benefícios, o que inclui e como contratar.</p>
-<div style="width:240px;height:2px;margin:16px auto 0;background:linear-gradient(90deg,transparent,#e8c765,#4da6ff,transparent);box-shadow:0 0 14px rgba(77,166,255,0.5)"></div>
-</div>
-
+<div id="tab-servicos" class="tab-pane">
 <style>
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.service-card{
-position:relative;
-background:rgba(0,0,0,0.35);
-border:1px solid rgba(255,255,255,0.20);
-border-radius:8px;
-padding:24px 18px;
-text-align:center;
-transition:all 0.35s cubic-bezier(0.4,0,0.2,1);
-cursor:pointer;
-overflow:hidden
+/* ===== VÓRTICE - SERVIÇOS V2 - EXPOSTO SEM MODAL - MASSIVO ===== */
+.services-header{ text-align:center; margin-bottom:32px; }
+.services-header h2{ font-size:32px; font-weight:900; color:#fff; letter-spacing:0.5px; }
+.services-header p{ max-width:820px; margin:12px auto 0; color:#9aa3b8; font-size:14px; line-height:1.7; }
+
+.servico-massivo{
+  position:relative;
+  background:#0f0f12;
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px;
+  overflow:hidden;
+  margin-bottom:28px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  display:grid;
+  grid-template-columns: 380px 1fr;
 }
-.service-card::before{
-content:'';
-position:absolute;
-top:0;left:0;right:0;height:2px;
-background:linear-gradient(90deg,transparent,#4da6ff,#e8c765,transparent);
-opacity:0;transition:opacity 0.3s
+
+.servico-massivo .servico-foto{
+  position:relative;
+  min-height:100%;
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:flex-end;
+  padding:24px;
 }
-.service-card:hover{transform:translateY(-6px) scale(1.02);border-color:#4da6ff;box-shadow:0 0 20px rgba(77,166,255,0.5),0 0 40px rgba(77,166,255,0.2)}
-.service-card:hover::before{opacity:1}
-.service-card h4{font-size:12px;font-weight:800;margin:12px 0 8px;line-height:1.3;color:#fff;min-height:34px}
-.service-card p{font-size:11px;color:#aaa;line-height:1.45;min-height:48px}
-.service-card .cta{margin-top:14px;display:inline-flex;padding:7px 14px;border-radius:6px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.22);color:#4da6ff;font-size:10px;font-weight:800;letter-spacing:0.5px}
-.services-bottom{display:flex;justify-content:center;gap:18px;margin-top:18px;flex-wrap:wrap}
+.servico-massivo .servico-foto::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,0.92) 20%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.15) 100%);
+  z-index:1;
+}
+.servico-massivo .servico-foto-conteudo{ position:relative; z-index:2; width:100%; }
+.servico-massivo .servico-foto h3{
+  font-size:22px; font-weight:900; color:#fff; line-height:1.15;
+  text-transform:uppercase; text-shadow:0 3px 15px #000;
+}
+.servico-massivo .servico-foto .sub{
+  margin-top:8px; font-size:11px; font-weight:800; letter-spacing:1px;
+  color:#e8c765; background:rgba(0,0,0,0.4); border:1px solid rgba(232,199,101,0.25);
+  display:inline-block; padding:5px 10px; border-radius:4px;
+}
+
+.servico-massivo .servico-detalhe{ padding:28px 30px; }
+.servico-massivo .servico-detalhe h4{
+  font-size:13px; font-weight:800; letter-spacing:1px; color:#f5e6a3; margin-bottom:10px;
+}
+.servico-massivo .servico-detalhe p.desc{
+  font-size:13.5px; color:#c8cedc; line-height:1.7; margin-bottom:16px;
+}
+.servico-massivo .lista-servicos{
+  display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin-bottom:18px;
+}
+.servico-massivo .lista-servicos span{
+  font-size:12px; color:#b8c0d2; display:flex; gap:8px; line-height:1.5;
+}
+.servico-massivo .lista-servicos span b{ color:#25D366; }
+
+.servico-massivo .tags{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:20px; }
+.servico-massivo .tags span{
+  padding:4px 9px; border-radius:4px; font-size:9.5px; font-weight:700;
+  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#9aa3b8;
+}
+.servico-massivo .tags.gold span{ background:rgba(232,199,101,0.1); border-color:rgba(232,199,101,0.18); color:#e8c765; }
+.servico-massivo .tags.blue span{ background:rgba(77,166,255,0.1); border-color:rgba(77,166,255,0.18); color:#4da6ff; }
+.servico-massivo .tags.pink span{ background:rgba(255,60,122,0.1); border-color:rgba(255,60,122,0.18); color:#ff6b9a; }
+
+.btn-contratar{
+  width:100%; padding:14px; border-radius:8px; border:1px solid rgba(37,211,102,0.3);
+  background:linear-gradient(180deg,#2de070 0%, #25D366 50%, #128C7E 100%);
+  color:#fff; font-weight:900; font-size:13px; letter-spacing:0.5px;
+  cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;
+  box-shadow:0 8px 24px rgba(37,211,102,0.25); transition:0.3s; text-transform:uppercase;
+}
+.btn-contratar:hover{ transform:translateY(-2px); box-shadow:0 12px 32px rgba(37,211,102,0.4); }
+
+@media(max-width:1000px){
+  .servico-massivo{ grid-template-columns:1fr; }
+  .servico-massivo .servico-foto{ min-height:280px; }
+  .servico-massivo .lista-servicos{ grid-template-columns:1fr; }
+}
 </style>
 
-<div class="services-grid">
-<div class="service-card" onclick="openModal('gestao')">
-<div style="width:54px;height:54px;margin:0 auto;border-radius:10px;background:linear-gradient(145deg, rgba(232,199,101,0.18), rgba(232,199,101,0.06));border:1px solid rgba(232,199,101,0.22);display:grid;place-items:center;font-size:28px;box-shadow:0 0 18px rgba(232,199,101,0.12)">🏢</div>
-<h4>GESTÃO EMPRESARIAL E ASSESSORIA ADMINISTRATIVA</h4>
-<p><strong style="color:#f5e6a3">Serviço Único Completo</strong> - BPO Financeiro, RH, Departamento Pessoal, Processos, Estratégia, KPIs, Dashboards e Redução de Custos. Organize a casa e cresça.</p>
-<div style="margin-top:10px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-<span style="padding:3px 8px;border-radius:4px;background:rgba(232,199,101,0.10);border:1px solid rgba(232,199,101,0.15);font-size:9px;color:#e8c765;font-weight:700">BPO FINANCEIRO</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(232,199,101,0.10);border:1px solid rgba(232,199,101,0.15);font-size:9px;color:#e8c765;font-weight:700">RH + DP</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(232,199,101,0.10);border:1px solid rgba(232,199,101,0.15);font-size:9px;color:#e8c765;font-weight:700">KPIs</span>
-</div>
-<span class="cta">VER TUDO QUE INCLUI →</span>
-</div>
+<div class="card" style="background:#0f0f12">
+  <div class="services-header">
+    <span class="badge">✦ SERVIÇOS • 5 SOLUÇÕES COMPLETAS • SEM MODAL • TUDO EXPOSTO</span>
+    <h2>NOSSOS 5 SERVIÇOS COMPLETOS - PRONTO PARA CONTRATAR</h2>
+    <p>Tudo exposto na frente. Sem clique escondido. Veja foto, título, o que inclui, benefícios e contrate direto. Cada serviço foi desenhado para PMEs que precisam de resultado real, não de enrolação.</p>
+    <div style="width:240px;height:2px;margin:16px auto 0;background:linear-gradient(90deg,transparent,#e8c765,#4da6ff,transparent);box-shadow:0 0 14px rgba(77,166,255,0.5)"></div>
+  </div>
 
-<div class="service-card" onclick="openModal('ti')">
-<div style="width:54px;height:54px;margin:0 auto;border-radius:10px;background:linear-gradient(145deg, rgba(77,166,255,0.18), rgba(77,166,255,0.06));border:1px solid rgba(77,166,255,0.22);display:grid;place-items:center;font-size:28px;box-shadow:0 0 18px rgba(77,166,255,0.12)">💻</div>
-<h4>SUPORTE E ASSESSORIA DE TI</h4>
-<p>Suporte remoto e presencial, infraestrutura de redes, segurança da informação, backup em nuvem, Microsoft 365, automação e LGPD. SLA rápido.</p>
-<div style="margin-top:10px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-<span style="padding:3px 8px;border-radius:4px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.15);font-size:9px;color:#4da6ff;font-weight:700">SUPORTE</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.15);font-size:9px;color:#4da6ff;font-weight:700">REDES</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.15);font-size:9px;color:#4da6ff;font-weight:700">LGPD</span>
-</div>
-<span class="cta">VER TUDO QUE INCLUI →</span>
-</div>
+  <!-- 1 - GESTÃO EMPRESARIAL E ASSESSORIA ADMINISTRATIVA -->
+  <div class="servico-massivo">
+    <div class="servico-foto" style="background-image:url('gestao.jpg')">
+      <div class="servico-foto-conteudo">
+        <h3>GESTÃO EMPRESARIAL E ASSESSORIA ADMINISTRATIVA</h3>
+        <div class="sub">SERVIÇO ÚNICO COMPLETO • CARRO CHEFE</div>
+      </div>
+    </div>
+    <div class="servico-detalhe">
+      <h4>O QUE É - SERVIÇO ÚNICO, NÃO SÃO DOIS:</h4>
+      <p class="desc">Unimos <strong style="color:#fff">Gestão Estratégica + Assessoria Operacional</strong> em um só pacote. Organizamos financeiro, RH, processos, KPIs e estratégia. Para donos que estão apagando incêndio e querem virar empresa organizada que cresce sem depender do dono.</p>
+      <h4>O QUE INCLUI - MASSIVO:</h4>
+      <div class="lista-servicos">
+        <span><b>✔</b> BPO Financeiro completo: contas a pagar/receber, fluxo de caixa diário, conciliação, DRE gerencial</span>
+        <span><b>✔</b> RH e DP: admissão, folha, férias, 13º, rescisão, ponto, benefícios</span>
+        <span><b>✔</b> Mapeamento de processos e criação de POPs</span>
+        <span><b>✔</b> Dashboards e KPIs em tempo real</span>
+        <span><b>✔</b> Planejamento estratégico, OKRs e metas</span>
+        <span><b>✔</b> Redução de custos e negociação com fornecedores</span>
+      </div>
+      <div class="tags gold"><span>BPO FINANCEIRO</span><span>RH + DP</span><span>KPIs</span><span>DASHBOARDS</span><span>REDUÇÃO DE CUSTOS ATÉ 35%</span></div>
+      <button class="btn-contratar" onclick="switchTab('contato');document.getElementById('servico').value='Gestão Empresarial e Assessoria Administrativa';window.scrollTo({top:0,behavior:'smooth'})">CONTRATAR SERVIÇO - GESTÃO COMPLETA →</button>
+    </div>
+  </div>
 
-<div class="service-card" onclick="openModal('social')">
-<div style="width:54px;height:54px;margin:0 auto;border-radius:10px;background:linear-gradient(145deg, rgba(255,60,122,0.14), rgba(255,60,122,0.06));border:1px solid rgba(255,60,122,0.18);display:grid;place-items:center;font-size:28px;box-shadow:0 0 18px rgba(255,60,122,0.12)">📱</div>
-<h4>GESTÃO DE REDES SOCIAIS</h4>
-<p>Identidade visual, calendário editorial, artes, reels, copy que vende, tráfego pago, atendimento de direct e relatórios de crescimento.</p>
-<div style="margin-top:10px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-<span style="padding:3px 8px;border-radius:4px;background:rgba(255,60,122,0.10);border:1px solid rgba(255,60,122,0.15);font-size:9px;color:#ff6b9a;font-weight:700">CONTEÚDO</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(255,60,122,0.10);border:1px solid rgba(255,60,122,0.15);font-size:9px;color:#ff6b9a;font-weight:700">TRÁFEGO</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(255,60,122,0.10);border:1px solid rgba(255,60,122,0.15);font-size:9px;color:#ff6b9a;font-weight:700">LEADS</span>
-</div>
-<span class="cta">VER TUDO QUE INCLUI →</span>
-</div>
-</div>
+  <!-- 2 - TI -->
+  <div class="servico-massivo">
+    <div class="servico-foto" style="background-image:url('ti.jpg')">
+      <div class="servico-foto-conteudo">
+        <h3>SUPORTE E ASSESSORIA DE TI</h3>
+        <div class="sub">TECNOLOGIA QUE GERA RESULTADO • SLA RÁPIDO</div>
+      </div>
+    </div>
+    <div class="servico-detalhe">
+      <h4>O QUE É:</h4>
+      <p class="desc">Cuidamos de toda tecnologia da sua empresa. Do computador que não liga à rede, servidor, segurança e LGPD. Sem call center, sem robô. Suporte humano direto com técnico que conhece sua empresa.</p>
+      <h4>O QUE INCLUI - MASSIVO:</h4>
+      <div class="lista-servicos">
+        <span><b>✔</b> Suporte remoto até 2h e presencial 24h em SP</span>
+        <span><b>✔</b> Infraestrutura de redes, Wi-Fi corporativo, servidores</span>
+        <span><b>✔</b> Segurança: antivírus, backup em nuvem, monitoramento</span>
+        <span><b>✔</b> Microsoft 365 / Google Workspace completo</span>
+        <span><b>✔</b> Automação com IA, integrações e scripts</span>
+        <span><b>✔</b> Consultoria LGPD e proteção de dados</span>
+      </div>
+      <div class="tags blue"><span>SUPORTE 2H</span><span>REDES</span><span>BACKUP NUVEM</span><span>MICROSOFT 365</span><span>LGPD</span></div>
+      <button class="btn-contratar" onclick="switchTab('contato');document.getElementById('servico').value='Suporte e Assessoria de TI';window.scrollTo({top:0,behavior:'smooth'})">CONTRATAR SERVIÇO - TI PROFISSIONAL →</button>
+    </div>
+  </div>
 
-<div class="services-bottom">
-<div class="service-card" onclick="openModal('uniforme')" style="max-width:360px;width:100%">
-<div style="width:54px;height:54px;margin:0 auto;border-radius:10px;background:linear-gradient(145deg, rgba(232,199,101,0.18), rgba(232,199,101,0.06));border:1px solid rgba(232,199,101,0.22);display:grid;place-items:center;font-size:28px">👕</div>
-<h4>PRODUÇÃO DE UNIFORMES CORPORATIVOS</h4>
-<p>Camisetas, polos, calças, jalecos, EPIs, bordado computadorizado e serigrafia de alta durabilidade. Para equipes de 10 a 500.</p>
-<div style="margin-top:10px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-<span style="padding:3px 8px;border-radius:4px;background:rgba(232,199,101,0.10);border:1px solid rgba(232,199,101,0.15);font-size:9px;color:#e8c765;font-weight:700">UNIFORMES</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(232,199,101,0.10);border:1px solid rgba(232,199,101,0.15);font-size:9px;color:#e8c765;font-weight:700">BORDADO</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(232,199,101,0.10);border:1px solid rgba(232,199,101,0.15);font-size:9px;color:#e8c765;font-weight:700">EPIs</span>
-</div>
-<span class="cta">VER TUDO QUE INCLUI →</span>
-</div>
+  <!-- 3 - REDES SOCIAIS -->
+  <div class="servico-massivo">
+    <div class="servico-foto" style="background-image:url('social.jpg')">
+      <div class="servico-foto-conteudo">
+        <h3>GESTÃO DE REDES SOCIAIS</h3>
+        <div class="sub">SEGUIDORES QUE VIRAM CLIENTES • NÃO SÓ CURTIDA</div>
+      </div>
+    </div>
+    <div class="servico-detalhe">
+      <h4>O QUE É:</h4>
+      <p class="desc">Não fazemos post bonito. Fazemos rede social que vende. Conteúdo estratégico, tráfego pago, atendimento de direct e relatório de leads. Instagram e LinkedIn trabalhando por você 24/7.</p>
+      <h4>O QUE INCLUI - MASSIVO:</h4>
+      <div class="lista-servicos">
+        <span><b>✔</b> Identidade visual, linha editorial e calendário mensal</span>
+        <span><b>✔</b> Artes, reels, carrosséis e copy que vende</span>
+        <span><b>✔</b> Tráfego pago: Meta Ads, Google Ads, LinkedIn Ads</span>
+        <span><b>✔</b> Atendimento de directs e comentários em até 2h</span>
+        <span><b>✔</b> Relatório mensal: alcance, crescimento e leads gerados</span>
+        <span><b>✔</b> Estratégia focada em ticket alto, não em curtida</span>
+      </div>
+      <div class="tags pink"><span>CONTEÚDO</span><span>REELS</span><span>TRÁFEGO PAGO</span><span>LEADS</span><span>VENDAS</span></div>
+      <button class="btn-contratar" onclick="switchTab('contato');document.getElementById('servico').value='Gestão de Redes Sociais';window.scrollTo({top:0,behavior:'smooth'})">CONTRATAR SERVIÇO - REDES QUE VENDEM →</button>
+    </div>
+  </div>
 
-<div class="service-card" onclick="openModal('cnc')" style="max-width:360px;width:100%">
-<div style="width:54px;height:54px;margin:0 auto;border-radius:10px;background:linear-gradient(145deg, rgba(77,166,255,0.18), rgba(77,166,255,0.06));border:1px solid rgba(77,166,255,0.22);display:grid;place-items:center;font-size:28px">⚙️</div>
-<h4>CNC, AUTOMAÇÃO E PRODUÇÃO</h4>
-<p>Usinagem CNC Router e Laser, corte e gravação, impressão 3D, modelagem 3D, prototipagem e automação industrial. Precisão milimétrica.</p>
-<div style="margin-top:10px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-<span style="padding:3px 8px;border-radius:4px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.15);font-size:9px;color:#4da6ff;font-weight:700">CNC</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.15);font-size:9px;color:#4da6ff;font-weight:700">LASER</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.15);font-size:9px;color:#4da6ff;font-weight:700">3D</span>
+  <!-- 4 - UNIFORMES -->
+  <div class="servico-massivo">
+    <div class="servico-foto" style="background-image:url('vortice-uniformes.jpg')">
+      <div class="servico-foto-conteudo">
+        <h3>PRODUÇÃO DE UNIFORMES CORPORATIVOS, BRINDES E PERSONALIZADOS</h3>
+        <div class="sub">SUA MARCA VESTIDA COM QUALIDADE PREMIUM</div>
+      </div>
+    </div>
+    <div class="servico-detalhe">
+      <h4>O QUE É:</h4>
+      <p class="desc">Uniformes profissionais, brindes de alto padrão e personalizados com a identidade VÓRTICE. Do bordado ao acabamento premium. Para equipes de 10 a 500 colaboradores. Qualidade que valoriza sua empresa.</p>
+      <h4>O QUE INCLUI - MASSIVO:</h4>
+      <div class="lista-servicos">
+        <span><b>✔</b> Camisetas, polos, sociais, calças, jalecos, jaquetas, EPIs</span>
+        <span><b>✔</b> Brindes: bonés, ecobags, mochilas, canecas, canetas premium</span>
+        <span><b>✔</b> Bordado computadorizado alta definição até 15 cores</span>
+        <span><b>✔</b> Silk screen, sublimação, DTF e bordado 3D</span>
+        <span><b>✔</b> Grade PP ao G5, prova de tamanho e cor</span>
+        <span><b>✔</b> Entrega Brasil com embalagem individual etiquetada</span>
+      </div>
+      <div class="tags gold"><span>UNIFORMES</span><span>BRINDES</span><span>BORDADO PREMIUM</span><span>VÓRTICE</span><span>ENTREGA BRASIL</span></div>
+      <button class="btn-contratar" onclick="switchTab('contato');document.getElementById('servico').value='Produção de Uniformes Corporativos';window.scrollTo({top:0,behavior:'smooth'})">CONTRATAR SERVIÇO - UNIFORMES PREMIUM →</button>
+    </div>
+  </div>
+
+  <!-- 5 - CNC -->
+  <div class="servico-massivo">
+    <div class="servico-foto" style="background-image:url('cnc.jpg')">
+      <div class="servico-foto-conteudo">
+        <h3>CNC, AUTOMAÇÃO E PRODUÇÃO</h3>
+        <div class="sub">PRECISÃO MILIMÉTRICA • ENTREGA RÁPIDA</div>
+      </div>
+    </div>
+    <div class="servico-detalhe">
+      <h4>O QUE É:</h4>
+      <p class="desc">Usinagem CNC Router e Laser, impressão 3D, modelagem 3D e automação industrial. Precisão de até 0.05mm, acabamento premium sem rebarba. Do protótipo de 1 peça à produção em série.</p>
+      <h4>O QUE INCLUI - MASSIVO:</h4>
+      <div class="lista-servicos">
+        <span><b>✔</b> CNC Router: MDF, ACM, acrílico, compensado, letras caixa</span>
+        <span><b>✔</b> Corte e gravação a laser: MDF, acrílico, couro, metal fino</span>
+        <span><b>✔</b> Impressão 3D: FDM, resina, ABS, PETG, Nylon, TPU</span>
+        <span><b>✔</b> Modelagem 3D e desenvolvimento do zero com render</span>
+        <span><b>✔</b> Automação industrial: esteiras, garras, dispositivos pneumáticos</span>
+        <span><b>✔</b> Orçamento em até 4h com foto do projeto</span>
+      </div>
+      <div class="tags blue"><span>CNC</span><span>LASER</span><span>IMPRESSÃO 3D</span><span>PROTOTIPAGEM</span><span>0.05MM PRECISÃO</span></div>
+      <button class="btn-contratar" onclick="switchTab('contato');document.getElementById('servico').value='CNC, Automação e Produção';window.scrollTo({top:0,behavior:'smooth'})">CONTRATAR SERVIÇO - CNC DE PRECISÃO →</button>
+    </div>
+  </div>
+
 </div>
-<span class="cta">VER TUDO QUE INCLUI →</span>
-</div>
-</div>
+</div>v
 
 <div style="margin-top:28px;background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:20px;text-align:center">
 <h3 style="font-size:15px;font-weight:800;color:#fff">Como contratar? Processo simples em 3 passos</h3>
