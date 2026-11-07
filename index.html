@@ -3,154 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VÓRTICE SOLUÇÕES GLOBAIS - Futurista</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+<title>VÓRTICE SOLUÇÕES GLOBAIS - Futurista Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
 <style>
-:root{--neon:#00d4ff;--gold:#e8c765;--bg:#080a12;--text:#e6e9f0;--muted:#9aa3b8}
+:root{--blue:#00d4ff;--gold:#e8c765;--gold-light:#f5e6a3;--bg:#070c1e;--text:#e6e9f0;--muted:#9aa3b8}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#080a12;color:var(--text);font-family:'Montserrat',sans-serif;min-height:100vh}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.02) 1px, transparent 1px),linear-gradient(90deg, rgba(0,212,255,0.02) 1px, transparent 1px);background-size:50px 50px;pointer-events:none;z-index:0}
-.header{position:relative;z-index:10;text-align:center;padding:20px 20px 14px;background:linear-gradient(180deg,#0a0a0f 0%,#080a12 100%);border-bottom:1px solid rgba(255,255,255,0.08)}
-.logo-wrap img{height:68px;margin:0 auto;display:block;filter:drop-shadow(0 0 20px rgba(255,255,255,0.25)) drop-shadow(0 0 35px rgba(0,212,255,0.15))}
-.logo-title{font-family:'Orbitron',sans-serif;font-size:24px;letter-spacing:5px;font-weight:700;color:#fff;margin-top:6px}
-.logo-sub{font-size:10px;letter-spacing:5px;color:var(--muted);margin-top:2px}
-.nav-bar{position:relative;z-index:10;display:flex;justify-content:center;gap:0;padding:0;background:linear-gradient(180deg,#2a2a2e 0%,#1f1f23 100%);border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.08)}
-.nav-tab{padding:12px 32px;background:transparent;border:none;color:#8a8f9e;font-weight:800;font-size:13px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;transition:.25s}
-.nav-tab.active{background:linear-gradient(180deg,#e8e8e8,#c0c0c0);color:#111;border-radius:6px;margin:6px 4px;padding:8px 28px}
-.dashboard{position:relative;z-index:5;display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:14px;max-width:1440px;margin:0 auto}
-.dash-card{position:relative;background:linear-gradient(145deg,rgba(18,18,24,0.95) 0%,rgba(10,10,16,0.98) 100%);border:1px solid rgba(255,255,255,0.12);border-radius:6px;overflow:hidden;min-height:380px}
-.badge-small{position:absolute;top:12px;left:12px;padding:5px 12px;border-radius:4px;background:linear-gradient(180deg,#d8d8d8,#a0a0a0);color:#111;font-weight:900;font-size:10.5px;z-index:2}
-.hero-card{padding:0;position:relative;background:#0a0c14}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%, rgba(0,212,255,0.12) 0%, transparent 60%),linear-gradient(180deg,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.7) 100%),url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000') center/cover;opacity:0.45}
-.hero-content{position:relative;z-index:2;padding:58px 34px 30px}
-.hero-card h1{font-size:42px;font-weight:900;line-height:0.95;letter-spacing:0.5px;background:linear-gradient(100deg,#e8c765 0%,#fff1a8 45%,#d4af37 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap;transform:scaleX(1.05);transform-origin:left}
-.hero-card p{margin-top:14px;color:#c8cedc;font-size:14px;max-width:420px}
-.btn-neon{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:6px;border:1px solid rgba(0,212,255,0.45);background:linear-gradient(180deg,rgba(10,20,40,0.7),rgba(5,15,30,0.9));color:#fff;font-weight:700;font-size:12.5px;text-decoration:none;cursor:pointer;box-shadow:0 0 18px rgba(0,212,255,0.22);transition:.25s}
-.btn-neon:hover{box-shadow:0 0 28px rgba(0,212,255,0.4);transform:translateY(-1px)}
-.about-card{display:grid;grid-template-columns:200px 1fr;gap:0;padding-top:36px}
-.about-photo{padding:18px 14px;display:flex;align-items:center;justify-content:center}
-.about-photo img{width:100%;border-radius:6px;border:1px solid rgba(255,255,255,0.1)}
-.about-text{padding:18px 20px 18px 0}
-.about-text h2{font-size:20px;font-weight:900;color:#fff}
-.divider-neon{height:2px;background:linear-gradient(90deg,#00d4ff,transparent);margin:12px 0;width:180px;box-shadow:0 0 10px rgba(0,212,255,0.5)}
-.services-card{padding:36px 18px 18px}
-.services-title{font-size:17px;font-weight:900;text-align:center;letter-spacing:1px;color:#fff}
-.services-underline{width:140px;height:2px;margin:8px auto 18px;background:linear-gradient(90deg,transparent,#00d4ff,transparent);box-shadow:0 0 10px rgba(0,212,255,0.6)}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.svc{border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:14px 10px;text-align:center;background:linear-gradient(145deg,rgba(20,20,28,0.8),rgba(12,12,18,0.9));transition:.25s;cursor:pointer}
-.svc:hover{border-color:rgba(0,212,255,0.4);box-shadow:0 0 18px rgba(0,212,255,0.15);transform:translateY(-2px)}
-.svc h4{font-size:10.5px;font-weight:800;margin:8px 0 4px;color:#fff;line-height:1.25}
-.svc p{font-size:9.5px;color:#8a90a3}
-.services-bottom{display:flex;justify-content:center;gap:10px;margin-top:10px}
-.services-bottom .svc{width:100%;max-width:210px}
-.contact-card{padding:36px 20px 18px;display:grid;grid-template-columns:1.2fr 0.8fr;gap:18px}
-.underline-neon{width:120px;height:2px;background:linear-gradient(90deg,#00d4ff,transparent);box-shadow:0 0 8px rgba(0,212,255,0.6);margin-bottom:14px}
-.form input,.form textarea,.form select{width:100%;padding:10px 12px;margin-bottom:8px;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.12);border-radius:6px;color:#fff;font-size:11.5px}
-.form textarea{min-height:58px}
-.btn-enviar{width:100%;padding:11px;border-radius:6px;border:1px solid rgba(0,212,255,0.45);background:linear-gradient(180deg,rgba(15,30,60,0.8),rgba(10,20,40,0.9));color:#fff;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 0 15px rgba(0,212,255,0.2)}
-.info-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:11.5px;color:#a0a8bb;text-decoration:none}
-.icon-box{width:28px;height:28px;border-radius:5px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);display:grid;place-items:center;font-size:13px}
-.whatsapp-float{position:fixed;bottom:22px;right:22px;width:58px;height:58px;background:linear-gradient(180deg,#25D366 0%,#128C7E 100%);border-radius:50%;display:grid;place-items:center;box-shadow:0 8px 25px rgba(37,211,102,0.4);z-index:9999;animation:pulseWhats 2s infinite}
-@keyframes pulseWhats{0%{box-shadow:0 8px 25px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0.4)}70%{box-shadow:0 8px 25px rgba(37,211,102,0.4),0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 8px 25px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0)}}
+body{
+  background:#070c1e;
+  background-image:
+    radial-gradient(ellipse at 20% 15%, rgba(232,199,101,0.16) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 10%, rgba(0,212,255,0.18) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 95%, rgba(0,136,255,0.10) 0%, transparent 60%),
+    linear-gradient(180deg, #0a1228 0%, #070c1e 50%, #050a16 100%),
+    url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072');
+  background-blend-mode: screen, screen, screen, normal, soft-light;
+  background-size: cover;
+  background-attachment: fixed;
+  color:var(--text);font-family:'Montserrat',sans-serif;min-height:100vh
+}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),linear-gradient(90deg, rgba(232,199,101,0.02) 1px, transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;opacity:0.6}
+.header{position:sticky;top:0;z-index:30;text-align:center;padding:20px 20px 14px;background:linear-gradient(180deg, rgba(5,8,20,0.96) 0%, rgba(7,12,30,0.85) 100%);border-bottom:1px solid rgba(232,199,101,0.18);backdrop-filter:blur(16px)}
+.logo-img{height:72px;margin:0 auto;display:block;filter:drop-shadow(0 0 20px rgba(232,199,101,0.55)) drop-shadow(0 0 40px rgba(0,212,255,0.18))}
+.logo-sub{font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:5px;color:var(--gold);margin-top:8px;font-weight:700}
+.nav-wrap{position:sticky;top:102px;z-index:29;display:flex;justify-content:center;gap:8px;padding:12px 20px;background:linear-gradient(180deg,#22222a 0%,#16161c 100%);border-bottom:1px solid rgba(232,199,101,0.15)}
+.nav-tab{padding:10px 28px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);color:var(--muted);font-weight:800;font-size:12.5px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:.25s}
+.nav-tab.active{background:linear-gradient(180deg,#f5e6a3 0%,#d4af37 100%);color:#111;border-color:var(--gold);box-shadow:0 4px 20px rgba(232,199,101,0.35)}
+.container{position:relative;z-index:5;max-width:1280px;margin:0 auto;padding:26px 16px 120px}
+.tab-pane{display:none}.tab-pane.active{display:block;animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.card{position:relative;background:linear-gradient(145deg, rgba(16,24,46,0.88) 0%, rgba(10,16,34,0.94) 100%);border:1px solid rgba(232,199,101,0.14);border-radius:14px;padding:32px;box-shadow:0 12px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);backdrop-filter:blur(14px)}
+.hero{padding:70px 44px;min-height:520px;display:flex;align-items:center}
+.hero h1{font-size:62px;font-weight:900;white-space:nowrap;width:100%;line-height:0.92;letter-spacing:1px;background:linear-gradient(100deg,#e8c765 0%,#fff2b8 30%,#f5e6a3 50%,#d4af37 80%,#e8c765 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;transform:scaleX(1.04);transform-origin:left}
+.hero p{margin-top:18px;color:#c8cedc;font-size:17px;max-width:560px;line-height:1.6}
+.badge{display:inline-flex;padding:6px 14px;border-radius:6px;background:linear-gradient(180deg,#f5e6a3,#d4af37);color:#111;font-weight:900;font-size:10.5px;letter-spacing:1px;margin-bottom:18px}
+.btn{padding:13px 24px;border-radius:8px;border:1px solid rgba(0,212,255,0.25);background:linear-gradient(180deg, rgba(18,30,60,0.7), rgba(10,20,40,0.9));color:#fff;font-weight:700;font-size:13px;cursor:pointer;text-decoration:none;display:inline-flex;gap:8px;align-items:center;justify-content:center;transition:.25s}
+.btn-primary{background:linear-gradient(180deg,#1e345c 0%,#102040 100%);border-color:rgba(232,199,101,0.35);color:#f5e6a3}
+.btn-whatsapp{background:linear-gradient(180deg,#25D366 0%,#128C7E 100%);border-color:rgba(37,211,102,0.5)}
+.about-grid{display:grid;grid-template-columns:360px 1fr;gap:0;padding:0;border-radius:14px;overflow:hidden}
+.about-photo{background:radial-gradient(ellipse at center, rgba(232,199,101,0.10) 0%, transparent 70%), #080e22;padding:24px;display:flex;align-items:center;justify-content:center}
+.about-photo img{width:100%;max-width:320px;border-radius:10px;border:2px solid rgba(232,199,101,0.22)}
+.about-text{padding:36px}.divider{height:2px;background:linear-gradient(90deg,#e8c765,transparent);margin:16px 0;width:100%}
+.services-head{text-align:center;margin-bottom:28px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.service-card{background:linear-gradient(145deg, rgba(20,28,52,0.9), rgba(10,16,34,0.96));border:1px solid rgba(232,199,101,0.12);border-radius:10px;padding:22px 16px;text-align:center;transition:.3s;cursor:pointer}
+.service-card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,0.35);box-shadow:0 14px 35px rgba(0,0,0,0.4),0 0 25px rgba(0,212,255,0.15)}
+.service-card h4{font-size:11.5px;font-weight:800;margin:10px 0 6px;line-height:1.3;color:#fff}
+.service-card p{font-size:10.5px;color:#8a90a3}
+.services-bottom{display:flex;justify-content:center;gap:16px;margin-top:16px}
+.contact-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:24px}
+.form input,.form textarea,.form select{width:100%;padding:12px 14px;margin-bottom:10px;background:rgba(0,0,0,0.35);border:1px solid rgba(232,199,101,0.14);border-radius:8px;color:#fff;font-size:12.5px}
+.form textarea{min-height:90px}
+.info-box{background:linear-gradient(145deg, rgba(18,24,46,0.5), rgba(10,16,34,0.7));border:1px solid rgba(232,199,101,0.10);border-radius:10px;padding:16px}
+.info-item{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:12px;color:#a0a8bb;text-decoration:none}
+.icon-box{width:34px;height:34px;border-radius:6px;display:grid;place-items:center;font-size:14px}
+.whatsapp-float{position:fixed;bottom:22px;right:22px;width:60px;height:60px;background:linear-gradient(180deg,#25D366 0%,#128C7E 100%);border-radius:50%;display:grid;place-items:center;box-shadow:0 8px 25px rgba(37,211,102,0.4);z-index:9999;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 8px 25px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0.4)}70%{box-shadow:0 8px 25px rgba(37,211,102,0.4),0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 8px 25px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0)}}
 .whatsapp-label{position:fixed;bottom:30px;right:92px;background:#111;color:#fff;padding:8px 14px;border-radius:20px;font-size:11.5px;font-weight:600;z-index:9998;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;gap:6px}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);z-index:10000;align-items:center;justify-content:center;padding:20px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);z-index:10000;align-items:center;justify-content:center;padding:20px}
 .modal.active{display:flex}
-.modal-box{background:linear-gradient(145deg,#141c32,#0c1226);border:1px solid rgba(0,212,255,0.25);border-radius:10px;max-width:520px;width:100%;padding:28px}
-.footer{text-align:center;padding:14px;font-size:10.5px;color:#6a7285;border-top:1px solid rgba(255,255,255,0.06);background:#080a12}
-@media(max-width:1100px){.dashboard{grid-template-columns:1fr}.hero-card h1{white-space:normal;font-size:32px;transform:none}}
+.modal-box{background:linear-gradient(145deg,#141e36,#0c1426);border:1px solid rgba(232,199,101,0.22);border-radius:12px;max-width:540px;width:100%;padding:28px}
+@media(max-width:1000px){.hero h1{font-size:30px;white-space:normal;transform:none}.hero{padding:32px 22px;min-height:auto}.about-grid{grid-template-columns:1fr}.services-grid{grid-template-columns:1fr}.services-bottom{flex-direction:column;align-items:center}.contact-grid{grid-template-columns:1fr}.whatsapp-label{display:none}}
 </style>
 </head>
 <body>
 <div class="header">
-<div class="logo-wrap">
-<img src="logo.png" alt="VÓRTICE" onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='block'">
-<div id="logo-fallback" style="display:none;font-family:'Orbitron',sans-serif;font-size:24px;letter-spacing:5px;font-weight:700;color:#fff">VÓRTICE</div>
-<div class="logo-title">VÓRTICE</div>
+<img src="logo.png" alt="VÓRTICE" class="logo-img" onerror="this.style.display='none';document.getElementById('fb-logo').style.display='block'">
+<div id="fb-logo" style="display:none;font-family:'Orbitron',sans-serif;font-size:26px;letter-spacing:6px;font-weight:700;background:linear-gradient(180deg,#fff,#e8c765);-webkit-background-clip:text;-webkit-text-fill-color:transparent">VÓRTICE</div>
 <div class="logo-sub">SOLUÇÕES GLOBAIS</div>
 </div>
-</div>
-<div class="nav-bar">
+<div class="nav-wrap">
 <button class="nav-tab active" data-tab="inicio">INÍCIO</button>
 <button class="nav-tab" data-tab="sobre">SOBRE</button>
 <button class="nav-tab" data-tab="servicos">SERVIÇOS</button>
 <button class="nav-tab" data-tab="contato">CONTATO</button>
 </div>
-<div class="dashboard">
-<div class="dash-card hero-card" id="sec-inicio">
-<span class="badge-small">INÍCIO</span>
-<div class="hero-bg"></div>
-<div class="hero-content">
-<h1>Eficiência,<br>Tecnologia<br>e Produção</h1>
-<p>Transformamos processos em resultados para sua empresa.</p>
-<div style="margin-top:22px;display:flex;gap:10px">
-<a href="#" class="btn-neon" onclick="document.getElementById('sec-contato').scrollIntoView({behavior:'smooth'})"><span style="color:#00d4ff">→</span> Fale Conosco</a>
-<a href="#" class="btn-neon" style="border-color:rgba(255,255,255,0.18);background:rgba(255,255,255,0.03)" onclick="document.getElementById('sec-servicos').scrollIntoView({behavior:'smooth'})">Conheça os Serviços</a>
+<div class="container">
+<div id="tab-inicio" class="tab-pane active">
+<div class="hero card">
+<div>
+<span class="badge">INÍCIO • BEM-VINDO À VÓRTICE</span>
+<h1>Eficiência, Tecnologia e Produção</h1>
+<p>Transformamos processos em resultados para sua empresa.<br><strong style="color:#f5e6a3">Gestão, tecnologia e produção em um só lugar. Soluções globais para seu crescimento com design futurista e eficiência real.</strong></p>
+<div style="margin-top:30px;display:flex;gap:12px;flex-wrap:wrap">
+<a href="#" class="btn btn-primary" onclick="switchTab('contato')"><svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#25D366"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.49 2 2 6.5 2 12.05c0 1.77.46 3.5 1.34 5.03L2 22l5.04-1.32a9.87 9.87 0 0 0 4.71 1.2h.02c5.54 0 10.04-4.5 10.04-10.04 0-2.68-1.04-5.2-2.93-7.1l-.03-.03z"/></svg> Fale Conosco no WhatsApp</a>
+<a href="#" class="btn" onclick="switchTab('servicos')">Conheça os Serviços</a>
 </div>
 </div>
 </div>
-<div class="dash-card about-card" id="sec-sobre">
-<span class="badge-small">SOBRE</span>
-<div class="about-photo"><img src="foto.png" alt="Mathews Brito" onerror="this.src='https://i.imgur.com/8Km9tLL.png'"></div>
+  <div id="tab-sobre" class="tab-pane">
+<div class="about-grid card">
+<div class="about-photo"><img src="https://i.imgur.com/8Km9tLL.png" alt="Mathews Brito"></div>
 <div class="about-text">
-<h2>História da Vórtice</h2>
-<p>Fundada em 2018, a Vórtice integra gestão, tecnologia e produção para entregar soluções inovadoras. Nossa missão é otimizar processos, elevar a produtividade e impulsionar o crescimento sustentável das empresas através de tecnologia e automação de alta performance.</p>
-<div class="divider-neon"></div>
-<h3 style="font-size:14px;font-weight:900;color:#fff">SOBRE O FUNDADOR<br>Mathews Brito</h3>
-<div style="color:#e8c765;font-size:10.5px;font-weight:700;margin:4px 0 8px">Founder | Especialista em Gestão e Tecnologia</div>
-<p style="font-size:10.5px;color:#9aa3b8">Mathews Brito lidera a Vórtice com foco em inovação e eficiência, unindo mais de 10 anos de experiência para conectar tecnologia, processos e resultados.</p>
+<span class="badge">SOBRE NÓS</span>
+<h2 style="font-size:26px;font-weight:900">História da Vórtice</h2>
+<p style="margin-top:12px;color:#9aa3b8;line-height:1.7;font-size:14px">Fundada em 2018, a Vórtice integra gestão, tecnologia e produção para entregar soluções inovadoras.</p>
+<div class="divider"></div>
+<h3 style="font-weight:900">Mathews Brito</h3>
+<div style="color:#e8c765;font-size:12px;font-weight:700;margin:6px 0 10px">Founder | Especialista em Gestão e Tecnologia</div>
+<p style="color:#9aa3b8;font-size:13px;line-height:1.6">Lidera a Vórtice com foco em inovação, eficiência e resultado.</p>
 </div>
-</div>
-<div class="dash-card services-card" id="sec-servicos">
-<span class="badge-small">SERVIÇOS</span>
-<div class="services-title">NOSSOS SERVIÇOS</div>
-<div class="services-underline"></div>
-<div class="services-grid">
-<div class="svc" onclick="openModal('gestao')"><div style="font-size:28px">⚙️</div><h4>GESTÃO EMPRESARIAL E ASSESSORIA ADMINISTRATIVA</h4><p>Gestão completa, BPO financeiro, RH, processos e estratégia</p></div>
-<div class="svc" onclick="openModal('ti')"><div style="font-size:28px">🖥️</div><h4>TI</h4><p>Suporte, infraestrutura, redes e segurança da informação</p></div>
-<div class="svc" onclick="openModal('social')"><div style="font-size:28px">🔗</div><h4>SOCIAL MEDIA</h4><p>Estratégias de conteúdo e gestão profissional de redes</p></div>
-</div>
-<div class="services-bottom">
-<div class="svc" onclick="openModal('cnc')"><div style="font-size:28px">🏗️</div><h4>CNC</h4><p>Automação e soluções de precisão para usinagem</p></div>
-<div class="svc" onclick="openModal('uniforme')"><div style="font-size:28px">👕</div><h4>UNIFORMES</h4><p>Fornecimento de uniformes corporativos personalizados</p></div>
 </div>
 </div>
 
-<div class="dash-card contact-card" id="sec-contato">
-<span class="badge-small">CONTATO</span>
+<div id="tab-servicos" class="tab-pane">
+<div class="card">
+<div class="services-head">
+<span class="badge">SERVIÇOS - 5 SOLUÇÕES</span>
+<h2 style="font-size:22px;font-weight:900;margin-top:10px">CLIQUE PARA SABER MAIS</h2>
+<div style="width:200px;height:2px;margin:10px auto 0;background:linear-gradient(90deg,transparent,#e8c765,transparent)"></div>
+</div>
+<div class="services-grid">
+<div class="service-card" onclick="openModal('gestao')"><div style="font-size:32px">🏢</div><h4>GESTÃO EMPRESARIAL E ASSESSORIA ADMINISTRATIVA</h4><p>BPO Financeiro, RH, Estratégia e Processos</p><small style="color:#e8c765;font-weight:700;display:block;margin-top:6px">Ver detalhes →</small></div>
+<div class="service-card" onclick="openModal('ti')"><div style="font-size:32px">💻</div><h4>SUPORTE E ASSESSORIA DE TI</h4><p>Infraestrutura, redes e segurança</p><small style="color:#00d4ff;font-weight:700;display:block;margin-top:6px">Ver detalhes →</small></div>
+<div class="service-card" onclick="openModal('social')"><div style="font-size:32px">📱</div><h4>GESTÃO DE REDES SOCIAIS</h4><p>Conteúdo e tráfego pago</p><small style="color:#00d4ff;font-weight:700;display:block;margin-top:6px">Ver detalhes →</small></div>
+</div>
+<div class="services-bottom">
+<div class="service-card" onclick="openModal('uniforme')" style="max-width:320px;width:100%"><div style="font-size:32px">👕</div><h4>PRODUÇÃO DE UNIFORMES CORPORATIVOS</h4><p>Personalizados com sua marca</p><small style="color:#e8c765;font-weight:700;display:block;margin-top:6px">Ver detalhes →</small></div>
+<div class="service-card" onclick="openModal('cnc')" style="max-width:320px;width:100%"><div style="font-size:32px">⚙️</div><h4>CNC, AUTOMAÇÃO E PRODUÇÃO</h4><p>Router, Laser e Impressão 3D</p><small style="color:#00d4ff;font-weight:700;display:block;margin-top:6px">Ver detalhes →</small></div>
+</div>
+</div>
+</div>
+
+<div id="tab-contato" class="tab-pane">
+<div class="card">
+<span class="badge">CONTATO OFICIAL</span>
+<div class="contact-grid">
 <div>
-<h3 style="font-size:18px;font-weight:900;color:#fff">ENTRE EM CONTATO</h3>
-<div class="underline-neon"></div>
+<h2 style="font-size:20px;font-weight:900;margin-bottom:14px">ENTRE EM CONTATO</h2>
 <form class="form" onsubmit="enviarWhatsApp(event)">
-<input type="text" id="nome" placeholder="Nome / Seu nome..." required>
-<input type="email" id="email" placeholder="Email / seu@email.com..." required>
+<input type="text" id="nome" placeholder="Seu nome completo..." required>
+<input type="email" id="email" placeholder="seu@email.com..." required>
 <select id="servico" required>
-<option value="">Selecione o serviço...</option>
+<option value="">Qual serviço você precisa?</option>
 <option value="Gestão Empresarial e Assessoria Administrativa">Gestão Empresarial e Assessoria Administrativa</option>
-<option value="TI - Suporte e Assessoria de TI">TI - Suporte e Assessoria de TI</option>
-<option value="Social Media - Gestão de Redes Sociais">Social Media - Gestão de Redes Sociais</option>
-<option value="CNC - Automação e Produção">CNC - Automação e Produção</option>
-<option value="Uniformes - Produção de Uniformes Corporativos">Uniformes - Produção de Uniformes Corporativos</option>
+<option value="Suporte e Assessoria de TI">Suporte e Assessoria de TI</option>
+<option value="Gestão de Redes Sociais">Gestão de Redes Sociais</option>
+<option value="Produção de Uniformes Corporativos">Produção de Uniformes Corporativos</option>
+<option value="CNC, Automação e Produção">CNC, Automação e Produção</option>
 </select>
-<textarea id="mensagem" placeholder="Mensagem / Como podemos ajudar você?..." required></textarea>
-<button type="submit" class="btn-enviar">
-<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.49 2 2 6.5 2 12.05c0 1.77.46 3.5 1.34 5.03L2 22l5.04-1.32a9.87 9.87 0 0 0 4.71 1.2h.02c5.54 0 10.04-4.5 10.04-10.04 0-2.68-1.04-5.2-2.93-7.1l-.03-.03z"/></svg>
-Enviar Mensagem
-</button>
+<textarea id="mensagem" placeholder="Descreva o que você precisa..." required></textarea>
+<button type="submit" class="btn btn-whatsapp" style="width:100%"><svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:white"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.49 2 2 6.5 2 12.05c0 1.77.46 3.5 1.34 5.03L2 22l5.04-1.32a9.87 9.87 0 0 0 4.71 1.2h.02c5.54 0 10.04-4.5 10.04-10.04 0-2.68-1.04-5.2-2.93-7.1l-.03-.03z"/></svg> Enviar para WhatsApp da Vórtice</button>
 </form>
 </div>
 <div>
-<h3 style="font-size:16px;font-weight:900;color:#fff">INFORMAÇÕES</h3>
-<div class="underline-neon" style="width:80px"></div>
-<a href="https://mail.google.com/mail/?view=cm&fs=1&to=vorticesolucoesglobais@gmail.com&su=Orçamento - Vórtice&body=Olá, Vórtice!%0A%0AMeu nome:%0AMeu cargo:%0AEmpresa:%0AServiço:%0ADetalhes:%0A" target="_blank" class="info-item">
-<span class="icon-box">✉️</span> vorticesolucoesglobais@gmail.com
+<h3 style="font-size:16px;font-weight:900;margin-bottom:12px">INFORMAÇÕES</h3>
+<div class="info-box">
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=vorticesolucoesglobais@gmail.com&su=Orçamento&body=Olá, Vórtice!%0A%0AMeu nome:%0AMeu cargo:%0AEmpresa:%0AServiço:%0ADetalhes:%0A" target="_blank" class="info-item" style="border:1px solid rgba(232,199,101,0.18);background:rgba(232,199,101,0.06);border-radius:8px;margin-bottom:8px;padding:12px">
+<span class="icon-box" style="background:rgba(232,199,101,0.22)">📧</span><span><strong style="color:#f5e6a3;display:block;font-size:10px">E-MAIL CLICÁVEL</strong>vorticesolucoesglobais@gmail.com</span>
 </a>
-<div class="info-item"><span class="icon-box">🏢</span> CNPJ 65.576.566/0001-01</div>
-<a href="https://wa.me/5511921913395" target="_blank" class="info-item">
-<span class="icon-box" style="background:rgba(37,211,102,0.15)">💬</span> (11) 92191-3395
+<div class="info-item"><span class="icon-box" style="background:rgba(255,255,255,0.06)">🏢</span><span><strong style="color:#fff;display:block;font-size:10px">CNPJ</strong>65.578.566/0001-01</span></div>
+<a href="https://wa.me/5511921913395" target="_blank" class="info-item" style="border:1px solid rgba(37,211,102,0.2);background:rgba(37,211,102,0.06);border-radius:8px;margin-top:8px;padding:12px">
+<span class="icon-box" style="background:rgba(37,211,102,0.2)">💬</span><span><strong style="color:#25D366;display:block;font-size:10px">WHATSAPP CLICÁVEL</strong>(11) 92191-3395</span>
 </a>
-<a href="https://linkedin.com/company/vortice-solucoes-globais" target="_blank" class="info-item">
-<span class="icon-box">in</span> linkedin.com/company/vortice
-</a>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -158,48 +165,51 @@ Enviar Mensagem
 
 <div id="modal" class="modal" onclick="closeModal()">
 <div class="modal-box" onclick="event.stopPropagation()">
-<h3 id="modal-title" style="color:#e8c765;font-size:18px;font-weight:900;margin-bottom:12px"></h3>
+<h3 id="modal-title" style="color:#e8c765;font-size:18px;font-weight:900;margin-bottom:10px"></h3>
 <p id="modal-text" style="font-size:13px;color:#9aa3b8;line-height:1.7"></p>
-<button class="btn-neon" style="width:100%;margin-top:20px;justify-content:center" onclick="closeModal()">Fechar</button>
-<button class="btn-neon" style="width:100%;margin-top:10px;justify-content:center" onclick="irParaContato()">💬 Solicitar no WhatsApp</button>
+<button class="btn btn-primary" style="width:100%;margin-top:18px" onclick="closeModal()">Fechar</button>
+<button class="btn btn-whatsapp" style="width:100%;margin-top:8px" onclick="irParaContato()">💬 Solicitar no WhatsApp</button>
 </div>
 </div>
 
 <a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice!" target="_blank" class="whatsapp-label">💬 Fale no WhatsApp</a>
 <a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice!" target="_blank" class="whatsapp-float">💬</a>
 
-<div style="text-align:center;padding:14px;font-size:10.5px;color:#6a7285;background:#080a12">© 2024 VÓRTICE SOLUÇÕES GLOBAIS • Design premium e profissional</div>
-
 <script>
+function switchTab(name){
+document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+document.querySelector(`[data-tab="${name}"]`).classList.add('active');
+document.getElementById(`tab-${name}`).classList.add('active');
+window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.nav-tab').forEach(btn=>{btn.addEventListener('click',()=>switchTab(btn.dataset.tab))});
 function enviarWhatsApp(e){
 e.preventDefault();
 let nome=document.getElementById('nome').value;
 let email=document.getElementById('email').value;
 let servico=document.getElementById('servico').value;
-let msg=document.getElementById('mensagem').value;
-let texto=`*NOVO CONTATO*%0A%0ANome: ${nome}%0AEmail: ${email}%0AServiço: ${servico}%0AMensagem: ${msg}`;
+let mensagem=document.getElementById('mensagem').value;
+let texto=`*NOVO CONTATO*%0A%0ANome: ${nome}%0AEmail: ${email}%0AServiço: ${servico}%0AMensagem: ${mensagem}`;
 window.open(`https://wa.me/5511921913395?text=${texto}`,'_blank');
 }
 const servicosDetalhes={
-gestao:{title:"GESTÃO EMPRESARIAL E ASSESSORIA ADMINISTRATIVA",text:"Nosso serviço principal: Unimos Gestão Empresarial com Assessoria Administrativa completa. BPO Financeiro, RH, Organização documental, Planejamento estratégico, KPIs, melhoria contínua e redução de custos. Relatórios mensais."},
-ti:{title:"SUPORTE E ASSESSORIA DE TI",text:"TI completa: Suporte remoto e presencial, infraestrutura, segurança, backup em nuvem, Microsoft 365, automação com IA, LGPD."},
-social:{title:"SOCIAL MEDIA",text:"Redes que vendem: Identidade visual, calendário, artes, reels, tráfego pago, atendimento de direct, relatórios."},
-cnc:{title:"CNC",text:"Alta precisão: CNC Router e Laser, impressão 3D, modelagem 3D, automação industrial."},
-uniforme:{title:"UNIFORMES",text:"Uniformes personalizados de qualidade: Camisetas, polos, EPIs, bordado e serigrafia. 10 a 500 colaboradores."}
+gestao:{title:"GESTÃO EMPRESARIAL E ASSESSORIA ADMINISTRATIVA",text:"Nosso serviço principal e ÚNICO: Unimos Gestão Empresarial Estratégica com Assessoria Administrativa Operacional completa. BPO Financeiro, RH, Organização documental, Planejamento estratégico, KPIs, dashboards, melhoria contínua e redução de custos. Relatórios mensais."},
+ti:{title:"SUPORTE E ASSESSORIA DE TI",text:"TI de ponta a ponta: Suporte remoto e presencial, infraestrutura de redes, segurança da informação, backup em nuvem, Microsoft 365, automação com IA, LGPD."},
+social:{title:"GESTÃO DE REDES SOCIAIS",text:"Transformamos redes em vendas: Identidade visual, calendário editorial, artes, reels, copy estratégica, tráfego pago, atendimento de direct, relatórios."},
+uniforme:{title:"PRODUÇÃO DE UNIFORMES CORPORATIVOS",text:"Uniformes personalizados de qualidade: Camisetas, polos, EPIs, bordado e serigrafia. 10 a 500 colaboradores."},
+cnc:{title:"CNC, AUTOMAÇÃO E PRODUÇÃO",text:"Alta precisão: Usinagem CNC Router e Laser, corte e gravação a laser, impressão 3D, modelagem 3D, automação industrial."}
 };
 let servicoAtual='';
-function openModal(k){
-servicoAtual=servicosDetalhes[k].title;
-document.getElementById('modal-title').innerText=servicosDetalhes[k].title;
-document.getElementById('modal-text').innerText=servicosDetalhes[k].text;
+function openModal(key){
+servicoAtual=servicosDetalhes[key].title;
+document.getElementById('modal-title').innerText=servicosDetalhes[key].title;
+document.getElementById('modal-text').innerText=servicosDetalhes[key].text;
 document.getElementById('modal').classList.add('active');
 }
 function closeModal(){document.getElementById('modal').classList.remove('active');}
-function irParaContato(){
-closeModal();
-document.getElementById('servico').value=servicoAtual;
-document.getElementById('sec-contato').scrollIntoView({behavior:'smooth'});
-}
+function irParaContato(){closeModal();switchTab('contato');document.getElementById('servico').value=servicoAtual;document.getElementById('mensagem').focus();}
 </script>
 </body>
 </html>
+</div>
