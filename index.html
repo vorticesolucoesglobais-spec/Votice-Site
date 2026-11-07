@@ -3,66 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VÓRTICE SOLUÇÕES GLOBAIS | Gestão, Tecnologia e Produção</title>
+<title>VÓRTICE SOLUÇÕES GLOBAIS</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Orbitron:wght@600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a1223;--card:#121a2e;--blue:#00d4ff;--gold:#e8c765;--text:#e6e9f0;--muted:#9aa3b8}
+:root{--blue:#00d4ff;--gold:#e8c765;--text:#e6e9f0;--muted:#9aa3b8}
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-  background:#0a1223;
-  background-image:
-    radial-gradient(circle at 20% 15%, rgba(0,212,255,0.12) 0%, transparent 40%),
-    radial-gradient(circle at 85% 30%, rgba(0,168,204,0.10) 0%, transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(19,47,76,0.8) 0%, transparent 60%),
-    linear-gradient(180deg, #0a1223 0%, #0d1b2e 100%);
-  background-attachment:fixed;
-  color:var(--text);font-family:'Montserrat',sans-serif;overflow-x:hidden;min-height:100vh
-}
-.header{text-align:center;padding:28px 20px 18px;background:linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(10,18,35,0) 100%);border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
+body{background:#0a1223;background-image:radial-gradient(circle at 20% 15%,rgba(0,212,255,0.12) 0%,transparent 40%),radial-gradient(circle at 85% 30%,rgba(0,168,204,0.10) 0%,transparent 45%),linear-gradient(180deg,#0a1223 0%,#0d1b2e 100%);background-attachment:fixed;color:var(--text);font-family:'Montserrat',sans-serif}
+.header{text-align:center;padding:28px 20px 18px;background:linear-gradient(180deg,rgba(0,0,0,0.85) 0%,rgba(10,18,35,0) 100%);border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
 .logo-text{font-family:'Orbitron',sans-serif;font-size:26px;letter-spacing:6px;font-weight:700;background:linear-gradient(180deg,#fff 0%,#a0a0a0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.logo-sub{font-size:11px;letter-spacing:4px;color:var(--muted);margin-top:2px}
-.nav-wrap{display:flex;justify-content:center;gap:12px;padding:16px 20px;background:linear-gradient(180deg,#2a2a2e 0%,#1a1a1e 100%);border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08)}
-.nav-tab{padding:10px 28px;border-radius:8px;border:1px solid transparent;background:transparent;color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;transition:.25s;text-transform:uppercase}
-.nav-tab.active{background:linear-gradient(180deg,#e8e8e8 0%,#b0b0b0 100%);color:#111;border-color:#fff;box-shadow:0 0 18px rgba(255,255,255,0.25)}
-.container{max-width:1280px;margin:0 auto;padding:24px 18px 40px}
-.tab-pane{display:none;animation:fadeIn .35s ease}.tab-pane.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.card{background:linear-gradient(145deg, rgba(18,26,46,0.95) 0%, rgba(12,18,35,0.98) 100%);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.4);position:relative;overflow:hidden}
-.hero{min-height:520px;display:grid;place-items:center;text-align:left;padding:40px 30px;background:radial-gradient(circle at 30% 40%, rgba(0,212,255,0.08) 0%, transparent 60%),linear-gradient(100deg, rgba(10,18,35,0.9) 0%, rgba(10,18,35,0.6) 100%);border:1px solid rgba(255,255,255,0.07);border-radius:14px}
-.hero h1{font-size:52px;line-height:1.05;font-weight:800;background:linear-gradient(100deg,#e8c765 0%,#f5e6a3 25%,#d4af37 50%,#e8c765 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;max-width:520px}
-.hero p{margin-top:16px;color:var(--muted);font-size:17px;max-width:480px;line-height:1.6}
-.hero-actions{margin-top:30px;display:flex;gap:16px;flex-wrap:wrap}
-.btn{padding:14px 26px;border-radius:10px;border:1px solid rgba(0,212,255,0.15);background:linear-gradient(180deg,rgba(18,30,54,0.9) 0%,rgba(12,20,36,0.9) 100%);color:#fff;font-weight:600;font-size:14px;cursor:pointer;box-shadow:0 0 18px rgba(0,212,255,0.15);transition:.25s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-.btn-primary{background:linear-gradient(180deg,#0f203a 0%,#0a1629 100%);border-color:rgba(0,212,255,0.4);box-shadow:0 0 22px rgba(0,212,255,0.25)}
-.badge{display:inline-block;padding:6px 14px;border-radius:6px;background:linear-gradient(180deg,#d0d0d0,#a0a0a0);color:#111;font-weight:800;font-size:11px;letter-spacing:1px;margin-bottom:16px}
-.about-grid{display:grid;grid-template-columns:340px 1fr;gap:0;background:var(--card);border-radius:14px;border:1px solid rgba(255,255,255,0.07);overflow:hidden}
-.about-photo{background:radial-gradient(circle at center,#1a2744 0%,#0a1223 100%);display:flex;align-items:center;justify-content:center;padding:20px}
-.about-photo img{width:100%;max-width:300px;border-radius:12px;border:1px solid rgba(255,255,255,0.08)}
-.about-text{padding:32px}.about-text h2{font-size:26px;font-weight:800;margin-bottom:14px}.about-text p{color:var(--muted);line-height:1.7;font-size:14px;margin-bottom:18px}
-.divider{height:2px;background:linear-gradient(90deg,var(--blue),transparent);margin:18px 0}
-.services-title{text-align:center;font-size:22px;font-weight:800;letter-spacing:1px;margin-bottom:6px}
+.logo-sub{font-size:11px;letter-spacing:4px;color:var(--muted)}
+.nav-wrap{display:flex;justify-content:center;gap:12px;padding:16px 20px;background:linear-gradient(180deg,#2a2a2e 0%,#1a1a1e 100%)}
+.nav-tab{padding:10px 28px;border-radius:8px;border:1px solid transparent;background:transparent;color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;text-transform:uppercase}
+.nav-tab.active{background:linear-gradient(180deg,#e8e8e8 0%,#b0b0b0 100%);color:#111}
+.container{max-width:1280px;margin:0 auto;padding:24px 18px 100px}
+.tab-pane{display:none}.tab-pane.active{display:block}
+.card{background:linear-gradient(145deg,rgba(18,26,46,0.95) 0%,rgba(12,18,35,0.98) 100%);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:28px}
+.hero{min-height:500px;display:grid;place-items:center;padding:40px 30px;border-radius:14px;border:1px solid rgba(255,255,255,0.07)}
+.hero h1{font-size:52px;font-weight:800;background:linear-gradient(100deg,#e8c765 0%,#f5e6a3 25%,#d4af37 50%,#e8c765 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{margin-top:16px;color:var(--muted);font-size:17px;max-width:480px}
+.btn{padding:14px 26px;border-radius:10px;border:1px solid rgba(0,212,255,0.15);background:linear-gradient(180deg,rgba(18,30,54,0.9) 0%,rgba(12,20,36,0.9) 100%);color:#fff;font-weight:600;font-size:14px;cursor:pointer;text-decoration:none;display:inline-flex;gap:8px}
+.btn-primary{background:linear-gradient(180deg,#0f203a 0%,#0a1629 100%);border-color:rgba(0,212,255,0.4)}
+.badge{display:inline-block;padding:6px 14px;border-radius:6px;background:linear-gradient(180deg,#d0d0d0,#a0a0a0);color:#111;font-weight:800;font-size:11px;margin-bottom:16px}
+.about-grid{display:grid;grid-template-columns:340px 1fr;gap:0;border-radius:14px;border:1px solid rgba(255,255,255,0.07);overflow:hidden}
+.about-photo{background:#0a1223;display:flex;align-items:center;justify-content:center;padding:20px}
+.about-photo img{width:100%;max-width:300px;border-radius:12px}
+.about-text{padding:32px}.divider{height:2px;background:linear-gradient(90deg,var(--blue),transparent);margin:18px 0}
+.services-title{text-align:center;font-size:22px;font-weight:800;margin-bottom:6px}
 .services-underline{width:180px;height:2px;margin:0 auto 26px;background:linear-gradient(90deg,transparent,var(--blue),transparent)}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.service-card{background:linear-gradient(145deg,rgba(18,26,46,0.9) 0%,rgba(10,16,30,0.95) 100%);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:22px 18px;text-align:center;transition:.25s}
-.service-card:hover{transform:translateY(-4px);border-color:rgba(0,212,255,0.35)}
-.service-icon{font-size:32px;margin-bottom:10px;color:var(--blue)}
-.service-card h4{font-size:14px;font-weight:800;margin-bottom:8px}
-.service-card p{font-size:12.5px;color:var(--muted);line-height:1.5}
+.service-card{background:linear-gradient(145deg,rgba(18,26,46,0.9) 0%,rgba(10,16,30,0.95) 100%);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:22px 18px;text-align:center;transition:.25s;cursor:pointer}
+.service-card:hover{transform:translateY(-4px);border-color:rgba(0,212,255,0.35);box-shadow:0 10px 30px rgba(0,212,255,0.15)}
 .services-bottom{display:flex;justify-content:center;gap:18px;margin-top:18px}
-.services-bottom .service-card{width:100%;max-width:340px}
 .contact-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:24px}
-.form input,.form textarea{width:100%;padding:14px 16px;margin-bottom:14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-family:inherit;font-size:13px;outline:none}
-.form textarea{min-height:90px;resize:none}
-.info-item{display:flex;gap:12px;align-items:center;margin-bottom:16px;color:var(--muted);font-size:13px}
-.footer{text-align:center;padding:18px;color:var(--muted);font-size:11px;border-top:1px solid rgba(255,255,255,0.06);margin-top:30px;background:rgba(0,0,0,0.3)}
+.form input,.form textarea,.form select{width:100%;padding:14px 16px;margin-bottom:14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-family:inherit;font-size:13px}
+.form textarea{min-height:90px}
+/* WHATSAPP FLUTUANTE */
+.whatsapp-float{position:fixed;bottom:22px;right:22px;width:62px;height:62px;background:linear-gradient(180deg,#25D366 0%,#128C7E 100%);border-radius:50%;display:grid;place-items:center;box-shadow:0 8px 25px rgba(37,211,102,0.4),0 0 0 4px rgba(37,211,102,0.15);z-index:9999;animation:pulseWhats 2s infinite;text-decoration:none;font-size:30px;transition:.2s}
+@keyframes pulseWhats{0%{box-shadow:0 8px 25px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0.4)}70%{box-shadow:0 8px 25px rgba(37,211,102,0.4),0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 8px 25px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0)}}
+.whatsapp-label{position:fixed;bottom:30px;right:94px;background:#111;color:#fff;padding:8px 14px;border-radius:20px;font-size:12px;font-weight:600;z-index:9998;border:1px solid rgba(255,255,255,0.1)}
+/* MODAL SERVICOS */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:10000;align-items:center;justify-content:center;padding:20px}
+.modal.active{display:flex}
+.modal-box{background:linear-gradient(145deg,#121a2e,#0d1528);border:1px solid rgba(0,212,255,0.25);border-radius:14px;max-width:520px;width:100%;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+.modal-box h3{font-size:20px;font-weight:800;margin-bottom:12px;color:var(--gold)}
+.modal-box p{font-size:13.5px;line-height:1.7;color:var(--muted)}
+.modal-close{margin-top:20px;width:100%}
 @media(max-width:900px){.hero h1{font-size:34px}.about-grid{grid-template-columns:1fr}.services-grid{grid-template-columns:1fr}.services-bottom{flex-direction:column}.contact-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="header">
-<div class="logo-text">VÓRTICE</div>
-<div class="logo-sub">SOLUÇÕES GLOBAIS</div>
-</div>
+<div class="header"><div class="logo-text">VÓRTICE</div><div class="logo-sub">SOLUÇÕES GLOBAIS</div></div>
 <div class="nav-wrap">
 <button class="nav-tab active" data-tab="inicio">INÍCIO</button>
 <button class="nav-tab" data-tab="sobre">SOBRE</button>
@@ -76,7 +66,7 @@ body{
 <span class="badge">INÍCIO</span>
 <h1>Eficiência,<br>Tecnologia<br>e Produção</h1>
 <p>Transformamos processos em resultados para sua empresa.<br><strong style="color:#e8c765">Gestão, tecnologia e produção em um só lugar.</strong></p>
-<div class="hero-actions">
+<div style="margin-top:30px;display:flex;gap:16px;flex-wrap:wrap">
 <a class="btn btn-primary" href="#" onclick="switchTab('contato')">→ Fale Conosco</a>
 <a class="btn" href="#" onclick="switchTab('servicos')">Conheça os Serviços</a>
 </div>
@@ -85,34 +75,31 @@ body{
 </div>
 <div id="tab-sobre" class="tab-pane">
 <div class="about-grid card" style="padding:0">
-<div class="about-photo">
-<img src="https://i.imgur.com/8Km9tLL.png" alt="Mathews Brito" onerror="this.src='https://via.placeholder.com/300x400/0a1223/00d4ff?text=Mathews+Brito'">
-</div>
+<div class="about-photo"><img src="https://i.imgur.com/8Km9tLL.png" alt="Mathews Brito"></div>
 <div class="about-text">
 <span class="badge">SOBRE</span>
 <h2>História da Vórtice</h2>
-<p>Fundada em 2018, a Vórtice integra gestão, tecnologia e produção para entregar soluções inovadoras. Nossa missão é otimizar processos, elevar a produtividade e impulsionar o crescimento sustentável das empresas através de tecnologia e automação de alta performance.</p>
+<p>Fundada em 2018, a Vórtice integra gestão, tecnologia e produção para entregar soluções inovadoras. Nossa missão é otimizar processos, elevar a produtividade e impulsionar o crescimento sustentável.</p>
 <div class="divider"></div>
-<h3 style="font-size:18px;font-weight:800">SOBRE O FUNDADOR</h3>
-<h3>Mathews Brito</h3>
+<h3 style="font-weight:800">Mathews Brito</h3>
 <div style="color:#e8c765;font-size:13px;font-weight:600;margin:4px 0 10px">Founder | Especialista em Gestão e Tecnologia</div>
-<p>Mathews Brito lidera a Vórtice com foco em inovação e eficiência, unindo mais de 10 anos de experiência para conectar tecnologia, processos e resultados.</p>
+<p>Você pode aumentar aqui depois a história completa como você falou. Lidera a Vórtice com foco em inovação e eficiência.</p>
 </div>
 </div>
 </div>
 <div id="tab-servicos" class="tab-pane">
 <div class="card">
 <span class="badge">SERVIÇOS</span>
-<div class="services-title">NOSSOS SERVIÇOS</div>
+<div class="services-title">NOSSOS SERVIÇOS - CLIQUE PARA SABER MAIS</div>
 <div class="services-underline"></div>
 <div class="services-grid">
-<div class="service-card"><div class="service-icon">⚙️</div><h4>ADMIN</h4><p>Gestão administrativa e processos empresariais com foco em eficiência</p></div>
-<div class="service-card"><div class="service-icon">🖥️</div><h4>TI</h4><p>Suporte, infraestrutura, redes e segurança da informação</p></div>
-<div class="service-card"><div class="service-icon">🔗</div><h4>SOCIAL MEDIA</h4><p>Estratégias de conteúdo e gestão profissional de redes</p></div>
+<div class="service-card" onclick="openModal('admin')"><div style="font-size:32px;color:#00d4ff">⚙️</div><h4>ADMIN</h4><p style="font-size:12px;color:var(--muted)">Gestão administrativa</p><small style="color:var(--blue)">Clique para ver detalhes →</small></div>
+<div class="service-card" onclick="openModal('ti')"><div style="font-size:32px;color:#00d4ff">🖥️</div><h4>TI</h4><p style="font-size:12px;color:var(--muted)">Suporte e infraestrutura</p><small style="color:var(--blue)">Clique para ver detalhes →</small></div>
+<div class="service-card" onclick="openModal('social')"><div style="font-size:32px;color:#00d4ff">🔗</div><h4>SOCIAL MEDIA</h4><p style="font-size:12px;color:var(--muted)">Gestão de redes</p><small style="color:var(--blue)">Clique para ver detalhes →</small></div>
 </div>
 <div class="services-bottom">
-<div class="service-card"><div class="service-icon">🏗️</div><h4>CNC</h4><p>Automação e soluções de precisão para usinagem e modelagem 3D</p></div>
-<div class="service-card"><div class="service-icon">👕</div><h4>UNIFORMES</h4><p>Fornecimento de uniformes corporativos personalizados de qualidade</p></div>
+<div class="service-card" onclick="openModal('cnc')" style="width:100%;max-width:340px"><div style="font-size:32px;color:#00d4ff">🏗️</div><h4>CNC</h4><p style="font-size:12px;color:var(--muted)">Automação e precisão</p><small style="color:var(--blue)">Clique para ver detalhes →</small></div>
+<div class="service-card" onclick="openModal('uniforme')" style="width:100%;max-width:340px"><div style="font-size:32px;color:#00d4ff">👕</div><h4>UNIFORMES</h4><p style="font-size:12px;color:var(--muted)">Uniformes corporativos</p><small style="color:var(--blue)">Clique para ver detalhes →</small></div>
 </div>
 </div>
 </div>
@@ -122,27 +109,49 @@ body{
 <div class="contact-grid">
 <div>
 <h2 style="font-size:22px;margin-bottom:18px">ENTRE EM CONTATO</h2>
-<div class="services-underline" style="margin:0 0 20px 0;width:120px"></div>
-<form class="form" action="https://formsubmit.co/vorticesolucoesglobais@gmail.com" method="POST">
-<input type="hidden" name="_captcha" value="false">
-<input type="text" name="name" placeholder="Nome - Seu nome..." required>
-<input type="email" name="email" placeholder="Email - seu@email.com..." required>
-<textarea name="message" placeholder="Mensagem - Como podemos ajudar você?..." required></textarea>
-<button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Enviar Mensagem</button>
+<form class="form" onsubmit="enviarWhatsApp(event)">
+<input type="text" id="nome" placeholder="Seu nome..." required>
+<input type="email" id="email" placeholder="seu@email.com..." required>
+<select id="servico" required>
+<option value="">Qual serviço você precisa?</option>
+<option value="ADMIN - Gestão Administrativa">ADMIN - Gestão Administrativa</option>
+<option value="TI - Suporte e Infraestrutura">TI - Suporte e Infraestrutura</option>
+<option value="SOCIAL MEDIA - Gestão de Redes">SOCIAL MEDIA - Gestão de Redes</option>
+<option value="CNC - Automação e Usinagem">CNC - Automação e Usinagem</option>
+<option value="UNIFORMES - Uniformes Corporativos">UNIFORMES - Uniformes Corporativos</option>
+<option value="Outro - Quero explicar">Outro - Quero explicar</option>
+</select>
+<textarea id="mensagem" placeholder="Descreva o que você precisa... Ex: Preciso de suporte de TI para minha empresa..." required></textarea>
+<button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">📲 Enviar para WhatsApp da Vórtice</button>
+<p style="font-size:11px;color:var(--muted);margin-top:10px;text-align:center">Ao clicar, sua mensagem vai direto para o WhatsApp oficial da Vórtice com todos os dados.</p>
 </form>
 </div>
 <div>
 <h3 style="font-size:18px;font-weight:800;margin-bottom:20px">INFORMAÇÕES</h3>
-<div class="info-item">✉️ vorticesolucoesglobais@gmail.com</div>
-<div class="info-item">🏢 CNPJ 65.576.566/0001-01</div>
-<div class="info-item">in linkedin.com/company/vortice-solucoes-globais</div>
-<div class="info-item">📷 @vortice_solucoesglobais</div>
+<div style="margin-bottom:16px;font-size:13px;color:var(--muted)">✉️ vorticesolucoesglobais@gmail.com</div>
+<div style="margin-bottom:16px;font-size:13px">🏢 CNPJ 65.576.566/0001-01</div>
+<div style="margin-bottom:16px;font-size:13px;color:var(--muted)">💬 WhatsApp: (11) 92191-3395</div>
+<div style="margin-top:20px;padding:14px;border-radius:10px;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.15);font-size:12px;color:var(--muted)">Ao preencher o formulário, vamos direcionar automaticamente para uma conversa com um especialista no serviço que você escolheu.</div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="footer">© 2024 VÓRTICE SOLUÇÕES GLOBAIS • Todos os direitos reservados • Design premium e profissional</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="closeModal()">
+<div class="modal-box" onclick="event.stopPropagation()">
+<h3 id="modal-title">Título</h3>
+<p id="modal-text">Texto</p>
+<button class="btn btn-primary modal-close" onclick="closeModal()">Fechar</button>
+<button class="btn" style="width:100%;margin-top:8px;justify-content:center" onclick="irParaContato()">💬 Solicitar orçamento deste serviço</button>
+</div>
+</div>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" class="whatsapp-label">Fale no WhatsApp</a>
+<a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" class="whatsapp-float">💬</a>
+
 <script>
 function switchTab(name){
 document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
@@ -154,6 +163,39 @@ window.scrollTo({top:0,behavior:'smooth'});
 document.querySelectorAll('.nav-tab').forEach(btn=>{
 btn.addEventListener('click',()=>switchTab(btn.dataset.tab));
 });
+
+function enviarWhatsApp(e){
+e.preventDefault();
+let nome = document.getElementById('nome').value;
+let email = document.getElementById('email').value;
+let servico = document.getElementById('servico').value;
+let mensagem = document.getElementById('mensagem').value;
+let texto = `*NOVO CONTATO - SITE VÓRTICE*%0A%0A*Nome:* ${nome}%0A*Email:* ${email}%0A*Serviço de Interesse:* ${servico}%0A*Mensagem:* ${mensagem}%0A%0A_Vim pelo site da Vórtice Soluções Globais_`;
+let url = `https://wa.me/5511921913395?text=${texto}`;
+window.open(url, '_blank');
+}
+
+const servicosDetalhes = {
+admin: {title:"ADMIN - Gestão Administrativa Completa", text:"Oferecemos gestão administrativa completa para sua empresa: Organização de processos, BPO Financeiro (contas a pagar/receber, fluxo de caixa), Gestão de RH e Departamento Pessoal, Organização documental, Suporte a licitações, Melhoria de processos e redução de custos. Ideal para empresas que querem focar no core business e deixar a burocracia com especialistas. Trabalhamos com indicadores e relatórios mensais."},
+ti: {title:"TI - Tecnologia e Infraestrutura", text:"Soluções de TI de ponta a ponta: Suporte técnico remoto e presencial, Montagem e manutenção de infraestrutura de redes, Segurança da informação e backup em nuvem, Implantação de servidores e Microsoft 365, Automação de processos com scripts e IA, Consultoria em LGPD e proteção de dados. Atendemos de pequenas empresas a operações com 50+ computadores. SLA rápido e atendimento humanizado."},
+social: {title:"SOCIAL MEDIA - Gestão Profissional", text:"Transformamos seu Instagram e LinkedIn em máquina de vendas: Criação de identidade visual e calendário editorial, Criação de artes, reels e copy estratégica, Gestão de tráfego pago (Meta Ads, Google Ads), Atendimento e resposta de direct/comentários, Relatórios de crescimento e conversão. Pacotes a partir de 12 posts/mês. Foco em gerar leads qualificados para ADMIN, TI, CNC e Uniformes."},
+cnc: {title:"CNC - Automação e Usinagem de Precisão", text:"Soluções de produção de alta precisão: Usinagem CNC Router e Laser, Corte e gravação a laser em MDF, acrílico e metais, Impressão 3D para protótipos e peças finais, Modelagem 3D e desenvolvimento de produtos, Automação industrial para pequenas produções. Ideal para marcenarias, comunicação visual, engenharia e indústria. Precisão milimétrica, acabamento premium e entrega rápida em SP."},
+uniforme: {title:"UNIFORMES - Uniformes Corporativos Personalizados", text:"Fornecimento completo de uniformes profissionais: Camisetas, polos, calças e jalecos corporativos, Uniformes operacionais e EPIs, Bordado computadorizado e serigrafia de alta durabilidade, Atendimento para equipes de 10 a 500 colaboradores, Linha premium com tecidos de qualidade e conforto. Personalizamos com sua logomarca. Entrega para todo Brasil via catálogo WhatsApp."}
+};
+let servicoAtual = '';
+function openModal(key){
+servicoAtual = servicosDetalhes[key].title;
+document.getElementById('modal-title').innerText = servicosDetalhes[key].title;
+document.getElementById('modal-text').innerText = servicosDetalhes[key].text;
+document.getElementById('modal').classList.add('active');
+}
+function closeModal(){document.getElementById('modal').classList.remove('active');}
+function irParaContato(){
+closeModal();
+switchTab('contato');
+document.getElementById('servico').value = servicoAtual;
+document.getElementById('mensagem').focus();
+}
 </script>
 </body>
 </html>
