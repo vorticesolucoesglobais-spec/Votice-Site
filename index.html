@@ -107,8 +107,7 @@ body{background:#060d1e;background-image:radial-gradient(ellipse at 10% 10%,rgba
 <div class="services-title">SOLUÇÕES COMPLETAS - CLIQUE PARA SABER MAIS</div>
 <div class="services-underline"></div>
 <div class="services-grid">
-<div class="service-card" onclick="openModal('admin')"><div style="font-size:36px">⚙️</div><h4 style="margin:12px 0 6px;font-size:13px;line-height:1.3">GESTÃO E ASSESSORIA ADMINISTRATIVA</h4><p style="font-size:11.5px;color:var(--muted)">BPO Financeiro, RH e Processos</p><small style="color:#e8c765;font-weight:700;margin-top:8px;display:block">Ver detalhes →</small></div>
-<div class="service-card" onclick="openModal('empresarial')"><div style="font-size:36px">🏢</div><h4 style="margin:12px 0 6px;font-size:13px">GESTÃO EMPRESARIAL</h4><p style="font-size:11.5px;color:var(--muted)">Estratégia e Crescimento</p><small style="color:#e8c765;font-weight:700;margin-top:8px;display:block">Ver detalhes →</small></div>
+<div class="service-card" onclick="openModal('gestao')"><div style="font-size:36px">🏢</div><h4 style="margin:12px 0 6px;font-size:13px;line-height:1.3">GESTÃO EMPRESARIAL E ASSESSORIA ADMINISTRATIVA</h4><p style="font-size:11.5px;color:var(--muted)">BPO Financeiro, RH, Estratégia e Processos</p><small style="color:#e8c765;font-weight:700;margin-top:8px;display:block">Ver detalhes →</small></div>
 <div class="service-card" onclick="openModal('ti')"><div style="font-size:36px">🖥️</div><h4 style="margin:12px 0 6px;font-size:13px">SUPORTE E ASSESSORIA DE TI</h4><p style="font-size:11.5px;color:var(--muted)">Infraestrutura e Segurança</p><small style="color:#e8c765;font-weight:700;margin-top:8px;display:block">Ver detalhes →</small></div>
 <div class="service-card" onclick="openModal('social')"><div style="font-size:36px">📱</div><h4 style="margin:12px 0 6px;font-size:13px">GESTÃO DE REDES SOCIAIS</h4><p style="font-size:11.5px;color:var(--muted)">Conteúdo e Tráfego Pago</p><small style="color:#e8c765;font-weight:700;margin-top:8px;display:block">Ver detalhes →</small></div>
 <div class="service-card" onclick="openModal('uniforme')"><div style="font-size:36px">👕</div><h4 style="margin:12px 0 6px;font-size:13px;line-height:1.3">PRODUÇÃO DE UNIFORMES CORPORATIVOS</h4><p style="font-size:11.5px;color:var(--muted)">Personalizados com sua marca</p><small style="color:#e8c765;font-weight:700;margin-top:8px;display:block">Ver detalhes →</small></div>
@@ -127,8 +126,7 @@ body{background:#060d1e;background-image:radial-gradient(ellipse at 10% 10%,rgba
 <input type="email" id="email" placeholder="seu@email.com..." required>
 <select id="servico" required>
 <option value="">Qual serviço você precisa?</option>
-<option value="Gestão e Assessoria Administrativa">Gestão e Assessoria Administrativa</option>
-<option value="Gestão Empresarial">Gestão Empresarial</option>
+<option value="Gestão Empresarial e Assessoria Administrativa">Gestão Empresarial e Assessoria Administrativa</option>
 <option value="Suporte e Assessoria de TI">Suporte e Assessoria de TI</option>
 <option value="Gestão de Redes Sociais">Gestão de Redes Sociais</option>
 <option value="Produção de Uniformes Corporativos">Produção de Uniformes Corporativos</option>
@@ -196,8 +194,7 @@ let texto=`*NOVO CONTATO - SITE VÓRTICE*%0A%0A*Nome:* ${nome}%0A*E-mail:* ${ema
 window.open(`https://wa.me/5511921913395?text=${texto}`,'_blank');
 }
 const servicosDetalhes={
-admin:{title:"GESTÃO E ASSESSORIA ADMINISTRATIVA",text:"Oferecemos gestão administrativa completa: BPO Financeiro (contas a pagar/receber, fluxo de caixa), Gestão de RH e Departamento Pessoal, Organização documental, Suporte a licitações, Melhoria de processos e redução de custos. Ideal para focar no core business. Relatórios mensais e indicadores."},
-empresarial:{title:"GESTÃO EMPRESARIAL",text:"Elevamos sua empresa: Planejamento estratégico, KPIs e dashboards, Reestruturação organizacional, Cultura de melhoria contínua, Gestão da qualidade. Trabalhamos com a diretoria para transformar estratégia em resultado sustentável."},
+gestao:{title:"GESTÃO EMPRESARIAL E ASSESSORIA ADMINISTRATIVA",text:"Solução completa e única: Unimos gestão estratégica empresarial com assessoria administrativa operacional. Fazemos BPO Financeiro (contas a pagar/receber, fluxo de caixa), Gestão de RH e Departamento Pessoal, Organização documental e processos, Planejamento estratégico, KPIs, dashboards e melhoria contínua. Ideal para empresas que querem organizar a casa e crescer com eficiência. Relatórios mensais e indicadores de resultado."},gestao:{title:"GESTÃO EMPRESARIAL E ASSESSORIA ADMINISTRATIVA",text:"Solução completa e única: Unimos gestão estratégica empresarial com assessoria administrativa operacional. Fazemos BPO Financeiro (contas a pagar/receber, fluxo de caixa), Gestão de RH e Departamento Pessoal, Organização documental e processos, Planejamento estratégico, KPIs, dashboards e melhoria contínua. Ideal para empresas que querem organizar a casa e crescer com eficiência. Relatórios mensais e indicadores de resultado."},
 ti:{title:"SUPORTE E ASSESSORIA DE TI",text:"TI de ponta a ponta: Suporte remoto e presencial, Infraestrutura de redes e servidores, Segurança da informação, backup em nuvem, Microsoft 365, Automação com IA, LGPD. De 5 a 100+ computadores. SLA rápido."},
 social:{title:"GESTÃO DE REDES SOCIAIS",text:"Transformamos Instagram e LinkedIn em vendas: Identidade visual, calendário editorial, Artes, reels e copy, Tráfego pago (Meta Ads, Google Ads), Atendimento de direct, Relatórios de crescimento. Pacotes a partir de 12 posts/mês."},
 uniforme:{title:"PRODUÇÃO DE UNIFORMES CORPORATIVOS",text:"Uniformes personalizados: Camisetas, polos, calças, jalecos, Uniformes operacionais e EPIs, Bordado e serigrafia de alta durabilidade, 10 a 500 colaboradores, Tecidos premium. Entrega para todo Brasil."},
