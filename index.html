@@ -415,115 +415,444 @@ Fale no WhatsApp Agora
 </div>
 
 <div id="tab-servicos" class="tab-pane">
-<div class="card">
-<div style="text-align:center;margin-bottom:30px">
-<span class="badge">✦ SERVIÇOS • 5 SOLUÇÕES COMPLETAS • SEM REPETIÇÃO</span>
-<h2 style="font-size:26px;font-weight:900;margin-top:12px;letter-spacing:0.5px">NOSSOS 5 SERVIÇOS - CLIQUE PARA SABER TUDO</h2>
-<p style="margin-top:10px;color:#9aa3b8;font-size:13.5px;max-width:760px;margin-left:auto;margin-right:auto;line-height:1.6">Cada serviço foi desenhado para resolver uma dor real de PMEs. <strong style="color:#e8c765">Gestão Empresarial e Assessoria Administrativa é UM serviço único e completo</strong>, não dois separados. Clique para ver detalhes, benefícios, o que inclui e como contratar.</p>
-<div style="width:240px;height:2px;margin:16px auto 0;background:linear-gradient(90deg,transparent,#e8c765,#4da6ff,transparent);box-shadow:0 0 14px rgba(77,166,255,0.5)"></div>
-</div>
-
 <style>
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.service-card{
-position:relative;
-background:rgba(0,0,0,0.35);
-border:1px solid rgba(255,255,255,0.20);
-border-radius:8px;
-padding:24px 18px;
-text-align:center;
-transition:all 0.35s cubic-bezier(0.4,0,0.2,1);
-cursor:pointer;
-overflow:hidden
+/* ===== VORTICE SERVIÇOS - CÓDIGO COMPLETO MASSIVO ===== */
+#tab-servicos{
+  padding:0 !important;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
 }
-.service-card::before{
-content:'';
-position:absolute;
-top:0;left:0;right:0;height:2px;
-background:linear-gradient(90deg,transparent,#4da6ff,#e8c765,transparent);
-opacity:0;transition:opacity 0.3s
+.servicos-header-premium{
+  text-align:center;
+  padding:48px 20px 32px;
+  background:linear-gradient(180deg,#2a2a2a 0%,#1a1a1a 100%);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  margin-bottom:28px;
 }
-.service-card:hover{transform:translateY(-6px) scale(1.02);border-color:#4da6ff;box-shadow:0 0 20px rgba(77,166,255,0.5),0 0 40px rgba(77,166,255,0.2)}
-.service-card:hover::before{opacity:1}
-.service-card h4{font-size:12px;font-weight:800;margin:12px 0 8px;line-height:1.3;color:#fff;min-height:34px}
-.service-card p{font-size:11px;color:#aaa;line-height:1.45;min-height:48px}
-.service-card .cta{margin-top:14px;display:inline-flex;padding:7px 14px;border-radius:6px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.22);color:#4da6ff;font-size:10px;font-weight:800;letter-spacing:0.5px}
-.services-bottom{display:flex;justify-content:center;gap:18px;margin-top:18px;flex-wrap:wrap}
+.servicos-header-premium .badge-top{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 16px;
+  background:linear-gradient(180deg,#e8c765 0%,#d4af37 100%);
+  color:#111;
+  font-weight:900;
+  font-size:10px;
+  letter-spacing:2px;
+  border-radius:100px;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+.servicos-header-premium h2{
+  font-family:'Orbitron',sans-serif;
+  font-size:42px;
+  font-weight:900;
+  color:#fff;
+  line-height:0.95;
+  text-transform:uppercase;
+  letter-spacing:-1px;
+}
+.servicos-header-premium h2 span{
+  background:linear-gradient(102deg,#e8c765 0%,#fff3c0 50%,#d4af37 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.servicos-header-premium p{
+  margin:14px auto 0;
+  max-width:720px;
+  color:#9ca3af;
+  font-size:16px;
+  line-height:1.6;
+}
+.servicos-lista-massiva{
+  display:flex;
+  flex-direction:column;
+  gap:32px;
+}
+.card-servico-massivo{
+  position:relative;
+  width:100%;
+  min-height:520px;
+  border-radius:20px;
+  overflow:hidden;
+  background:#0f0f12;
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow:0 24px 80px rgba(0,0,0,0.7);
+  display:flex;
+  transition:all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.card-servico-massivo:hover{
+  transform:translateY(-4px) scale(1.005);
+  border-color:rgba(232,199,101,0.35);
+  box-shadow:0 32px 100px rgba(0,0,0,0.8), 0 0 0 1px rgba(232,199,101,0.2);
+}
+.card-bg-image{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  transition:transform 0.8s ease;
+}
+.card-servico-massivo:hover .card-bg-image{
+  transform:scale(1.05);
+}
+.card-overlay-complex{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(0,0,0,0.1) 0%, transparent 60%),
+    linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.78) 38%, rgba(0,0,0,0.45) 68%, rgba(0,0,0,0.15) 100%);
+  z-index:1;
+}
+.card-overlay-gold{
+  position:absolute;
+  top:0;
+  left:0;
+  width:4px;
+  height:100%;
+  background:linear-gradient(180deg,#e8c765 0%,#d4af37 100%);
+  z-index:3;
+  opacity:0;
+  transition:opacity 0.4s;
+}
+.card-servico-massivo:hover .card-overlay-gold{
+  opacity:1;
+}
+.card-conteudo-massivo{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:42px 48px;
+  max-width:780px;
+  width:100%;
+}
+.card-top-meta{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+  flex-wrap:wrap;
+}
+.meta-badge{
+  padding:6px 12px;
+  border-radius:6px;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  border:1px solid;
+}
+.meta-badge.gold{
+  background:linear-gradient(180deg,#e8c765 0%,#d4af37 100%);
+  color:#111;
+  border-color:#e8c765;
+}
+.meta-badge.dark{
+  background:rgba(255,255,255,0.08);
+  color:#d1d5db;
+  border-color:rgba(255,255,255,0.15);
+}
+.card-conteudo-massivo h3{
+  font-family:'Orbitron',sans-serif;
+  font-size:32px;
+  font-weight:900;
+  line-height:1.05;
+  color:#fff;
+  text-transform:uppercase;
+  letter-spacing:-0.5px;
+  margin-bottom:14px;
+}
+.card-conteudo-massivo h3 .gold-text{
+  color:#e8c765;
+}
+.card-conteudo-massivo .desc-principal{
+  font-size:16px;
+  line-height:1.75;
+  color:#d1d5db;
+  margin-bottom:20px;
+  max-width:680px;
+}
+.lista-inclusos{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px 18px;
+  margin-bottom:26px;
+  padding:18px 20px;
+  background:rgba(0,0,0,0.4);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;
+  backdrop-filter:blur(8px);
+}
+.lista-inclusos .incluso-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+  color:#e5e7eb;
+  font-weight:500;
+}
+.lista-inclusos .incluso-item::before{
+  content:"✓";
+  width:18px;
+  height:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg,#e8c765 0%,#d4af37 100%);
+  color:#111;
+  font-weight:900;
+  font-size:10px;
+  border-radius:100%;
+  flex-shrink:0;
+}
+.card-footer-acao{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.btn-contratar-massivo{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 32px;
+  background:linear-gradient(180deg,#e8c765 0%,#d4af37 50%,#b8941f 100%);
+  color:#111;
+  font-weight:900;
+  font-size:13px;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  border-radius:10px;
+  text-decoration:none;
+  box-shadow:0 12px 32px rgba(232,199,101,0.35), inset 0 1px 0 rgba(255,255,255,0.4);
+  transition:all 0.3s;
+  position:relative;
+  overflow:hidden;
+}
+.btn-contratar-massivo::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);
+  transition:left 0.6s;
+}
+.btn-contratar-massivo:hover::after{
+  left:100%;
+}
+.btn-contratar-massivo:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 44px rgba(232,199,101,0.5);
+  background:linear-gradient(180deg,#f5e6a3 0%,#e8c765 50%,#d4af37 100%);
+}
+.preco-info{
+  font-size:12px;
+  color:#9ca3af;
+  line-height:1.4;
+}
+.preco-info strong{
+  color:#e8c765;
+  font-size:13px;
+}
+.card-numero{
+  position:absolute;
+  top:24px;
+  right:28px;
+  z-index:3;
+  font-family:'Orbitron',sans-serif;
+  font-size:64px;
+  font-weight:900;
+  color:rgba(255,255,255,0.06);
+  line-height:1;
+  pointer-events:none;
+}
+/* RESPONSIVO */
+@media(max-width:1024px){
+  .card-conteudo-massivo{padding:32px 28px;max-width:100%}
+  .card-conteudo-massivo h3{font-size:26px}
+  .lista-inclusos{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .servicos-header-premium h2{font-size:28px}
+  .card-servico-massivo{min-height:580px}
+  .card-overlay-complex{
+    background:linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.95) 100%);
+  }
+  .card-conteudo-massivo{justify-content:flex-end;padding:28px 20px}
+  .card-numero{font-size:48px;top:16px;right:16px}
+}
 </style>
 
-<div class="services-grid">
-<div class="service-card" onclick="openModal('gestao')">
-<div style="width:54px;height:54px;margin:0 auto;border-radius:10px;background:linear-gradient(145deg, rgba(232,199,101,0.18), rgba(232,199,101,0.06));border:1px solid rgba(232,199,101,0.22);display:grid;place-items:center;font-size:28px;box-shadow:0 0 18px rgba(232,199,101,0.12)">🏢</div>
-<h4>GESTÃO EMPRESARIAL E ASSESSORIA ADMINISTRATIVA</h4>
-<p><strong style="color:#f5e6a3">Serviço Único Completo</strong> - BPO Financeiro, RH, Departamento Pessoal, Processos, Estratégia, KPIs, Dashboards e Redução de Custos. Organize a casa e cresça.</p>
-<div style="margin-top:10px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-<span style="padding:3px 8px;border-radius:4px;background:rgba(232,199,101,0.10);border:1px solid rgba(232,199,101,0.15);font-size:9px;color:#e8c765;font-weight:700">BPO FINANCEIRO</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(232,199,101,0.10);border:1px solid rgba(232,199,101,0.15);font-size:9px;color:#e8c765;font-weight:700">RH + DP</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(232,199,101,0.10);border:1px solid rgba(232,199,101,0.15);font-size:9px;color:#e8c765;font-weight:700">KPIs</span>
-</div>
-<span class="cta">VER TUDO QUE INCLUI →</span>
+<!-- HEADER DA ABA -->
+<div class="servicos-header-premium">
+  <div class="badge-top">✦ 5 SOLUÇÕES COMPLETAS • ECOSSISTEMA VÓRTICE • 2018-2026</div>
+  <h2>Nossos <span>Serviços</span><br>Completos</h2>
+  <p>Um ecossistema completo que une <strong>Gestão, Tecnologia e Produção</strong>. Cada serviço foi desenhado para tirar sua empresa do caos e colocar em crescimento real. Escolha abaixo e contrate direto no WhatsApp.</p>
 </div>
 
-<div class="service-card" onclick="openModal('ti')">
-<div style="width:54px;height:54px;margin:0 auto;border-radius:10px;background:linear-gradient(145deg, rgba(77,166,255,0.18), rgba(77,166,255,0.06));border:1px solid rgba(77,166,255,0.22);display:grid;place-items:center;font-size:28px;box-shadow:0 0 18px rgba(77,166,255,0.12)">💻</div>
-<h4>SUPORTE E ASSESSORIA DE TI</h4>
-<p>Suporte remoto e presencial, infraestrutura de redes, segurança da informação, backup em nuvem, Microsoft 365, automação e LGPD. SLA rápido.</p>
-<div style="margin-top:10px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-<span style="padding:3px 8px;border-radius:4px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.15);font-size:9px;color:#4da6ff;font-weight:700">SUPORTE</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.15);font-size:9px;color:#4da6ff;font-weight:700">REDES</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.15);font-size:9px;color:#4da6ff;font-weight:700">LGPD</span>
-</div>
-<span class="cta">VER TUDO QUE INCLUI →</span>
+<div class="servicos-lista-massiva">
+
+  <!-- ===== 1 - GESTÃO EMPRESARIAL ===== -->
+  <div class="card-servico-massivo">
+    <div class="card-bg-image" style="background-image:url('./gestao.jpg')"></div>
+    <div class="card-overlay-complex"></div>
+    <div class="card-overlay-gold"></div>
+    <div class="card-numero">01</div>
+    <div class="card-conteudo-massivo">
+      <div class="card-top-meta">
+        <span class="meta-badge gold">Mais Contratado</span>
+        <span class="meta-badge dark">Desde 2018 • 200+ Empresas</span>
+        <span class="meta-badge dark">ERP • Financeiro • RH</span>
+      </div>
+      <h3>Gestão Empresarial e <span class="gold-text">Assessoria Administrativa</span></h3>
+      <p class="desc-principal">Transformamos sua empresa desorganizada em uma máquina de lucro. Implementamos <strong>ERP VÓRTICE, Dashboard de KPIs, organograma, fluxo de caixa, DRE e processos</strong>. Você sai do operacional e foca em estratégia. Ideal para empresas faturando de R$ 30k a R$ 2M/mês que precisam de controle total.</p>
+      <div class="lista-inclusos">
+        <div class="incluso-item">Implantação ERP VÓRTICE completo</div>
+        <div class="incluso-item">Dashboard financeiro com DRE</div>
+        <div class="incluso-item">Organograma e descrição de cargos</div>
+        <div class="incluso-item">Fluxo de caixa e controle de estoque</div>
+        <div class="incluso-item">Análise de custos e precificação</div>
+        <div class="incluso-item">Reunião semanal de resultados</div>
+      </div>
+      <div class="card-footer-acao">
+        <a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice%2C%20quero%20contratar%20GEST%C3%83O%20EMPRESARIAL%20E%20ASSESSORIA%20ADMINISTRATIVA.%20Vi%20no%20site." target="_blank" class="btn-contratar-massivo">Contratar Serviço →</a>
+        <div class="preco-info"><strong>A partir de R$ 1.490/mês</strong><br>Contrato flexível • Sem fidelidade</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 2 - TI ===== -->
+  <div class="card-servico-massivo">
+    <div class="card-bg-image" style="background-image:url('./ti.jpg')"></div>
+    <div class="card-overlay-complex"></div>
+    <div class="card-overlay-gold"></div>
+    <div class="card-numero">02</div>
+    <div class="card-conteudo-massivo">
+      <div class="card-top-meta">
+        <span class="meta-badge gold">Infraestrutura Crítica</span>
+        <span class="meta-badge dark">Cisco • AWS • Cybersecurity</span>
+        <span class="meta-badge dark">Suporte 8h às 18h</span>
+      </div>
+      <h3>Suporte e <span class="gold-text">Assessoria de TI</span></h3>
+      <p class="desc-principal">Sua TI para de ser dor de cabeça e vira vantagem competitiva. Montamos <strong>rede cabeada certificada, Wi-Fi empresarial, firewall, backup em nuvem AWS, VPN, VLAN, patch panel e monitoramento 24h</strong>. Com painel com Grafana, Zabbix e Cybersecurity Dashboard. Zero queda, zero invasão.</p>
+      <div class="lista-inclusos">
+        <div class="incluso-item">Cabeamento estruturado e Wi-Fi 6</div>
+        <div class="incluso-item">Firewall, VPN e VLAN seguras</div>
+        <div class="incluso-item">Backup em nuvem AWS / Google</div>
+        <div class="incluso-item">Cybersecurity e antivírus gerenciado</div>
+        <div class="incluso-item">Monitoramento com Zabbix/Grafana</div>
+        <div class="incluso-item">Suporte remoto e presencial</div>
+      </div>
+      <div class="card-footer-acao">
+        <a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice%2C%20quero%20contratar%20SUPORTE%20E%20ASSESSORIA%20DE%20TI.%20Vi%20no%20site." target="_blank" class="btn-contratar-massivo">Contratar Serviço →</a>
+        <div class="preco-info"><strong>Visita técnica gratuita</strong><br>Orçamento em 24h</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 3 - REDES SOCIAIS ===== -->
+  <div class="card-servico-massivo">
+    <div class="card-bg-image" style="background-image:url('./redes.jpg')"></div>
+    <div class="card-overlay-complex"></div>
+    <div class="card-overlay-gold"></div>
+    <div class="card-numero">03</div>
+    <div class="card-conteudo-massivo">
+      <div class="card-top-meta">
+        <span class="meta-badge gold">+12,4% Crescimento</span>
+        <span class="meta-badge dark">Instagram • TikTok • LinkedIn</span>
+        <span class="meta-badge dark">Reels • Tráfego • Design</span>
+      </div>
+      <h3>Gestão de <span class="gold-text">Redes Sociais</span></h3>
+      <p class="desc-principal">Fazemos seu Instagram parar de ser catálogo morto e virar máquina de vendas. <strong>Plano de conteúdo, 12 Reels/mês, Stories diários, design premium, legenda com copy, calendário editorial e relatório de crescimento</strong>. Clientes com 45,2 mil de alcance orgânico e +12,4% de seguidores/mês. Você grava, a gente edita e posta.</p>
+      <div class="lista-inclusos">
+        <div class="incluso-item">12 Reels + 12 Posts + Stories diários</div>
+        <div class="incluso-item">Calendário editorial completo</div>
+        <div class="incluso-item">Design, legenda e hashtags estratégicas</div>
+        <div class="incluso-item">Relatório com Instagram Analytics</div>
+        <div class="incluso-item">Edição de vídeo e captação</div>
+        <div class="incluso-item">Gestão de comentários e DM</div>
+      </div>
+      <div class="card-footer-acao">
+        <a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice%2C%20quero%20contratar%20GEST%C3%83O%20DE%20REDES%20SOCIAIS.%20Vi%20no%20site." target="_blank" class="btn-contratar-massivo">Contratar Serviço →</a>
+        <div class="preco-info"><strong>Planos a partir de R$ 1.200/mês</strong><br>Primeiro mês com desconto</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 4 - UNIFORMES ===== -->
+  <div class="card-servico-massivo">
+    <div class="card-bg-image" style="background-image:url('./uniformes.jpg')"></div>
+    <div class="card-overlay-complex"></div>
+    <div class="card-overlay-gold"></div>
+    <div class="card-numero">04</div>
+    <div class="card-conteudo-massivo">
+      <div class="card-top-meta">
+        <span class="meta-badge gold">Produção Própria</span>
+        <span class="meta-badge dark">Bordado 15 agulhas • Premium</span>
+        <span class="meta-badge dark">Polo • Camiseta • Boné</span>
+      </div>
+      <h3>Produção de <span class="gold-text">Uniformes Corporativos</span></h3>
+      <p class="desc-principal">Uniforme que seu time tem orgulho de vestir e seu cliente respeita. <strong>Produção própria com máquina de bordado industrial de 15 agulhas, linha dourada, tecido Piquet, PV e algodão premium</strong>. Polo VÓRTICE com bordado em ouro que não desbota, boné estruturado e ecobag. De 10 a 5.000 unidades com entrega em 12 dias úteis.</p>
+      <div class="lista-inclusos">
+        <div class="incluso-item">Polo Piquet com bordado ouro premium</div>
+        <div class="incluso-item">Boné, ecobag e camiseta personalizada</div>
+        <div class="incluso-item">Máquina 15 agulhas • Alta definição</div>
+        <div class="incluso-item">Tecidos Piquet, PV e algodão</div>
+        <div class="incluso-item">De 10 a 5.000 unidades</div>
+        <div class="incluso-item">Entrega em 12 dias úteis • SP capital</div>
+      </div>
+      <div class="card-footer-acao">
+        <a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice%2C%20quero%20contratar%20PRODU%C3%87%C3%83O%20DE%20UNIFORMES%20CORPORATIVOS.%20Vi%20no%20site." target="_blank" class="btn-contratar-massivo">Contratar Serviço →</a>
+        <div class="preco-info"><strong>Orçamento no WhatsApp</strong><br>Amostra grátis acima de 50 pçs</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 5 - CNC ===== -->
+  <div class="card-servico-massivo">
+    <div class="card-bg-image" style="background-image:url('./cnc.jpg')"></div>
+    <div class="card-overlay-complex"></div>
+    <div class="card-overlay-gold"></div>
+    <div class="card-numero">05</div>
+    <div class="card-conteudo-massivo">
+      <div class="card-top-meta">
+        <span class="meta-badge gold">Router 1325 + Laser 100W</span>
+        <span class="meta-badge dark">MDF • Acrílico • ACM • Madeira</span>
+        <span class="meta-badge dark">Precisão 0,01mm</span>
+      </div>
+      <h3>CNC, Automação e <span class="gold-text">Produção</span></h3>
+      <p class="desc-principal">Transformamos sua ideia em produto físico com precisão industrial. <strong>Router CNC 1325 cortando MDF com serragem voando e Laser Cutter 100W com corte a laser azul</strong>. Placas, letras caixa, troféus em acrílico, brindes, displays e automação. Projeto no CAD, corte no CNC, acabamento premium. De protótipo a produção em escala.</p>
+      <div class="lista-inclusos">
+        <div class="incluso-item">Router CNC 1325 • Área 1300x2500mm</div>
+        <div class="incluso-item">Laser Cutter 100W • Corte e gravação</div>
+        <div class="incluso-item">MDF, Acrílico, ACM, Compensado</div>
+        <div class="incluso-item">Letras caixa, placas e troféus</div>
+        <div class="incluso-item">Precisão 0,01mm • Acabamento premium</div>
+        <div class="incluso-item">Projeto CAD incluso</div>
+      </div>
+      <div class="card-footer-acao">
+        <a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice%2C%20quero%20contratar%20CNC%2C%20AUTOMA%C3%87%C3%83O%20E%20PRODU%C3%87%C3%83O.%20Vi%20no%20site." target="_blank" class="btn-contratar-massivo">Contratar Serviço →</a>
+        <div class="preco-info"><strong>Orçamento em 2h</strong><br>Envie seu arquivo DXF/AI</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<div class="service-card" onclick="openModal('social')">
-<div style="width:54px;height:54px;margin:0 auto;border-radius:10px;background:linear-gradient(145deg, rgba(255,60,122,0.14), rgba(255,60,122,0.06));border:1px solid rgba(255,60,122,0.18);display:grid;place-items:center;font-size:28px;box-shadow:0 0 18px rgba(255,60,122,0.12)">📱</div>
-<h4>GESTÃO DE REDES SOCIAIS</h4>
-<p>Identidade visual, calendário editorial, artes, reels, copy que vende, tráfego pago, atendimento de direct e relatórios de crescimento.</p>
-<div style="margin-top:10px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-<span style="padding:3px 8px;border-radius:4px;background:rgba(255,60,122,0.10);border:1px solid rgba(255,60,122,0.15);font-size:9px;color:#ff6b9a;font-weight:700">CONTEÚDO</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(255,60,122,0.10);border:1px solid rgba(255,60,122,0.15);font-size:9px;color:#ff6b9a;font-weight:700">TRÁFEGO</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(255,60,122,0.10);border:1px solid rgba(255,60,122,0.15);font-size:9px;color:#ff6b9a;font-weight:700">LEADS</span>
-</div>
-<span class="cta">VER TUDO QUE INCLUI →</span>
-</div>
+<div style="text-align:center;padding:42px 20px 80px;color:#6b7280;font-size:13px;line-height:1.6">
+  <div style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:100px">
+    <span style="width:8px;height:8px;background:#22c55e;border-radius:100%;display:inline-block;box-shadow:0 0 10px #22c55e"></span>
+    Atendimento online agora • Resposta em até 5 minutos • WhatsApp (11) 92191-3395
+  </div>
+  <div style="margin-top:16px">© 2018-2026 VÓRTICE SOLUÇÕES GLOBAIS • CNPJ 65.576.566/0001-01 • Todos os direitos reservados</div>
 </div>
 
-<div class="services-bottom">
-<div class="service-card" onclick="openModal('uniforme')" style="max-width:360px;width:100%">
-<div style="width:54px;height:54px;margin:0 auto;border-radius:10px;background:linear-gradient(145deg, rgba(232,199,101,0.18), rgba(232,199,101,0.06));border:1px solid rgba(232,199,101,0.22);display:grid;place-items:center;font-size:28px">👕</div>
-<h4>PRODUÇÃO DE UNIFORMES CORPORATIVOS</h4>
-<p>Camisetas, polos, calças, jalecos, EPIs, bordado computadorizado e serigrafia de alta durabilidade. Para equipes de 10 a 500.</p>
-<div style="margin-top:10px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-<span style="padding:3px 8px;border-radius:4px;background:rgba(232,199,101,0.10);border:1px solid rgba(232,199,101,0.15);font-size:9px;color:#e8c765;font-weight:700">UNIFORMES</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(232,199,101,0.10);border:1px solid rgba(232,199,101,0.15);font-size:9px;color:#e8c765;font-weight:700">BORDADO</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(232,199,101,0.10);border:1px solid rgba(232,199,101,0.15);font-size:9px;color:#e8c765;font-weight:700">EPIs</span>
-</div>
-<span class="cta">VER TUDO QUE INCLUI →</span>
-</div>
-
-<div class="service-card" onclick="openModal('cnc')" style="max-width:360px;width:100%">
-<div style="width:54px;height:54px;margin:0 auto;border-radius:10px;background:linear-gradient(145deg, rgba(77,166,255,0.18), rgba(77,166,255,0.06));border:1px solid rgba(77,166,255,0.22);display:grid;place-items:center;font-size:28px">⚙️</div>
-<h4>CNC, AUTOMAÇÃO E PRODUÇÃO</h4>
-<p>Usinagem CNC Router e Laser, corte e gravação, impressão 3D, modelagem 3D, prototipagem e automação industrial. Precisão milimétrica.</p>
-<div style="margin-top:10px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-<span style="padding:3px 8px;border-radius:4px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.15);font-size:9px;color:#4da6ff;font-weight:700">CNC</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.15);font-size:9px;color:#4da6ff;font-weight:700">LASER</span>
-<span style="padding:3px 8px;border-radius:4px;background:rgba(77,166,255,0.10);border:1px solid rgba(77,166,255,0.15);font-size:9px;color:#4da6ff;font-weight:700">3D</span>
-</div>
-<span class="cta">VER TUDO QUE INCLUI →</span>
-</div>
-</div>
-
-<div style="margin-top:28px;background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:20px;text-align:center">
-<h3 style="font-size:15px;font-weight:800;color:#fff">Como contratar? Processo simples em 3 passos</h3>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px">
-<div><div style="width:32px;height:32px;margin:0 auto 8px;border-radius:50%;background:linear-gradient(180deg,#f5e6a3,#d4af37);color:#111;font-weight:900;display:grid;place-items:center;font-size:13px">1</div><div style="font-size:12px;font-weight:700;color:#f5e6a3">Diagnóstico gratuito</div><div style="font-size:11px;color:#9aa3b8;margin-top:4px">Chama no WhatsApp, conta sua dor e fazemos diagnóstico em 24h</div></div>
-<div><div style="width:32px;height:32px;margin:0 auto 8px;border-radius:50%;background:linear-gradient(180deg,#f5e6a3,#d4af37);color:#111;font-weight:900;display:grid;place-items:center;font-size:13px">2</div><div style="font-size:12px;font-weight:700;color:#f5e6a3">Proposta sob medida</div><div style="font-size:11px;color:#9aa3b8;margin-top:4px">Você recebe plano, prazo, investimento e o que vai receber</div></div>
-<div><div style="width:32px;height:32px;margin:0 auto 8px;border-radius:50%;background:linear-gradient(180deg,#f5e6a3,#d4af37);color:#111;font-weight:900;display:grid;place-items:center;font-size:13px">3</div><div style="font-size:12px;font-weight:700;color:#f5e6a3">Implementação e resultado</div><div style="font-size:11px;color:#9aa3b8;margin-top:4px">Começamos, você acompanha por relatórios e vê evolução</div></div>
-</div>
-</div>
-</div>
 </div>
 <div id="tab-contato" class="tab-pane">
 <div class="card">
