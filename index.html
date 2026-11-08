@@ -689,232 +689,196 @@ Fale no WhatsApp Agora
 }
 </style>
 
-<!-- HEADER DA ABA -->
+<div id="tab-servicos" class="tab-pane">
+<style>
+#tab-servicos{padding:0!important;background:transparent!important;border:none!important;box-shadow:none!important}
+.servicos-header-premium{
+  text-align:center;padding:48px 20px 32px;
+  background:linear-gradient(180deg,#2a2a2a 0%,#1a1a1a 100%);
+  border:1px solid rgba(255,255,255,0.08);border-radius:16px;margin-bottom:20px;
+}
+.servicos-header-premium .badge-top{
+  display:inline-flex;padding:8px 16px;
+  background:linear-gradient(180deg,#e8c765 0%,#d4af37 100%);color:#111;
+  font-weight:900;font-size:10px;letter-spacing:2px;border-radius:100px;text-transform:uppercase;margin-bottom:18px;
+}
+.servicos-header-premium h2{
+  font-family:'Orbitron',sans-serif;font-size:42px;font-weight:900;color:#fff;line-height:0.95;text-transform:uppercase;
+}
+.servicos-header-premium h2 span{
+  background:linear-gradient(102deg,#e8c765 0%,#fff3c0 50%,#d4af37 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.servicos-header-premium .sub-desc{margin:14px auto 0;max-width:760px;color:#9ca3af;font-size:16px;line-height:1.6}
+.mini-nav-servicos{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:28px auto 0;max-width:980px}
+.mini-nav-item{
+  cursor:pointer;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);
+  border-radius:12px;padding:16px 12px;text-align:center;transition:all 0.3s;text-decoration:none;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.mini-nav-item:hover{background:rgba(232,199,101,0.10);border-color:rgba(232,199,101,0.35);transform:translateY(-3px)}
+.mini-nav-item .mini-icon{font-size:22px}
+.mini-nav-item .mini-title{font-family:'Orbitron',sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#e5e7eb;line-height:1.3}
+.mini-nav-item:hover .mini-title{color:#e8c765}
+@media(max-width:900px){.mini-nav-servicos{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.mini-nav-servicos{grid-template-columns:1fr}}
+.servicos-lista-massiva{display:flex;flex-direction:column;gap:32px;margin-top:28px}
+.card-servico-massivo{
+  position:relative;width:100%;min-height:520px;border-radius:20px;overflow:hidden;background:#0f0f12;
+  border:1px solid rgba(255,255,255,0.12);box-shadow:0 24px 80px rgba(0,0,0,0.7);display:flex;
+}
+.card-bg-image{position:absolute;inset:0;background-size:cover;background-position:center}
+.card-overlay-complex{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.78) 38%, rgba(0,0,0,0.45) 68%, rgba(0,0,0,0.15) 100%);z-index:1;
+}
+.card-overlay-gold{position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,#e8c765 0%,#d4af37 100%);z-index:3}
+.card-conteudo-massivo{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:42px 48px;max-width:800px;width:100%}
+.card-top-meta{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.meta-badge{padding:6px 12px;border-radius:6px;font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;border:1px solid}
+.meta-badge.gold{background:linear-gradient(180deg,#e8c765 0%,#d4af37 100%);color:#111;border-color:#e8c765}
+.meta-badge.dark{background:rgba(255,255,255,0.08);color:#d1d5db;border-color:rgba(255,255,255,0.15)}
+.card-conteudo-massivo h3{font-family:'Orbitron',sans-serif;font-size:30px;font-weight:900;line-height:1.05;color:#fff;text-transform:uppercase;margin-bottom:14px}
+.card-conteudo-massivo h3 .gold-text{color:#e8c765}
+.card-conteudo-massivo .desc-principal{font-size:15.5px;line-height:1.75;color:#d1d5db;margin-bottom:20px;max-width:700px}
+.lista-inclusos{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-bottom:26px;
+  padding:18px 20px;background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.08);border-radius:10px;
+}
+.lista-inclusos .incluso-item{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#e5e7eb;font-weight:500;line-height:1.4}
+.lista-inclusos .incluso-item::before{
+  content:"✓";width:18px;height:18px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,#e8c765 0%,#d4af37 100%);color:#111;font-weight:900;font-size:10px;border-radius:100%;flex-shrink:0;margin-top:1px;
+}
+.btn-contratar-massivo{
+  display:inline-flex;align-items:center;gap:12px;padding:16px 32px;
+  background:linear-gradient(180deg,#e8c765 0%,#d4af37 50%,#b8941f 100%);color:#111;
+  font-weight:900;font-size:13px;letter-spacing:1.2px;text-transform:uppercase;border-radius:10px;text-decoration:none;
+}
+@media(max-width:768px){
+  .servicos-header-premium h2{font-size:28px}
+  .card-servico-massivo{min-height:620px}
+  .card-overlay-complex{background:linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.95) 100%)}
+  .card-conteudo-massivo{justify-content:flex-end;padding:28px 20px}
+  .lista-inclusos{grid-template-columns:1fr}
+}
+</style>
+
 <div class="servicos-header-premium">
-  <div class="badge-top">✦ 5 SOLUÇÕES COMPLETAS • ECOSSISTEMA VÓRTICE • 2018-2026</div>
-  <h2>Nossos <span>Serviços</span><br>Completos</h2>
-  <p>Um ecossistema completo que une <strong>Gestão, Tecnologia e Produção</strong>. Cada serviço foi desenhado para tirar sua empresa do caos e colocar em crescimento real. Escolha abaixo e contrate direto no WhatsApp.</p>
+  <div class="badge-top">ECOSSISTEMA VORTICE • 5 SOLUCOES • DESDE 2018</div>
+  <h2>Nossos <span>Servicos</span></h2>
+  <p class="sub-desc">Trabalhamos de forma integrada em gestao, tecnologia e producao. Abaixo estao os servicos que executamos no dia a dia. Toque em um atalho para ir direto ao servico.</p>
+  <div class="mini-nav-servicos">
+    <a class="mini-nav-item" onclick="document.getElementById('servico-gestao').scrollIntoView({behavior:'smooth'})"><div class="mini-icon">📊</div><div class="mini-title">Gestao Empresarial</div></a>
+    <a class="mini-nav-item" onclick="document.getElementById('servico-ti').scrollIntoView({behavior:'smooth'})"><div class="mini-icon">🖥️</div><div class="mini-title">Suporte de TI</div></a>
+    <a class="mini-nav-item" onclick="document.getElementById('servico-redes').scrollIntoView({behavior:'smooth'})"><div class="mini-icon">📱</div><div class="mini-title">Redes Sociais</div></a>
+    <a class="mini-nav-item" onclick="document.getElementById('servico-uniformes').scrollIntoView({behavior:'smooth'})"><div class="mini-icon">👕</div><div class="mini-title">Uniformes</div></a>
+    <a class="mini-nav-item" onclick="document.getElementById('servico-cnc').scrollIntoView({behavior:'smooth'})"><div class="mini-icon">⚙️</div><div class="mini-title">CNC e Producao</div></a>
+  </div>
 </div>
 
 <div class="servicos-lista-massiva">
 
-  <!-- ===== 1 - GESTÃO EMPRESARIAL ===== -->
-  <div class="card-servico-massivo">
-    <div class="card-bg-image" style="background-image:url('./gestao.jpg')"></div>
-    <div class="card-overlay-complex"></div>
-    <div class="card-overlay-gold"></div>
-    <div class="card-numero">01</div>
+  <div id="servico-gestao" class="card-servico-massivo">
+    <div class="card-bg-image" style="background-image:url('./gestao.jpg')"></div><div class="card-overlay-complex"></div><div class="card-overlay-gold"></div>
     <div class="card-conteudo-massivo">
-      <div class="card-top-meta">
-        <span class="meta-badge gold">Mais Contratado</span>
-        <span class="meta-badge dark">Desde 2018 • 200+ Empresas</span>
-        <span class="meta-badge dark">ERP • Financeiro • RH</span>
-      </div>
-      <h3>Gestão Empresarial e <span class="gold-text">Assessoria Administrativa</span></h3>
-      <p class="desc-principal">Transformamos sua empresa desorganizada em uma máquina de lucro. Implementamos <strong>ERP VÓRTICE, Dashboard de KPIs, organograma, fluxo de caixa, DRE e processos</strong>. Você sai do operacional e foca em estratégia. Ideal para empresas faturando de R$ 30k a R$ 2M/mês que precisam de controle total.</p>
+      <div class="card-top-meta"><span class="meta-badge gold">Gestao</span><span class="meta-badge dark">Assessoria administrativa</span></div>
+      <h3>Gestao Empresarial e <span class="gold-text">Assessoria Administrativa</span></h3>
+      <p class="desc-principal">Organizacao da parte administrativa da empresa. Trabalhamos com controles financeiros, organizacao de fluxo de caixa, cadastro de produtos, controle de estoque, criacao de organograma e definicao de processos internos com uso de planilhas e sistemas de gestao.</p>
       <div class="lista-inclusos">
-        <div class="incluso-item">Implantação ERP VÓRTICE completo</div>
-        <div class="incluso-item">Dashboard financeiro com DRE</div>
-        <div class="incluso-item">Organograma e descrição de cargos</div>
-        <div class="incluso-item">Fluxo de caixa e controle de estoque</div>
-        <div class="incluso-item">Análise de custos e precificação</div>
-        <div class="incluso-item">Reunião semanal de resultados</div>
+        <div class="incluso-item">Organizacao de fluxo de caixa e contas a pagar e receber</div>
+        <div class="incluso-item">Cadastro de produtos e controle de estoque</div>
+        <div class="incluso-item">Criacao de organograma e definicao de funcoes</div>
+        <div class="incluso-item">Padronizacao de processos e rotinas</div>
+        <div class="incluso-item">Implantacao de planilhas e sistema de gestao</div>
+        <div class="incluso-item">Acompanhamento periodico para ajustes</div>
       </div>
-      <div class="card-footer-acao">
-        <a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice%2C%20quero%20contratar%20GEST%C3%83O%20EMPRESARIAL%20E%20ASSESSORIA%20ADMINISTRATIVA.%20Vi%20no%20site." target="_blank" class="btn-contratar-massivo">Contratar Serviço →</a>
-        <div class="preco-info"><strong>A partir de R$ 1.490/mês</strong><br>Contrato flexível • Sem fidelidade</div>
-      </div>
+      <a href="https://wa.me/5511921913395?text=Ola Vortice, quero contratar Gestao Empresarial." target="_blank" class="btn-contratar-massivo">Contratar Servico →</a>
     </div>
   </div>
 
-  <!-- ===== 2 - TI ===== -->
-  <div class="card-servico-massivo">
-    <div class="card-bg-image" style="background-image:url('./ti.jpg')"></div>
-    <div class="card-overlay-complex"></div>
-    <div class="card-overlay-gold"></div>
-    <div class="card-numero">02</div>
+  <div id="servico-ti" class="card-servico-massivo">
+    <div class="card-bg-image" style="background-image:url('./ti.jpg')"></div><div class="card-overlay-complex"></div><div class="card-overlay-gold"></div>
     <div class="card-conteudo-massivo">
-      <div class="card-top-meta">
-        <span class="meta-badge gold">Infraestrutura Crítica</span>
-        <span class="meta-badge dark">Cisco • AWS • Cybersecurity</span>
-        <span class="meta-badge dark">Suporte 8h às 18h</span>
-      </div>
+      <div class="card-top-meta"><span class="meta-badge gold">Tecnologia</span><span class="meta-badge dark">Infraestrutura e suporte</span></div>
       <h3>Suporte e <span class="gold-text">Assessoria de TI</span></h3>
-      <p class="desc-principal">Sua TI para de ser dor de cabeça e vira vantagem competitiva. Montamos <strong>rede cabeada certificada, Wi-Fi empresarial, firewall, backup em nuvem AWS, VPN, VLAN, patch panel e monitoramento 24h</strong>. Com painel com Grafana, Zabbix e Cybersecurity Dashboard. Zero queda, zero invasão.</p>
+      <p class="desc-principal">Cuidamos da parte de tecnologia. Fazemos cabeamento de rede, instalacao de roteadores e Wi-Fi, montagem de rack, organizacao de cabos, instalacao de impressoras em rede, formatacao e manutencao de computadores, backup e acesso remoto.</p>
       <div class="lista-inclusos">
-        <div class="incluso-item">Cabeamento estruturado e Wi-Fi 6</div>
-        <div class="incluso-item">Firewall, VPN e VLAN seguras</div>
-        <div class="incluso-item">Backup em nuvem AWS / Google</div>
-        <div class="incluso-item">Cybersecurity e antivírus gerenciado</div>
-        <div class="incluso-item">Monitoramento com Zabbix/Grafana</div>
-        <div class="incluso-item">Suporte remoto e presencial</div>
+        <div class="incluso-item">Cabeamento de rede e organizacao de rack</div>
+        <div class="incluso-item">Instalacao e configuracao de Wi-Fi</div>
+        <div class="incluso-item">Montagem e manutencao de computadores</div>
+        <div class="incluso-item">Instalacao de impressoras e backup</div>
+        <div class="incluso-item">Configuracao de pastas compartilhadas e VPN</div>
+        <div class="incluso-item">Suporte presencial e remoto</div>
       </div>
-      <div class="card-footer-acao">
-        <a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice%2C%20quero%20contratar%20SUPORTE%20E%20ASSESSORIA%20DE%20TI.%20Vi%20no%20site." target="_blank" class="btn-contratar-massivo">Contratar Serviço →</a>
-        <div class="preco-info"><strong>Visita técnica gratuita</strong><br>Orçamento em 24h</div>
-      </div>
+      <a href="https://wa.me/5511921913395?text=Ola Vortice, quero contratar Suporte de TI." target="_blank" class="btn-contratar-massivo">Contratar Servico →</a>
     </div>
   </div>
 
-  <!-- ===== 3 - REDES SOCIAIS ===== -->
-  <div class="card-servico-massivo">
-    <div class="card-bg-image" style="background-image:url('./redes.jpg')"></div>
-    <div class="card-overlay-complex"></div>
-    <div class="card-overlay-gold"></div>
-    <div class="card-numero">03</div>
+  <div id="servico-redes" class="card-servico-massivo">
+    <div class="card-bg-image" style="background-image:url('./redes.jpg')"></div><div class="card-overlay-complex"></div><div class="card-overlay-gold"></div>
     <div class="card-conteudo-massivo">
-      <div class="card-top-meta">
-        <span class="meta-badge gold">+12,4% Crescimento</span>
-        <span class="meta-badge dark">Instagram • TikTok • LinkedIn</span>
-        <span class="meta-badge dark">Reels • Tráfego • Design</span>
-      </div>
-      <h3>Gestão de <span class="gold-text">Redes Sociais</span></h3>
-      <p class="desc-principal">Fazemos seu Instagram parar de ser catálogo morto e virar máquina de vendas. <strong>Plano de conteúdo, 12 Reels/mês, Stories diários, design premium, legenda com copy, calendário editorial e relatório de crescimento</strong>. Clientes com 45,2 mil de alcance orgânico e +12,4% de seguidores/mês. Você grava, a gente edita e posta.</p>
+      <div class="card-top-meta"><span class="meta-badge gold">Marketing</span><span class="meta-badge dark">Criacao de conteudo</span></div>
+      <h3>Gestao de <span class="gold-text">Redes Sociais</span></h3>
+      <p class="desc-principal">Cuidamos das redes sociais de forma organizada. Criamos calendario de postagens, artes, edicao de videos curtos, legendas, agendamento das publicacoes e captacao de fotos e videos no local quando necessario.</p>
       <div class="lista-inclusos">
-        <div class="incluso-item">12 Reels + 12 Posts + Stories diários</div>
-        <div class="incluso-item">Calendário editorial completo</div>
-        <div class="incluso-item">Design, legenda e hashtags estratégicas</div>
-        <div class="incluso-item">Relatório com Instagram Analytics</div>
-        <div class="incluso-item">Edição de vídeo e captação</div>
-        <div class="incluso-item">Gestão de comentários e DM</div>
+        <div class="incluso-item">Criacao de calendario editorial</div>
+        <div class="incluso-item">Criacao de artes e edicao de videos curtos</div>
+        <div class="incluso-item">Redacao de legendas</div>
+        <div class="incluso-item">Agendamento e publicacao</div>
+        <div class="incluso-item">Captacao de fotos e videos na empresa</div>
+        <div class="incluso-item">Relatorio mensal com alcance e interacoes</div>
       </div>
-      <div class="card-footer-acao">
-        <a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice%2C%20quero%20contratar%20GEST%C3%83O%20DE%20REDES%20SOCIAIS.%20Vi%20no%20site." target="_blank" class="btn-contratar-massivo">Contratar Serviço →</a>
-        <div class="preco-info"><strong>Planos a partir de R$ 1.200/mês</strong><br>Primeiro mês com desconto</div>
-      </div>
+      <a href="https://wa.me/5511921913395?text=Ola Vortice, quero contratar Gestao de Redes Sociais." target="_blank" class="btn-contratar-massivo">Contratar Servico →</a>
     </div>
   </div>
 
-  <!-- ===== 4 - UNIFORMES ===== -->
-  <div class="card-servico-massivo">
-    <div class="card-bg-image" style="background-image:url('./uniformes.jpg')"></div>
-    <div class="card-overlay-complex"></div>
-    <div class="card-overlay-gold"></div>
-    <div class="card-numero">04</div>
+  <div id="servico-uniformes" class="card-servico-massivo">
+    <div class="card-bg-image" style="background-image:url('./uniformes.jpg')"></div><div class="card-overlay-complex"></div><div class="card-overlay-gold"></div>
     <div class="card-conteudo-massivo">
-      <div class="card-top-meta">
-        <span class="meta-badge gold">Produção Própria</span>
-        <span class="meta-badge dark">Bordado 15 agulhas • Premium</span>
-        <span class="meta-badge dark">Polo • Camiseta • Boné</span>
-      </div>
-      <h3>Produção de <span class="gold-text">Uniformes Corporativos</span></h3>
-      <p class="desc-principal">Uniforme que seu time tem orgulho de vestir e seu cliente respeita. <strong>Produção própria com máquina de bordado industrial de 15 agulhas, linha dourada, tecido Piquet, PV e algodão premium</strong>. Polo VÓRTICE com bordado em ouro que não desbota, boné estruturado e ecobag. De 10 a 5.000 unidades com entrega em 12 dias úteis.</p>
+      <div class="card-top-meta"><span class="meta-badge gold">Vestuario</span><span class="meta-badge dark">Producao propria</span></div>
+      <h3>Producao de <span class="gold-text">Uniformes Corporativos</span></h3>
+      <p class="desc-principal">Produzimos uniformes corporativos na Vortice. Polos em piquet, camisetas em PV e algodao, bones e ecobags. Bordado feito em maquina industrial multi-agulhas com prova de tamanho e peca piloto para aprovacao.</p>
       <div class="lista-inclusos">
-        <div class="incluso-item">Polo Piquet com bordado ouro premium</div>
-        <div class="incluso-item">Boné, ecobag e camiseta personalizada</div>
-        <div class="incluso-item">Máquina 15 agulhas • Alta definição</div>
-        <div class="incluso-item">Tecidos Piquet, PV e algodão</div>
-        <div class="incluso-item">De 10 a 5.000 unidades</div>
-        <div class="incluso-item">Entrega em 12 dias úteis • SP capital</div>
+        <div class="incluso-item">Polos piquet com bordado em alta definicao</div>
+        <div class="incluso-item">Camisetas, bones e ecobags personalizadas</div>
+        <div class="incluso-item">Bordado industrial multi-agulhas</div>
+        <div class="incluso-item">Tecidos piquet, PV, algodao e brim</div>
+        <div class="incluso-item">Prova de tamanhos e peca piloto</div>
+        <div class="incluso-item">Controle de qualidade peca a peca</div>
       </div>
-      <div class="card-footer-acao">
-        <a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice%2C%20quero%20contratar%20PRODU%C3%87%C3%83O%20DE%20UNIFORMES%20CORPORATIVOS.%20Vi%20no%20site." target="_blank" class="btn-contratar-massivo">Contratar Serviço →</a>
-        <div class="preco-info"><strong>Orçamento no WhatsApp</strong><br>Amostra grátis acima de 50 pçs</div>
-      </div>
+      <a href="https://wa.me/5511921913395?text=Ola Vortice, quero contratar Uniformes Corporativos." target="_blank" class="btn-contratar-massivo">Contratar Servico →</a>
     </div>
   </div>
 
-  <!-- ===== 5 - CNC ===== -->
-  <div class="card-servico-massivo">
-    <div class="card-bg-image" style="background-image:url('./cnc.jpg')"></div>
-    <div class="card-overlay-complex"></div>
-    <div class="card-overlay-gold"></div>
-    <div class="card-numero">05</div>
+  <div id="servico-cnc" class="card-servico-massivo">
+    <div class="card-bg-image" style="background-image:url('./cnc.jpg')"></div><div class="card-overlay-complex"></div><div class="card-overlay-gold"></div>
     <div class="card-conteudo-massivo">
-      <div class="card-top-meta">
-        <span class="meta-badge gold">Router 1325 + Laser 100W</span>
-        <span class="meta-badge dark">MDF • Acrílico • ACM • Madeira</span>
-        <span class="meta-badge dark">Precisão 0,01mm</span>
-      </div>
-      <h3>CNC, Automação e <span class="gold-text">Produção</span></h3>
-      <p class="desc-principal">Transformamos sua ideia em produto físico com precisão industrial. <strong>Router CNC 1325 cortando MDF com serragem voando e Laser Cutter 100W com corte a laser azul</strong>. Placas, letras caixa, troféus em acrílico, brindes, displays e automação. Projeto no CAD, corte no CNC, acabamento premium. De protótipo a produção em escala.</p>
+      <div class="card-top-meta"><span class="meta-badge gold">Industria</span><span class="meta-badge dark">Router e Laser</span></div>
+      <h3>CNC, Automacao e <span class="gold-text">Producao</span></h3>
+      <p class="desc-principal">Operamos com Router CNC e Laser para corte e gravacao. Corte em MDF, acrilico, compensado e ACM para fabricacao de placas, letras, displays, trofeus, brindes e pecas sob medida. Recebemos arquivos em DXF, AI ou CDR.</p>
       <div class="lista-inclusos">
-        <div class="incluso-item">Router CNC 1325 • Área 1300x2500mm</div>
-        <div class="incluso-item">Laser Cutter 100W • Corte e gravação</div>
-        <div class="incluso-item">MDF, Acrílico, ACM, Compensado</div>
-        <div class="incluso-item">Letras caixa, placas e troféus</div>
-        <div class="incluso-item">Precisão 0,01mm • Acabamento premium</div>
-        <div class="incluso-item">Projeto CAD incluso</div>
+        <div class="incluso-item">Corte Router CNC para MDF e compensado</div>
+        <div class="incluso-item">Corte e gravacao a Laser em acrilico e MDF</div>
+        <div class="incluso-item">Placas, letras, displays e trofeus</div>
+        <div class="incluso-item">Brindes e pecas personalizadas</div>
+        <div class="incluso-item">Preparacao de arquivo e projeto simples em CAD</div>
+        <div class="incluso-item">Acabamento e montagem quando necessario</div>
       </div>
-      <div class="card-footer-acao">
-        <a href="https://wa.me/5511921913395?text=Ol%C3%A1%20V%C3%B3rtice%2C%20quero%20contratar%20CNC%2C%20AUTOMA%C3%87%C3%83O%20E%20PRODU%C3%87%C3%83O.%20Vi%20no%20site." target="_blank" class="btn-contratar-massivo">Contratar Serviço →</a>
-        <div class="preco-info"><strong>Orçamento em 2h</strong><br>Envie seu arquivo DXF/AI</div>
-      </div>
+      <a href="https://wa.me/5511921913395?text=Ola Vortice, quero contratar CNC e Producao." target="_blank" class="btn-contratar-massivo">Contratar Servico →</a>
     </div>
   </div>
 
 </div>
 
-<div style="text-align:center;padding:42px 20px 80px;color:#6b7280;font-size:13px;line-height:1.6">
+<div style="text-align:center;padding:42px 20px 20px;color:#6b7280;font-size:13px;">
   <div style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:100px">
-    <span style="width:8px;height:8px;background:#22c55e;border-radius:100%;display:inline-block;box-shadow:0 0 10px #22c55e"></span>
-    Atendimento online agora • Resposta em até 5 minutos • WhatsApp (11) 92191-3395
+    <span style="width:8px;height:8px;background:#22c55e;border-radius:100%;display:inline-block;"></span>
+    Atendimento online agora - WhatsApp (11) 92191-3395
   </div>
-  <div style="margin-top:16px">© 2018-2026 VÓRTICE SOLUÇÕES GLOBAIS • CNPJ 65.576.566/0001-01 • Todos os direitos reservados</div>
+  <div style="margin-top:16px">© 2018-2026 VORTICE SOLUCOES GLOBAIS - CNPJ 65.576.566/0001-01</div>
 </div>
 
-</div>
-    </div>
-  </div>
-
-</div>
-
-<div style="text-align:center;padding:42px 20px 80px;color:#6b7280;font-size:13px;line-height:1.6">
-  <div style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:100px">
-    <span style="width:8px;height:8px;background:#22c55e;border-radius:100%;display:inline-block;box-shadow:0 0 10px #22c55e"></span>
-    Atendimento online agora • Resposta em até 5 minutos • WhatsApp (11) 92191-3395
-  </div>
-  <div style="margin-top:16px">© 2018-2026 VÓRTICE SOLUÇÕES GLOBAIS • CNPJ 65.576.566/0001-01 • Todos os direitos reservados</div>
-</div>
-
-</div>
-<div id="tab-contato" class="tab-pane">
-<div class="card">
-<span class="badge">✦ CONTATO OFICIAL • RESPOSTA EM ATÉ 2H</span>
-<div style="display:grid;grid-template-columns:1.25fr 0.75fr;gap:28px;margin-top:4px">
-<div>
-<h2 style="font-size:22px;font-weight:900;margin-bottom:6px">ENTRE EM CONTATO COM A VÓRTICE</h2>
-<p style="font-size:13px;color:#9aa3b8;line-height:1.6;margin-bottom:18px">Preencha o formulário com detalhes do que você precisa. Nossa equipe responde em até 2 horas úteis. Todos os campos vão direto para nosso WhatsApp oficial com formatação profissional.</p>
-
-<form class="form" onsubmit="enviarWhatsApp(event)" style="background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:20px">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-<div>
-<label style="font-size:10.5px;color:#9aa3b8;font-weight:600;margin-bottom:4px;display:block;letter-spacing:0.5px">NOME COMPLETO *</label>
-<input type="text" id="nome" placeholder="Ex: Mathews Brito" required style="width:100%;padding:12px 14px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.15);border-radius:6px;color:#fff;font-size:12.5px">
-</div>
-<div>
-<label style="font-size:10.5px;color:#9aa3b8;font-weight:600;margin-bottom:4px;display:block;letter-spacing:0.5px">E-MAIL CORPORATIVO *</label>
-<input type="email" id="email" placeholder="seu@empresa.com" required style="width:100%;padding:12px 14px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.15);border-radius:6px;color:#fff;font-size:12.5px">
-</div>
-</div>
-
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
-<div>
-<label style="font-size:10.5px;color:#9aa3b8;font-weight:600;margin-bottom:4px;display:block">WHATSAPP / TELEFONE *</label>
-<input type="tel" id="telefone" placeholder="(11) 9 9999-9999" required style="width:100%;padding:12px 14px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.15);border-radius:6px;color:#fff;font-size:12.5px">
-</div>
-<div>
-<label style="font-size:10.5px;color:#9aa3b8;font-weight:600;margin-bottom:4px;display:block">CARGO</label>
-<input type="text" id="cargo" placeholder="Ex: Sócio, Gerente, Diretor" style="width:100%;padding:12px 14px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.15);border-radius:6px;color:#fff;font-size:12.5px">
-</div>
-</div>
-
-<div style="margin-top:10px">
-<label style="font-size:10.5px;color:#9aa3b8;font-weight:600;margin-bottom:4px;display:block">EMPRESA</label>
-<input type="text" id="empresa" placeholder="Nome da sua empresa" style="width:100%;padding:12px 14px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.15);border-radius:6px;color:#fff;font-size:12.5px">
-</div>
-
-<div style="margin-top:10px">
-<label style="font-size:10.5px;color:#f5e6a3;font-weight:700;margin-bottom:4px;display:block;letter-spacing:0.5px">QUAL SERVIÇO VOCÊ PRECISA? *</label>
-<select id="servico" required style="width:100%;padding:12px 14px;background:rgba(0,0,0,0.45);border:1px solid rgba(232,199,101,0.18);border-radius:6px;color:#fff;font-size:12.5px;font-weight:600">
-<option value="">Selecione o serviço...</option>
-<option value="Gestão Empresarial e Assessoria Administrativa">🏢 Gestão Empresarial e Assessoria Administrativa - COMPLETO</option>
-<option value="Suporte e Assessoria de TI">💻 Suporte e Assessoria de TI</option>
-<option value="Gestão de Redes Sociais">📱 Gestão de Redes Sociais</option>
-<option value="Produção de Uniformes Corporativos">👕 Produção de Uniformes Corporativos</option>
-<option value="CNC, Automação e Produção">⚙️ CNC, Automação e Produção</option>
-<option value="Preciso de mais de um serviço - Pacote Completo">🔥 Preciso de mais de um - PACOTE COMPLETO</option>
-</select>
 </div>
 
 <div style="margin-top:10px">
