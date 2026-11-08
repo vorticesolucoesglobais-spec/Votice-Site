@@ -231,15 +231,70 @@ font-weight:800
 </style>
 </head>
 <body>
-<div class="header" style="text-align:center;padding:18px 0;background:#000">
-<img src="./logo.png" alt="VÓRTICE" style="height:85px;display:block;margin:0 auto">
-</div>
-<div class="nav-wrap">
-<button class="nav-tab active" data-tab="inicio">INÍCIO</button>
-<button class="nav-tab" data-tab="sobre">SOBRE</button>
-<button class="nav-tab" data-tab="servicos">SERVIÇOS</button>
-<button class="nav-tab" data-tab="contato">CONTATO</button>
-</div>
+<!-- ===== INICIO DO CABEÇALHO CORRIGIDO - VÓRTICE ===== -->
+<style>
+/* LOGO - NÃO FICA FIXA, SOBE COM A PÁGINA */
+.header-top-vortice{
+  text-align:center;
+  padding:18px 0 12px;
+  background:#000;
+  position:relative; /* CORREÇÃO - era sticky e causava duplicação */
+  z-index:5;
+}
+.logo-vortice{
+  height:85px;
+  display:block;
+  margin:0 auto;
+  filter:drop-shadow(0 0 15px rgba(255,255,255,0.15));
+}
+
+/* MENU - SÓ ELE FICA FIXO NO TOPO */
+.nav-wrap-vortice{
+  position:sticky; /* SÓ O MENU É STICKY */
+  top:0;
+  z-index:100;
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  padding:8px 20px;
+  background:linear-gradient(180deg,#8a8a8a,#5a5a5a);
+  border-bottom:1px solid rgba(0,0,0,0.25);
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+.nav-tab-vortice{
+  padding:11px 32px;
+  border-radius:6px;
+  border:1px solid transparent;
+  background:transparent;
+  color:#1a1a1a;
+  font-weight:800;
+  font-size:12.5px;
+  cursor:pointer;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  transition:all 0.2s;
+}
+.nav-tab-vortice:hover{background:rgba(255,255,255,0.15)}
+.nav-tab-vortice.active{
+  background:linear-gradient(180deg, #e8e8e8 0%, #c0c0c0 100%);
+  color:#111;
+  border-color:#fff;
+  box-shadow:0 6px 24px rgba(0,0,0,0.3);
+}
+</style>
+
+<header>
+  <div class="header-top-vortice">
+    <img src="./logo.png" alt="VÓRTICE SOLUÇÕES GLOBAIS" class="logo-vortice" onerror="this.src='https://i.imgur.com/8Km9tLL.png'">
+  </div>
+  <nav class="nav-wrap-vortice">
+    <button class="nav-tab-vortice active" data-tab="inicio">INÍCIO</button>
+    <button class="nav-tab-vortice" data-tab="sobre">SOBRE</button>
+    <button class="nav-tab-vortice" data-tab="servicos">SERVIÇOS</button>
+    <button class="nav-tab-vortice" data-tab="contato">CONTATO</button>
+  </nav>
+</header>
+<!-- ===== FIM DO CABEÇALHO CORRIGIDO ===== -->
 <div class="container">
 
 <div id="tab-inicio" class="tab-pane active">
