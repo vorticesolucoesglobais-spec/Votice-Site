@@ -347,6 +347,103 @@ document.querySelectorAll('footer .fl a').forEach(a=>{
   });
 });
 </script>
+
+<!-- VORTICE TRADUTOR 7 IDIOMAS - V2 COMPLETO -->
+<style>
+#langBar{position:fixed;top:74px;right:16px;z-index:9999;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:4px;display:flex;gap:2px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+#langBar button{border:0;background:transparent;padding:6px 10px;border-radius:6px;cursor:pointer;font:700 11px/1 'IBM Plex Sans',sans-serif;letter-spacing:.5px}
+#langBar button.on{background:#0d47a1;color:#fff}
+@media(max-width:768px){#langBar{top:auto;bottom:88px;right:10px}}
+</style>
+<div id="langBar">
+<button onclick="V_lang('pt')" id="l-pt" class="on">PT</button>
+<button onclick="V_lang('en')" id="l-en">EN</button>
+<button onclick="V_lang('es')" id="l-es">ES</button>
+<button onclick="V_lang('fr')" id="l-fr">FR</button>
+<button onclick="V_lang('de')" id="l-de">DE</button>
+<button onclick="V_lang('it')" id="l-it">IT</button>
+<button onclick="V_lang('zh')" id="l-zh">中文</button>
+</div>
+
+<script>
+const V_TRAD = {
+en:{
+"Início":"Home","Serviços":"Services","Depoimentos":"Testimonials","Diferenciais":"Why Us","Institucional":"About","FAQ":"FAQ","Contato":"Contact",
+"Eficiência, Tecnologia":"Efficiency, Technology","e Produção":"and Production","Uma única empresa para cuidar da Gestão, Tecnologia e Produção do seu negócio.":"One company to handle your Management, Technology and Production.",
+"Transformamos gestão, tecnologia e produção em crescimento sustentável":"We transform management, technology and production into sustainable growth",
+"Solicitar Diagnóstico Gratuito":"Request Free Diagnosis","Enviar E-mail":"Send Email","Resposta em até 2 horas úteis.":"Response within 2 business hours.",
+"5 ANOS":"5 YEARS","De Atuação":"In Business","Atendimento Nacional":"Nationwide Service","5 ÁREAS":"5 AREAS","Integradas":"Integrated","NORTE AM.":"N. AMERICA","Projetos Internacionais":"International Projects",
+"Serviços":"Services","Cinco frentes que funcionam isoladamente ou de forma integrada, com um único ponto de contato.":"Five areas that work alone or integrated, with a single point of contact.",
+"Assessoria administrativa e gestão empresarial":"Administrative Consulting and Business Management",
+"Suporte técnico e assessoria de TI":"IT Support and Consulting",
+"Gestão de redes e mídias sociais":"Social Media Management",
+"Uniformes, estampas e brindes personalizados":"Custom Uniforms and Promotional Items",
+"Usinagem CNC, corte a laser e modelagem 3D":"CNC Machining, Laser Cutting and 3D Modeling",
+"Solicitar proposta":"Request proposal","Ver detalhes":"View details",
+"Solicite uma proposta":"Request a proposal","Descreva o cenário e o objetivo. Respondemos em até 2 horas úteis.":"Describe your scenario. We respond within 2 business hours."
+},
+es:{
+"Início":"Inicio","Serviços":"Servicios","Depoimentos":"Testimonios","Diferenciais":"Diferenciales","Institucional":"Institucional","FAQ":"FAQ","Contato":"Contacto",
+"Eficiência, Tecnologia":"Eficiencia, Tecnología","e Produção":"y Producción",
+"Transformamos gestão, tecnologia e produção em crescimento sustentável":"Transformamos gestión, tecnología y producción en crecimiento sostenible",
+"Solicitar Diagnóstico Gratuito":"Solicitar Diagnóstico Gratuito","Solicitar proposta":"Solicitar propuesta","Ver detalhes":"Ver detalles",
+"Solicite uma proposta":"Solicite una propuesta"
+},
+fr:{
+"Início":"Accueil","Serviços":"Services","Depoimentos":"Témoignages","Diferenciais":"Différentiels","Institucional":"Institutionnel","Contato":"Contact",
+"Transformamos gestão, tecnologia e produção em crescimento sustentável":"Nous transformons la gestion, la technologie et la production en croissance durable",
+"Solicitar Diagnóstico Gratuito":"Demander un Diagnostic Gratuit","Ver detalhes":"Voir détails","Solicitar proposta":"Demander un devis"
+},
+de:{
+"Início":"Start","Serviços":"Dienstleistungen","Depoimentos":"Referenzen","Institucional":"Über uns","Contato":"Kontakt",
+"Transformamos gestão, tecnologia e produção em crescimento sustentável":"Wir verwandeln Management, Technologie und Produktion in nachhaltiges Wachstum",
+"Ver detalhes":"Details ansehen","Solicitar proposta":"Angebot anfordern"
+},
+it:{
+"Início":"Home","Serviços":"Servizi","Depoimentos":"Testimonianze","Institucional":"Chi Siamo","Contato":"Contatto",
+"Transformamos gestão, tecnologia e produção em crescimento sustentável":"Trasformiamo gestione, tecnologia e produzione in crescita sostenibile",
+"Ver detalhes":"Vedi dettagli","Solicitar proposta":"Richiedi preventivo"
+},
+zh:{
+"Início":"首页","Serviços":"服务","Depoimentos":"评价","Institucional":"关于我们","Contato":"联系",
+"Transformamos gestão, tecnologia e produção em crescimento sustentável":"我们将管理、技术和生产转化为可持续增长",
+"Ver detalhes":"查看详情","Solicitar proposta":"索取报价"
+}
+};
+
+function V_walk(node, dict){
+  if(node.nodeType===3){
+    let t = node.nodeValue.trim();
+    if(t.length>1 && dict[t]) node.nodeValue = node.nodeValue.replace(t, dict[t]);
+  } else if(node.nodeType===1 && !['SCRIPT','STYLE','NOSCRIPT'].includes(node.tagName)){
+    for(let c of node.childNodes) V_walk(c, dict);
+  }
+}
+
+function V_lang(lang){
+  if(lang==='pt'){ localStorage.removeItem('v_lang'); location.reload(); return; }
+  localStorage.setItem('v_lang', lang);
+  document.querySelectorAll('#langBar button').forEach(b=>b.classList.remove('on'));
+  document.getElementById('l-'+lang)?.classList.add('on');
+  document.documentElement.lang = lang;
+  const dict = V_TRAD[lang]||{};
+  // traduz textos visíveis
+  V_walk(document.body, dict);
+  // traduz title e botões
+  document.querySelectorAll('a, button, h1, h2, h3, p, small, span, strong').forEach(el=>{
+    let txt = el.childNodes.length===1 && el.childNodes[0].nodeType===3 ? el.innerText.trim() : null;
+    if(txt && dict[txt]) el.innerText = dict[txt];
+  });
+}
+
+// auto-restaura idioma salvo
+const savedLang = localStorage.getItem('v_lang');
+if(savedLang && savedLang!=='pt'){
+  // espera carregar
+  window.addEventListener('load', ()=>setTimeout(()=>V_lang(savedLang), 200));
+}
+</script>
+<!-- FIM TRADUTOR -->
   
 </body>
 </script>
