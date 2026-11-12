@@ -41,39 +41,6 @@
 </div>
 </header>
 
-<!-- SELETOR DE IDIOMA SIMPLES QUE FUNCIONA - COLA NO TOPO -->
-<style>
-.lang-box{
-  position:absolute; top:12px; right:12px; z-index:99999;
-  background:#fff; border:1px solid #ddd; border-radius:8px;
-  padding:4px 8px; display:flex; align-items:center; gap:6px;
-  box-shadow:0 4px 12px rgba(0,0,0,.15);
-  font-family:'IBM Plex Sans',sans-serif;
-}
-.lang-box select{
-  border:0; background:transparent; font:700 12px 'IBM Plex Sans',sans-serif;
-  cursor:pointer; outline:none; padding:4px;
-}
-@media(max-width:768px){
-  .lang-box{ top:56px; right:8px; }
-}
-</style>
-
-<div class="lang-box">
-  🌐 <select onchange="if(this.value) location.href=this.value">
-    <option value="">🌐 Idioma</option>
-    <option value="/">🇧🇷 Português - PT</option>
-    <option value="/en/">🇺🇸 English - EN</option>
-    <option value="/es/">🇪🇸 Español - ES</option>
-    <option value="/fr/">🇫🇷 Français - FR</option>
-    <option value="/de/">🇩🇪 Deutsch - DE</option>
-    <option value="/it/">🇮🇹 Italiano - IT</option>
-    <option value="/zh/">🇨🇳 中文 - ZH</option>
-  </select>
-</div>
-<!-- FIM SELETOR -->
-  
-  
 <main>
 <section id="inicio" class="hero">
 <div class="w">
