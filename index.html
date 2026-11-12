@@ -209,5 +209,133 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{
 document.querySelectorAll('main section').forEach(s=>io.observe(s));
 document.querySelectorAll('.rv').forEach(e=>{const o=new IntersectionObserver(r=>r.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');o.disconnect()}}),{threshold:.15});o.observe(e)});
 </script>
+<!-- VORTICE VER DETALHES FIX - COLA ANTES DO </body> E FUNCIONA -->
+<style>
+#modalV{display:none;position:fixed;inset:0;background:rgba(9,11,15,0.88);backdrop-filter:blur(12px);z-index:99999;align-items:center;justify-content:center;padding:16px}
+#modalV.on{display:flex}
+#modalV .box{background:#14181f;border:1px solid rgba(255,255,255,0.12);border-radius:12px;max-width:760px;width:100%;padding:28px;max-height:86vh;overflow:auto}
+#modalV h3{font-family:'Source Serif 4',serif;font-size:20px;color:#fff;line-height:1.2}
+#modalV p{white-space:pre-line;color:#d5dae3;font-size:14px;line-height:1.8;margin-top:14px}
+.btnV{padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:#fff;font-weight:700;cursor:pointer}
+.btnV.primary{background:#fff;color:#111;border-color:#fff;font-weight:800}
+</style>
+
+<div id="modalV"><div class="box">
+<div style="display:flex;justify-content:space-between;gap:12px"><h3 id="mTitle"></h3><button onclick="closeV()" style="background:rgba(255,255,255,0.08);border:0;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer">✕</button></div>
+<p id="mText"></p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px">
+<button class="btnV" onclick="closeV()">FECHAR</button>
+<button class="btnV primary" onclick="goWhats()">SOLICITAR NO WHATSAPP →</button>
+</div>
+</div></div>
+
+<script>
+(function(){
+const DETALHES = {
+"gestao-empresarial": {t:"Assessoria Administrativa e Gestão Empresarial - SERVIÇO MAIS CONTRATADO", d:`SERVIÇO ÚNICO COMPLETO - Desde 2021 - 200+ empresas
+
+O QUE INCLUI DE VERDADE:
+• BPO Financeiro: contas a pagar/receber, fluxo de caixa diário, conciliação bancária, DRE com lucro real
+• RH e DP: admissão, folha, férias, 13º, rescisão, ponto, benefícios
+• Processos: POPs, organograma, descrição de cargos - sua empresa funciona sem você
+• ERP Vórtice: implantação completa, dashboard de KPIs, DRE, fluxo de caixa
+• Planejamento: OKRs, KPIs, reunião semanal de resultados com Mathews Brito
+• Redução de custos: até 35% com negociação de fornecedores
+
+COMO TRABALHAMOS:
+Diagnóstico gratuito 24h → Proposta 48h → Implantação 15 dias → Acompanhamento mensal
+
+Resultado: Você sai do operacional e foca em crescimento.
+CNPJ 65.576.566/0001-01 - Sede SP, atendimento nacional e América do Norte.`},
+"assessoria-ti": {t:"Suporte Técnico e Assessoria de TI - Infraestrutura Crítica", d:`TI que não para sua operação - 5 anos de atuação
+
+Inclui:
+• Suporte SLA 2h remoto, 24h presencial SP
+• Infra: Cabeamento estruturado certificado, Wi-Fi 6 corporativo, servidor local/nuvem, firewall, VPN, VLAN, patch panel
+• Segurança: Antivírus corporativo gerenciado, backup AWS/Google Drive/OneDrive, recuperação de desastres, monitoramento Zabbix + Grafana
+• Microsoft 365 e Google Workspace: e-mail profissional configurado
+• Automação: Scripts, IA, integrações, chatbots
+• LGPD: Adequação completa para não tomar multa
+
+Para quem: 5 a 100 computadores sem equipe interna cara.
+Fala direto com especialista, sem call center.
+Atendimento nacional.`},
+"gestao-redes-sociais": {t:"Gestão de Redes e Mídias Sociais - Instagram que Vende", d:`Não fazemos post bonito. Fazemos rede que gera lead.
+
+Inclui:
+• Identidade Visual + Linha Editorial + calendário editorial
+• 12 Reels/mês + 8 carrosséis + Stories diários + design premium + copy que vende
+• Tráfego Pago Meta/Google/LinkedIn - lead qualificado + remarketing
+• Resposta de Directs e comentários em até 2h - transformando em lead
+• Relatório mensal: alcance, engajamento, crescimento, leads gerados
+
+Resultados: Clientes com 45,2 mil alcance orgânico / +12,4% seguidores/mês
+Você grava, a gente edita e posta.
+
+Diferencial: Entendemos de gestão, então conteúdo atrai cliente de ticket alto.`},
+"uniformes-corporativos": {t:"Uniformes, Estampas e Brindes Personalizados - Produção Própria", d:`Produção própria com bordado industrial de 15 agulhas - não terceirizado
+
+Fornecemos:
+• Modelos: Camisetas, Polos Piquet, Camisas Sociais, Calças, Jalecos, Jaquetas, Coletes, NR10, Brigadista, Bombeiro Civil, EPIs certificados
+• Tecidos: Algodão, poliéster, dry-fit, brim, oxford, Piquet premium - não desbota, não encolhe
+• Personalização: Bordado alta definição 15 cores linha dourada premium que não desbota, serigrafia, sublimação, DTF, bordado 3D
+
+Atendimento: 10 a 5.000 unidades, grade PP ao G5, prova tamanho/cor antes, troca garantida
+Entrega: SP 12 dias úteis, Brasil 22 dias, embalagem individual etiquetada
+Polos a partir de R$ 59,90 na quantidade`},
+"usinagem-cnc": {t:"Usinagem CNC, Corte a Laser e Modelagem 3D - Precisão 0,01mm", d:`Router CNC 1325 (1300x2500mm) + Laser Cutter 100W com corte azul
+
+Fazemos:
+• CNC Router: MDF, ACM, Acrílico, Compensado, Policarbonato - letras caixa, painéis, móveis planejados
+• Corte e gravação a Laser: MDF, Acrílico, Couro, Tecido, Papel, Metal fino - corte 0,1mm
+• Impressão 3D: FDM, resina, ABS, PETG, Nylon, TPU - protótipos e peças finais
+• Modelagem 3D: Do sketch ao produto final com render realista antes
+• Automação: Esteiras, dispositivos, garras pneumáticas
+
+Para quem: Marcenarias, comunicação visual, arquitetura, engenharia, indústria, designers, eventos
+Diferencial: Precisão 0,05mm, acabamento premium sem rebarba, orçamento em 4h, entrega SP 5 dias
+Manda foto, DXF, DWG, STL, PDF no WhatsApp: (11) 92191-3395
+Do protótipo a 1000 unidades - sem quantidade mínima`}
+};
+
+let atualKey = '';
+const waNumber = '5511921913395';
+
+window.openV = function(key, title){
+  const k = key.replace('./','').replace('/','').replace('.','');
+  const data = DETALHES[k] || {t:title, d:"Detalhes completos via WhatsApp (11) 92191-3395"};
+  atualKey = k;
+  document.getElementById('mTitle').innerText = data.t;
+  document.getElementById('mText').innerText = data.d;
+  document.getElementById('modalV').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+window.closeV = function(){
+  document.getElementById('modalV').classList.remove('on');
+  document.body.style.overflow='auto';
+}
+window.goWhats = function(){
+  closeV();
+  const svc = document.getElementById('mTitle').innerText;
+  window.open('https://wa.me/'+waNumber+'?text='+encodeURIComponent('Olá Vórtice, vi detalhes de: '+svc+' - Vim pelo site e quero proposta.'),'_blank');
+}
+
+// TRANSFORMA TODOS OS "Ver detalhes" EM MODAL AUTOMATICAMENTE
+document.querySelectorAll('a.lnk').forEach(a=>{
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    const href = this.getAttribute('href') || '';
+    const title = this.closest('.svc')?.querySelector('h3')?.innerText || href;
+    openV(href, title);
+  });
+});
+
+// fecha clicando fora
+document.getElementById('modalV').addEventListener('click', e=>{
+  if(e.target.id==='modalV') closeV();
+});
+})();
+</script>
+  
 </body>
 </html>
