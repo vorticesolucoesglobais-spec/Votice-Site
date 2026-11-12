@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vorticesolucoesglobais-spec.github.io/Votice-Site/sitemap.xml

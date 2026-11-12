@@ -1,0 +1,11 @@
+SITE VÓRTICE - COMO PUBLICAR
+
+1. Envie TODO o conteúdo desta pasta para o repositório do GitHub, mantendo as subpastas (substitui o index.html antigo).
+2. Medição (opcional): abra site.js e preencha CFG com GA4 (G-XXXX), CLARITY e PIXEL. Os scripts só carregam após o visitante aceitar os cookies.
+3. Salvar contatos (opcional, só no Azure Static Web Apps): a pasta api/ cria o endereço /api/lead.
+   No portal Azure, em Configuração do Static Web App, defina:
+   - STORAGE_CONNECTION: string de conexão de uma Storage Account (os contatos vão para a tabela "leads")
+   - TEAMS_WEBHOOK_URL: webhook de um canal do Teams (aviso instantâneo, opcional)
+   Sem isso, o site continua funcionando normalmente (o envio ao WhatsApp/e-mail não depende da API).
+4. Se o endereço do site mudar (domínio próprio), troque o endereço base em sitemap.xml, robots.txt e nos campos canonical/og:url das páginas.
+5. Revise com um advogado o texto da Política de Privacidade (no rodapé do index.html) antes de ativar a medição.
