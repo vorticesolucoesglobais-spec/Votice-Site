@@ -366,84 +366,78 @@ document.querySelectorAll('footer .fl a').forEach(a=>{
 </div>
 
 <script>
-const V_TRAD = {
+
+
+
+<!-- VORTICE TRADUTOR COMPLETO 7 IDIOMAS - V3 FINAL -->
+<style>#langBar{position:fixed;top:74px;right:16px;z-index:9999;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:4px;display:flex;flex-wrap:wrap;gap:2px;max-width:320px;box-shadow:0 8px 24px rgba(0,0,0,.18)}#langBar button{border:0;background:transparent;padding:6px 10px;border-radius:6px;cursor:pointer;font:700 11px 'IBM Plex Sans',sans-serif}#langBar button.on{background:#0d47a1;color:#fff}@media(max-width:768px){#langBar{top:auto;bottom:88px;right:10px}}</style>
+<div id="langBar"><button onclick="V_lang('pt')" id="l-pt" class="on">PT</button><button onclick="V_lang('en')" id="l-en">EN</button><button onclick="V_lang('es')" id="l-es">ES</button><button onclick="V_lang('fr')" id="l-fr">FR</button><button onclick="V_lang('de')" id="l-de">DE</button><button onclick="V_lang('it')" id="l-it">IT</button><button onclick="V_lang('zh')" id="l-zh">中文</button></div>
+<script>
+const V_DICT = {
 en:{
-"Início":"Home","Serviços":"Services","Depoimentos":"Testimonials","Diferenciais":"Why Us","Institucional":"About","FAQ":"FAQ","Contato":"Contact",
-"Eficiência, Tecnologia":"Efficiency, Technology","e Produção":"and Production","Uma única empresa para cuidar da Gestão, Tecnologia e Produção do seu negócio.":"One company to handle your Management, Technology and Production.",
+"Início":"Home","Serviços":"Services","Depoimentos":"Testimonials","Diferenciais":"Why Choose Us","Institucional":"About Us","FAQ":"FAQ","Contato":"Contact",
+"Início • Bem-vindo à Vórtice • Desde 2021":"Home • Welcome to Vórtice • Since 2021",
+"Eficiência, Tecnologia":"Efficiency, Technology","e Produção":"and Production",
+"Uma única empresa para cuidar da Gestão, Tecnologia e Produção do seu negócio.":"One company to handle your Management, Technology and Production.",
 "Transformamos gestão, tecnologia e produção em crescimento sustentável":"We transform management, technology and production into sustainable growth",
+"Na Vórtice Soluções Globais, unimos Gestão Empresarial, Tecnologia e Produção em um ecossistema completo de soluções.":"At Vórtice Global Solutions, we unite Business Management, Technology and Production in a complete ecosystem.",
 "Solicitar Diagnóstico Gratuito":"Request Free Diagnosis","Enviar E-mail":"Send Email","Resposta em até 2 horas úteis.":"Response within 2 business hours.",
-"5 ANOS":"5 YEARS","De Atuação":"In Business","Atendimento Nacional":"Nationwide Service","5 ÁREAS":"5 AREAS","Integradas":"Integrated","NORTE AM.":"N. AMERICA","Projetos Internacionais":"International Projects",
+"5 ANOS":"5 YEARS","De Atuação":"In Business","SP + BR":"SP + BR","Atendimento Nacional":"Nationwide Service","5 ÁREAS":"5 AREAS","Integradas":"Integrated","NORTE AM.":"N. AMERICA","Projetos Internacionais":"International Projects",
+"Desde 2021":"Since 2021","Sede em São Paulo":"Headquarters in São Paulo","Atendimento Direto com o Fundador":"Direct Service with Founder","Gestão, Tecnologia e Produção Integradas":"Integrated Management, Technology and Production",
 "Serviços":"Services","Cinco frentes que funcionam isoladamente ou de forma integrada, com um único ponto de contato.":"Five areas that work alone or integrated, with a single point of contact.",
 "Assessoria administrativa e gestão empresarial":"Administrative Consulting and Business Management",
-"Suporte técnico e assessoria de TI":"IT Support and Consulting",
-"Gestão de redes e mídias sociais":"Social Media Management",
-"Uniformes, estampas e brindes personalizados":"Custom Uniforms and Promotional Items",
-"Usinagem CNC, corte a laser e modelagem 3D":"CNC Machining, Laser Cutting and 3D Modeling",
+"Suporte técnico e assessoria de TI":"IT Support and Consulting","Gestão de redes e mídias sociais":"Social Media Management",
+"Uniformes, estampas e brindes personalizados":"Custom Uniforms and Promotional Items","Usinagem CNC, corte a laser e modelagem 3D":"CNC Machining, Laser Cutting and 3D Modeling",
 "Solicitar proposta":"Request proposal","Ver detalhes":"View details",
-"Solicite uma proposta":"Request a proposal","Descreva o cenário e o objetivo. Respondemos em até 2 horas úteis.":"Describe your scenario. We respond within 2 business hours."
+"Casos Reais de Clientes Atendidos pela Vórtice":"Real Cases of Clients Served by Vórtice",
+"Por Que a Vórtice é Diferente?":"Why is Vórtice Different?","Como Funciona":"How It Works",
+"Diagnóstico Gratuito":"Free Diagnosis","Planejamento Estratégico":"Strategic Planning","Implantação":"Implementation","Monitoramento":"Monitoring","Crescimento":"Growth",
+"Institucional":"About Us","Nosso Diferencial":"Our Differentiator","Missão":"Mission","Visão":"Vision","Valores":"Values",
+"Presença Local, Nacional e Internacional":"Local, National and International Presence",
+"Perguntas Frequentes":"Frequently Asked Questions","Solicite uma proposta":"Request a proposal",
+"Descreva o cenário e o objetivo. Respondemos em até 2 horas úteis.":"Describe your scenario. We respond within 2 business hours.",
+"Canais oficiais":"Official Channels","Pronto para transformar sua operação?":"Ready to transform your operation?",
+"Política de Privacidade (LGPD)":"Privacy Policy (LGPD)"
 },
 es:{
-"Início":"Inicio","Serviços":"Servicios","Depoimentos":"Testimonios","Diferenciais":"Diferenciales","Institucional":"Institucional","FAQ":"FAQ","Contato":"Contacto",
+"Início":"Inicio","Serviços":"Servicios","Depoimentos":"Testimonios","Diferenciais":"Diferenciales","Institucional":"Institucional","Contato":"Contacto",
 "Eficiência, Tecnologia":"Eficiencia, Tecnología","e Produção":"y Producción",
 "Transformamos gestão, tecnologia e produção em crescimento sustentável":"Transformamos gestión, tecnología y producción en crecimiento sostenible",
-"Solicitar Diagnóstico Gratuito":"Solicitar Diagnóstico Gratuito","Solicitar proposta":"Solicitar propuesta","Ver detalhes":"Ver detalles",
-"Solicite uma proposta":"Solicite una propuesta"
+"Solicitar Diagnóstico Gratuito":"Solicitar Diagnóstico Gratuito","Ver detalhes":"Ver detalles","Solicitar proposta":"Solicitar propuesta",
+"Solicite uma proposta":"Solicite una propuesta","Casos Reais de Clientes Atendidos pela Vórtice":"Casos Reales de Clientes Atendidos por Vórtice",
+"Por Que a Vórtice é Diferente?":"¿Por qué Vórtice es Diferente?","Como Funciona":"Cómo Funciona"
 },
-fr:{
-"Início":"Accueil","Serviços":"Services","Depoimentos":"Témoignages","Diferenciais":"Différentiels","Institucional":"Institutionnel","Contato":"Contact",
-"Transformamos gestão, tecnologia e produção em crescimento sustentável":"Nous transformons la gestion, la technologie et la production en croissance durable",
-"Solicitar Diagnóstico Gratuito":"Demander un Diagnostic Gratuit","Ver detalhes":"Voir détails","Solicitar proposta":"Demander un devis"
-},
-de:{
-"Início":"Start","Serviços":"Dienstleistungen","Depoimentos":"Referenzen","Institucional":"Über uns","Contato":"Kontakt",
-"Transformamos gestão, tecnologia e produção em crescimento sustentável":"Wir verwandeln Management, Technologie und Produktion in nachhaltiges Wachstum",
-"Ver detalhes":"Details ansehen","Solicitar proposta":"Angebot anfordern"
-},
-it:{
-"Início":"Home","Serviços":"Servizi","Depoimentos":"Testimonianze","Institucional":"Chi Siamo","Contato":"Contatto",
-"Transformamos gestão, tecnologia e produção em crescimento sustentável":"Trasformiamo gestione, tecnologia e produzione in crescita sostenibile",
-"Ver detalhes":"Vedi dettagli","Solicitar proposta":"Richiedi preventivo"
-},
-zh:{
-"Início":"首页","Serviços":"服务","Depoimentos":"评价","Institucional":"关于我们","Contato":"联系",
-"Transformamos gestão, tecnologia e produção em crescimento sustentável":"我们将管理、技术和生产转化为可持续增长",
-"Ver detalhes":"查看详情","Solicitar proposta":"索取报价"
-}
+fr:{ "Início":"Accueil","Serviços":"Services","Contato":"Contact","Ver detalhes":"Voir détails","Solicitar proposta":"Demander un devis","Transformamos gestão, tecnologia e produção em crescimento sustentável":"Nous transformons la gestion, la technologie et la production en croissance durable" },
+de:{ "Início":"Start","Serviços":"Dienstleistungen","Contato":"Kontakt","Ver detalhes":"Details ansehen","Solicitar proposta":"Angebot anfordern" },
+it:{ "Início":"Home","Serviços":"Servizi","Contato":"Contatto","Ver detalhes":"Vedi dettagli","Solicitar proposta":"Richiedi preventivo" },
+zh:{ "Início":"首页","Serviços":"服务","Contato":"联系","Ver detalhes":"查看详情","Solicitar proposta":"索取报价" }
 };
 
-function V_walk(node, dict){
-  if(node.nodeType===3){
-    let t = node.nodeValue.trim();
-    if(t.length>1 && dict[t]) node.nodeValue = node.nodeValue.replace(t, dict[t]);
-  } else if(node.nodeType===1 && !['SCRIPT','STYLE','NOSCRIPT'].includes(node.tagName)){
-    for(let c of node.childNodes) V_walk(c, dict);
-  }
-}
-
-function V_lang(lang){
-  if(lang==='pt'){ localStorage.removeItem('v_lang'); location.reload(); return; }
+function V_translate(lang){
+  if(lang==='pt'){localStorage.removeItem('v_lang'); location.reload(); return;}
   localStorage.setItem('v_lang', lang);
   document.querySelectorAll('#langBar button').forEach(b=>b.classList.remove('on'));
   document.getElementById('l-'+lang)?.classList.add('on');
-  document.documentElement.lang = lang;
-  const dict = V_TRAD[lang]||{};
-  // traduz textos visíveis
-  V_walk(document.body, dict);
-  // traduz title e botões
-  document.querySelectorAll('a, button, h1, h2, h3, p, small, span, strong').forEach(el=>{
-    let txt = el.childNodes.length===1 && el.childNodes[0].nodeType===3 ? el.innerText.trim() : null;
-    if(txt && dict[txt]) el.innerText = dict[txt];
+  const dict = V_DICT[lang]||{};
+  // ordena por tamanho para pegar frase longa primeiro
+  const keys = Object.keys(dict).sort((a,b)=>b.length-a.length);
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+  const nodes=[];
+  while(walker.nextNode()){ if(walker.currentNode.nodeValue.trim().length>1) nodes.push(walker.currentNode); }
+  nodes.forEach(n=>{
+    let txt = n.nodeValue;
+    for(let k of keys){ if(txt.includes(k)){ txt = txt.split(k).join(dict[k]); } }
+    n.nodeValue = txt;
   });
+  document.documentElement.lang = lang;
 }
-
-// auto-restaura idioma salvo
-const savedLang = localStorage.getItem('v_lang');
-if(savedLang && savedLang!=='pt'){
-  // espera carregar
-  window.addEventListener('load', ()=>setTimeout(()=>V_lang(savedLang), 200));
-}
+window.V_lang = V_translate;
+const sl = localStorage.getItem('v_lang');
+if(sl && sl!=='pt'){ window.addEventListener('load', ()=>setTimeout(()=>V_translate(sl),300)); }
 </script>
-<!-- FIM TRADUTOR -->
+<!-- FIM TRADUTOR COMPLETO -->
+  
+  
   
 </body>
 </script>
