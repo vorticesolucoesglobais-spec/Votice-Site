@@ -338,4 +338,16 @@ document.getElementById('modalV').addEventListener('click', e=>{
 </script>
   
 </body>
+  <script>
+document.querySelectorAll('footer .fl a').forEach(a=>{
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    const href = this.getAttribute('href');
+    const title = this.innerText;
+    // chama o modal que já existe
+    if(window.openV) openV(href, title);
+    else location.href = '#servicos';
+  });
+});
+</script>
 </html>
