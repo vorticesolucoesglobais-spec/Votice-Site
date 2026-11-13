@@ -348,21 +348,138 @@ document.querySelectorAll('footer .fl a').forEach(a=>{
 });
 </script>
 
-<!-- VORTICE TRADUTOR 7 IDIOMAS - V2 COMPLETO -->
-<style>
-#langBar{position:fixed;top:74px;right:16px;z-index:9999;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:4px;display:flex;gap:2px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
-#langBar button{border:0;background:transparent;padding:6px 10px;border-radius:6px;cursor:pointer;font:700 11px/1 'IBM Plex Sans',sans-serif;letter-spacing:.5px}
-#langBar button.on{background:#0d47a1;color:#fff}
-@media(max-width:768px){#langBar{top:auto;bottom:88px;right:10px}}
-</style>
-<div id="langBar">
-<button onclick="V_lang('pt')" id="l-pt" class="on">PT</button>
-<button onclick="V_lang('en')" id="l-en">EN</button>
-<button onclick="V_lang('es')" id="l-es">ES</button>
-<button onclick="V_lang('fr')" id="l-fr">FR</button>
-<button onclick="V_lang('de')" id="l-de">DE</button>
-<button onclick="V_lang('it')" id="l-it">IT</button>
-<button onclick="V_lang('zh')" id="l-zh">中文</button>
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vórtice Soluções Globais | Gestão, Tecnologia e Produção</title>
+<meta name="description" content="Consultoria operacional, infraestrutura de TI, comunicação corporativa, uniformes bordados e usinagem CNC/laser. Atendimento em todo o Brasil.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vórtice Soluções Globais | Gestão, Tecnologia e Produção">
+<meta property="og:description" content="Consultoria, TI, comunicação e manufatura sob um único padrão de execução.">
+<meta property="og:image" content="https://vorticesolucoesglobais-spec.github.io/Votice-Site/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://vorticesolucoesglobais-spec.github.io/Votice-Site/">
+<meta name="theme-color" content="#090b0f">
+<link rel="icon" href="./favicon.png">
+<link rel="canonical" href="https://vorticesolucoesglobais-spec.github.io/Votice-Site/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Vórtice Soluções Globais","legalName":"Vórtice Soluções Globais LTDA","url":"https://vorticesolucoesglobais-spec.github.io/Votice-Site/","logo":"https://vorticesolucoesglobais-spec.github.io/Votice-Site/logo.png","foundingDate":"2021","founder":{"@type":"Person","name":"Mathews Brito"},"telephone":"+5511921913395","email":"vorticesolucoesglobais@gmail.com","address":{"@type":"PostalAddress","addressRegion":"SP","addressCountry":"BR"}}
+</script>
+<link rel="stylesheet" href="./site.css">
+</head>
+<body>
+<header>
+<div class="w bar">
+<a href="#inicio"><img src="./logo.png" alt="Vórtice Soluções Globais"></a>
+<nav aria-label="Principal">
+<a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#depoimentos">Depoimentos</a><a href="#diferenciais">Diferenciais</a><a href="#sobre">Institucional</a><a href="#faq">FAQ</a><a href="#contato">Contato</a>
+</nav>
+<a class="btn hdr-cta" href="#contato">Solicitar proposta</a>
+</div>
+</header>
+
+<main>
+<section id="inicio" class="hero">
+<div class="w">
+<div>
+<span class="eyebrow">Início • Bem-vindo à Vórtice • Desde 2021</span>
+<h1>Eficiência, Tecnologia<br>e Produção</h1>
+<div class="hv">Uma única empresa para cuidar da Gestão, Tecnologia e Produção do seu negócio.</div>
+<h2>Transformamos gestão, tecnologia e produção em crescimento sustentável</h2>
+<p class="pp">Na <strong>Vórtice Soluções Globais</strong>, unimos <strong>Gestão Empresarial, Tecnologia e Produção</strong> em um ecossistema completo de soluções. Com sede no estado de São Paulo, atendemos empresas em todo o território nacional e mantemos contratos e projetos na América do Norte. Desde 2021, ajudamos empresas, indústrias, organizações religiosas e negócios em expansão a organizar operações, reduzir custos, automatizar processos e crescer com eficiência, tecnologia e produção de alta qualidade. Mais que serviços, entregamos <strong>crescimento sustentável, inovação e resultados mensuráveis.</strong></p>
+<div class="acts"><a class="btn" href="#contato">Solicitar Diagnóstico Gratuito</a><a class="btn dk" href="mailto:vorticesolucoesglobais@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20Diagn%C3%B3stico">Enviar E-mail</a></div>
+</div>
+<img class="emb" src="./emblema.png" alt="Emblema da Vórtice Soluções Globais" width="600" height="400">
+</div>
+</section>
+<div class="facts"><div class="w"><div><span class="sn">5 ANOS</span><span class="sl">De Atuação</span></div><div><span class="sn">SP + BR</span><span class="sl">Atendimento Nacional</span></div><div><span class="sn">5 ÁREAS</span><span class="sl">Integradas</span></div><div><span class="sn">NORTE AM.</span><span class="sl">Projetos Internacionais</span></div></div></div>
+
+<section id="servicos">
+<div class="w">
+<h2>Serviços</h2>
+<p class="lead">Cinco frentes que funcionam isoladamente ou de forma integrada, com um único ponto de contato.</p>
+<article class="svc"><div class="im"><img src="./svc-gestao.png" alt="" width="120" height="120" loading="lazy"></div><div>
+<small>Consultoria</small>
+<h3>Assessoria administrativa e gestão empresarial</h3>
+<p>Implantação de ERP, indicadores, organograma, fluxo de caixa, DRE e processos, para que a diretoria deixe o operacional e decida com dados.</p>
+<a class="btn out" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Solicitar proposta</a><a class="lnk" href="./gestao-empresarial/index.html">Ver detalhes</a>
+</div></article>
+<article class="svc"><div class="im"><img src="./svc-ti.png" alt="" width="120" height="120" loading="lazy"></div><div>
+<small>Tecnologia</small>
+<h3>Suporte técnico e assessoria de TI</h3>
+<p>Rede estruturada, Wi-Fi corporativo, firewall, VPN, backup em nuvem e monitoramento contínuo com painéis Grafana e Zabbix.</p>
+<a class="btn out" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Solicitar proposta</a><a class="lnk" href="./assessoria-ti/index.html">Ver detalhes</a>
+</div></article>
+<article class="svc"><div class="im"><img src="./svc-redes.png" alt="" width="120" height="120" loading="lazy"></div><div>
+<small>Comunicação</small>
+<h3>Gestão de redes e mídias sociais</h3>
+<p>Plano de conteúdo, produção de vídeo, design, copy, tráfego pago e relatório mensal de desempenho, com foco em geração de clientes.</p>
+<a class="btn out" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Solicitar proposta</a><a class="lnk" href="./gestao-redes-sociais/index.html">Ver detalhes</a>
+</div></article>
+<article class="svc"><div class="im"><img src="./svc-uniformes.png" alt="" width="120" height="120" loading="lazy"></div><div>
+<small>Indústria</small>
+<h3>Uniformes, estampas e brindes personalizados</h3>
+<p>Produção própria com bordado industrial de 15 agulhas em Piquet, PV e algodão premium.</p>
+<a class="btn out" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Solicitar proposta</a><a class="lnk" href="./uniformes-corporativos/index.html">Ver detalhes</a>
+</div></article>
+<article class="svc"><div class="im"><img src="./svc-cnc.png" alt="" width="120" height="120" loading="lazy"></div><div>
+<small>Indústria</small>
+<h3>Usinagem CNC, corte a laser e modelagem 3D</h3>
+<p>Router CNC 1325 (área de 1300 x 2500 mm) e Laser Cutter 100W para placas, letras caixa, troféus, displays e protótipos.</p>
+<a class="btn out" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Solicitar proposta</a><a class="lnk" href="./usinagem-cnc/index.html">Ver detalhes</a>
+</div></article>
+</div>
+</section>
+
+<section id="contato">
+<div class="w">
+<h2>Solicite uma proposta</h2>
+<p class="lead">Descreva o cenário e o objetivo. Respondemos em até 2 horas úteis.</p>
+<div class="cols">
+<form id="f">
+<div class="f2">
+<label>Nome completo *<input name="nome" autocomplete="name" required></label>
+<label>E-mail corporativo *<input name="email" type="email" autocomplete="email" required></label>
+</div>
+<div class="f2">
+<label>Telefone ou WhatsApp *<input name="tel" type="tel" autocomplete="tel" placeholder="(11) 99999-9999" required></label>
+<label>Empresa<input name="empresa" autocomplete="organization"></label>
+</div>
+<label>Serviço de interesse *
+<select name="svc" required>
+<option value="">Selecione</option>
+<option>Assessoria administrativa e gestão empresarial</option>
+<option>Suporte técnico e assessoria de TI</option>
+<option>Gestão de redes e mídias sociais</option>
+<option>Uniformes, estampas e brindes personalizados</option>
+<option>Usinagem CNC, corte a laser e modelagem 3D</option>
+<option>Mais de um serviço (pacote integrado)</option>
+</select></label>
+<label>Cenário e objetivo *<textarea name="msg" required></textarea></label>
+<div class="acts">
+<button class="btn" type="submit">Enviar pelo WhatsApp</button>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+
+<footer><div class="w"><div>© 2021-2026 VÓRTICE SOLUÇÕES GLOBAIS - CNPJ 65.576.566/0001-01</div></div></footer>
+
+<script src="./site.js"></script>
+</body>
+</html>
+
+  
+  
 </div>
 
 <script>
