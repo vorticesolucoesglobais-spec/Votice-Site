@@ -484,7 +484,33 @@ document.querySelectorAll('footer .fl a').forEach(a=>{
 
 <script>
 
-  
+ <!-- CAIXINHA DE IDIOMAS COM BANDEIRAS - COLA NO FINAL -->
+<style>
+.lang-flags{
+  position:fixed; top:14px; right:14px; z-index:99999;
+  background:#fff; border:1px solid #e5e7eb; border-radius:999px;
+  padding:6px 8px; display:flex; gap:4px; align-items:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.15);
+}
+.lang-flags a{
+  width:32px; height:32px; border-radius:50%; display:grid; place-items:center;
+  text-decoration:none; font-size:18px; transition:.2s; border:2px solid transparent;
+}
+.lang-flags a:hover{ transform:scale(1.15); border-color:#0d47a1; background:#f3f6ff; }
+.lang-flags a.active{ border-color:#0d47a1; background:#e8eeff; }
+@media(max-width:768px){ .lang-flags{ top:60px; right:8px; padding:4px 6px; } .lang-flags a{ width:28px; height:28px; font-size:16px; } }
+</style>
+
+<div class="lang-flags" title="Mudar idioma / Change language">
+  <a href="/" class="active" title="Português">🇧🇷</a>
+  <a href="/en/" title="English">🇺🇸</a>
+  <a href="/es/" title="Español">🇪🇸</a>
+  <a href="/fr/" title="Français">🇫🇷</a>
+  <a href="/de/" title="Deutsch">🇩🇪</a>
+  <a href="/it/" title="Italiano">🇮🇹</a>
+  <a href="/zh/" title="中文">🇨🇳</a>
+</div>
+<!-- FIM CAIXINHA --> 
   
 </body>
 </script>
