@@ -1,0 +1,8 @@
+SITE VÓRTICE v4 - COMO PUBLICAR
+
+1. Envie TODO o conteúdo desta pasta para o repositório (mantendo as subpastas). Para testar no seu computador, abra o index.html; os links de serviços apontam direto para ".../index.html" e funcionam também fora de um servidor.
+2. Idiomas: português (principal), inglês, espanhol, francês, italiano, chinês, japonês, alemão, russo e árabe. O idioma é definido por: escolha do visitante (seletor no topo) > idioma do dispositivo > fuso horário > português. A tradução é automática (Google Website Translator), feita no navegador do visitante; o texto original continua em português. O arquivo lang.js controla tudo.
+3. Medição (opcional): preencha CFG em site.js (GA4, CLARITY, PIXEL).
+4. Salvar contatos (opcional, Azure Static Web Apps): pasta api/ (variáveis STORAGE_CONNECTION e TEAMS_WEBHOOK_URL).
+5. Se o endereço do site mudar, atualize sitemap.xml, robots.txt e os campos canonical/og:url.
+6. Revise a Política de Privacidade com um advogado e revise as páginas traduzidas dos serviços principais com um falante nativo antes de campanhas internacionais.
