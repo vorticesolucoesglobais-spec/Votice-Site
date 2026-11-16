@@ -6,3 +6,12 @@ SITE VÓRTICE v4 - COMO PUBLICAR
 4. Salvar contatos (opcional, Azure Static Web Apps): pasta api/ (variáveis STORAGE_CONNECTION e TEAMS_WEBHOOK_URL).
 5. Se o endereço do site mudar, atualize sitemap.xml, robots.txt e os campos canonical/og:url.
 6. Revise a Política de Privacidade com um advogado e revise as páginas traduzidas dos serviços principais com um falante nativo antes de campanhas internacionais.
+
+7. NOVO (v5): MENU, ÁREAS E INVESTIGADOR
+- Menu: Início | Serviços | Portal do Cliente | Cursos e Mentorias | Contratações | Contato (sem botão "Entrar" no menu; cada aba tem o seu "Entrar").
+- Pastas novas: portal-do-cliente/, cursos-e-mentorias/, contratacoes/, investigador/ (oculto, noindex) e api/app (rota /api/v/...), api/_lib.
+- Variáveis do Azure Static Web Apps (Configuration): AUTH_SECRET (texto longo e aleatório), ADMIN_EMAIL, ADMIN_PASSWORD, STORAGE_CONNECTION,
+  e para Microsoft (OneDrive/Outlook): MS_TENANT, MS_CLIENT_ID, MS_CLIENT_SECRET, MS_USER (e-mail Microsoft da Vórtice).
+- Admin entra por qualquer "Entrar" e passa em todas as áreas. Funcionário/Cliente: Portal. Aluno: Cursos. Candidato: Contratações. Outros são bloqueados com aviso.
+- Investigador: Admin sempre; Funcionário só com "Pode acessar Investigador = Sim"; tipo Admin salva, Visualizador só vê. Tentativas bloqueadas ficam no log.
+- Teste da API: cd api && node test.js
