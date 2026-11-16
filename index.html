@@ -29,12 +29,25 @@ S<!DOCTYPE html>
 {"@type":"Service","name":"Usinagem CNC e corte a laser","provider":{"@type":"Organization","name":"Vórtice Soluções Globais"},"areaServed":"BR"}]}
 </script>
 <link rel="stylesheet" href="./site.css">
+<style>
+.ar .area-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:22px 0 8px}
+.ar .g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:22px}
+.ar .cd{border:1px solid var(--rule);border-radius:4px;padding:22px;background:#fff}
+.ar .cd h3{font-size:19px}.ar .cd p{color:var(--mu);font-size:15px}.ar .cd b{color:var(--ink)}
+.ar .em{border:1px dashed #9aa8b9;border-radius:4px;padding:22px;color:var(--mu);margin-top:18px}
+.ar .pl{display:inline-block;font-size:12px;padding:2px 10px;border-radius:99px;background:#fff;border:1px solid var(--rule)}
+.ar form.fm{display:grid;gap:12px;max-width:640px;margin-top:18px}.ar form.fm label{font-size:14px;font-weight:500;display:grid;gap:4px}
+.ar form.fm input,.ar form.fm textarea{width:100%;padding:11px 12px;border:1px solid #9aa8b9;border-radius:4px;font:inherit;background:#fff}
+#dlgL{border:1px solid var(--rule);border-radius:6px;padding:26px;max-width:420px;width:92%}#dlgL::backdrop{background:rgba(9,11,15,.6)}
+#dlgL form{display:grid;gap:12px}#dlgL label{font-size:14px;font-weight:500;display:grid;gap:4px}#dlgL input{padding:11px 12px;border:1px solid #9aa8b9;border-radius:4px;font:inherit}
+.lmsg{font-size:14px;padding:10px 12px;border-radius:4px;background:#fdecea;color:#8a1f17}
+</style>
 </head>
 <body>
 <header>
 <div class="w bar">
 <a href="#inicio"><img src="./logo.png" alt="Vórtice Soluções Globais"></a>
-<nav aria-label="Principal"><a href="index.html#inicio">Início</a><a href="index.html#servicos">Serviços</a><a href="portal-do-cliente/">Portal do Cliente</a><a href="cursos-e-mentorias/">Cursos e Mentorias</a><a href="contratacoes/">Contratações</a><a href="index.html#contato">Contato</a></nav>
+<nav aria-label="Principal"><a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#portal">Portal do Cliente</a><a href="#cursos">Cursos e Mentorias</a><a href="#contratacoes">Contratações</a><a href="#contato">Contato</a></nav>
 <div id="lg" class="lgm notranslate" translate="no"></div>
 <a class="btn hdr-cta" href="#contato">Solicitar proposta</a>
 </div>
@@ -119,6 +132,30 @@ S<!DOCTYPE html>
 
 <section id="faq"><div class="w"><span class="badge">Perguntas Frequentes</span><h2>Perguntas Frequentes</h2><details class="fq" open><summary>A <span translate="no">Vórtice</span> atende apenas em São Paulo?</summary><p>Nossa sede está localizada no Estado de São Paulo, onde realizamos atendimentos presenciais regulares. Também atendemos empresas em todo o território nacional de forma remota e, em projetos estratégicos ou de grande porte, nossa equipe realiza visitas presenciais diretamente na localidade do cliente.</p></details><details class="fq"><summary>Vocês atendem clientes internacionais?</summary><p>Sim. Atualmente mantemos contratos e projetos internacionais na América do Norte, oferecendo suporte tecnológico, gestão empresarial, segurança cibernética e consultoria especializada para operações internacionais.</p></details><details class="fq"><summary>Posso contratar mais de um serviço?</summary><p>Sim. Muitos clientes utilizam duas ou mais soluções da <span translate="no">Vórtice</span> simultaneamente. Nosso diferencial é justamente integrar Gestão Empresarial, Tecnologia e Produção dentro da mesma estrutura operacional.</p></details><details class="fq"><summary>A <span translate="no">Vórtice</span> atende pequenas empresas?</summary><p>Sim. Atendemos pequenos negócios, empresas em crescimento, indústrias, instituições religiosas, profissionais autônomos e organizações de médio porte.</p></details><details class="fq"><summary>Como funciona a Assessoria Empresarial?</summary><p>Inicialmente realizamos um diagnóstico da operação do cliente. A partir dessa análise, desenvolvemos processos, indicadores, relatórios gerenciais, controles financeiros e ferramentas que ajudam a empresa a crescer de forma organizada e sustentável.</p></details><details class="fq"><summary>A <span translate="no">Vórtice</span> fornece suporte técnico contínuo?</summary><p>Sim. Oferecemos suporte remoto e presencial, monitoramento de infraestrutura, administração de redes, segurança cibernética, backup corporativo e acompanhamento contínuo das operações de TI.</p></details><details class="fq"><summary>Vocês desenvolvem projetos personalizados?</summary><p>Sim. Cada empresa possui necessidades específicas. Todos os projetos são avaliados individualmente para que possamos apresentar uma solução adequada à realidade e aos objetivos do cliente.</p></details><details class="fq"><summary>Como funcionam os projetos CNC?</summary><p>Basta enviar uma foto, desenho ou arquivo técnico. Nossa equipe analisa a demanda, elabora o projeto quando necessário e produz as peças utilizando tecnologia CNC Router, laser e outros processos industriais.</p></details><details class="fq"><summary>Os uniformes são produzidos pela própria <span translate="no">Vórtice</span>?</summary><p>Trabalhamos com produção própria e parceiros homologados para garantir qualidade, padronização e acabamento profissional em todos os uniformes corporativos.</p></details><details class="fq"><summary>Quanto tempo leva para receber uma proposta?</summary><p>Após entendermos sua necessidade, normalmente enviamos um diagnóstico inicial e uma proposta personalizada em até 24 horas úteis.</p></details><details class="fq"><summary>Quem será meu contato dentro da <span translate="no">Vórtice</span>?</summary><p>Prezamos pelo relacionamento próximo com nossos clientes. Dependendo do projeto, o atendimento pode ser realizado diretamente pelo fundador <span translate="no">Mathews Brito</span> ou por especialistas responsáveis pela execução da solução contratada.</p></details><details class="fq"><summary>Por que escolher a <span translate="no">Vórtice</span>?</summary><p>Porque reunimos Gestão Empresarial, Assessoria Administrativa, Tecnologia, Segurança Cibernética, Redes Sociais, Uniformes Corporativos e Produção CNC em uma única empresa. Isso significa menos fornecedores, mais integração e mais resultados para o seu negócio.</p></details></div></section>
 
+<section id="portal" class="ar alt"><div class="w">
+<h2>Portal do Cliente</h2><p class="lead">Relatórios, documentos e acompanhamento do seu projeto em um só lugar.</p>
+<div class="area-top"><span class="pl">Área restrita</span><button type="button" class="btn" data-entrar="portal">Entrar - Cliente / Funcionário</button></div>
+<div class="g3"><div class="cd"><h3>Relatórios</h3><p>Financeiro, Marketing, Atendimento e Gestão, organizados por mês.</p></div><div class="cd"><h3>Documentos</h3><p>Contratos, propostas, notas e apresentações da sua empresa.</p></div><div class="cd"><h3>Acompanhamento</h3><p>Linha do tempo com o andamento de cada fase do projeto.</p></div></div>
+</div></section>
+<section id="cursos" class="ar"><div class="w">
+<h2>Cursos e Mentorias</h2><p class="lead">Vórtice Academy: aprenda a gerir, vender e automatizar.</p>
+<div class="area-top"><span class="pl">Área restrita</span><button type="button" class="btn" data-entrar="cursos">Entrar - Aluno / Contratante</button></div>
+<h3 style="margin-top:28px">Cursos</h3><div class="em">Os cursos serão publicados em breve. Fale com a gente para entrar na lista de espera.</div>
+<h3 style="margin-top:34px">Mentorias</h3>
+<div class="g3"><div class="cd"><h3>Mentoria Online 1h</h3><p>Sessão individual por videochamada.</p><p><b>R$ 500</b></p><a class="btn out" data-wa="mentoria online" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Agendar</a></div>
+<div class="cd"><h3>Mentoria Presencial na sua empresa</h3><p>Um dia com o Mathews dentro da sua operação.</p><p><b>R$ 2.500 / dia</b></p><a class="btn out" data-wa="mentoria presencial" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Agendar</a></div>
+<div class="cd"><h3>Acompanhamento Mensal</h3><p>Reuniões recorrentes e plano de ação.</p><p><b>R$ 1.500 / mês</b></p><a class="btn out" data-wa="acompanhamento mensal" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Contratar</a></div></div>
+</div></section>
+<section id="contratacoes" class="ar alt"><div class="w">
+<h2>Trabalhe na Vórtice Soluções Globais</h2><p class="lead">Aqui você não procura emprego. Você constrói carreira.</p>
+<div class="area-top"><span class="pl">Área restrita</span><button type="button" class="btn" data-entrar="contratacoes">Entrar - Candidatos / Recrutamento</button></div>
+<div class="em">No momento não temos vagas abertas, mas deixe seu currículo no Banco de Talentos.</div>
+<form class="fm" id="fc"><input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+<label>Vaga de interesse<input name="vaga" placeholder="Em branco = Banco de Talentos"></label><label>Nome completo *<input name="nome" required></label><label>WhatsApp *<input name="wpp" type="tel" required></label><label>E-mail *<input name="email" type="email" required></label><label>Cidade<input name="cidade"></label><label>LinkedIn<input name="lin" type="url"></label><label>Por que você quer a Vórtice?<textarea name="porque" rows="4"></textarea></label>
+<div class="acts" style="margin-top:0"><button class="btn" type="submit">Enviar pelo WhatsApp</button><button class="btn out" type="button" id="cmail">Enviar por e-mail</button></div>
+<p class="nt" style="font-size:13px;color:var(--mu)">O currículo em PDF pode ser anexado ao e-mail ou enviado na conversa do WhatsApp. Veja a <a href="#privacidade">Política de Privacidade</a>.</p></form>
+</div></section>
+<dialog id="dlgL"><form id="fl" method="dialog"><h3 id="dlgT">Entrar</h3><label>E-mail<input id="lgE" type="email" required autocomplete="username"></label><label>Senha<input id="lgP" type="password" required autocomplete="current-password"></label><p class="lmsg" id="lgM" hidden></p><button class="btn" type="submit">Entrar</button><button class="btn out" type="button" id="lgX">Cancelar</button></form></dialog>
 <section id="contato">
 <div class="w">
 <h2>Solicite uma proposta</h2>
@@ -167,7 +204,7 @@ S<!DOCTYPE html>
 <section class="cta"><div class="w"><h2>Pronto para transformar sua operação?</h2><p class="lead">Se sua empresa precisa de mais organização, tecnologia, produtividade e resultados, a <span translate="no">Vórtice</span> está pronta para ajudar. Atuamos presencialmente em São Paulo, atendemos clientes em todo o Brasil e desenvolvemos projetos internacionais na América do Norte.</p><div class="acts"><a class="btn" href="#contato">Solicitar Diagnóstico Gratuito</a></div></div></section>
 </main>
 
-<footer><div class="w"><nav class="fl" aria-label="Áreas"><a href="./portal-do-cliente/">Portal do Cliente</a><a href="./cursos-e-mentorias/">Cursos e Mentorias</a><a href="./contratacoes/">Contratações</a></nav><nav class="fl" aria-label="Serviços"><a href="./gestao-empresarial/index.html">Assessoria administrativa e gestão empresarial</a><a href="./assessoria-ti/index.html">Suporte técnico e assessoria de TI</a><a href="./gestao-redes-sociais/index.html">Gestão de redes e mídias sociais</a><a href="./uniformes-corporativos/index.html">Uniformes, estampas e brindes personalizados</a><a href="./usinagem-cnc/index.html">Usinagem CNC, corte a laser e modelagem 3D</a></nav><div style="font-weight:800;color:#0d47a1;letter-spacing:1px;margin-bottom:6px"><span translate="no">VÓRTICE</span> SOLUÇÕES GLOBAIS LTDA</div><div style="line-height:1.7">Desde 2021 integrando Gestão Empresarial, Tecnologia e Produção. Sede em São Paulo • Atendimento Nacional • Projetos na América do Norte.<br>CNPJ 65.576.566/0001-01 · © 2021-<span id="yr">2026</span> Todos os direitos reservados</div>
+<footer><div class="w"><nav class="fl" aria-label="Áreas"><a href="#portal">Portal do Cliente</a><a href="#cursos">Cursos e Mentorias</a><a href="#contratacoes">Contratações</a></nav><nav class="fl" aria-label="Serviços"><a href="./gestao-empresarial/index.html">Assessoria administrativa e gestão empresarial</a><a href="./assessoria-ti/index.html">Suporte técnico e assessoria de TI</a><a href="./gestao-redes-sociais/index.html">Gestão de redes e mídias sociais</a><a href="./uniformes-corporativos/index.html">Uniformes, estampas e brindes personalizados</a><a href="./usinagem-cnc/index.html">Usinagem CNC, corte a laser e modelagem 3D</a></nav><div style="font-weight:800;color:#0d47a1;letter-spacing:1px;margin-bottom:6px"><span translate="no">VÓRTICE</span> SOLUÇÕES GLOBAIS LTDA</div><div style="line-height:1.7">Desde 2021 integrando Gestão Empresarial, Tecnologia e Produção. Sede em São Paulo • Atendimento Nacional • Projetos na América do Norte.<br>CNPJ 65.576.566/0001-01 · © 2021-<span id="yr">2026</span> Todos os direitos reservados</div>
 <details id="privacidade"><summary>Política de Privacidade (LGPD)</summary>
 <p><strong>Controlador:</strong> <span translate="no">Vórtice</span> Soluções Globais, CNPJ 65.576.566/0001-01, São Paulo - SP.</p>
 <p><strong>Dados coletados:</strong> nome, e-mail, telefone, empresa, cargo, serviço de interesse e a mensagem enviada no formulário.</p>
@@ -206,6 +243,25 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{
 }),{rootMargin:'-45% 0px -50% 0px'});
 document.querySelectorAll('main section').forEach(s=>io.observe(s));
 document.querySelectorAll('.rv').forEach(e=>{const o=new IntersectionObserver(r=>r.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');o.disconnect()}}),{threshold:.15});o.observe(e)});
+</script>
+<script>
+(function(){
+const AREA={portal:'Entrar - Cliente / Funcionário',cursos:'Entrar - Aluno / Contratante',contratacoes:'Entrar - Candidatos / Recrutamento'};
+let area='portal';const d=document.getElementById('dlgL'),m=document.getElementById('lgM');
+document.querySelectorAll('[data-entrar]').forEach(b=>b.onclick=()=>{area=b.dataset.entrar;document.getElementById('dlgT').textContent=AREA[area];m.hidden=true;d.showModal()});
+document.getElementById('lgX').onclick=()=>d.close();
+document.getElementById('fl').onsubmit=async e=>{e.preventDefault();m.hidden=false;m.textContent='Verificando...';
+ try{const r=await fetch('/api/v/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({email:lgE.value,password:lgP.value,area})});
+  const j=await r.json().catch(()=>null);
+  if(!j)throw 0;
+  if(j.ok){m.textContent='Acesso confirmado.';location.href='#'+area;d.close();return}
+  m.textContent=j.msg||'Não foi possível entrar.'}
+ catch(x){m.textContent='O acesso restrito ainda está sendo ativado neste endereço. Fale com a Vórtice pelo WhatsApp para receber seu acesso.'}};
+const f=document.getElementById('fc');
+function txt(){const v=Object.fromEntries(new FormData(f));return 'Candidatura - '+(v.vaga||'Banco de Talentos')+'\nNome: '+v.nome+'\nWhatsApp: '+v.wpp+'\nE-mail: '+v.email+'\nCidade: '+(v.cidade||'')+'\nLinkedIn: '+(v.lin||'')+'\nPor que a Vórtice: '+(v.porque||'')}
+f.onsubmit=e=>{e.preventDefault();if(f.website.value)return;window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(txt()),'_blank','noopener')};
+document.getElementById('cmail').onclick=()=>{if(!f.reportValidity()||f.website.value)return;location.href='mailto:'+MAIL+'?subject='+encodeURIComponent('Candidatura - '+(f.vaga.value||'Banco de Talentos')+' - '+f.nome.value)+'&body='+encodeURIComponent(txt())};
+})();
 </script>
 <div id="gt"></div>
 <script src="./lang.js"></script>
