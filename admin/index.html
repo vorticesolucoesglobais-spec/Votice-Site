@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Painel Admin Geral | Vórtice Soluções Globais</title>
+<link rel="icon" href="../favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
+<style>
+.adm-wrap{max-width:1240px;margin:28px auto 80px;padding:0 20px}
+.adm-tabs{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:24px}
+.adm-tab{padding:10px 16px;border-radius:6px;background:#141a22;border:1px solid var(--line2);color:#cfd8e4;font:600 14px "IBM Plex Sans",sans-serif;cursor:pointer}
+.adm-tab.active{background:var(--ac);border-color:var(--ac);color:#fff}
+.adm-panel{display:none;background:linear-gradient(160deg,#1b222c 0%,#131920 100%);border:1px solid var(--line);border-radius:10px;padding:28px}
+.adm-panel.active{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.box{padding:18px;border-radius:8px;background:#0f141b;border:1px solid var(--line);margin-top:16px}
+.row-item{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px;border-bottom:1px solid var(--line)}
+.pill{display:inline-block;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(127,176,230,.14);color:#acc9ee}
+.pill.ok{background:rgba(46,204,113,.16);color:#7bed9f}
+.pill.warn{background:rgba(231,76,60,.16);color:#ff7675}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1d5fa6;color:#fff;padding:12px 22px;border-radius:8px;font-weight:600;z-index:200;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="w bar">
+    <a href="../index.html"><img src="../logo.png" alt="Vórtice Soluções Globais"></a>
+    <span class="pill ok" translate="no">ADMIN GERAL — MATHEWS BRITO</span>
+    <div style="margin-left:auto;display:flex;gap:10px;align-items:center">
+      <div id="lg" class="lgm notranslate" translate="no"></div>
+      <a href="../index.html" class="btn out" style="padding:8px 14px;font-size:13px">Ver Site</a>
+      <button type="button" id="btnLogout" class="btn out" style="padding:8px 14px;font-size:13px">Sair</button>
+    </div>
+  </div>
+</header>
+
+<main class="adm-wrap" id="admApp" hidden>
+  <div class="adm-tabs">
+    <button class="adm-tab active" data-tab="site">1. Editar Site (Sem Código)</button>
+    <button class="adm-tab" data-tab="portal">2. Portal (Empresas & Equipe)</button>
+    <button class="adm-tab" data-tab="cursos">3. Cursos & Mentorias</button>
+    <button class="adm-tab" data-tab="vagas">4. Contratações</button>
+    <button class="adm-tab" data-tab="investigador">5. Investigador 10.0</button>
+    <button class="adm-tab" data-tab="notif">6. Notificações & Mercado Pago</button>
+    <button class="adm-tab" data-tab="config">7. Chaves & Conta Microsoft</button>
+  </div>
+
+  <!-- ABA 1: EDITAR SITE SEM CÓDIGO -->
+  <section class="adm-panel active" id="tab-site">
+    <h2>Editor Total do Site</h2>
+    <p class="lead">Altere qualquer texto, cor, imagem ou visibilidade de aba e publique direto no repositório.</p>
+    <div class="grid2" style="margin-top:20px">
+      <label>Nome do Site<input id="edNomeSite"></label>
+      <label>Slogan Principal<input id="edSlogan"></label>
+      <label>Subtítulo Destaque (Hero)<input id="edSubtitulo"></label>
+      <label>WhatsApp Oficial (somente números)<input id="edWhatsapp"></label>
+      <label>E-mail Oficial<input id="edEmail"></label>
+      <label>Cor Principal dos Botões<input type="color" id="edCorPrincipal" style="height:46px"></label>
+    </div>
+    <label style="margin-top:14px">Texto de Apresentação (Hero)<textarea id="edTextoHero" rows="3"></textarea></label>
+
+    <div class="box">
+      <h3>Trocar Logo do Site (Upload direto sem código)</h3>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px">
+        <input type="file" id="upLogoFile" accept="image/*" style="max-width:340px">
+        <button type="button" class="btn out" id="btnUploadLogo">Enviar Nova Logo para o Site</button>
+      </div>
+    </div>
+
+    <div class="box">
+      <h3>Mostrar ou Ocultar Abas no Menu</h3>
+      <div style="display:flex;gap:24px;flex-wrap:wrap;margin-top:10px">
+        <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="visPortal" style="width:auto"> Portal do Cliente</label>
+        <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="visCursos" style="width:auto"> Cursos e Mentorias</label>
+        <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="visContratacoes" style="width:auto"> Contratações</label>
+      </div>
+    </div>
+
+    <div style="margin-top:22px;display:flex;gap:12px">
+      <button type="button" class="btn" id="btnSalvarSite">Salvar e Publicar Alterações no Site</button>
+    </div>
+  </section>
+
+  <!-- ABA 2: PORTAL DO CLIENTE -->
+  <section class="adm-panel" id="tab-portal">
+    <h2>Gestão de Empresas, Clientes e Funcionários</h2>
+    <div class="grid2" style="margin-top:18px">
+      <div class="box">
+        <h3>+ Nova Empresa / Cliente</h3>
+        <div style="display:grid;gap:10px;margin-top:10px">
+          <input id="empNome" placeholder="Nome da Empresa">
+          <input id="empCnpj" placeholder="CNPJ">
+          <input id="empResp" placeholder="Responsável">
+          <input id="empEmail" type="email" placeholder="E-mail de login do Cliente">
+          <input id="empSenha" placeholder="Senha temporária">
+          <input id="empPlano" placeholder="Plano contratado">
+          <button type="button" class="btn" id="btnAddEmpresa">Criar Empresa + Pastas no OneDrive</button>
+        </div>
+      </div>
+
+      <div class="box">
+        <h3>+ Novo Funcionário</h3>
+        <div style="display:grid;gap:10px;margin-top:10px">
+          <input id="funcNome" placeholder="Nome do Funcionário">
+          <input id="funcEmail" type="email" placeholder="E-mail (Microsoft/Corporativo)">
+          <input id="funcSenha" placeholder="Senha temporária">
+          <input id="funcCargo" placeholder="Cargo">
+          <label style="display:flex;align-items:center;gap:8px">
+            <input type="checkbox" id="funcInvAcesso" style="width:auto"> Pode acessar o Investigador? (Oculto para os demais)
+          </label>
+          <select id="funcInvNivel">
+            <option value="visualizador">Nível Investigador: Visualizador</option>
+            <option value="admin">Nível Investigador: Admin do Investigador</option>
+          </select>
+          <button type="button" class="btn" id="btnAddFunc">Cadastrar Funcionário</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h3>Empresas Cadastradas & Compartilhamento de Pastas OneDrive</h3>
+      <div id="listaEmpresas"></div>
+    </div>
+    <div class="box">
+      <h3>Equipe & Permissões</h3>
+      <div id="listaFuncionarios"></div>
+    </div>
+  </section>
+
+  <!-- ABA 3: CURSOS E MENTORIAS -->
+  <section class="adm-panel" id="tab-cursos">
+    <h2>Construtor de Cursos e Mentorias</h2>
+    <div class="box">
+      <h3>+ Novo Curso / Treinamento</h3>
+      <div class="grid2" style="margin-top:12px">
+        <input id="curTitulo" placeholder="Título do Curso">
+        <input id="curPreco" type="number" placeholder="Preço (ex: 297 ou 0 para Gratuito)">
+        <input id="curDuracao" placeholder="Carga horária / Duração (ex: 4h - 12 aulas)">
+        <select id="curLayout">
+          <option value="imagem_fundo">Exposição: Com Imagem de Fundo na Vitrine</option>
+          <option value="limpo">Exposição: Apenas Textos e Imagens (Modo Limpo)</option>
+        </select>
+        <input id="curImgFundo" placeholder="URL da Imagem de Fundo (ou envie abaixo)">
+        <select id="curDownload">
+          <option value="liberado">Materiais de Apoio: Download Liberado</option>
+          <option value="bloqueado">Materiais de Apoio: Download Bloqueado (Só leitura)</option>
+        </select>
+        <select id="curAvaliacao">
+          <option value="nao">Avaliação (Quiz): Não exige prova</option>
+          <option value="sim">Avaliação (Quiz): Exige aprovação (mín. 70%)</option>
+        </select>
+        <select id="curCertificado">
+          <option value="automatico">Certificado: Automático pelo Sistema</option>
+          <option value="manual">Certificado: Upload Manual de Arquivo PDF</option>
+          <option value="nenhum">Certificado: Sem Certificado</option>
+        </select>
+        <select id="curPagamentoTipo">
+          <option value="api">Pagamento: Mercado Pago API Automático</option>
+          <option value="link">Pagamento: Link Manual Mercado Pago</option>
+        </select>
+        <input id="curLinkManual" placeholder="Link Manual (se escolheu Link Manual)">
+      </div>
+      <textarea id="curDesc" rows="2" placeholder="Descrição completa do curso..." style="margin-top:10px"></textarea>
+      <button type="button" class="btn" id="btnAddCurso" style="margin-top:12px">Salvar e Publicar Curso</button>
+    </div>
+    <div class="box">
+      <h3>Cursos Publicados</h3>
+      <div id="listaCursosAdmin"></div>
+    </div>
+  </section>
+
+  <!-- ABA 4: CONTRATAÇÕES -->
+  <section class="adm-panel" id="tab-vagas">
+    <h2>Gestão de Vagas e Candidatos</h2>
+    <div class="box">
+      <h3>+ Nova Vaga</h3>
+      <div class="grid2" style="margin-top:10px">
+        <input id="vagTitulo" placeholder="Título da Vaga (ex: Técnico de Suporte TI)">
+        <select id="vagTipo"><option>CLT</option><option>PJ</option><option>Estágio</option></select>
+        <select id="vagLocal"><option>Remoto</option><option>Presencial</option><option>Híbrido</option></select>
+        <input id="vagSalario" placeholder="Faixa Salarial / Remuneração">
+      </div>
+      <textarea id="vagDesc" rows="3" placeholder="Requisitos, responsabilidades e benefícios..." style="margin-top:10px"></textarea>
+      <button type="button" class="btn" id="btnAddVaga" style="margin-top:10px">Publicar Vaga</button>
+    </div>
+    <div class="box">
+      <h3>Vagas Ativas</h3>
+      <div id="listaVagasAdmin"></div>
+    </div>
+  </section>
+
+  <!-- ABA 5: VOTICE INVESTIGADOR 10.0 -->
+  <section class="adm-panel" id="tab-investigador">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div>
+        <h2>VOTICE INVESTIGADOR 10.0 — Autônomo</h2>
+        <p class="lead">Busca real (IBGE + Azure Maps) com 3 Bloqueios Anti-Invenção e Excel único mensal no OneDrive.</p>
+      </div>
+      <span class="pill ok" id="invStatusPill">Status: Pronto</span>
+    </div>
+
+    <div class="box">
+      <h3>Nova Investigação (Liberdade Total de Região e Filtros)</h3>
+      <div class="grid2" style="margin-top:12px">
+        <label>Modo de Região
+          <select id="invModo">
+            <option value="cidade_unica">Uma Cidade Só (Sem fila, foca só nela)</option>
+            <option value="estado">Por Estado (Lista oficial IBGE)</option>
+            <option value="macrorregiao">Por Macrorregião (Sudeste, Sul, etc.)</option>
+            <option value="varias_cidades">Várias Cidades Digitadas</option>
+            <option value="nacional">Brasil Inteiro (5.570 cidades)</option>
+          </select>
+        </label>
+        <label>Parâmetro da Região (Nome da Cidade, UF ex: SP, ou Cidades por linha)
+          <input id="invParamRegiao" placeholder="Ex: Porto Feliz - SP">
+        </label>
+        <label>Segmento / Palavra-chave de Busca Real
+          <input id="invTermo" placeholder="Ex: Metalúrgica, Supermercado, Clínica, Indústria">
+        </label>
+        <label>Empresas por Cidade (Padrão: 20)
+          <input id="invLimite" type="number" value="20" min="1" max="100">
+        </label>
+      </div>
+
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <button type="button" class="btn" id="btnInvIniciar">Iniciar Varredura Real</button>
+        <button type="button" class="btn out" id="btnInvPausar">Pausar (P)</button>
+        <button type="button" class="btn out" id="btnInvRetomar">Retomar (R)</button>
+        <button type="button" class="btn out" id="btnInvExportar">Salvar Excel do Mês no OneDrive (E)</button>
+      </div>
+      <p style="font-size:12px;color:var(--mu);margin-top:8px">Atalhos ativos: P + Enter (Pausar) | R + Enter (Retomar) | E + Enter (Exportar para OneDrive).</p>
+    </div>
+
+    <div class="box">
+      <h3>Dossiês Encontrados (Aguardando Sua Revisão Manual — Bloqueio 3)</h3>
+      <div id="invResultados"></div>
+    </div>
+
+    <div class="grid2">
+      <div class="box">
+        <h3>14 Módulos Oficiais + Adicionar Novo</h3>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input id="novoModuloNome" placeholder="Ex: Módulo de Energia Solar">
+          <button type="button" class="btn out" id="btnAddModulo">+ Adicionar</button>
+        </div>
+        <div id="listaModulosInv" style="margin-top:10px;font-size:13px"></div>
+      </div>
+      <div class="box">
+        <h3>30 Sites Oficiais + Adicionar Novo Site</h3>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input id="novoSiteNome" placeholder="Ex: Threads / Kwai / Shopee">
+          <button type="button" class="btn out" id="btnAddSite">+ Adicionar</button>
+        </div>
+        <div id="listaSitesInv" style="margin-top:10px;font-size:13px;max-height:220px;overflow:auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABA 6: NOTIFICAÇÕES & MERCADO PAGO -->
+  <section class="adm-panel" id="tab-notif">
+    <h2>Notificações 100% Configuráveis & Mercado Pago API</h2>
+    <div class="grid2" style="margin-top:16px">
+      <div class="box">
+        <h3>Canais de Alerta (Você Escolhe)</h3>
+        <div style="display:grid;gap:10px;margin-top:10px">
+          <label>E-mail para Alertas<input id="ntEmail" type="email"></label>
+          <label>WhatsApp para Alertas (DDD + Número)<input id="ntWppNum" placeholder="5511921913395"></label>
+          <label>URL da API WhatsApp (Evolution / Z-API / Webhook)<input id="ntWppUrl" placeholder="https://..."></label>
+          <label>Token da API WhatsApp<input id="ntWppToken" type="password"></label>
+          <button type="button" class="btn out" id="btnTestarWpp">Testar Envio de WhatsApp</button>
+        </div>
+        <h4 style="margin-top:16px">Interruptores por Evento (Liga / Desliga)</h4>
+        <div style="display:grid;gap:8px;margin-top:8px;font-size:14px">
+          <div>Novo Candidato: <label><input type="checkbox" id="evCandEmail"> E-mail</label> <label><input type="checkbox" id="evCandWpp"> WhatsApp</label></div>
+          <div>Empresa OURO (Investigador): <label><input type="checkbox" id="evOuroEmail"> E-mail</label> <label><input type="checkbox" id="evOuroWpp"> WhatsApp</label></div>
+          <div>Venda de Curso: <label><input type="checkbox" id="evCursoEmail"> E-mail</label> <label><input type="checkbox" id="evCursoWpp"> WhatsApp</label></div>
+          <div>Mentoria Agendada: <label><input type="checkbox" id="evMentEmail"> E-mail</label> <label><input type="checkbox" id="evMentWpp"> WhatsApp</label></div>
+        </div>
+        <button type="button" class="btn" id="btnSalvarNotif" style="margin-top:14px">Salvar Regras de Notificação</button>
+      </div>
+
+      <div class="box">
+        <h3>Mercado Pago API (Pagamentos Automáticos)</h3>
+        <div style="display:grid;gap:10px;margin-top:10px">
+          <label>Public Key (Produção ou Teste)<input id="mpPublicKey"></label>
+          <label>Access Token<input id="mpAccessToken" type="password"></label>
+          <label>Modo de Operação
+            <select id="mpModo"><option value="producao">Produção (Real)</option><option value="teste">Teste (Sandbox)</option></select>
+          </label>
+          <label>Webhook URL (Cole no painel do Mercado Pago)
+            <input readonly value="https://vorticesolucoesglobais-spec.github.io/Votice-Site/api/mercadopago/webhook">
+          </label>
+          <button type="button" class="btn" id="btnSalvarMP">Salvar Credenciais Mercado Pago</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABA 7: CONFIGURAÇÕES & CHAVES -->
+  <section class="adm-panel" id="tab-config">
+    <h2>Chaves de Integração (Microsoft, GitHub & Azure Maps)</h2>
+    <p class="lead">Cole aqui as 5 chaves que você gerou. Elas ficam armazenadas com segurança no seu navegador de Admin.</p>
+    <div class="grid2" style="margin-top:18px">
+      <label>1. GitHub Personal Access Token (Para editar site sem código)<input id="cfgGithubToken" type="password" placeholder="github_pat_..."></label>
+      <label>2. Microsoft Client ID (Azure App)<input id="cfgMsClientId" placeholder="5c72ec2e-..."></label>
+      <label>3. Microsoft Tenant ID<input id="cfgMsTenantId"></label>
+      <label>4. Microsoft Client Secret<input id="cfgMsSecret" type="password"></label>
+      <label>5. Azure Maps Primary Key (Gratuita F0/Gen2)<input id="cfgMapsKey" type="password"></label>
+      <label>E-mail Microsoft Dono do OneDrive<input id="cfgAdminEmail" value="vorticesolucoesglobais@gmail.com"></label>
+      <label>Nova Senha de Acesso ao Admin Geral<input id="cfgAdminPass" type="password" placeholder="Deixe em branco para manter a atual"></label>
+    </div>
+    <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+      <button type="button" class="btn" id="btnSalvarChaves">Salvar Todas as Chaves</button>
+      <button type="button" class="btn out" id="btnConectarMicrosoft">Conectar / Autorizar OneDrive & Outlook Microsoft</button>
+      <span class="pill" id="msConnStatus">OneDrive: Aguardando conexão</span>
+    </div>
+  </section>
+</main>
+
+<div id="gt"></div>
+<script src="../vortice-core.js"></script>
+<script src="../vortice-services.js"></script>
+<script src="../lang.js"></script>
+<script>
+(async function(){
+  const sess = VorticeCore.getSession();
+  if (!sess || sess.role !== "admin") {
+    alert("Acesso restrito ao Admin Geral. Faça login em uma das áreas do site.");
+    location.href = "../index.html";
+    return;
+  }
+  document.getElementById("admApp").hidden = false;
+
+  // Captura retorno OAuth da Microsoft se acabou de conectar
+  const msTok = VorticeServices.captureMsTokenFromHash();
+  if (msTok) document.getElementById("msConnStatus").textContent = "OneDrive & Outlook: Conectado";
+
+  function toast(msg) {
+    const t = document.createElement("div");
+    t.className = "toast";
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 3500);
+  }
+
+  // Navegação das abas do Admin
+  document.querySelectorAll(".adm-tab").forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll(".adm-tab").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".adm-panel").forEach(p => p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+    };
+  });
+
+  document.getElementById("btnLogout").onclick = () => {
+    VorticeCore.logout();
+    location.href = "../index.html";
+  };
+
+  // Carrega dados iniciais
+  const siteData = await VorticeCore.loadSiteData("..") || {};
+  const db = VorticeCore.getDB();
+  const secrets = VorticeCore.getSecrets();
+
+  // Preenche Aba 1 (Editar Site)
+  if (siteData.identidade) {
+    document.getElementById("edNomeSite").value = siteData.identidade.nomeSite || "";
+    document.getElementById("edSlogan").value = siteData.identidade.slogan || "";
+    document.getElementById("edSubtitulo").value = siteData.identidade.subtituloHero || "";
+    document.getElementById("edWhatsapp").value = siteData.identidade.whatsapp || "";
+    document.getElementById("edEmail").value = siteData.identidade.email || "";
+    document.getElementById("edCorPrincipal").value = siteData.identidade.corPrincipal || "#2f6fb8";
+    document.getElementById("edTextoHero").value = siteData.identidade.textoHero || "";
+  }
+  if (siteData.abasVisiveis) {
+    document.getElementById("visPortal").checked = siteData.abasVisiveis.portal !== false;
+    document.getElementById("visCursos").checked = siteData.abasVisiveis.cursos !== false;
+    document.getElementById("visContratacoes").checked = siteData.abasVisiveis.contratacoes !== false;
+  }
+
+  // Upload de nova Logo direto para o GitHub
+  document.getElementById("btnUploadLogo").onclick = async () => {
+    const file = document.getElementById("upLogoFile").files[0];
+    if (!file) return toast("Selecione uma imagem primeiro.");
+    const reader = new FileReader();
+    reader.onload = async () => {
+      try {
+        const base64 = reader.result.split(",")[1];
+        await VorticeCore.publishToGitHub("logo.png", base64, "Atualização de logo pelo Painel Admin", true);
+        toast("Logo atualizada no site com sucesso!");
+      } catch (e) { toast(e.message); }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // Salvar e Publicar site-data.json no GitHub
+  document.getElementById("btnSalvarSite").onclick = async () => {
+    try {
+      siteData.identidade = {
+        ...siteData.identidade,
+        nomeSite: document.getElementById("edNomeSite").value,
+        slogan: document.getElementById("edSlogan").value,
+        subtituloHero: document.getElementById("edSubtitulo").value,
+        whatsapp: document.getElementById("edWhatsapp").value,
+        email: document.getElementById("edEmail").value,
+        corPrincipal: document.getElementById("edCorPrincipal").value,
+        textoHero: document.getElementById("edTextoHero").value
+      };
+      siteData.abasVisiveis = {
+        portal: document.getElementById("visPortal").checked,
+        cursos: document.getElementById("visCursos").checked,
+        contratacoes: document.getElementById("visContratacoes").checked
+      };
+      await VorticeCore.publishToGitHub("site-data.json", siteData, "Edição visual via Admin Geral");
+      toast("Site atualizado e publicado no GitHub!");
+    } catch (e) { toast(e.message); }
+  };
+
+  // Preenche Aba 7 (Chaves)
+  document.getElementById("cfgGithubToken").value = secrets.githubToken || "";
+  document.getElementById("cfgMsClientId").value = secrets.msClientId || "";
+  document.getElementById("cfgMsTenantId").value = secrets.msTenantId || "";
+  document.getElementById("cfgMsSecret").value = secrets.msClientSecret || "";
+  document.getElementById("cfgMapsKey").value = secrets.azureMapsKey || "";
+  document.getElementById("cfgAdminEmail").value = secrets.adminEmail || "vorticesolucoesglobais@gmail.com";
+
+  document.getElementById("btnSalvarChaves").onclick = () => {
+    const upd = {
+      githubToken: document.getElementById("cfgGithubToken").value.trim(),
+      msClientId: document.getElementById("cfgMsClientId").value.trim(),
+      msTenantId: document.getElementById("cfgMsTenantId").value.trim(),
+      msClientSecret: document.getElementById("cfgMsSecret").value.trim(),
+      azureMapsKey: document.getElementById("cfgMapsKey").value.trim(),
+      adminEmail: document.getElementById("cfgAdminEmail").value.trim().toLowerCase()
+    };
+    const novaSenha = document.getElementById("cfgAdminPass").value;
+    if (novaSenha) upd.adminPass = novaSenha;
+    VorticeCore.saveSecrets(upd);
+    toast("Chaves salvas com segurança!");
+  };
+
+  document.getElementById("btnConectarMicrosoft").onclick = () => {
+    try { location.href = VorticeServices.getMsAuthUrl(); } catch (e) { toast(e.message); }
+  };
+
+  // Renderiza Empresas & Funcionários
+  function renderPortalAdmin() {
+    const curDB = VorticeCore.getDB();
+    document.getElementById("listaEmpresas").innerHTML = (curDB.empresas || []).map(emp => `
+      <div class="row-item">
+        <div><strong>${emp.nome}</strong> <small>(CNPJ: ${emp.cnpj || "-"})</small><br><small>Login Cliente: ${emp.email}</small></div>
+        <div style="display:flex;gap:8px">
+          <button type="button" class="btn out" style="padding:6px 12px;font-size:12px" onclick="compartilharPasta('${emp.nome}')">Compartilhar Pasta OneDrive</button>
+        </div>
+      </div>
+    `).join("") || "<p style='color:var(--mu);margin-top:8px'>Nenhuma empresa cadastrada ainda.</p>";
+
+    document.getElementById("listaFuncionarios").innerHTML = (curDB.users || []).filter(u => u.role === "funcionario").map((f, idx) => `
+      <div class="row-item">
+        <div><strong>${f.nome}</strong> (${f.cargo || "Equipe"}) — ${f.email}<br>
+        <span class="pill ${f.acessoInvestigador ? 'ok' : 'warn'}">Investigador: ${f.acessoInvestigador ? 'Liberado (' + f.nivelInvestigador + ')' : 'Oculto/Bloqueado'}</span></div>
+        <button type="button" class="btn out" style="padding:6px 12px;font-size:12px" onclick="toggleInvFunc('${f.email}')">Alternar Acesso Investigador</button>
+      </div>
+    `).join("") || "<p style='color:var(--mu);margin-top:8px'>Nenhum funcionário cadastrado ainda.</p>";
+  }
+
+  window.compartilharPasta = async (nomeEmp) => {
+    const emailFunc = prompt("Digite o e-mail Microsoft do funcionário que vai alimentar a pasta de " + nomeEmp + ":");
+    if (!emailFunc) return;
+    try {
+      await VorticeServices.shareOneDriveFolder(`Vórtice/Clientes/${nomeEmp}`, emailFunc);
+      toast("Pasta compartilhada no OneDrive com " + emailFunc);
+    } catch (e) { toast(e.message); }
+  };
+
+  window.toggleInvFunc = (email) => {
+    const curDB = VorticeCore.getDB();
+    const u = curDB.users.find(x => x.email === email);
+    if (u) {
+      u.acessoInvestigador = !u.acessoInvestigador;
+      VorticeCore.saveDB(curDB);
+      renderPortalAdmin();
+      toast("Permissão do Investigador atualizada!");
+    }
+  };
+
+  document.getElementById("btnAddEmpresa").onclick = async () => {
+    const nome = document.getElementById("empNome").value.trim();
+    const email = document.getElementById("empEmail").value.trim().toLowerCase();
+    const senha = document.getElementById("empSenha").value;
+    if (!nome || !email || !senha) return toast("Preencha Nome, E-mail e Senha.");
+    const curDB = VorticeCore.getDB();
+    const empId = "emp_" + Date.now();
+    curDB.empresas.push({ id: empId, nome, cnpj: document.getElementById("empCnpj").value, responsavel: document.getElementById("empResp").value, email, plano: document.getElementById("empPlano").value });
+    curDB.users.push({ nome, email, senha, role: "cliente", empresaId: empId, status: "ativo" });
+    VorticeCore.saveDB(curDB);
+    renderPortalAdmin();
+    try {
+      await VorticeServices.ensureOneDriveFolder(`Vórtice/Clientes/${nome}/Relatórios`);
+      await VorticeServices.ensureOneDriveFolder(`Vórtice/Clientes/${nome}/Documentos`);
+      toast("Empresa criada e pastas criadas no OneDrive!");
+    } catch (e) { toast("Empresa salva no sistema! (Conecte o OneDrive em Configurações para sincronizar pastas)"); }
+  };
+
+  document.getElementById("btnAddFunc").onclick = () => {
+    const nome = document.getElementById("funcNome").value.trim();
+    const email = document.getElementById("funcEmail").value.trim().toLowerCase();
+    const senha = document.getElementById("funcSenha").value;
+    if (!nome || !email || !senha) return toast("Preencha Nome, E-mail e Senha.");
+    const curDB = VorticeCore.getDB();
+    curDB.users.push({
+      nome, email, senha, role: "funcionario",
+      cargo: document.getElementById("funcCargo").value,
+      acessoInvestigador: document.getElementById("funcInvAcesso").checked,
+      nivelInvestigador: document.getElementById("funcInvNivel").value,
+      status: "ativo"
+    });
+    VorticeCore.saveDB(curDB);
+    renderPortalAdmin();
+    toast("Funcionário cadastrado!");
+  };
+
+  // Cursos Configuráveis
+  document.getElementById("btnAddCurso").onclick = async () => {
+    const titulo = document.getElementById("curTitulo").value.trim();
+    if (!titulo) return toast("Informe o título do curso.");
+    siteData.cursos = siteData.cursos || [];
+    siteData.cursos.push({
+      id: "cur_" + Date.now(),
+      titulo,
+      preco: Number(document.getElementById("curPreco").value || 0),
+      duracao: document.getElementById("curDuracao").value,
+      layout: document.getElementById("curLayout").value,
+      imagemFundo: document.getElementById("curImgFundo").value,
+      downloadLiberado: document.getElementById("curDownload").value === "liberado",
+      exigeAvaliacao: document.getElementById("curAvaliacao").value === "sim",
+      tipoCertificado: document.getElementById("curCertificado").value,
+      usarApiMP: document.getElementById("curPagamentoTipo").value === "api",
+      linkManual: document.getElementById("curLinkManual").value,
+      descricao: document.getElementById("curDesc").value
+    });
+    try {
+      await VorticeCore.publishToGitHub("site-data.json", siteData, "Novo curso publicado via Admin");
+      toast("Curso publicado no site!");
+    } catch (e) { toast(e.message); }
+  };
+
+  // Vagas
+  document.getElementById("btnAddVaga").onclick = async () => {
+    const titulo = document.getElementById("vagTitulo").value.trim();
+    if (!titulo) return toast("Informe o título da vaga.");
+    siteData.vagas = siteData.vagas || [];
+    siteData.vagas.push({
+      id: "vag_" + Date.now(),
+      titulo,
+      tipo: document.getElementById("vagTipo").value,
+      local: document.getElementById("vagLocal").value,
+      salario: document.getElementById("vagSalario").value,
+      descricao: document.getElementById("vagDesc").value,
+      status: "Aberta"
+    });
+    try {
+      await VorticeCore.publishToGitHub("site-data.json", siteData, "Nova vaga publicada via Admin");
+      toast("Vaga publicada na aba Contratações!");
+    } catch (e) { toast(e.message); }
+  };
+
+  // Investigador 10.0
+  function renderInvestigadorConfig() {
+    const curDB = VorticeCore.getDB();
+    document.getElementById("listaModulosInv").innerHTML = curDB.investigador.modulos.map(m => `<span class="pill" style="margin:3px">${m}</span>`).join("");
+    document.getElementById("listaSitesInv").innerHTML = curDB.investigador.sites.map(s => `<span class="pill" style="margin:3px">${s}</span>`).join("");
+  }
+
+  document.getElementById("btnAddModulo").onclick = () => {
+    const val = document.getElementById("novoModuloNome").value.trim();
+    if (!val) return;
+    const curDB = VorticeCore.getDB();
+    curDB.investigador.modulos.push(val);
+    VorticeCore.saveDB(curDB);
+    document.getElementById("novoModuloNome").value = "";
+    renderInvestigadorConfig();
+    toast("Novo módulo adicionado!");
+  };
+
+  document.getElementById("btnAddSite").onclick = () => {
+    const val = document.getElementById("novoSiteNome").value.trim();
+    if (!val) return;
+    const curDB = VorticeCore.getDB();
+    curDB.investigador.sites.push(val);
+    VorticeCore.saveDB(curDB);
+    document.getElementById("novoSiteNome").value = "";
+    renderInvestigadorConfig();
+    toast("Novo site adicionado à investigação!");
+  };
+
+  let invPausado = false;
+  document.getElementById("btnInvPausar").onclick = () => { invPausado = true; document.getElementById("invStatusPill").textContent = "Status: Pausado (P)"; };
+  document.getElementById("btnInvRetomar").onclick = () => { invPausado = false; document.getElementById("invStatusPill").textContent = "Status: Ativo"; };
+
+  document.getElementById("btnInvIniciar").onclick = async () => {
+    const modo = document.getElementById("invModo").value;
+    const param = document.getElementById("invParamRegiao").value;
+    const termo = document.getElementById("invTermo").value || "Empresa";
+    const limite = Number(document.getElementById("invLimite").value || 20);
+    const boxRes = document.getElementById("invResultados");
+    boxRes.innerHTML = "<p>Consultando IBGE e Azure Maps...</p>";
+    try {
+      const cidades = await VorticeServices.buscarCidadesIBGE({ modo, estado: param, macrorregiao: param, cidadeUnica: param, listaCidades: param });
+      if (!cidades.length) {
+        boxRes.innerHTML = "<p>Nenhuma cidade encontrada com esses filtros. Ajuste os filtros.</p>";
+        return;
+      }
+      const empresas = await VorticeServices.buscarEmpresasAzureMaps(termo, cidades[0].nome, limite);
+      boxRes.innerHTML = empresas.map((emp, i) => `
+        <div class="row-item">
+          <div>
+            <strong>${emp.nome}</strong> — ${cidades[0].nome}<br>
+            <small>Tel: ${emp.telefone} | Endereço: ${emp.endereco}</small><br>
+            <a href="${emp.linkMapa}" target="_blank" rel="noopener" style="color:#7fb0e6;font-size:13px">Abrir Prova Real no Mapa →</a>
+          </div>
+          <span class="pill">Aguardando Revisão</span>
+        </div>
+      `).join("") || "<p>Nenhum resultado com dados reais retornado para esta busca.</p>";
+    } catch (e) {
+      boxRes.innerHTML = `<p style="color:#ff7675">${e.message}</p>`;
+    }
+  };
+
+  // Notificações & Mercado Pago
+  document.getElementById("btnSalvarNotif").onclick = () => {
+    const curDB = VorticeCore.getDB();
+    curDB.notificacoes = {
+      ...curDB.notificacoes,
+      emailAlerta: document.getElementById("ntEmail").value,
+      whatsappNumero: document.getElementById("ntWppNum").value,
+      whatsappUrl: document.getElementById("ntWppUrl").value,
+      whatsappToken: document.getElementById("ntWppToken").value,
+      eventos: {
+        novoCandidato: { email: document.getElementById("evCandEmail").checked, whatsapp: document.getElementById("evCandWpp").checked },
+        empresaOuro: { email: document.getElementById("evOuroEmail").checked, whatsapp: document.getElementById("evOuroWpp").checked },
+        vendaCurso: { email: document.getElementById("evCursoEmail").checked, whatsapp: document.getElementById("evCursoWpp").checked },
+        mentoriaAgendada: { email: document.getElementById("evMentEmail").checked, whatsapp: document.getElementById("evMentWpp").checked }
+      }
+    };
+    VorticeCore.saveDB(curDB);
+    toast("Regras de notificação salvas!");
+  };
+
+  document.getElementById("btnTestarWpp").onclick = async () => {
+    await VorticeServices.sendNotification("empresaOuro", "Teste Vórtice", "Notificação de WhatsApp funcionando!");
+    toast("Comando de teste disparado!");
+  };
+
+  document.getElementById("btnSalvarMP").onclick = () => {
+    VorticeCore.saveSecrets({
+      mpPublicKey: document.getElementById("mpPublicKey").value.trim(),
+      mpAccessToken: document.getElementById("mpAccessToken").value.trim(),
+      mpModo: document.getElementById("mpModo").value
+    });
+    toast("Credenciais do Mercado Pago salvas!");
+  };
+
+  renderPortalAdmin();
+  renderInvestigadorConfig();
+})();
+</script>
+</body>
+</html>
