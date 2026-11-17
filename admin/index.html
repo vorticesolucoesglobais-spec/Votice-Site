@@ -328,7 +328,27 @@
 <script src="../vortice-services.js"></script>
 <script src="../lang.js"></script>
 <script>
-(async function(){
+(function(){
+  // 1. ATIVAÇÃO IMEDIATA DAS ABAS (executa antes de qualquer carregamento externo)
+  const tabs = document.querySelectorAll(".adm-tab");
+  const panels = document.querySelectorAll(".adm-panel");
+  tabs.forEach(btn => {
+    btn.addEventListener("click", function(e) {
+      e.preventDefault();
+      tabs.forEach(b => b.classList.remove("active"));
+      panels.forEach(p => p.classList.remove("active"));
+      this.classList.add("active");
+      const target = document.getElementById("tab-" + this.dataset.tab);
+      if (target) target.classList.add("active");
+    });
+  });
+
+  // 2. VERIFICAÇÃO DE SESSÃO ADMIN
+  if (typeof VorticeCore === "undefined") {
+    alert("Erro: vortice-core.js não foi carregado. Verifique se ele está na raiz do repositório.");
+    return;
+  }
+
   const sess = VorticeCore.getSession();
   if (!sess || sess.role !== "admin") {
     alert("Acesso restrito ao Admin Geral. Faça login em uma das áreas do site.");
@@ -337,9 +357,10 @@
   }
   document.getElementById("admApp").hidden = false;
 
-  // Captura retorno OAuth da Microsoft se acabou de conectar
-  const msTok = VorticeServices.captureMsTokenFromHash();
-  if (msTok) document.getElementById("msConnStatus").textContent = "OneDrive & Outlook: Conectado";
+  document.getElementById("btnLogout").onclick = () => {
+    VorticeCore.logout();
+    location.href = "../index.html";
+  };
 
   function toast(msg) {
     const t = document.createElement("div");
@@ -349,81 +370,13 @@
     setTimeout(() => t.remove(), 3500);
   }
 
-  // Navegação das abas do Admin
-  document.querySelectorAll(".adm-tab").forEach(btn => {
-    btn.onclick = () => {
-      document.querySelectorAll(".adm-tab").forEach(b => b.classList.remove("active"));
-      document.querySelectorAll(".adm-panel").forEach(p => p.classList.remove("active"));
-      btn.classList.add("active");
-      document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
-    };
-  });
+  // Captura retorno OAuth Microsoft se existir
+  if (typeof VorticeServices !== "undefined") {
+    const msTok = VorticeServices.captureMsTokenFromHash();
+    if (msTok) document.getElementById("msConnStatus").textContent = "OneDrive & Outlook: Conectado";
+  }
 
-  document.getElementById("btnLogout").onclick = () => {
-    VorticeCore.logout();
-    location.href = "../index.html";
-  };
-
-  // Carrega dados iniciais
-  const siteData = await VorticeCore.loadSiteData("..") || {};
-  const db = VorticeCore.getDB();
   const secrets = VorticeCore.getSecrets();
-
-  // Preenche Aba 1 (Editar Site)
-  if (siteData.identidade) {
-    document.getElementById("edNomeSite").value = siteData.identidade.nomeSite || "";
-    document.getElementById("edSlogan").value = siteData.identidade.slogan || "";
-    document.getElementById("edSubtitulo").value = siteData.identidade.subtituloHero || "";
-    document.getElementById("edWhatsapp").value = siteData.identidade.whatsapp || "";
-    document.getElementById("edEmail").value = siteData.identidade.email || "";
-    document.getElementById("edCorPrincipal").value = siteData.identidade.corPrincipal || "#2f6fb8";
-    document.getElementById("edTextoHero").value = siteData.identidade.textoHero || "";
-  }
-  if (siteData.abasVisiveis) {
-    document.getElementById("visPortal").checked = siteData.abasVisiveis.portal !== false;
-    document.getElementById("visCursos").checked = siteData.abasVisiveis.cursos !== false;
-    document.getElementById("visContratacoes").checked = siteData.abasVisiveis.contratacoes !== false;
-  }
-
-  // Upload de nova Logo direto para o GitHub
-  document.getElementById("btnUploadLogo").onclick = async () => {
-    const file = document.getElementById("upLogoFile").files[0];
-    if (!file) return toast("Selecione uma imagem primeiro.");
-    const reader = new FileReader();
-    reader.onload = async () => {
-      try {
-        const base64 = reader.result.split(",")[1];
-        await VorticeCore.publishToGitHub("logo.png", base64, "Atualização de logo pelo Painel Admin", true);
-        toast("Logo atualizada no site com sucesso!");
-      } catch (e) { toast(e.message); }
-    };
-    reader.readAsDataURL(file);
-  };
-
-  // Salvar e Publicar site-data.json no GitHub
-  document.getElementById("btnSalvarSite").onclick = async () => {
-    try {
-      siteData.identidade = {
-        ...siteData.identidade,
-        nomeSite: document.getElementById("edNomeSite").value,
-        slogan: document.getElementById("edSlogan").value,
-        subtituloHero: document.getElementById("edSubtitulo").value,
-        whatsapp: document.getElementById("edWhatsapp").value,
-        email: document.getElementById("edEmail").value,
-        corPrincipal: document.getElementById("edCorPrincipal").value,
-        textoHero: document.getElementById("edTextoHero").value
-      };
-      siteData.abasVisiveis = {
-        portal: document.getElementById("visPortal").checked,
-        cursos: document.getElementById("visCursos").checked,
-        contratacoes: document.getElementById("visContratacoes").checked
-      };
-      await VorticeCore.publishToGitHub("site-data.json", siteData, "Edição visual via Admin Geral");
-      toast("Site atualizado e publicado no GitHub!");
-    } catch (e) { toast(e.message); }
-  };
-
-  // Preenche Aba 7 (Chaves)
   document.getElementById("cfgGithubToken").value = secrets.githubToken || "";
   document.getElementById("cfgMsClientId").value = secrets.msClientId || "";
   document.getElementById("cfgMsTenantId").value = secrets.msTenantId || "";
@@ -450,19 +403,73 @@
     try { location.href = VorticeServices.getMsAuthUrl(); } catch (e) { toast(e.message); }
   };
 
-  // Renderiza Empresas & Funcionários
+  // Carrega site-data.json em segundo plano sem travar botões
+  let siteData = {};
+  VorticeCore.loadSiteData("..").then(d => {
+    if (!d) return;
+    siteData = d;
+    if (siteData.identidade) {
+      document.getElementById("edNomeSite").value = siteData.identidade.nomeSite || "";
+      document.getElementById("edSlogan").value = siteData.identidade.slogan || "";
+      document.getElementById("edSubtitulo").value = siteData.identidade.subtituloHero || "";
+      document.getElementById("edWhatsapp").value = siteData.identidade.whatsapp || "";
+      document.getElementById("edEmail").value = siteData.identidade.email || "";
+      document.getElementById("edCorPrincipal").value = siteData.identidade.corPrincipal || "#2f6fb8";
+      document.getElementById("edTextoHero").value = siteData.identidade.textoHero || "";
+    }
+    if (siteData.abasVisiveis) {
+      document.getElementById("visPortal").checked = siteData.abasVisiveis.portal !== false;
+      document.getElementById("visCursos").checked = siteData.abasVisiveis.cursos !== false;
+      document.getElementById("visContratacoes").checked = siteData.abasVisiveis.contratacoes !== false;
+    }
+  });
+
+  document.getElementById("btnUploadLogo").onclick = async () => {
+    const file = document.getElementById("upLogoFile").files[0];
+    if (!file) return toast("Selecione uma imagem primeiro.");
+    const reader = new FileReader();
+    reader.onload = async () => {
+      try {
+        const base64 = reader.result.split(",")[1];
+        await VorticeCore.publishToGitHub("logo.png", base64, "Atualização de logo pelo Painel Admin", true);
+        toast("Logo atualizada no site com sucesso!");
+      } catch (e) { toast(e.message); }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  document.getElementById("btnSalvarSite").onclick = async () => {
+    try {
+      siteData.identidade = {
+        ...siteData.identidade,
+        nomeSite: document.getElementById("edNomeSite").value,
+        slogan: document.getElementById("edSlogan").value,
+        subtituloHero: document.getElementById("edSubtitulo").value,
+        whatsapp: document.getElementById("edWhatsapp").value,
+        email: document.getElementById("edEmail").value,
+        corPrincipal: document.getElementById("edCorPrincipal").value,
+        textoHero: document.getElementById("edTextoHero").value
+      };
+      siteData.abasVisiveis = {
+        portal: document.getElementById("visPortal").checked,
+        cursos: document.getElementById("visCursos").checked,
+        contratacoes: document.getElementById("visContratacoes").checked
+      };
+      await VorticeCore.publishToGitHub("site-data.json", siteData, "Edição visual via Admin Geral");
+      toast("Site atualizado e publicado no GitHub!");
+    } catch (e) { toast(e.message); }
+  };
+
   function renderPortalAdmin() {
     const curDB = VorticeCore.getDB();
     document.getElementById("listaEmpresas").innerHTML = (curDB.empresas || []).map(emp => `
       <div class="row-item">
         <div><strong>${emp.nome}</strong> <small>(CNPJ: ${emp.cnpj || "-"})</small><br><small>Login Cliente: ${emp.email}</small></div>
-        <div style="display:flex;gap:8px">
-          <button type="button" class="btn out" style="padding:6px 12px;font-size:12px" onclick="compartilharPasta('${emp.nome}')">Compartilhar Pasta OneDrive</button>
-        </div>
+        <button type="button" class="btn out" style="padding:6px 12px;font-size:12px" onclick="compartilharPasta('${emp.nome}')">Compartilhar Pasta OneDrive</button>
       </div>
     `).join("") || "<p style='color:var(--mu);margin-top:8px'>Nenhuma empresa cadastrada ainda.</p>";
 
-    document.getElementById("listaFuncionarios").innerHTML = (curDB.users || []).filter(u => u.role === "funcionario").map((f, idx) => `
+    document.getElementById("listaFuncionarios").innerHTML = (curDB.users || []).filter(u => u.role === "funcionario").map(f => `
       <div class="row-item">
         <div><strong>${f.nome}</strong> (${f.cargo || "Equipe"}) — ${f.email}<br>
         <span class="pill ${f.acessoInvestigador ? 'ok' : 'warn'}">Investigador: ${f.acessoInvestigador ? 'Liberado (' + f.nivelInvestigador + ')' : 'Oculto/Bloqueado'}</span></div>
@@ -506,7 +513,7 @@
       await VorticeServices.ensureOneDriveFolder(`Vórtice/Clientes/${nome}/Relatórios`);
       await VorticeServices.ensureOneDriveFolder(`Vórtice/Clientes/${nome}/Documentos`);
       toast("Empresa criada e pastas criadas no OneDrive!");
-    } catch (e) { toast("Empresa salva no sistema! (Conecte o OneDrive em Configurações para sincronizar pastas)"); }
+    } catch (e) { toast("Empresa salva no sistema!"); }
   };
 
   document.getElementById("btnAddFunc").onclick = () => {
@@ -527,7 +534,6 @@
     toast("Funcionário cadastrado!");
   };
 
-  // Cursos Configuráveis
   document.getElementById("btnAddCurso").onclick = async () => {
     const titulo = document.getElementById("curTitulo").value.trim();
     if (!titulo) return toast("Informe o título do curso.");
@@ -552,7 +558,6 @@
     } catch (e) { toast(e.message); }
   };
 
-  // Vagas
   document.getElementById("btnAddVaga").onclick = async () => {
     const titulo = document.getElementById("vagTitulo").value.trim();
     if (!titulo) return toast("Informe o título da vaga.");
@@ -572,7 +577,6 @@
     } catch (e) { toast(e.message); }
   };
 
-  // Investigador 10.0
   function renderInvestigadorConfig() {
     const curDB = VorticeCore.getDB();
     document.getElementById("listaModulosInv").innerHTML = curDB.investigador.modulos.map(m => `<span class="pill" style="margin:3px">${m}</span>`).join("");
@@ -601,9 +605,8 @@
     toast("Novo site adicionado à investigação!");
   };
 
-  let invPausado = false;
-  document.getElementById("btnInvPausar").onclick = () => { invPausado = true; document.getElementById("invStatusPill").textContent = "Status: Pausado (P)"; };
-  document.getElementById("btnInvRetomar").onclick = () => { invPausado = false; document.getElementById("invStatusPill").textContent = "Status: Ativo"; };
+  document.getElementById("btnInvPausar").onclick = () => { document.getElementById("invStatusPill").textContent = "Status: Pausado (P)"; };
+  document.getElementById("btnInvRetomar").onclick = () => { document.getElementById("invStatusPill").textContent = "Status: Ativo"; };
 
   document.getElementById("btnInvIniciar").onclick = async () => {
     const modo = document.getElementById("invModo").value;
@@ -619,7 +622,7 @@
         return;
       }
       const empresas = await VorticeServices.buscarEmpresasAzureMaps(termo, cidades[0].nome, limite);
-      boxRes.innerHTML = empresas.map((emp, i) => `
+      boxRes.innerHTML = empresas.map(emp => `
         <div class="row-item">
           <div>
             <strong>${emp.nome}</strong> — ${cidades[0].nome}<br>
@@ -634,7 +637,6 @@
     }
   };
 
-  // Notificações & Mercado Pago
   document.getElementById("btnSalvarNotif").onclick = () => {
     const curDB = VorticeCore.getDB();
     curDB.notificacoes = {
