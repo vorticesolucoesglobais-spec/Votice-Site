@@ -15,3 +15,7 @@ SITE VÓRTICE v4 - COMO PUBLICAR
 - Admin entra por qualquer "Entrar" e passa em todas as áreas. Funcionário/Cliente: Portal. Aluno: Cursos. Candidato: Contratações. Outros são bloqueados com aviso.
 - Investigador: Admin sempre; Funcionário só com "Pode acessar Investigador = Sim"; tipo Admin salva, Visualizador só vê. Tentativas bloqueadas ficam no log.
 - Teste da API: cd api && node test.js
+
+8. ACESSO ADMIN (v6)
+- Defina no Azure (Static Web App > Configuration): ADMIN_EMAIL e ADMIN_PASSWORD. A senha NUNCA fica escrita nos arquivos do site.
+- As abas Portal do Cliente, Cursos e Mentorias e Contratações ficam dentro do index.html. O site.css volta ao original (sem estilos extras).
