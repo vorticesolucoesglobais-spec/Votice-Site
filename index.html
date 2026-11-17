@@ -1,4 +1,4 @@
-S<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -42,18 +42,32 @@ S<!DOCTYPE html>
 #dlgL form{display:grid;gap:12px}#dlgL label{font-size:14px;font-weight:500;display:grid;gap:4px}#dlgL input{padding:11px 12px;border:1px solid #9aa8b9;border-radius:4px;font:inherit}
 .lmsg{font-size:14px;padding:10px 12px;border-radius:4px;background:#fdecea;color:#8a1f17}
 </style>
+<style>
+nav{white-space:nowrap}nav a.ta{color:#fff;font-weight:600}
+@media(min-width:861px){
+.bar{flex-wrap:wrap;row-gap:0}
+nav.areas{order:2;margin-left:auto}#lg{order:2}
+nav.mn{order:3;width:100%;margin:0;border-top:1px solid #22385a}
+html{scroll-padding-top:124px}
+}
+.view .ar{min-height:62vh}
+@media(min-width:861px){.steps{grid-template-columns:repeat(5,1fr)}}
+</style>
+
 </head>
 <body>
 <header>
 <div class="w bar">
 <a href="#inicio"><img src="./logo.png" alt="Vórtice Soluções Globais"></a>
-<nav aria-label="Principal"><a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#portal">Portal do Cliente</a><a href="#cursos">Cursos e Mentorias</a><a href="#contratacoes">Contratações</a><a href="#contato">Contato</a></nav>
+<nav class="mn" aria-label="Principal"><a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#depoimentos">Depoimentos</a><a href="#diferenciais">Diferenciais</a><a href="#sobre">Institucional</a><a href="#onde">Onde Atuamos</a><a href="#faq">FAQ</a><a href="#contato">Contato</a></nav>
+<nav class="areas" aria-label="Áreas do site"><a class="ta" href="#portal">Portal do Cliente</a><a class="ta" href="#cursos">Cursos e Mentorias</a><a class="ta" href="#contratacoes">Contratações</a></nav>
 <div id="lg" class="lgm notranslate" translate="no"></div>
-<a class="btn hdr-cta" href="#contato">Solicitar proposta</a>
+
 </div>
 </header>
 
 <main>
+<div id="v-main">
 <section id="inicio" class="hero">
 <div class="w">
 <div>
@@ -64,6 +78,7 @@ S<!DOCTYPE html>
 <p class="pp">Na <strong><span translate="no">Vórtice</span> Soluções Globais</strong>, unimos <strong>Gestão Empresarial, Tecnologia e Produção</strong> em um ecossistema completo de soluções. Com sede no estado de São Paulo, atendemos empresas em todo o território nacional e mantemos contratos e projetos na América do Norte. Desde 2021, ajudamos empresas, indústrias, organizações religiosas e negócios em expansão a organizar operações, reduzir custos, automatizar processos e crescer com eficiência, tecnologia e produção de alta qualidade. Mais que serviços, entregamos <strong>crescimento sustentável, inovação e resultados mensuráveis.</strong></p>
 <div class="acts"><a class="btn" href="#contato">Solicitar Diagnóstico Gratuito</a><a class="btn dk" href="mailto:vorticesolucoesglobais@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20Diagn%C3%B3stico">Enviar E-mail</a></div>
 <img class="emb" src="./emblema.png" alt="Emblema da Vórtice Soluções Globais" width="600" height="400">
+</div>
 </div>
 </section>
 
@@ -119,7 +134,7 @@ S<!DOCTYPE html>
 
 <section id="depoimentos" class="alt"><div class="w"><span class="badge">Depoimentos</span><h2>Casos Reais de Clientes Atendidos pela <span translate="no">Vórtice</span></h2><p class="lead">Ao longo dos últimos 5 anos, a <span translate="no">Vórtice</span> Soluções Globais participou da transformação de empresas, organizações e instituições no Brasil e no exterior, atuando em gestão empresarial, tecnologia, produção e marketing digital.</p><div class="dg rv" style="margin-top:32px"><div class="tc"><span class="st">★★★★★</span><p>A parceria com a <span translate="no">Vórtice</span> foi fundamental para a evolução da nossa empresa. Recebemos apoio em gestão empresarial, assessoria administrativa, suporte técnico e uniformização corporativa. O atendimento próximo e o compromisso com resultados fizeram toda a diferença para nosso crescimento.</p><br><strong>Doces Brito Confeitaria</strong><br><small>Assessoria Administrativa • Gestão Empresarial • Uniformes • Suporte Técnico</small></div><div class="tc"><span class="st">★★★★★</span><p>A <span translate="no">Vórtice</span> atua como parceira estratégica da Cast-A-Way, empresa canadense com operações internacionais, prestando suporte técnico especializado para colaboradores distribuídos em diferentes países. O atendimento abrange usuários de múltiplas localidades, garantindo padronização, estabilidade operacional e rápida resolução de incidentes em toda a estrutura tecnológica da organização.<br><br>Além do suporte técnico global, a <span translate="no">Vórtice</span> realiza o acompanhamento contínuo da segurança cibernética corporativa, apoiando a proteção de ativos digitais, monitoramento de ambientes, aplicação de boas práticas de segurança da informação e mitigação de riscos em toda a infraestrutura da empresa.<br><br>A combinação entre gestão empresarial, suporte técnico internacional e cybersecurity transformou a <span translate="no">Vórtice</span> em um parceiro essencial para a sustentação e evolução das operações globais da Cast-A-Way.</p><br><strong>Cast-A-Way (Canadá)</strong><br><small>Gestão Empresarial • Suporte Técnico Internacional • Segurança Cibernética Global • Infraestrutura Corporativa</small></div><div class="tc"><span class="st">★★★★★</span><p>A <span translate="no">Vórtice</span> contribuiu diretamente para a evolução do ministério, desde os uniformes personalizados até TI, CNC Router e gestão de redes sociais. O resultado foi uma operação mais organizada e uma presença digital muito mais profissional.</p><br><strong>A.D. Missão Resgate - Ministério Cabreúva</strong><br><small>Uniformes • Assessoria de TI • CNC Router • Gestão de Redes Sociais</small></div></div></div></section>
 
-<section id="diferenciais"><div class="w"><div class="card"><span class="badge">Diferenciais <span translate="no">Vórtice</span></span><h2>Por Que a <span translate="no">Vórtice</span> é Diferente?</h2><p class="lead">Uma única empresa para cuidar da Gestão, Tecnologia e Produção do seu negócio.</p><div class="g2 rv" style="margin-top:24px"><div>Gestão Empresarial</div><div>Assessoria Administrativa</div><div>Tecnologia Corporativa</div><div>Segurança Cibernética</div><div>Gestão de Redes Sociais</div><div>Produção CNC e Automação</div><div>Uniformes Corporativos</div><div>Atendimento Nacional</div><div>Projetos na América do Norte</div><div>Atendimento Direto com Especialistas</div></div></div><h2 style="margin-top:64px">Como Funciona</h2><ol class="steps rv" style="grid-template-columns:repeat(5,1fr)"><li><h3>Diagnóstico Gratuito</h3><p>Entendemos sua operação, desafios e objetivos.</p></li><li><h3>Planejamento Estratégico</h3><p>Desenhamos a solução mais adequada para sua realidade.</p></li><li><h3>Implantação</h3><p>Executamos com acompanhamento próximo.</p></li><li><h3>Monitoramento</h3><p>Indicadores, relatórios e suporte contínuo.</p></li><li><h3>Crescimento</h3><p>Resultados sustentáveis e evolução constante.</p></li></ol></div></section>
+<section id="diferenciais"><div class="w"><div class="card"><span class="badge">Diferenciais <span translate="no">Vórtice</span></span><h2>Por Que a <span translate="no">Vórtice</span> é Diferente?</h2><p class="lead">Uma única empresa para cuidar da Gestão, Tecnologia e Produção do seu negócio.</p><div class="g2 rv" style="margin-top:24px"><div>Gestão Empresarial</div><div>Assessoria Administrativa</div><div>Tecnologia Corporativa</div><div>Segurança Cibernética</div><div>Gestão de Redes Sociais</div><div>Produção CNC e Automação</div><div>Uniformes Corporativos</div><div>Atendimento Nacional</div><div>Projetos na América do Norte</div><div>Atendimento Direto com Especialistas</div></div></div><h2 style="margin-top:64px">Como Funciona</h2><ol class="steps rv"><li><h3>Diagnóstico Gratuito</h3><p>Entendemos sua operação, desafios e objetivos.</p></li><li><h3>Planejamento Estratégico</h3><p>Desenhamos a solução mais adequada para sua realidade.</p></li><li><h3>Implantação</h3><p>Executamos com acompanhamento próximo.</p></li><li><h3>Monitoramento</h3><p>Indicadores, relatórios e suporte contínuo.</p></li><li><h3>Crescimento</h3><p>Resultados sustentáveis e evolução constante.</p></li></ol></div></section>
 
 <section id="sobre" class="alt"><div class="w about"><img src="./foto.jpg" alt="Mathews Brito, fundador da Vórtice" width="260" height="325" loading="lazy"><div>
 <h2>Institucional</h2>
@@ -128,34 +143,10 @@ S<!DOCTYPE html>
 <div class="gb"><h3>Nosso Diferencial</h3><p style="margin-top:0">Enquanto a maioria das empresas atua em apenas uma área específica, a <span translate="no">Vórtice</span> integra Gestão Empresarial, Assessoria Administrativa, Tecnologia, Segurança Cibernética, Produção CNC, Uniformes Corporativos e Marketing Digital em uma única estrutura operacional.<br><br>Isso permite que nossos clientes encontrem diversas soluções estratégicas em um único parceiro de negócios, reduzindo custos, simplificando processos e aumentando a eficiência operacional.</p></div>
 <div class="pr"><div><h3>Missão</h3><p>Otimizar processos, elevar a produtividade e sustentar o crescimento das empresas com tecnologia e produção de alta performance.</p></div><div><h3>Visão</h3><p>Ser referência nacional em integração de gestão, tecnologia e produção para empresas em expansão.</p></div><div><h3>Valores</h3><p>Resultado, transparência, inovação contínua, atendimento humano e compromisso com o crescimento do cliente.</p></div></div>
 </div></div>
-<div class="w"><div class="card" style="margin-top:40px"><span class="badge">Onde Atuamos</span><h3 style="font-size:22px">Presença Local, Nacional e Internacional</h3><p style="color:#d5dae3">A <span translate="no">Vórtice</span> Soluções Globais possui sede no estado de São Paulo, onde concentra parte de suas operações presenciais. Também atendemos clientes em todo o Brasil por meio de consultoria, gestão empresarial, assessoria administrativa, suporte técnico, marketing digital, uniformização corporativa e produção industrial. Além do mercado nacional, mantemos contratos e projetos na América do Norte além de Suporte Técnico global, ampliando nossa experiência internacional e capacidade de atender organizações de diferentes segmentos e portes.</p><div class="g2" style="margin-top:20px;font-size:15px"><div><strong>SEDE:</strong> São Paulo - Brasil</div><div><strong>ATENDIMENTO:</strong> Todo o território nacional</div><div><strong>ATUAÇÃO INTERNACIONAL:</strong> América do Norte</div><div><strong>CLIENTES:</strong> Empresas, indústrias, organizações sem fins lucrativos e instituições religiosas</div></div></div></div></section>
+<div class="w" id="onde"><div class="card" style="margin-top:40px"><span class="badge">Onde Atuamos</span><h3 style="font-size:22px">Presença Local, Nacional e Internacional</h3><p style="color:#d5dae3">A <span translate="no">Vórtice</span> Soluções Globais possui sede no estado de São Paulo, onde concentra parte de suas operações presenciais. Também atendemos clientes em todo o Brasil por meio de consultoria, gestão empresarial, assessoria administrativa, suporte técnico, marketing digital, uniformização corporativa e produção industrial. Além do mercado nacional, mantemos contratos e projetos na América do Norte além de Suporte Técnico global, ampliando nossa experiência internacional e capacidade de atender organizações de diferentes segmentos e portes.</p><div class="g2" style="margin-top:20px;font-size:15px"><div><strong>SEDE:</strong> São Paulo - Brasil</div><div><strong>ATENDIMENTO:</strong> Todo o território nacional</div><div><strong>ATUAÇÃO INTERNACIONAL:</strong> América do Norte</div><div><strong>CLIENTES:</strong> Empresas, indústrias, organizações sem fins lucrativos e instituições religiosas</div></div></div></div></section>
 
 <section id="faq"><div class="w"><span class="badge">Perguntas Frequentes</span><h2>Perguntas Frequentes</h2><details class="fq" open><summary>A <span translate="no">Vórtice</span> atende apenas em São Paulo?</summary><p>Nossa sede está localizada no Estado de São Paulo, onde realizamos atendimentos presenciais regulares. Também atendemos empresas em todo o território nacional de forma remota e, em projetos estratégicos ou de grande porte, nossa equipe realiza visitas presenciais diretamente na localidade do cliente.</p></details><details class="fq"><summary>Vocês atendem clientes internacionais?</summary><p>Sim. Atualmente mantemos contratos e projetos internacionais na América do Norte, oferecendo suporte tecnológico, gestão empresarial, segurança cibernética e consultoria especializada para operações internacionais.</p></details><details class="fq"><summary>Posso contratar mais de um serviço?</summary><p>Sim. Muitos clientes utilizam duas ou mais soluções da <span translate="no">Vórtice</span> simultaneamente. Nosso diferencial é justamente integrar Gestão Empresarial, Tecnologia e Produção dentro da mesma estrutura operacional.</p></details><details class="fq"><summary>A <span translate="no">Vórtice</span> atende pequenas empresas?</summary><p>Sim. Atendemos pequenos negócios, empresas em crescimento, indústrias, instituições religiosas, profissionais autônomos e organizações de médio porte.</p></details><details class="fq"><summary>Como funciona a Assessoria Empresarial?</summary><p>Inicialmente realizamos um diagnóstico da operação do cliente. A partir dessa análise, desenvolvemos processos, indicadores, relatórios gerenciais, controles financeiros e ferramentas que ajudam a empresa a crescer de forma organizada e sustentável.</p></details><details class="fq"><summary>A <span translate="no">Vórtice</span> fornece suporte técnico contínuo?</summary><p>Sim. Oferecemos suporte remoto e presencial, monitoramento de infraestrutura, administração de redes, segurança cibernética, backup corporativo e acompanhamento contínuo das operações de TI.</p></details><details class="fq"><summary>Vocês desenvolvem projetos personalizados?</summary><p>Sim. Cada empresa possui necessidades específicas. Todos os projetos são avaliados individualmente para que possamos apresentar uma solução adequada à realidade e aos objetivos do cliente.</p></details><details class="fq"><summary>Como funcionam os projetos CNC?</summary><p>Basta enviar uma foto, desenho ou arquivo técnico. Nossa equipe analisa a demanda, elabora o projeto quando necessário e produz as peças utilizando tecnologia CNC Router, laser e outros processos industriais.</p></details><details class="fq"><summary>Os uniformes são produzidos pela própria <span translate="no">Vórtice</span>?</summary><p>Trabalhamos com produção própria e parceiros homologados para garantir qualidade, padronização e acabamento profissional em todos os uniformes corporativos.</p></details><details class="fq"><summary>Quanto tempo leva para receber uma proposta?</summary><p>Após entendermos sua necessidade, normalmente enviamos um diagnóstico inicial e uma proposta personalizada em até 24 horas úteis.</p></details><details class="fq"><summary>Quem será meu contato dentro da <span translate="no">Vórtice</span>?</summary><p>Prezamos pelo relacionamento próximo com nossos clientes. Dependendo do projeto, o atendimento pode ser realizado diretamente pelo fundador <span translate="no">Mathews Brito</span> ou por especialistas responsáveis pela execução da solução contratada.</p></details><details class="fq"><summary>Por que escolher a <span translate="no">Vórtice</span>?</summary><p>Porque reunimos Gestão Empresarial, Assessoria Administrativa, Tecnologia, Segurança Cibernética, Redes Sociais, Uniformes Corporativos e Produção CNC em uma única empresa. Isso significa menos fornecedores, mais integração e mais resultados para o seu negócio.</p></details></div></section>
 
-<section id="portal" class="ar alt"><div class="w">
-<h2>Portal do Cliente</h2><p class="lead">Relatórios, documentos e acompanhamento do seu projeto em um só lugar.</p>
-<div class="area-top"><span class="pl">Área restrita</span><button type="button" class="btn" data-entrar="portal">Entrar - Cliente / Funcionário</button></div>
-<div class="g3"><div class="cd"><h3>Relatórios</h3><p>Financeiro, Marketing, Atendimento e Gestão, organizados por mês.</p></div><div class="cd"><h3>Documentos</h3><p>Contratos, propostas, notas e apresentações da sua empresa.</p></div><div class="cd"><h3>Acompanhamento</h3><p>Linha do tempo com o andamento de cada fase do projeto.</p></div></div>
-</div></section>
-<section id="cursos" class="ar"><div class="w">
-<h2>Cursos e Mentorias</h2><p class="lead">Vórtice Academy: aprenda a gerir, vender e automatizar.</p>
-<div class="area-top"><span class="pl">Área restrita</span><button type="button" class="btn" data-entrar="cursos">Entrar - Aluno / Contratante</button></div>
-<h3 style="margin-top:28px">Cursos</h3><div class="em">Os cursos serão publicados em breve. Fale com a gente para entrar na lista de espera.</div>
-<h3 style="margin-top:34px">Mentorias</h3>
-<div class="g3"><div class="cd"><h3>Mentoria Online 1h</h3><p>Sessão individual por videochamada.</p><p><b>R$ 500</b></p><a class="btn out" data-wa="mentoria online" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Agendar</a></div>
-<div class="cd"><h3>Mentoria Presencial na sua empresa</h3><p>Um dia com o Mathews dentro da sua operação.</p><p><b>R$ 2.500 / dia</b></p><a class="btn out" data-wa="mentoria presencial" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Agendar</a></div>
-<div class="cd"><h3>Acompanhamento Mensal</h3><p>Reuniões recorrentes e plano de ação.</p><p><b>R$ 1.500 / mês</b></p><a class="btn out" data-wa="acompanhamento mensal" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Contratar</a></div></div>
-</div></section>
-<section id="contratacoes" class="ar alt"><div class="w">
-<h2>Trabalhe na Vórtice Soluções Globais</h2><p class="lead">Aqui você não procura emprego. Você constrói carreira.</p>
-<div class="area-top"><span class="pl">Área restrita</span><button type="button" class="btn" data-entrar="contratacoes">Entrar - Candidatos / Recrutamento</button></div>
-<div class="em">No momento não temos vagas abertas, mas deixe seu currículo no Banco de Talentos.</div>
-<form class="fm" id="fc"><input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
-<label>Vaga de interesse<input name="vaga" placeholder="Em branco = Banco de Talentos"></label><label>Nome completo *<input name="nome" required></label><label>WhatsApp *<input name="wpp" type="tel" required></label><label>E-mail *<input name="email" type="email" required></label><label>Cidade<input name="cidade"></label><label>LinkedIn<input name="lin" type="url"></label><label>Por que você quer a Vórtice?<textarea name="porque" rows="4"></textarea></label>
-<div class="acts" style="margin-top:0"><button class="btn" type="submit">Enviar pelo WhatsApp</button><button class="btn out" type="button" id="cmail">Enviar por e-mail</button></div>
-<p class="nt" style="font-size:13px;color:var(--mu)">O currículo em PDF pode ser anexado ao e-mail ou enviado na conversa do WhatsApp. Veja a <a href="#privacidade">Política de Privacidade</a>.</p></form>
-</div></section>
-<dialog id="dlgL"><form id="fl" method="dialog"><h3 id="dlgT">Entrar</h3><label>E-mail<input id="lgE" type="email" required autocomplete="username"></label><label>Senha<input id="lgP" type="password" required autocomplete="current-password"></label><p class="lmsg" id="lgM" hidden></p><button class="btn" type="submit">Entrar</button><button class="btn out" type="button" id="lgX">Cancelar</button></form></dialog>
 <section id="contato">
 <div class="w">
 <h2>Solicite uma proposta</h2>
@@ -202,7 +193,36 @@ S<!DOCTYPE html>
 </div>
 </section>
 <section class="cta"><div class="w"><h2>Pronto para transformar sua operação?</h2><p class="lead">Se sua empresa precisa de mais organização, tecnologia, produtividade e resultados, a <span translate="no">Vórtice</span> está pronta para ajudar. Atuamos presencialmente em São Paulo, atendemos clientes em todo o Brasil e desenvolvemos projetos internacionais na América do Norte.</p><div class="acts"><a class="btn" href="#contato">Solicitar Diagnóstico Gratuito</a></div></div></section>
+</div>
+<div class="view" id="v-portal" hidden><section id="portal" class="ar alt"><div class="w">
+<h2>Portal do Cliente</h2><p class="lead">Relatórios, documentos e acompanhamento do seu projeto em um só lugar.</p>
+<div class="area-top"><span class="pl">Área restrita</span><button type="button" class="btn" data-entrar="portal">Entrar - Cliente / Funcionário</button></div>
+<div class="g3"><div class="cd"><h3>Relatórios</h3><p>Financeiro, Marketing, Atendimento e Gestão, organizados por mês.</p></div><div class="cd"><h3>Documentos</h3><p>Contratos, propostas, notas e apresentações da sua empresa.</p></div><div class="cd"><h3>Acompanhamento</h3><p>Linha do tempo com o andamento de cada fase do projeto.</p></div></div>
+</div></section>
+</div>
+<div class="view" id="v-cursos" hidden><section id="cursos" class="ar"><div class="w">
+<h2>Cursos e Mentorias</h2><p class="lead">Vórtice Academy: aprenda a gerir, vender e automatizar.</p>
+<div class="area-top"><span class="pl">Área restrita</span><button type="button" class="btn" data-entrar="cursos">Entrar - Aluno / Contratante</button></div>
+<h3 style="margin-top:28px">Cursos</h3><div class="em">Os cursos serão publicados em breve. Fale com a gente para entrar na lista de espera.</div>
+<h3 style="margin-top:34px">Mentorias</h3>
+<div class="g3"><div class="cd"><h3>Mentoria Online 1h</h3><p>Sessão individual por videochamada.</p><p><b>R$ 500</b></p><a class="btn out" data-wa="mentoria online" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Agendar</a></div>
+<div class="cd"><h3>Mentoria Presencial na sua empresa</h3><p>Um dia com o Mathews dentro da sua operação.</p><p><b>R$ 2.500 / dia</b></p><a class="btn out" data-wa="mentoria presencial" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Agendar</a></div>
+<div class="cd"><h3>Acompanhamento Mensal</h3><p>Reuniões recorrentes e plano de ação.</p><p><b>R$ 1.500 / mês</b></p><a class="btn out" data-wa="acompanhamento mensal" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Contratar</a></div></div>
+</div></section>
+</div>
+<div class="view" id="v-contratacoes" hidden><section id="contratacoes" class="ar alt"><div class="w">
+<h2>Trabalhe na Vórtice Soluções Globais</h2><p class="lead">Aqui você não procura emprego. Você constrói carreira.</p>
+<div class="area-top"><span class="pl">Área restrita</span><button type="button" class="btn" data-entrar="contratacoes">Entrar - Candidatos / Recrutamento</button></div>
+<div class="em">No momento não temos vagas abertas, mas deixe seu currículo no Banco de Talentos.</div>
+<form class="fm" id="fc"><input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+<label>Vaga de interesse<input name="vaga" placeholder="Em branco = Banco de Talentos"></label><label>Nome completo *<input name="nome" required></label><label>WhatsApp *<input name="wpp" type="tel" required></label><label>E-mail *<input name="email" type="email" required></label><label>Cidade<input name="cidade"></label><label>LinkedIn<input name="lin" type="url"></label><label>Por que você quer a Vórtice?<textarea name="porque" rows="4"></textarea></label>
+<div class="acts" style="margin-top:0"><button class="btn" type="submit">Enviar pelo WhatsApp</button><button class="btn out" type="button" id="cmail">Enviar por e-mail</button></div>
+<p class="nt" style="font-size:13px;color:var(--mu)">O currículo em PDF pode ser anexado ao e-mail ou enviado na conversa do WhatsApp. Veja a <a href="#privacidade">Política de Privacidade</a>.</p></form>
+</div></section>
+</div>
 </main>
+<dialog id="dlgL"><form id="fl" method="dialog"><h3 id="dlgT">Entrar</h3><label>E-mail<input id="lgE" type="email" required autocomplete="username"></label><label>Senha<input id="lgP" type="password" required autocomplete="current-password"></label><p class="lmsg" id="lgM" hidden></p><button class="btn" type="submit">Entrar</button><button class="btn out" type="button" id="lgX">Cancelar</button></form></dialog>
+
 
 <footer><div class="w"><nav class="fl" aria-label="Áreas"><a href="#portal">Portal do Cliente</a><a href="#cursos">Cursos e Mentorias</a><a href="#contratacoes">Contratações</a></nav><nav class="fl" aria-label="Serviços"><a href="./gestao-empresarial/index.html">Assessoria administrativa e gestão empresarial</a><a href="./assessoria-ti/index.html">Suporte técnico e assessoria de TI</a><a href="./gestao-redes-sociais/index.html">Gestão de redes e mídias sociais</a><a href="./uniformes-corporativos/index.html">Uniformes, estampas e brindes personalizados</a><a href="./usinagem-cnc/index.html">Usinagem CNC, corte a laser e modelagem 3D</a></nav><div style="font-weight:800;color:#0d47a1;letter-spacing:1px;margin-bottom:6px"><span translate="no">VÓRTICE</span> SOLUÇÕES GLOBAIS LTDA</div><div style="line-height:1.7">Desde 2021 integrando Gestão Empresarial, Tecnologia e Produção. Sede em São Paulo • Atendimento Nacional • Projetos na América do Norte.<br>CNPJ 65.576.566/0001-01 · © 2021-<span id="yr">2026</span> Todos os direitos reservados</div>
 <details id="privacidade"><summary>Política de Privacidade (LGPD)</summary>
@@ -263,8 +283,20 @@ f.onsubmit=e=>{e.preventDefault();if(f.website.value)return;window.open('https:/
 document.getElementById('cmail').onclick=()=>{if(!f.reportValidity()||f.website.value)return;location.href='mailto:'+MAIL+'?subject='+encodeURIComponent('Candidatura - '+(f.vaga.value||'Banco de Talentos')+' - '+f.nome.value)+'&body='+encodeURIComponent(txt())};
 })();
 </script>
+<script>
+(function(){
+const AB=['portal','cursos','contratacoes'],vm=document.getElementById('v-main');
+function rota(first){
+  const h=decodeURIComponent(location.hash.slice(1)),ab=AB.includes(h)?h:null;
+  vm.hidden=!!ab;AB.forEach(a=>{document.getElementById('v-'+a).hidden=a!==ab});
+  document.querySelectorAll('header nav a').forEach(l=>{l.classList.toggle('on',!!ab&&l.hash==='#'+ab);if(ab&&l.hash==='#'+ab)l.setAttribute('aria-current','page');else l.removeAttribute('aria-current')});
+  if(ab){scrollTo(0,0);document.title=document.querySelector('#v-'+ab+' h2').textContent+' | Vórtice Soluções Globais'}
+  else{document.title='Vórtice Soluções Globais | Gestão, Tecnologia e Produção';const t=h&&document.getElementById(h);if(t)t.scrollIntoView();else if(!first)scrollTo(0,0)}
+}
+addEventListener('hashchange',()=>rota(false));rota(true);
+})();
+</script>
 <div id="gt"></div>
 <script src="./lang.js"></script>
 </body>
-</script>
 </html>
