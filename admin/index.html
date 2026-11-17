@@ -9,9 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../site.css">
 <style>
-.adm-wrap{max-width:1240px;margin:28px auto 80px;padding:0 20px;position:relative;z-index:10}
-.adm-tabs{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:24px;position:relative;z-index:20}
-.adm-tab{padding:10px 16px;border-radius:6px;background:#141a22;border:1px solid #2b3a4f;color:#cfd8e4;font:600 14px "IBM Plex Sans",sans-serif;cursor:pointer;pointer-events:auto!important;transition:background .2s,border-color .2s}
+.adm-wrap{max-width:1260px;margin:28px auto 80px;padding:0 20px;position:relative;z-index:10}
+.adm-tabs{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid #223042;padding-bottom:14px;margin-bottom:24px;position:relative;z-index:20}
+.adm-tab{padding:10px 16px;border-radius:6px;background:#141a22;border:1px solid #2b3a4f;color:#cfd8e4;font:600 14px "IBM Plex Sans",sans-serif;cursor:pointer;pointer-events:auto!important;transition:.2s}
 .adm-tab:hover{border-color:#7fb0e6;color:#fff}
 .adm-tab.active{background:#2f6fb8;border-color:#2f6fb8;color:#fff}
 .adm-panel{display:none;background:linear-gradient(160deg,#1b222c 0%,#131920 100%);border:1px solid #223042;border-radius:10px;padding:28px}
@@ -24,6 +24,9 @@
 .pill.ok{background:rgba(46,204,113,.16);color:#7bed9f}
 .pill.warn{background:rgba(231,76,60,.16);color:#ff7675}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1d5fa6;color:#fff;padding:12px 22px;border-radius:8px;font-weight:600;z-index:9999;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.bloco-card{background:#141b24;border:1px solid #2b3a4f;border-radius:8px;padding:14px;margin-top:10px}
+table.tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-align:left}
 @media(max-width:820px){.grid2{grid-template-columns:1fr}}
 </style>
 </head>
@@ -42,19 +45,19 @@
 
 <main class="adm-wrap" id="admApp" hidden>
   <div class="adm-tabs">
-    <button class="adm-tab active" data-tab="site">1. Editar Site (Sem Código)</button>
-    <button class="adm-tab" data-tab="portal">2. Portal (Empresas & Equipe)</button>
-    <button class="adm-tab" data-tab="cursos">3. Cursos & Mentorias</button>
-    <button class="adm-tab" data-tab="vagas">4. Contratações</button>
-    <button class="adm-tab" data-tab="investigador">5. Investigador 10.0</button>
-    <button class="adm-tab" data-tab="notif">6. Notificações & Mercado Pago</button>
-    <button class="adm-tab" data-tab="config">7. Chaves & Conta Microsoft</button>
+    <button type="button" class="adm-tab active" data-tab="site">1. Editar Site (Livre)</button>
+    <button type="button" class="adm-tab" data-tab="portal">2. Portal (Empresas & Equipe)</button>
+    <button type="button" class="adm-tab" data-tab="cursos">3. Cursos, Provas & Certificados</button>
+    <button type="button" class="adm-tab" data-tab="vagas">4. Contratações</button>
+    <button type="button" class="adm-tab" data-tab="investigador">5. Investigador 10.0</button>
+    <button type="button" class="adm-tab" data-tab="notif">6. Visitantes, E-mails & Mercado Pago</button>
+    <button type="button" class="adm-tab" data-tab="config">7. Chaves & Conta Microsoft</button>
   </div>
 
   <!-- ABA 1: EDITAR SITE SEM CÓDIGO -->
   <section class="adm-panel active" id="tab-site">
-    <h2>Editor Total do Site</h2>
-    <p class="lead">Altere qualquer texto, cor, imagem ou visibilidade de aba e publique direto no repositório.</p>
+    <h2>Editor Total do Site (Sem Limitações)</h2>
+    <p class="lead">Edite textos, cores, logo, visibilidade das abas ou insira blocos livres de HTML/Texto.</p>
     <div class="grid2" style="margin-top:20px">
       <label>Nome do Site<input id="edNomeSite"></label>
       <label>Slogan Principal<input id="edSlogan"></label>
@@ -64,17 +67,18 @@
       <label>Cor Principal dos Botões<input type="color" id="edCorPrincipal" style="height:46px"></label>
     </div>
     <label style="margin-top:14px">Texto de Apresentação (Hero)<textarea id="edTextoHero" rows="3"></textarea></label>
+    <label style="margin-top:14px">Bloco Extra Livre na Home (Texto, Banner ou HTML opcional)<textarea id="edBlocoLivreHome" rows="3" placeholder="Cole aqui qualquer aviso, promoção ou HTML personalizado para aparecer no site..."></textarea></label>
 
     <div class="box">
-      <h3>Trocar Logo do Site (Upload direto sem código)</h3>
+      <h3>Trocar Logo do Site</h3>
       <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px">
         <input type="file" id="upLogoFile" accept="image/*" style="max-width:340px">
-        <button type="button" class="btn out" id="btnUploadLogo">Enviar Nova Logo para o Site</button>
+        <button type="button" class="btn out" id="btnUploadLogo">Enviar Nova Logo</button>
       </div>
     </div>
 
     <div class="box">
-      <h3>Mostrar ou Ocultar Abas no Menu</h3>
+      <h3>Visibilidade das Abas no Menu</h3>
       <div style="display:flex;gap:24px;flex-wrap:wrap;margin-top:10px">
         <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="visPortal" style="width:auto"> Portal do Cliente</label>
         <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="visCursos" style="width:auto"> Cursos e Mentorias</label>
@@ -82,14 +86,15 @@
       </div>
     </div>
 
-    <div style="margin-top:22px;display:flex;gap:12px">
+    <div style="margin-top:22px">
       <button type="button" class="btn" id="btnSalvarSite">Salvar e Publicar Alterações no Site</button>
     </div>
   </section>
 
-  <!-- ABA 2: PORTAL DO CLIENTE -->
+  <!-- ABA 2: PORTAL DO CLIENTE (EMPRESA SEM ACESSO AO ONEDRIVE / EQUIPE ALIMENTA) -->
   <section class="adm-panel" id="tab-portal">
-    <h2>Gestão de Empresas, Clientes e Funcionários</h2>
+    <h2>Empresas (Dashboards & Faturamento) vs. Equipe (OneDrive)</h2>
+    <p class="lead">Ao criar uma empresa, uma pasta é criada no seu <b>OneDrive</b> para você e seus funcionários alimentarem. <b>A empresa não tem acesso ao OneDrive</b> — ela acessa apenas os Dashboards, Levantamentos e Faturamento liberados.</p>
     <div class="grid2" style="margin-top:18px">
       <div class="box">
         <h3>+ Nova Empresa / Cliente</h3>
@@ -97,227 +102,289 @@
           <input id="empNome" placeholder="Nome da Empresa">
           <input id="empCnpj" placeholder="CNPJ">
           <input id="empResp" placeholder="Responsável">
-          <input id="empEmail" type="email" placeholder="E-mail de login do Cliente">
-          <input id="empSenha" placeholder="Senha temporária">
+          <input id="empEmail" type="email" placeholder="E-mail de login da Empresa">
+          <input id="empSenha" placeholder="Senha de acesso da Empresa">
           <input id="empPlano" placeholder="Plano contratado">
-          <button type="button" class="btn" id="btnAddEmpresa">Criar Empresa + Pastas no OneDrive</button>
+          <button type="button" class="btn" id="btnAddEmpresa">Criar Empresa + Pasta Interna no OneDrive</button>
         </div>
       </div>
 
       <div class="box">
-        <h3>+ Novo Funcionário</h3>
+        <h3>+ Novo Funcionário / Colaborador</h3>
         <div style="display:grid;gap:10px;margin-top:10px">
           <input id="funcNome" placeholder="Nome do Funcionário">
-          <input id="funcEmail" type="email" placeholder="E-mail (Microsoft/Corporativo)">
-          <input id="funcSenha" placeholder="Senha temporária">
+          <input id="funcEmail" type="email" placeholder="E-mail de login">
+          <input id="funcSenha" placeholder="Senha de acesso">
           <input id="funcCargo" placeholder="Cargo">
           <label style="display:flex;align-items:center;gap:8px">
-            <input type="checkbox" id="funcInvAcesso" style="width:auto"> Pode acessar o Investigador? (Oculto para os demais)
+            <input type="checkbox" id="funcInvAcesso" style="width:auto"> Liberar acesso ao Investigador 10.0
           </label>
           <select id="funcInvNivel">
             <option value="visualizador">Nível Investigador: Visualizador</option>
-            <option value="admin">Nível Investigador: Admin do Investigador</option>
+            <option value="admin">Nível Investigador: Admin</option>
           </select>
-          <button type="button" class="btn" id="btnAddFunc">Cadastrar Funcionário</button>
+          <button type="button" class="btn" id="btnAddFunc">Cadastrar Colaborador</button>
         </div>
       </div>
     </div>
 
     <div class="box">
-      <h3>Empresas Cadastradas & Compartilhamento de Pastas OneDrive</h3>
+      <h3>Alimentar Dados / Dashboards de uma Empresa (Admin & Funcionários)</h3>
+      <div class="grid2" style="margin-top:10px">
+        <select id="selEmpDados"><option value="">Selecione a Empresa...</option></select>
+        <input id="dadoFaturamento" placeholder="Faturamento / Receita do Período (ex: R$ 85.400,00)">
+        <input id="dadoLevantamento" placeholder="Título do Levantamento / Indicador">
+        <input id="dadoStatus" placeholder="Status do Projeto (ex: 80% concluído)">
+      </div>
+      <textarea id="dadoResumo" rows="2" placeholder="Resumo executivo, métricas e observações que aparecerão no painel da empresa..." style="margin-top:10px"></textarea>
+      <button type="button" class="btn out" id="btnPublicarDadoEmpresa" style="margin-top:10px">Publicar no Painel da Empresa</button>
+    </div>
+
+    <div class="box">
+      <h3>Empresas Cadastradas (Acesso restrito a Dashboards/Faturamento)</h3>
       <div id="listaEmpresas"></div>
     </div>
     <div class="box">
-      <h3>Equipe & Permissões</h3>
+      <h3>Colaboradores Cadastrados</h3>
       <div id="listaFuncionarios"></div>
     </div>
   </section>
 
-  <!-- ABA 3: CURSOS E MENTORIAS -->
+  <!-- ABA 3: CURSOS LIVRES + AVALIAÇÃO A/B/C/D/E + CERTIFICADOS -->
   <section class="adm-panel" id="tab-cursos">
-    <h2>Construtor de Cursos e Mentorias</h2>
+    <h2>Construtor Livre de Cursos, Avaliações (A/B/C/D/E) e Certificados</h2>
+
+    <!-- 3.1 CONSTRUTOR LIVRE DO CURSO -->
     <div class="box">
-      <h3>+ Novo Curso / Treinamento</h3>
-      <div class="grid2" style="margin-top:12px">
+      <h3>1. Criar / Montar Curso (Totalmente Aberto)</h3>
+      <div class="grid2" style="margin-top:10px">
         <input id="curTitulo" placeholder="Título do Curso">
-        <input id="curPreco" type="number" placeholder="Preço (ex: 297 ou 0 para Gratuito)">
-        <input id="curDuracao" placeholder="Carga horária / Duração (ex: 4h - 12 aulas)">
-        <select id="curLayout">
-          <option value="imagem_fundo">Exposição: Com Imagem de Fundo na Vitrine</option>
-          <option value="limpo">Exposição: Apenas Textos e Imagens (Modo Limpo)</option>
-        </select>
-        <input id="curImgFundo" placeholder="URL da Imagem de Fundo (ou envie abaixo)">
-        <select id="curDownload">
-          <option value="liberado">Materiais de Apoio: Download Liberado</option>
-          <option value="bloqueado">Materiais de Apoio: Download Bloqueado (Só leitura)</option>
-        </select>
-        <select id="curAvaliacao">
-          <option value="nao">Avaliação (Quiz): Não exige prova</option>
-          <option value="sim">Avaliação (Quiz): Exige aprovação (mín. 70%)</option>
-        </select>
-        <select id="curCertificado">
-          <option value="automatico">Certificado: Automático pelo Sistema</option>
-          <option value="manual">Certificado: Upload Manual de Arquivo PDF</option>
-          <option value="nenhum">Certificado: Sem Certificado</option>
-        </select>
+        <input id="curPreco" type="number" placeholder="Preço em R$ (0 = Gratuito)">
+        <input id="curDuracao" placeholder="Carga horária (ex: 10 horas)">
+        <input id="curImgCapa" placeholder="URL de Imagem de Capa (opcional)">
         <select id="curPagamentoTipo">
-          <option value="api">Pagamento: Mercado Pago API Automático</option>
-          <option value="link">Pagamento: Link Manual Mercado Pago</option>
+          <option value="api">Checkout: Mercado Pago API Automático</option>
+          <option value="link">Checkout: Link Manual Mercado Pago</option>
         </select>
-        <input id="curLinkManual" placeholder="Link Manual (se escolheu Link Manual)">
+        <input id="curLinkManual" placeholder="Link Manual (se não usar API)">
       </div>
-      <textarea id="curDesc" rows="2" placeholder="Descrição completa do curso..." style="margin-top:10px"></textarea>
-      <button type="button" class="btn" id="btnAddCurso" style="margin-top:12px">Salvar e Publicar Curso</button>
+      <textarea id="curDesc" rows="2" placeholder="Apresentação do curso..." style="margin-top:10px"></textarea>
+
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid #223042">
+        <h4>Blocos de Conteúdo do Curso (Adicione quantos quiser, na ordem que desejar)</h4>
+        <p style="font-size:13px;color:var(--mu)">Dica: Blocos de Texto são traduzidos automaticamente pelo Google Tradutor do site para qualquer idioma.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+          <button type="button" class="btn out" onclick="addBlocoCurso('texto')">+ Bloco de Texto (Traduzível)</button>
+          <button type="button" class="btn out" onclick="addBlocoCurso('pdf')">+ Arquivo PDF / Apostila</button>
+          <button type="button" class="btn out" onclick="addBlocoCurso('imagem')">+ Imagem / Infográfico</button>
+          <button type="button" class="btn out" onclick="addBlocoCurso('video')">+ Vídeo / Embed</button>
+          <button type="button" class="btn out" onclick="addBlocoCurso('html')">+ HTML / Código Livre</button>
+        </div>
+        <div id="containerBlocosCurso"></div>
+      </div>
     </div>
+
+    <!-- 3.2 CONSTRUTOR DE AVALIAÇÃO (A, B, C, D, E) -->
+    <div class="box">
+      <h3>2. Avaliação do Curso (Alternativas A, B, C, D, E com Correção Automática)</h3>
+      <div class="grid2" style="margin-top:10px">
+        <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="curTemProva" style="width:auto"> Ativar Avaliação neste curso</label>
+        <label>Nota mínima para aprovação (%)<input id="curNotaMin" type="number" value="70" min="1" max="100"></label>
+      </div>
+      <button type="button" class="btn out" id="btnAddQuestao" style="margin-top:10px">+ Adicionar Questão (A, B, C, D, E)</button>
+      <div id="containerQuestoes"></div>
+    </div>
+
+    <!-- 3.3 GERADOR / UPLOAD DE CERTIFICADO -->
+    <div class="box">
+      <h3>3. Certificado de Conclusão</h3>
+      <div class="grid2" style="margin-top:10px">
+        <select id="certModo">
+          <option value="gerador">Gerar Certificado Personalizado na Plataforma</option>
+          <option value="upload">Fazer Upload de PDF/Imagem Base com Campos Automáticos</option>
+          <option value="nenhum">Sem Certificado</option>
+        </select>
+        <input id="certAssinatura" placeholder="Nome/Cargo na Assinatura (ex: Mathews Brito — Diretor)">
+      </div>
+
+      <div id="certBoxGerador" style="margin-top:12px">
+        <label>Texto do Certificado (Use <code>{{ALUNO}}</code>, <code>{{CURSO}}</code>, <code>{{HORAS}}</code>, <code>{{DATA}}</code>)
+          <textarea id="certTextoModelo" rows="3">Certificamos que {{ALUNO}} concluiu com êxito o curso {{CURSO}}, com carga horária total de {{HORAS}}, finalizado em {{DATA}} pela Vórtice Soluções Globais.</textarea>
+        </label>
+        <div class="grid2" style="margin-top:8px">
+          <label>Cor de Fundo do Certificado<input type="color" id="certCorFundo" value="#0f1724" style="height:42px"></label>
+          <label>Cor da Borda / Detalhes<input type="color" id="certCorBorda" value="#2f6fb8" style="height:42px"></label>
+        </div>
+      </div>
+
+      <div id="certBoxUpload" hidden style="margin-top:12px">
+        <label>Upload do Modelo Base (PDF ou PNG/JPG)<input type="file" id="certFileUpload" accept=".pdf,image/*"></label>
+        <div class="grid2" style="margin-top:8px">
+          <label>Posição Vertical do Nome do Aluno (% do topo)<input type="number" id="certPosY" value="48" min="5" max="95"></label>
+          <label>Tamanho da Fonte do Nome (px)<input type="number" id="certFontSize" value="28" min="12" max="72"></label>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px">
+      <button type="button" class="btn" id="btnSalvarCursoCompleto">Publicar Curso Completo no Site</button>
+    </div>
+
     <div class="box">
       <h3>Cursos Publicados</h3>
       <div id="listaCursosAdmin"></div>
     </div>
   </section>
 
-  <!-- ABA 4: CONTRATAÇÕES -->
+  <!-- ABA 4: CONTRATAÇÕES (COM CONTRATO E TEMPORÁRIO) -->
   <section class="adm-panel" id="tab-vagas">
-    <h2>Gestão de Vagas e Candidatos</h2>
+    <h2>Gestão de Vagas e Contratações</h2>
     <div class="box">
       <h3>+ Nova Vaga</h3>
       <div class="grid2" style="margin-top:10px">
-        <input id="vagTitulo" placeholder="Título da Vaga (ex: Técnico de Suporte TI)">
-        <select id="vagTipo"><option>CLT</option><option>PJ</option><option>Estágio</option></select>
+        <input id="vagTitulo" placeholder="Título da Vaga (ex: Analista Administrativo)">
+        <select id="vagTipo">
+          <option value="CLT">CLT</option>
+          <option value="PJ">PJ</option>
+          <option value="Contrato">Contrato</option>
+          <option value="Temporário">Temporário</option>
+          <option value="Estágio">Estágio</option>
+          <option value="Outro">Outro (Personalizado)</option>
+        </select>
+        <input id="vagTipoCustom" placeholder="Se escolheu 'Outro', digite o regime aqui...">
         <select id="vagLocal"><option>Remoto</option><option>Presencial</option><option>Híbrido</option></select>
-        <input id="vagSalario" placeholder="Faixa Salarial / Remuneração">
+        <input id="vagSalario" placeholder="Faixa Salarial / Valor do Contrato">
       </div>
-      <textarea id="vagDesc" rows="3" placeholder="Requisitos, responsabilidades e benefícios..." style="margin-top:10px"></textarea>
+      <textarea id="vagDesc" rows="3" placeholder="Requisitos, atribuições e benefícios..." style="margin-top:10px"></textarea>
       <button type="button" class="btn" id="btnAddVaga" style="margin-top:10px">Publicar Vaga</button>
     </div>
     <div class="box">
-      <h3>Vagas Ativas</h3>
+      <h3>Vagas Publicadas</h3>
       <div id="listaVagasAdmin"></div>
     </div>
   </section>
 
-  <!-- ABA 5: VOTICE INVESTIGADOR 10.0 -->
+  <!-- ABA 5: INVESTIGADOR 10.0 -->
   <section class="adm-panel" id="tab-investigador">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
       <div>
-        <h2>VOTICE INVESTIGADOR 10.0 — Autônomo</h2>
-        <p class="lead">Busca real (IBGE + Azure Maps) com 3 Bloqueios Anti-Invenção e Excel único mensal no OneDrive.</p>
+        <h2>VOTICE INVESTIGADOR 10.0</h2>
+        <p class="lead">Busca real (IBGE + Azure Maps) com validação de provas e exportação para OneDrive.</p>
       </div>
       <span class="pill ok" id="invStatusPill">Status: Pronto</span>
     </div>
-
     <div class="box">
-      <h3>Nova Investigação (Liberdade Total de Região e Filtros)</h3>
-      <div class="grid2" style="margin-top:12px">
+      <div class="grid2">
         <label>Modo de Região
           <select id="invModo">
-            <option value="cidade_unica">Uma Cidade Só (Sem fila, foca só nela)</option>
-            <option value="estado">Por Estado (Lista oficial IBGE)</option>
-            <option value="macrorregiao">Por Macrorregião (Sudeste, Sul, etc.)</option>
-            <option value="varias_cidades">Várias Cidades Digitadas</option>
-            <option value="nacional">Brasil Inteiro (5.570 cidades)</option>
+            <option value="cidade_unica">Uma Cidade Só</option>
+            <option value="estado">Por Estado (UF)</option>
+            <option value="macrorregiao">Por Macrorregião</option>
+            <option value="varias_cidades">Várias Cidades (1 por linha)</option>
+            <option value="nacional">Brasil Inteiro</option>
           </select>
         </label>
-        <label>Parâmetro da Região (Nome da Cidade, UF ex: SP, ou Cidades por linha)
-          <input id="invParamRegiao" placeholder="Ex: Porto Feliz - SP">
-        </label>
-        <label>Segmento / Palavra-chave de Busca Real
-          <input id="invTermo" placeholder="Ex: Metalúrgica, Supermercado, Clínica, Indústria">
-        </label>
-        <label>Empresas por Cidade (Padrão: 20)
-          <input id="invLimite" type="number" value="20" min="1" max="100">
-        </label>
+        <label>Parâmetro da Região<input id="invParamRegiao" placeholder="Ex: Porto Feliz - SP ou SP"></label>
+        <label>Segmento / Palavra-chave<input id="invTermo" placeholder="Ex: Indústria, Metalúrgica, Clínica"></label>
+        <label>Limite por Cidade<input id="invLimite" type="number" value="20" min="1" max="100"></label>
       </div>
-
       <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
         <button type="button" class="btn" id="btnInvIniciar">Iniciar Varredura Real</button>
         <button type="button" class="btn out" id="btnInvPausar">Pausar (P)</button>
         <button type="button" class="btn out" id="btnInvRetomar">Retomar (R)</button>
-        <button type="button" class="btn out" id="btnInvExportar">Salvar Excel do Mês no OneDrive (E)</button>
       </div>
-      <p style="font-size:12px;color:var(--mu);margin-top:8px">Atalhos ativos: P + Enter (Pausar) | R + Enter (Retomar) | E + Enter (Exportar para OneDrive).</p>
     </div>
-
     <div class="box">
-      <h3>Dossiês Encontrados (Aguardando Sua Revisão Manual — Bloqueio 3)</h3>
+      <h3>Resultados Encontrados</h3>
       <div id="invResultados"></div>
-    </div>
-
-    <div class="grid2">
-      <div class="box">
-        <h3>14 Módulos Oficiais + Adicionar Novo</h3>
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <input id="novoModuloNome" placeholder="Ex: Módulo de Energia Solar">
-          <button type="button" class="btn out" id="btnAddModulo">+ Adicionar</button>
-        </div>
-        <div id="listaModulosInv" style="margin-top:10px;font-size:13px"></div>
-      </div>
-      <div class="box">
-        <h3>30 Sites Oficiais + Adicionar Novo Site</h3>
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <input id="novoSiteNome" placeholder="Ex: Threads / Kwai / Shopee">
-          <button type="button" class="btn out" id="btnAddSite">+ Adicionar</button>
-        </div>
-        <div id="listaSitesInv" style="margin-top:10px;font-size:13px;max-height:220px;overflow:auto"></div>
-      </div>
     </div>
   </section>
 
-  <!-- ABA 6: NOTIFICAÇÕES & MERCADO PAGO -->
+  <!-- ABA 6: VISITANTES (PLANILHA ONEDRIVE), E-MAIL AUTOMÁTICO & MERCADO PAGO -->
   <section class="adm-panel" id="tab-notif">
-    <h2>Notificações 100% Configuráveis & Mercado Pago API</h2>
-    <div class="grid2" style="margin-top:16px">
+    <h2>Visitantes do Site (OneDrive), E-mails Automáticos & Mercado Pago</h2>
+
+    <!-- 6.1 VISITANTES EM TEMPO REAL -> PLANILHA ONEDRIVE -->
+    <div class="box">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+        <div>
+          <h3>Visitantes & Leads Rastreados (Sincronizado com OneDrive/Vórtice/Analytics/Visitantes_e_Leads.csv)</h3>
+          <p style="font-size:13px;color:var(--mu)">Todos os acessos ao site, cursos visualizados e contatos capturados são gravados aqui e enviados para a planilha no seu OneDrive.</p>
+        </div>
+        <button type="button" class="btn out" id="btnBaixarCsvVisitantes">Baixar Planilha CSV Agora</button>
+      </div>
+      <div style="max-height:240px;overflow:auto;margin-top:10px">
+        <table class="tbl">
+          <thead><tr><th>Data/Hora</th><th>Nome</th><th>E-mail</th><th>Página</th><th>Ação</th><th>Item</th></tr></thead>
+          <tbody id="tbodyVisitantes"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 6.2 AUTOMAÇÕES DE E-MAIL CONFIGURÁVEIS SEM LIMITAÇÕES -->
+    <div class="box">
+      <h3>Criador Ilimitado de E-mails Automáticos (Descontos, Abandono de Curso & Alertas)</h3>
+      <div class="grid2" style="margin-top:10px">
+        <input id="autoNome" placeholder="Nome da Regra (ex: Desconto Carrinho Abandonado)">
+        <select id="autoGatilho">
+          <option value="abandono_curso">Quando ficar perto de comprar um curso e sair</option>
+          <option value="visita_site">Assim que visitar a página / deixar contato</option>
+          <option value="interesse_vaga">Quando olhar vagas / contratações</option>
+        </select>
+        <input id="autoAssunto" placeholder="Assunto do E-mail (ex: Seu cupom exclusivo Vórtice!)">
+        <input id="autoCupom" placeholder="Código de Cupom de Desconto (opcional, ex: VORTICE15)">
+      </div>
+      <textarea id="autoMsg" rows="3" placeholder="Corpo do e-mail automático. Use {{NOME}}, {{ITEM}} e {{CUPOM}}..." style="margin-top:10px"></textarea>
+      <button type="button" class="btn" id="btnAddAutomacao" style="margin-top:10px">+ Adicionar Regra de E-mail Automático</button>
+      <div id="listaAutomacoes" style="margin-top:12px"></div>
+    </div>
+
+    <!-- 6.3 ALERTAS PARA VOCÊ & MERCADO PAGO -->
+    <div class="grid2">
       <div class="box">
-        <h3>Canais de Alerta (Você Escolhe)</h3>
+        <h3>Alertas Internos para Você (E-mail / WhatsApp)</h3>
         <div style="display:grid;gap:10px;margin-top:10px">
-          <label>E-mail para Alertas<input id="ntEmail" type="email"></label>
-          <label>WhatsApp para Alertas (DDD + Número)<input id="ntWppNum" placeholder="5511921913395"></label>
-          <label>URL da API WhatsApp (Evolution / Z-API / Webhook)<input id="ntWppUrl" placeholder="https://..."></label>
-          <label>Token da API WhatsApp<input id="ntWppToken" type="password"></label>
-          <button type="button" class="btn out" id="btnTestarWpp">Testar Envio de WhatsApp</button>
+          <label>Seu E-mail para Alertas<input id="ntEmail" type="email"></label>
+          <label>Seu WhatsApp para Alertas<input id="ntWppNum" placeholder="5511921913395"></label>
+          <label>URL API WhatsApp (opcional)<input id="ntWppUrl" placeholder="https://..."></label>
+          <label>Token API WhatsApp (opcional)<input id="ntWppToken" type="password"></label>
+          <button type="button" class="btn out" id="btnSalvarNotif">Salvar Alertas</button>
         </div>
-        <h4 style="margin-top:16px">Interruptores por Evento (Liga / Desliga)</h4>
-        <div style="display:grid;gap:8px;margin-top:8px;font-size:14px">
-          <div>Novo Candidato: <label><input type="checkbox" id="evCandEmail"> E-mail</label> <label><input type="checkbox" id="evCandWpp"> WhatsApp</label></div>
-          <div>Empresa OURO (Investigador): <label><input type="checkbox" id="evOuroEmail"> E-mail</label> <label><input type="checkbox" id="evOuroWpp"> WhatsApp</label></div>
-          <div>Venda de Curso: <label><input type="checkbox" id="evCursoEmail"> E-mail</label> <label><input type="checkbox" id="evCursoWpp"> WhatsApp</label></div>
-          <div>Mentoria Agendada: <label><input type="checkbox" id="evMentEmail"> E-mail</label> <label><input type="checkbox" id="evMentWpp"> WhatsApp</label></div>
-        </div>
-        <button type="button" class="btn" id="btnSalvarNotif" style="margin-top:14px">Salvar Regras de Notificação</button>
       </div>
 
       <div class="box">
-        <h3>Mercado Pago API (Pagamentos Automáticos)</h3>
+        <h3>Mercado Pago API (Pagamentos de Cursos & Mentorias)</h3>
         <div style="display:grid;gap:10px;margin-top:10px">
-          <label>Public Key (Produção ou Teste)<input id="mpPublicKey"></label>
-          <label>Access Token<input id="mpAccessToken" type="password"></label>
-          <label>Modo de Operação
-            <select id="mpModo"><option value="producao">Produção (Real)</option><option value="teste">Teste (Sandbox)</option></select>
-          </label>
-          <label>Webhook URL (Cole no painel do Mercado Pago)
-            <input readonly value="https://vorticesolucoesglobais-spec.github.io/Votice-Site/api/mercadopago/webhook">
-          </label>
+          <label>Public Key (APP_USR-...)<input id="mpPublicKey"></label>
+          <label>Access Token (APP_USR-...)<input id="mpAccessToken" type="password"></label>
+          <label>Ambiente<select id="mpModo"><option value="producao">Produção (Real)</option><option value="teste">Teste (Sandbox)</option></select></label>
           <button type="button" class="btn" id="btnSalvarMP">Salvar Credenciais Mercado Pago</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ABA 7: CONFIGURAÇÕES & CHAVES -->
+  <!-- ABA 7: CHAVES & CONTA MICROSOFT (CORRIGIDA) -->
   <section class="adm-panel" id="tab-config">
-    <h2>Chaves de Integração (Microsoft, GitHub & Azure Maps)</h2>
-    <p class="lead">Cole aqui as 5 chaves que você gerou. Elas ficam armazenadas com segurança no seu navegador de Admin.</p>
-    <div class="grid2" style="margin-top:18px">
-      <label>1. GitHub Personal Access Token (Para editar site sem código)<input id="cfgGithubToken" type="password" placeholder="github_pat_..."></label>
-      <label>2. Microsoft Client ID (Azure App)<input id="cfgMsClientId" placeholder="5c72ec2e-..."></label>
-      <label>3. Microsoft Tenant ID<input id="cfgMsTenantId"></label>
-      <label>4. Microsoft Client Secret<input id="cfgMsSecret" type="password"></label>
-      <label>5. Azure Maps Primary Key (Gratuita F0/Gen2)<input id="cfgMapsKey" type="password"></label>
-      <label>E-mail Microsoft Dono do OneDrive<input id="cfgAdminEmail" value="vorticesolucoesglobais@gmail.com"></label>
-      <label>Nova Senha de Acesso ao Admin Geral<input id="cfgAdminPass" type="password" placeholder="Deixe em branco para manter a atual"></label>
+    <h2>Chaves de Integração & Conexão Microsoft (OneDrive + Outlook)</h2>
+    <div class="box" style="border-color:#2f6fb8;background:#101926">
+      <p style="font-size:14px"><strong>Importante para conectar o OneDrive:</strong> No seu portal do Azure (<span translate="no">App Registrations > Authentication > Single-page application</span>), certifique-se de que esta URL exata esteja cadastrada como Redirect URI:</p>
+      <input id="azureRedirectHint" readonly style="margin-top:6px;font-family:monospace;color:#7bed9f">
     </div>
-    <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
-      <button type="button" class="btn" id="btnSalvarChaves">Salvar Todas as Chaves</button>
-      <button type="button" class="btn out" id="btnConectarMicrosoft">Conectar / Autorizar OneDrive & Outlook Microsoft</button>
+
+    <div class="grid2" style="margin-top:18px">
+      <label>1. GitHub Personal Access Token<input id="cfgGithubToken" type="password" placeholder="github_pat_..."></label>
+      <label>2. Microsoft Client ID (Application ID)<input id="cfgMsClientId" placeholder="Cole o Client ID aqui"></label>
+      <label>3. Microsoft Tenant ID (ou deixe 'common')<input id="cfgMsTenantId" placeholder="common ou ID do diretório"></label>
+      <label>4. Microsoft Client Secret<input id="cfgMsSecret" type="password"></label>
+      <label>5. Azure Maps Primary Key<input id="cfgMapsKey" type="password"></label>
+      <label>E-mail Admin Geral<input id="cfgAdminEmail" value="vorticesolucoesglobais@gmail.com"></label>
+      <label>Nova Senha Admin Geral (opcional)<input id="cfgAdminPass" type="password" placeholder="Deixe vazio para manter a atual"></label>
+    </div>
+
+    <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <button type="button" class="btn" id="btnSalvarChaves">1º Salvar Todas as Chaves</button>
+      <button type="button" class="btn out" id="btnConectarMicrosoft">2º Conectar / Autorizar OneDrive & Outlook Microsoft</button>
       <span class="pill" id="msConnStatus">OneDrive: Aguardando conexão</span>
     </div>
   </section>
@@ -329,7 +396,7 @@
 <script src="../lang.js"></script>
 <script>
 (function(){
-  // 1. ATIVAÇÃO IMEDIATA DAS ABAS (executa antes de qualquer carregamento externo)
+  // 1. NAVEGAÇÃO ENTRE ABAS (FUNCIONA IMEDIATAMENTE)
   const tabs = document.querySelectorAll(".adm-tab");
   const panels = document.querySelectorAll(".adm-panel");
   tabs.forEach(btn => {
@@ -343,15 +410,10 @@
     });
   });
 
-  // 2. VERIFICAÇÃO DE SESSÃO ADMIN
-  if (typeof VorticeCore === "undefined") {
-    alert("Erro: vortice-core.js não foi carregado. Verifique se ele está na raiz do repositório.");
-    return;
-  }
-
+  // 2. SESSÃO ADMIN
   const sess = VorticeCore.getSession();
   if (!sess || sess.role !== "admin") {
-    alert("Acesso restrito ao Admin Geral. Faça login em uma das áreas do site.");
+    alert("Acesso restrito ao Admin Geral.");
     location.href = "../index.html";
     return;
   }
@@ -367,28 +429,40 @@
     t.className = "toast";
     t.textContent = msg;
     document.body.appendChild(t);
-    setTimeout(() => t.remove(), 3500);
+    setTimeout(() => t.remove(), 4000);
   }
 
-  // Captura retorno OAuth Microsoft se existir
-  if (typeof VorticeServices !== "undefined") {
-    const msTok = VorticeServices.captureMsTokenFromHash();
-    if (msTok) document.getElementById("msConnStatus").textContent = "OneDrive & Outlook: Conectado";
+  // 3. CAPTURA RETORNO MICROSOFT OAUTH
+  document.getElementById("azureRedirectHint").value = VorticeServices.getRedirectUri();
+  const msAuth = VorticeServices.captureMsTokenFromHash();
+  const statusPill = document.getElementById("msConnStatus");
+  if (msAuth && msAuth.token) {
+    statusPill.textContent = "OneDrive & Outlook: Conectado";
+    statusPill.className = "pill ok";
+    VorticeServices.ensureOneDriveFolder("Vórtice/Clientes").catch(() => {});
+    VorticeServices.ensureOneDriveFolder("Vórtice/Analytics").catch(() => {});
+  } else if (msAuth && msAuth.error) {
+    statusPill.textContent = "Erro Microsoft: " + msAuth.error;
+    statusPill.className = "pill warn";
   }
 
+  // 4. PREENCHE CHAVES SALVAS
   const secrets = VorticeCore.getSecrets();
   document.getElementById("cfgGithubToken").value = secrets.githubToken || "";
   document.getElementById("cfgMsClientId").value = secrets.msClientId || "";
-  document.getElementById("cfgMsTenantId").value = secrets.msTenantId || "";
+  document.getElementById("cfgMsTenantId").value = secrets.msTenantId || "common";
   document.getElementById("cfgMsSecret").value = secrets.msClientSecret || "";
   document.getElementById("cfgMapsKey").value = secrets.azureMapsKey || "";
   document.getElementById("cfgAdminEmail").value = secrets.adminEmail || "vorticesolucoesglobais@gmail.com";
+  document.getElementById("mpPublicKey").value = secrets.mpPublicKey || "";
+  document.getElementById("mpAccessToken").value = secrets.mpAccessToken || "";
+  document.getElementById("mpModo").value = secrets.mpModo || "producao";
 
   document.getElementById("btnSalvarChaves").onclick = () => {
     const upd = {
       githubToken: document.getElementById("cfgGithubToken").value.trim(),
       msClientId: document.getElementById("cfgMsClientId").value.trim(),
-      msTenantId: document.getElementById("cfgMsTenantId").value.trim(),
+      msTenantId: document.getElementById("cfgMsTenantId").value.trim() || "common",
       msClientSecret: document.getElementById("cfgMsSecret").value.trim(),
       azureMapsKey: document.getElementById("cfgMapsKey").value.trim(),
       adminEmail: document.getElementById("cfgAdminEmail").value.trim().toLowerCase()
@@ -396,15 +470,22 @@
     const novaSenha = document.getElementById("cfgAdminPass").value;
     if (novaSenha) upd.adminPass = novaSenha;
     VorticeCore.saveSecrets(upd);
-    toast("Chaves salvas com segurança!");
+    toast("Todas as chaves foram salvas com sucesso!");
   };
 
   document.getElementById("btnConectarMicrosoft").onclick = () => {
-    try { location.href = VorticeServices.getMsAuthUrl(); } catch (e) { toast(e.message); }
+    // Salva antes de redirecionar caso o usuário tenha acabado de colar
+    document.getElementById("btnSalvarChaves").click();
+    try {
+      const url = VorticeServices.getMsAuthUrl();
+      window.location.assign(url);
+    } catch (e) {
+      toast(e.message);
+    }
   };
 
-  // Carrega site-data.json em segundo plano sem travar botões
-  let siteData = {};
+  // 5. CARREGA DADOS DO SITE (site-data.json)
+  let siteData = { identidade: {}, abasVisiveis: {}, cursos: [], mentorias: [], vagas: [] };
   VorticeCore.loadSiteData("..").then(d => {
     if (!d) return;
     siteData = d;
@@ -416,23 +497,25 @@
       document.getElementById("edEmail").value = siteData.identidade.email || "";
       document.getElementById("edCorPrincipal").value = siteData.identidade.corPrincipal || "#2f6fb8";
       document.getElementById("edTextoHero").value = siteData.identidade.textoHero || "";
+      document.getElementById("edBlocoLivreHome").value = siteData.identidade.blocoLivreHome || "";
     }
     if (siteData.abasVisiveis) {
       document.getElementById("visPortal").checked = siteData.abasVisiveis.portal !== false;
       document.getElementById("visCursos").checked = siteData.abasVisiveis.cursos !== false;
       document.getElementById("visContratacoes").checked = siteData.abasVisiveis.contratacoes !== false;
     }
+    renderCursosEVagas();
   });
 
-  document.getElementById("btnUploadLogo").onclick = async () => {
+  document.getElementById("btnUploadLogo").onclick = () => {
     const file = document.getElementById("upLogoFile").files[0];
     if (!file) return toast("Selecione uma imagem primeiro.");
     const reader = new FileReader();
     reader.onload = async () => {
       try {
         const base64 = reader.result.split(",")[1];
-        await VorticeCore.publishToGitHub("logo.png", base64, "Atualização de logo pelo Painel Admin", true);
-        toast("Logo atualizada no site com sucesso!");
+        await VorticeCore.publishToGitHub("logo.png", base64, "Atualização de logo pelo Admin", true);
+        toast("Logo atualizada no site!");
       } catch (e) { toast(e.message); }
     };
     reader.readAsDataURL(file);
@@ -448,54 +531,45 @@
         whatsapp: document.getElementById("edWhatsapp").value,
         email: document.getElementById("edEmail").value,
         corPrincipal: document.getElementById("edCorPrincipal").value,
-        textoHero: document.getElementById("edTextoHero").value
+        textoHero: document.getElementById("edTextoHero").value,
+        blocoLivreHome: document.getElementById("edBlocoLivreHome").value
       };
       siteData.abasVisiveis = {
         portal: document.getElementById("visPortal").checked,
         cursos: document.getElementById("visCursos").checked,
         contratacoes: document.getElementById("visContratacoes").checked
       };
-      await VorticeCore.publishToGitHub("site-data.json", siteData, "Edição visual via Admin Geral");
-      toast("Site atualizado e publicado no GitHub!");
+      await VorticeCore.publishToGitHub("site-data.json", siteData, "Edição livre via Admin");
+      toast("Alterações publicadas no site!");
     } catch (e) { toast(e.message); }
   };
 
+  // 6. EMPRESAS (SEM ACESSO AO ONEDRIVE) & EQUIPE
   function renderPortalAdmin() {
     const curDB = VorticeCore.getDB();
-    document.getElementById("listaEmpresas").innerHTML = (curDB.empresas || []).map(emp => `
+    const emps = curDB.empresas || [];
+    document.getElementById("selEmpDados").innerHTML = `<option value="">Selecione a Empresa...</option>` + emps.map(e => `<option value="${e.id}">${e.nome}</option>`).join("");
+
+    document.getElementById("listaEmpresas").innerHTML = emps.map(emp => `
       <div class="row-item">
-        <div><strong>${emp.nome}</strong> <small>(CNPJ: ${emp.cnpj || "-"})</small><br><small>Login Cliente: ${emp.email}</small></div>
-        <button type="button" class="btn out" style="padding:6px 12px;font-size:12px" onclick="compartilharPasta('${emp.nome}')">Compartilhar Pasta OneDrive</button>
+        <div><strong>${emp.nome}</strong> (CNPJ: ${emp.cnpj || "-"})<br><small>Login Empresa: ${emp.email} | Pasta Interna OneDrive: <code>Vórtice/Clientes/${emp.nome}</code> (Oculta para a empresa)</small></div>
+        <span class="pill ok">Acesso: Apenas Dashboards & Faturamento</span>
       </div>
-    `).join("") || "<p style='color:var(--mu);margin-top:8px'>Nenhuma empresa cadastrada ainda.</p>";
+    `).join("") || "<p style='color:var(--mu);margin-top:8px'>Nenhuma empresa cadastrada.</p>";
 
     document.getElementById("listaFuncionarios").innerHTML = (curDB.users || []).filter(u => u.role === "funcionario").map(f => `
       <div class="row-item">
         <div><strong>${f.nome}</strong> (${f.cargo || "Equipe"}) — ${f.email}<br>
-        <span class="pill ${f.acessoInvestigador ? 'ok' : 'warn'}">Investigador: ${f.acessoInvestigador ? 'Liberado (' + f.nivelInvestigador + ')' : 'Oculto/Bloqueado'}</span></div>
-        <button type="button" class="btn out" style="padding:6px 12px;font-size:12px" onclick="toggleInvFunc('${f.email}')">Alternar Acesso Investigador</button>
+        <span class="pill ${f.acessoInvestigador ? 'ok' : 'warn'}">Investigador: ${f.acessoInvestigador ? 'Liberado' : 'Oculto'}</span></div>
+        <button type="button" class="btn out" style="padding:6px 12px;font-size:12px" onclick="toggleInvFunc('${f.email}')">Alternar Investigador</button>
       </div>
-    `).join("") || "<p style='color:var(--mu);margin-top:8px'>Nenhum funcionário cadastrado ainda.</p>";
+    `).join("") || "<p style='color:var(--mu);margin-top:8px'>Nenhum colaborador cadastrado.</p>";
   }
-
-  window.compartilharPasta = async (nomeEmp) => {
-    const emailFunc = prompt("Digite o e-mail Microsoft do funcionário que vai alimentar a pasta de " + nomeEmp + ":");
-    if (!emailFunc) return;
-    try {
-      await VorticeServices.shareOneDriveFolder(`Vórtice/Clientes/${nomeEmp}`, emailFunc);
-      toast("Pasta compartilhada no OneDrive com " + emailFunc);
-    } catch (e) { toast(e.message); }
-  };
 
   window.toggleInvFunc = (email) => {
     const curDB = VorticeCore.getDB();
     const u = curDB.users.find(x => x.email === email);
-    if (u) {
-      u.acessoInvestigador = !u.acessoInvestigador;
-      VorticeCore.saveDB(curDB);
-      renderPortalAdmin();
-      toast("Permissão do Investigador atualizada!");
-    }
+    if (u) { u.acessoInvestigador = !u.acessoInvestigador; VorticeCore.saveDB(curDB); renderPortalAdmin(); toast("Permissão alterada!"); }
   };
 
   document.getElementById("btnAddEmpresa").onclick = async () => {
@@ -505,15 +579,15 @@
     if (!nome || !email || !senha) return toast("Preencha Nome, E-mail e Senha.");
     const curDB = VorticeCore.getDB();
     const empId = "emp_" + Date.now();
-    curDB.empresas.push({ id: empId, nome, cnpj: document.getElementById("empCnpj").value, responsavel: document.getElementById("empResp").value, email, plano: document.getElementById("empPlano").value });
+    curDB.empresas.push({ id: empId, nome, cnpj: document.getElementById("empCnpj").value, responsavel: document.getElementById("empResp").value, email, plano: document.getElementById("empPlano").value, dadosPainel: [] });
     curDB.users.push({ nome, email, senha, role: "cliente", empresaId: empId, status: "ativo" });
     VorticeCore.saveDB(curDB);
     renderPortalAdmin();
     try {
-      await VorticeServices.ensureOneDriveFolder(`Vórtice/Clientes/${nome}/Relatórios`);
-      await VorticeServices.ensureOneDriveFolder(`Vórtice/Clientes/${nome}/Documentos`);
-      toast("Empresa criada e pastas criadas no OneDrive!");
-    } catch (e) { toast("Empresa salva no sistema!"); }
+      await VorticeServices.ensureOneDriveFolder(`Vórtice/Clientes/${nome}/Levantamentos_Internos`);
+      await VorticeServices.ensureOneDriveFolder(`Vórtice/Clientes/${nome}/Faturamento`);
+      toast("Empresa criada e pasta interna criada no seu OneDrive!");
+    } catch (e) { toast("Empresa criada no sistema! Conecte o OneDrive na Aba 7 para sincronizar a pasta."); }
   };
 
   document.getElementById("btnAddFunc").onclick = () => {
@@ -531,110 +605,226 @@
     });
     VorticeCore.saveDB(curDB);
     renderPortalAdmin();
-    toast("Funcionário cadastrado!");
+    toast("Colaborador cadastrado!");
   };
 
-  document.getElementById("btnAddCurso").onclick = async () => {
+  document.getElementById("btnPublicarDadoEmpresa").onclick = () => {
+    const empId = document.getElementById("selEmpDados").value;
+    if (!empId) return toast("Selecione a empresa.");
+    const curDB = VorticeCore.getDB();
+    const emp = curDB.empresas.find(e => e.id === empId);
+    if (!emp) return;
+    emp.dadosPainel = emp.dadosPainel || [];
+    emp.dadosPainel.unshift({
+      data: new Date().toLocaleDateString("pt-BR"),
+      faturamento: document.getElementById("dadoFaturamento").value,
+      titulo: document.getElementById("dadoLevantamento").value,
+      status: document.getElementById("dadoStatus").value,
+      resumo: document.getElementById("dadoResumo").value
+    });
+    VorticeCore.saveDB(curDB);
+    toast("Dashboard e levantamento publicados no painel da empresa " + emp.nome + "!");
+  };
+
+  // 7. CONSTRUTOR LIVRE DE CURSOS + QUESTÕES A/B/C/D/E + CERTIFICADOS
+  let blocosCursoTemp = [];
+  window.addBlocoCurso = (tipo) => {
+    const id = "blk_" + Date.now();
+    blocosCursoTemp.push({ id, tipo, titulo: "", conteudo: "" });
+    renderBlocosCurso();
+  };
+  window.remBlocoCurso = (id) => {
+    blocosCursoTemp = blocosCursoTemp.filter(b => b.id !== id);
+    renderBlocosCurso();
+  };
+  function renderBlocosCurso() {
+    const labels = { texto: "Texto da Aula (Traduzível)", pdf: "Link ou URL do PDF", imagem: "URL da Imagem", video: "URL do Vídeo / Embed", html: "Código HTML Livre" };
+    document.getElementById("containerBlocosCurso").innerHTML = blocosCursoTemp.map((b, i) => `
+      <div class="bloco-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <strong>Bloco ${i + 1}: ${labels[b.tipo]}</strong>
+          <button type="button" class="btn out" style="padding:4px 10px;font-size:12px" onclick="remBlocoCurso('${b.id}')">Remover</button>
+        </div>
+        <input placeholder="Título deste módulo/aula" value="${b.titulo}" oninput="blocosCursoTemp[${i}].titulo=this.value" style="margin-top:8px">
+        <textarea rows="3" placeholder="Cole o texto, URL do PDF/vídeo ou HTML aqui..." oninput="blocosCursoTemp[${i}].conteudo=this.value" style="margin-top:8px">${b.conteudo}</textarea>
+      </div>
+    `).join("");
+  }
+
+  let questoesTemp = [];
+  document.getElementById("btnAddQuestao").onclick = () => {
+    questoesTemp.push({ pergunta: "", A: "", B: "", C: "", D: "", E: "", correta: "A" });
+    renderQuestoes();
+  };
+  window.remQuestao = (idx) => { questoesTemp.splice(idx, 1); renderQuestoes(); };
+  function renderQuestoes() {
+    document.getElementById("containerQuestoes").innerHTML = questoesTemp.map((q, idx) => `
+      <div class="bloco-card">
+        <div style="display:flex;justify-content:space-between">
+          <strong>Questão ${idx + 1}</strong>
+          <button type="button" class="btn out" style="padding:4px 10px;font-size:12px" onclick="remQuestao(${idx})">Excluir</button>
+        </div>
+        <input placeholder="Enunciado da pergunta..." value="${q.pergunta}" oninput="questoesTemp[${idx}].pergunta=this.value" style="margin-top:8px">
+        <div class="grid2" style="margin-top:8px">
+          <input placeholder="Opção A" value="${q.A}" oninput="questoesTemp[${idx}].A=this.value">
+          <input placeholder="Opção B" value="${q.B}" oninput="questoesTemp[${idx}].B=this.value">
+          <input placeholder="Opção C" value="${q.C}" oninput="questoesTemp[${idx}].C=this.value">
+          <input placeholder="Opção D" value="${q.D}" oninput="questoesTemp[${idx}].D=this.value">
+          <input placeholder="Opção E" value="${q.E}" oninput="questoesTemp[${idx}].E=this.value">
+          <label>Resposta Correta (X):
+            <select onchange="questoesTemp[${idx}].correta=this.value">
+              ${["A","B","C","D","E"].map(l => `<option value="${l}" ${q.correta===l?'selected':''}>Alternativa ${l}</option>`).join("")}
+            </select>
+          </label>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  document.getElementById("certModo").onchange = (e) => {
+    document.getElementById("certBoxGerador").hidden = e.target.value !== "gerador";
+    document.getElementById("certBoxUpload").hidden = e.target.value !== "upload";
+  };
+
+  document.getElementById("btnSalvarCursoCompleto").onclick = async () => {
     const titulo = document.getElementById("curTitulo").value.trim();
     if (!titulo) return toast("Informe o título do curso.");
+
+    let certArquivoBase64 = "";
+    const fileCert = document.getElementById("certFileUpload").files[0];
+    if (document.getElementById("certModo").value === "upload" && fileCert) {
+      certArquivoBase64 = await new Promise(res => {
+        const r = new FileReader();
+        r.onload = () => res(r.result);
+        r.readAsDataURL(fileCert);
+      });
+    }
+
     siteData.cursos = siteData.cursos || [];
     siteData.cursos.push({
       id: "cur_" + Date.now(),
       titulo,
       preco: Number(document.getElementById("curPreco").value || 0),
       duracao: document.getElementById("curDuracao").value,
-      layout: document.getElementById("curLayout").value,
-      imagemFundo: document.getElementById("curImgFundo").value,
-      downloadLiberado: document.getElementById("curDownload").value === "liberado",
-      exigeAvaliacao: document.getElementById("curAvaliacao").value === "sim",
-      tipoCertificado: document.getElementById("curCertificado").value,
+      imagemCapa: document.getElementById("curImgCapa").value,
       usarApiMP: document.getElementById("curPagamentoTipo").value === "api",
       linkManual: document.getElementById("curLinkManual").value,
-      descricao: document.getElementById("curDesc").value
+      descricao: document.getElementById("curDesc").value,
+      blocos: blocosCursoTemp,
+      avaliacao: {
+        ativa: document.getElementById("curTemProva").checked,
+        notaMinima: Number(document.getElementById("curNotaMin").value || 70),
+        questoes: questoesTemp
+      },
+      certificado: {
+        modo: document.getElementById("certModo").value,
+        assinatura: document.getElementById("certAssinatura").value,
+        textoModelo: document.getElementById("certTextoModelo").value,
+        corFundo: document.getElementById("certCorFundo").value,
+        corBorda: document.getElementById("certCorBorda").value,
+        arquivoBase: certArquivoBase64,
+        posY: Number(document.getElementById("certPosY").value || 48),
+        fontSize: Number(document.getElementById("certFontSize").value || 28)
+      }
     });
+
     try {
-      await VorticeCore.publishToGitHub("site-data.json", siteData, "Novo curso publicado via Admin");
-      toast("Curso publicado no site!");
+      await VorticeCore.publishToGitHub("site-data.json", siteData, "Novo curso completo publicado");
+      blocosCursoTemp = [];
+      questoesTemp = [];
+      renderBlocosCurso();
+      renderQuestoes();
+      renderCursosEVagas();
+      toast("Curso completo publicado com sucesso!");
     } catch (e) { toast(e.message); }
   };
 
+  // 8. VAGAS (INCLUINDO CONTRATO E TEMPORÁRIO)
   document.getElementById("btnAddVaga").onclick = async () => {
     const titulo = document.getElementById("vagTitulo").value.trim();
     if (!titulo) return toast("Informe o título da vaga.");
+    const tipoSel = document.getElementById("vagTipo").value;
+    const tipoFinal = tipoSel === "Outro" ? (document.getElementById("vagTipoCustom").value.trim() || "Contrato") : tipoSel;
     siteData.vagas = siteData.vagas || [];
     siteData.vagas.push({
       id: "vag_" + Date.now(),
       titulo,
-      tipo: document.getElementById("vagTipo").value,
+      tipo: tipoFinal,
       local: document.getElementById("vagLocal").value,
       salario: document.getElementById("vagSalario").value,
       descricao: document.getElementById("vagDesc").value,
       status: "Aberta"
     });
     try {
-      await VorticeCore.publishToGitHub("site-data.json", siteData, "Nova vaga publicada via Admin");
-      toast("Vaga publicada na aba Contratações!");
+      await VorticeCore.publishToGitHub("site-data.json", siteData, "Nova vaga publicada");
+      renderCursosEVagas();
+      toast("Vaga (" + tipoFinal + ") publicada!");
     } catch (e) { toast(e.message); }
   };
 
-  function renderInvestigadorConfig() {
-    const curDB = VorticeCore.getDB();
-    document.getElementById("listaModulosInv").innerHTML = curDB.investigador.modulos.map(m => `<span class="pill" style="margin:3px">${m}</span>`).join("");
-    document.getElementById("listaSitesInv").innerHTML = curDB.investigador.sites.map(s => `<span class="pill" style="margin:3px">${s}</span>`).join("");
+  function renderCursosEVagas() {
+    document.getElementById("listaCursosAdmin").innerHTML = (siteData.cursos || []).map(c => `
+      <div class="row-item"><div><strong>${c.titulo}</strong> — R$ ${c.preco} (${(c.blocos||[]).length} blocos, ${(c.avaliacao?.questoes||[]).length} questões)</div></div>
+    `).join("") || "<p style='color:var(--mu)'>Nenhum curso publicado ainda.</p>";
+
+    document.getElementById("listaVagasAdmin").innerHTML = (siteData.vagas || []).map(v => `
+      <div class="row-item"><div><strong>${v.titulo}</strong> <span class="pill">${v.tipo}</span> · ${v.local}</div></div>
+    `).join("") || "<p style='color:var(--mu)'>Nenhuma vaga publicada ainda.</p>";
   }
 
-  document.getElementById("btnAddModulo").onclick = () => {
-    const val = document.getElementById("novoModuloNome").value.trim();
-    if (!val) return;
+  // 9. VISITANTES & AUTOMAÇÕES DE E-MAIL
+  function renderVisitantesEAutomacoes() {
     const curDB = VorticeCore.getDB();
-    curDB.investigador.modulos.push(val);
+    const vis = curDB.visitantes || [];
+    document.getElementById("tbodyVisitantes").innerHTML = vis.slice(0, 50).map(v => `
+      <tr><td>${v.dataHora}</td><td>${v.nome}</td><td>${v.email}</td><td>${v.pagina}</td><td>${v.acao}</td><td>${v.itemInteresse}</td></tr>
+    `).join("") || "<tr><td colspan='6'>Nenhum acesso registrado ainda.</td></tr>";
+
+    const autos = curDB.automacoesEmail || [];
+    document.getElementById("listaAutomacoes").innerHTML = autos.map((a, idx) => `
+      <div class="row-item">
+        <div><strong>${a.nome}</strong> <span class="pill">${a.gatilho}</span><br><small>Assunto: ${a.assunto} | Cupom: ${a.cupom || "Sem cupom"}</small></div>
+        <button type="button" class="btn out" style="padding:4px 10px;font-size:12px" onclick="remAutomacao(${idx})">Excluir</button>
+      </div>
+    `).join("") || "<p style='color:var(--mu)'>Nenhuma automação de e-mail criada ainda.</p>";
+  }
+
+  window.remAutomacao = (idx) => {
+    const curDB = VorticeCore.getDB();
+    curDB.automacoesEmail.splice(idx, 1);
     VorticeCore.saveDB(curDB);
-    document.getElementById("novoModuloNome").value = "";
-    renderInvestigadorConfig();
-    toast("Novo módulo adicionado!");
+    renderVisitantesEAutomacoes();
   };
 
-  document.getElementById("btnAddSite").onclick = () => {
-    const val = document.getElementById("novoSiteNome").value.trim();
-    if (!val) return;
+  document.getElementById("btnAddAutomacao").onclick = () => {
+    const nome = document.getElementById("autoNome").value.trim();
+    const assunto = document.getElementById("autoAssunto").value.trim();
+    if (!nome || !assunto) return toast("Preencha o Nome e o Assunto da automação.");
     const curDB = VorticeCore.getDB();
-    curDB.investigador.sites.push(val);
+    curDB.automacoesEmail = curDB.automacoesEmail || [];
+    curDB.automacoesEmail.push({
+      id: "auto_" + Date.now(),
+      ativo: true,
+      nome,
+      gatilho: document.getElementById("autoGatilho").value,
+      assunto,
+      cupom: document.getElementById("autoCupom").value.trim(),
+      mensagem: document.getElementById("autoMsg").value
+    });
     VorticeCore.saveDB(curDB);
-    document.getElementById("novoSiteNome").value = "";
-    renderInvestigadorConfig();
-    toast("Novo site adicionado à investigação!");
+    renderVisitantesEAutomacoes();
+    toast("Regra de e-mail automático criada!");
   };
 
-  document.getElementById("btnInvPausar").onclick = () => { document.getElementById("invStatusPill").textContent = "Status: Pausado (P)"; };
-  document.getElementById("btnInvRetomar").onclick = () => { document.getElementById("invStatusPill").textContent = "Status: Ativo"; };
-
-  document.getElementById("btnInvIniciar").onclick = async () => {
-    const modo = document.getElementById("invModo").value;
-    const param = document.getElementById("invParamRegiao").value;
-    const termo = document.getElementById("invTermo").value || "Empresa";
-    const limite = Number(document.getElementById("invLimite").value || 20);
-    const boxRes = document.getElementById("invResultados");
-    boxRes.innerHTML = "<p>Consultando IBGE e Azure Maps...</p>";
-    try {
-      const cidades = await VorticeServices.buscarCidadesIBGE({ modo, estado: param, macrorregiao: param, cidadeUnica: param, listaCidades: param });
-      if (!cidades.length) {
-        boxRes.innerHTML = "<p>Nenhuma cidade encontrada com esses filtros. Ajuste os filtros.</p>";
-        return;
-      }
-      const empresas = await VorticeServices.buscarEmpresasAzureMaps(termo, cidades[0].nome, limite);
-      boxRes.innerHTML = empresas.map(emp => `
-        <div class="row-item">
-          <div>
-            <strong>${emp.nome}</strong> — ${cidades[0].nome}<br>
-            <small>Tel: ${emp.telefone} | Endereço: ${emp.endereco}</small><br>
-            <a href="${emp.linkMapa}" target="_blank" rel="noopener" style="color:#7fb0e6;font-size:13px">Abrir Prova Real no Mapa →</a>
-          </div>
-          <span class="pill">Aguardando Revisão</span>
-        </div>
-      `).join("") || "<p>Nenhum resultado com dados reais retornado para esta busca.</p>";
-    } catch (e) {
-      boxRes.innerHTML = `<p style="color:#ff7675">${e.message}</p>`;
-    }
+  document.getElementById("btnBaixarCsvVisitantes").onclick = () => {
+    const vis = VorticeCore.getDB().visitantes || [];
+    const csv = "\uFEFFData/Hora;Nome;E-mail;WhatsApp;Página;Ação;Item;Idioma;Origem\n" +
+      vis.map(v => `"${v.dataHora}";"${v.nome}";"${v.email}";"${v.whatsapp}";"${v.pagina}";"${v.acao}";"${v.itemInteresse}";"${v.idioma}";"${v.origem}"`).join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "Visitantes_e_Leads_Vortice.csv";
+    a.click();
   };
 
   document.getElementById("btnSalvarNotif").onclick = () => {
@@ -644,21 +834,10 @@
       emailAlerta: document.getElementById("ntEmail").value,
       whatsappNumero: document.getElementById("ntWppNum").value,
       whatsappUrl: document.getElementById("ntWppUrl").value,
-      whatsappToken: document.getElementById("ntWppToken").value,
-      eventos: {
-        novoCandidato: { email: document.getElementById("evCandEmail").checked, whatsapp: document.getElementById("evCandWpp").checked },
-        empresaOuro: { email: document.getElementById("evOuroEmail").checked, whatsapp: document.getElementById("evOuroWpp").checked },
-        vendaCurso: { email: document.getElementById("evCursoEmail").checked, whatsapp: document.getElementById("evCursoWpp").checked },
-        mentoriaAgendada: { email: document.getElementById("evMentEmail").checked, whatsapp: document.getElementById("evMentWpp").checked }
-      }
+      whatsappToken: document.getElementById("ntWppToken").value
     };
     VorticeCore.saveDB(curDB);
-    toast("Regras de notificação salvas!");
-  };
-
-  document.getElementById("btnTestarWpp").onclick = async () => {
-    await VorticeServices.sendNotification("empresaOuro", "Teste Vórtice", "Notificação de WhatsApp funcionando!");
-    toast("Comando de teste disparado!");
+    toast("Configurações de alerta salvas!");
   };
 
   document.getElementById("btnSalvarMP").onclick = () => {
@@ -670,8 +849,29 @@
     toast("Credenciais do Mercado Pago salvas!");
   };
 
+  // 10. INVESTIGADOR
+  document.getElementById("btnInvIniciar").onclick = async () => {
+    const modo = document.getElementById("invModo").value;
+    const param = document.getElementById("invParamRegiao").value;
+    const termo = document.getElementById("invTermo").value || "Empresa";
+    const limite = Number(document.getElementById("invLimite").value || 20);
+    const boxRes = document.getElementById("invResultados");
+    boxRes.innerHTML = "<p>Consultando IBGE e Azure Maps...</p>";
+    try {
+      const cidades = await VorticeServices.buscarCidadesIBGE({ modo, estado: param, macrorregiao: param, cidadeUnica: param, listaCidades: param });
+      if (!cidades.length) { boxRes.innerHTML = "<p>Nenhuma cidade encontrada.</p>"; return; }
+      const empresas = await VorticeServices.buscarEmpresasAzureMaps(termo, cidades[0].nome, limite);
+      boxRes.innerHTML = empresas.map(emp => `
+        <div class="row-item">
+          <div><strong>${emp.nome}</strong> — ${cidades[0].nome}<br><small>Tel: ${emp.telefone} | Endereço: ${emp.endereco}</small></div>
+          <a href="${emp.linkMapa}" target="_blank" rel="noopener" class="pill ok">Ver Prova Real →</a>
+        </div>
+      `).join("") || "<p>Nenhum resultado real retornado.</p>";
+    } catch (e) { boxRes.innerHTML = `<p style="color:#ff7675">${e.message}</p>`; }
+  };
+
   renderPortalAdmin();
-  renderInvestigadorConfig();
+  renderVisitantesEAutomacoes();
 })();
 </script>
 </body>
