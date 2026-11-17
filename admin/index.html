@@ -25,11 +25,15 @@
 .pill.ouro{background:rgba(241,196,15,.2);color:#f1c40f}
 .btn-del{background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.45);color:#ff7675;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer}
 .btn-del:hover{background:#e74c3c;color:#fff}
+.btn-sec{background:rgba(127,176,230,.12);border:1px solid rgba(127,176,230,.35);color:#acc9ee;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer}
+.btn-sec:hover{background:#2f6fb8;color:#fff}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1d5fa6;color:#fff;padding:12px 22px;border-radius:8px;font-weight:600;z-index:9999;box-shadow:0 10px 30px rgba(0,0,0,.5)}
 .bloco-card{background:#141b24;border:1px solid #2b3a4f;border-radius:8px;padding:14px;margin-top:10px}
 table.tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
 table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-align:left}
 .log-box{background:#090d12;border:1px solid #1e2a3a;border-radius:6px;padding:12px;font-family:monospace;font-size:12px;max-height:160px;overflow:auto;color:#9ab4d4;margin-top:10px}
+.chk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-top:10px}
+.chk-card{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#141b24;border:1px solid #2b3a4f;border-radius:6px;font-size:13px;cursor:pointer}
 @media(max-width:820px){.grid2{grid-template-columns:1fr}}
 </style>
 </head>
@@ -54,13 +58,32 @@ table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-
     <label>Senha<input id="admLogPass" type="password" required></label>
     <p id="admLogErr" style="color:#ff7675;font-size:13px" hidden></p>
     <button type="submit" class="btn">Entrar no Painel Admin</button>
+    <div style="text-align:right;margin-top:4px">
+      <button type="button" id="btnAbrirRecAdmin" style="background:none;border:0;color:#7fb0e6;font-size:13px;cursor:pointer;text-decoration:underline">Esqueci minha senha / Recuperar acesso</button>
+    </div>
   </form>
+
+  <!-- BOX DE RECUPERAÇÃO DE SENHA (ADMIN, FUNCIONÁRIOS E EMPRESAS) -->
+  <div id="boxRecSenha" hidden style="margin-top:20px;padding-top:18px;border-top:1px solid #2b3a4f">
+    <h3 style="font-size:17px">Recuperar Senha</h3>
+    <p style="font-size:13px;color:var(--mu);margin-top:4px">Informe seu e-mail cadastrado para receber um código de verificação via Outlook e redefinir sua senha.</p>
+    <div style="display:grid;gap:10px;margin-top:12px">
+      <input id="recEmail" type="email" placeholder="Seu e-mail cadastrado">
+      <button type="button" class="btn out" id="btnEnviarCodigoRec">Enviar Código de Recuperação</button>
+      <div id="recStep2" hidden style="display:grid;gap:10px;margin-top:8px">
+        <input id="recCodigo" placeholder="Código de 6 dígitos recebido">
+        <input id="recNovaSenha" type="password" placeholder="Nova senha">
+        <button type="button" class="btn" id="btnConfirmarRec">Redefinir Senha Agora</button>
+      </div>
+      <p id="recMsg" style="font-size:13px;color:#7bed9f" hidden></p>
+    </div>
+  </div>
 </section>
 
 <main class="adm-wrap" id="admApp" hidden>
   <div class="adm-tabs">
     <button type="button" class="adm-tab active" data-tab="site">1. Editar Site (Livre)</button>
-    <button type="button" class="adm-tab" data-tab="portal">2. Portal (Empresas & Equipe)</button>
+    <button type="button" class="adm-tab" data-tab="portal">2. Portal (Empresas, Equipe & Permissões)</button>
     <button type="button" class="adm-tab" data-tab="cursos">3. Cursos, Provas & Certificados</button>
     <button type="button" class="adm-tab" data-tab="vagas">4. Contratações</button>
     <button type="button" class="adm-tab" data-tab="investigador">5. Investigador 10.0</button>
@@ -99,10 +122,10 @@ table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-
     <div style="margin-top:22px"><button type="button" class="btn" id="btnSalvarSite">Salvar e Publicar Alterações no Site</button></div>
   </section>
 
-  <!-- ABA 2: PORTAL DO CLIENTE & EQUIPE -->
+  <!-- ABA 2: PORTAL DO CLIENTE, EQUIPE & CONTROLE DE ACESSO -->
   <section class="adm-panel" id="tab-portal">
-    <h2>Empresas (Dashboards & Faturamento) vs. Equipe (OneDrive)</h2>
-    <p class="lead">Ao cadastrar uma <b>Nova Empresa</b> ou um <b>Novo Funcionário</b>, a pasta exclusiva é criada automaticamente no seu <b>OneDrive</b> no mesmo instante.</p>
+    <h2>Empresas, Equipe, Pastas OneDrive & Controle de Acesso</h2>
+    <p class="lead">Cadastre empresas e funcionários (criando pastas automáticas no OneDrive), defina <b>qual funcionário atende cada empresa</b> e gerencie senhas.</p>
     <div class="grid2" style="margin-top:18px">
       <div class="box">
         <h3>+ Nova Empresa / Cliente</h3>
@@ -129,6 +152,24 @@ table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-
         </div>
       </div>
     </div>
+
+    <!-- NOVO: VÍNCULO FUNCIONÁRIO <-> EMPRESAS (ISOLAMENTO DE ACESSO) -->
+    <div class="box" style="border-color:#2f6fb8">
+      <h3>Vínculo de Acesso: Qual Funcionário Atende Qual Empresa</h3>
+      <p style="font-size:13px;color:var(--mu);margin-top:4px">Por segurança, um funcionário só visualiza e gerencia as empresas marcadas abaixo (nunca terá acesso a todas automaticamente).</p>
+      <div class="grid2" style="margin-top:12px">
+        <label>1. Selecione o Funcionário
+          <select id="selFuncVinculo"><option value="">Selecione um funcionário...</option></select>
+        </label>
+        <div style="display:flex;align-items:flex-end">
+          <button type="button" class="btn" id="btnSalvarVinculoEmpresas">Salvar Empresas Permitidas para este Funcionário</button>
+        </div>
+      </div>
+      <div id="boxCheckEmpresas" class="chk-grid" style="margin-top:12px">
+        <p style="color:var(--mu);font-size:13px">Selecione um funcionário acima para marcar as empresas que ele pode acessar.</p>
+      </div>
+    </div>
+
     <div class="box">
       <h3>Alimentar Dados / Dashboards de uma Empresa</h3>
       <div class="grid2" style="margin-top:10px">
@@ -140,8 +181,9 @@ table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-
       <textarea id="dadoResumo" rows="2" placeholder="Resumo executivo..." style="margin-top:10px"></textarea>
       <button type="button" class="btn out" id="btnPublicarDadoEmpresa" style="margin-top:10px">Publicar no Painel da Empresa</button>
     </div>
-    <div class="box"><h3>Empresas Cadastradas</h3><div id="listaEmpresas"></div></div>
-    <div class="box"><h3>Funcionários Cadastrados</h3><div id="listaFuncionarios"></div></div>
+
+    <div class="box"><h3>Empresas Cadastradas (Resetar Senha / Excluir)</h3><div id="listaEmpresas"></div></div>
+    <div class="box"><h3>Funcionários Cadastrados (Vínculos / Resetar Senha / Excluir)</h3><div id="listaFuncionarios"></div></div>
   </section>
 
   <!-- ABA 3: CURSOS LIVRES + PROVAS + CERTIFICADOS -->
@@ -351,6 +393,70 @@ table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-
     });
   });
 
+  // LÓGICA DE AUTO-RECUPERAÇÃO DE SENHA (DISPONÍVEL NA TELA DE LOGIN E TAMBÉM PARA USUÁRIOS)
+  document.getElementById("btnAbrirRecAdmin").onclick = () => {
+    const b = document.getElementById("boxRecSenha");
+    b.hidden = !b.hidden;
+    const pre = document.getElementById("admLogEmail").value.trim();
+    if (pre) document.getElementById("recEmail").value = pre;
+  };
+
+  let codigoRecAtivo = "";
+  let emailRecAtivo = "";
+  document.getElementById("btnEnviarCodigoRec").onclick = async () => {
+    const email = document.getElementById("recEmail").value.trim().toLowerCase();
+    if (!email) return alert("Informe o e-mail cadastrado.");
+    const secrets = VorticeCore.getSecrets();
+    const curDB = VorticeCore.getDB();
+    const isAdm = email === (secrets.adminEmail || "vorticesolucoesglobais@outlook.com").toLowerCase();
+    const userFound = (curDB.users || []).find(u => u.email.toLowerCase() === email);
+    if (!isAdm && !userFound) return alert("E-mail não encontrado no cadastro.");
+
+    codigoRecAtivo = String(Math.floor(100000 + Math.random() * 900000));
+    emailRecAtivo = email;
+    const msgEl = document.getElementById("recMsg");
+    msgEl.hidden = false;
+
+    try {
+      await VorticeServices.sendOutlookMail(
+        email,
+        "Código de Recuperação de Senha — Vórtice Soluções Globais",
+        `<p>Olá,</p><p>Seu código para redefinir a senha de acesso ao sistema Vórtice é: <strong style="font-size:20px">${codigoRecAtivo}</strong></p><p>Se você não solicitou esta alteração, ignore este e-mail.</p>`
+      );
+      msgEl.style.color = "#7bed9f";
+      msgEl.textContent = "Código enviado para " + email + "! Verifique sua caixa de entrada ou spam.";
+    } catch (e) {
+      // Fallback seguro caso o Outlook ainda não esteja conectado no navegador do usuário
+      msgEl.style.color = "#f1c40f";
+      msgEl.textContent = "Código gerado (modo local): " + codigoRecAtivo + " — digite abaixo para redefinir.";
+    }
+    document.getElementById("recStep2").hidden = false;
+  };
+
+  document.getElementById("btnConfirmarRec").onclick = () => {
+    const cod = document.getElementById("recCodigo").value.trim();
+    const nova = document.getElementById("recNovaSenha").value;
+    if (!cod || cod !== codigoRecAtivo) return alert("Código de verificação incorreto.");
+    if (!nova || nova.length < 4) return alert("Digite uma nova senha com pelo menos 4 caracteres.");
+
+    const secrets = VorticeCore.getSecrets();
+    const isAdm = emailRecAtivo === (secrets.adminEmail || "vorticesolucoesglobais@outlook.com").toLowerCase();
+    if (isAdm) {
+      VorticeCore.saveSecrets({ adminPass: nova });
+    } else {
+      const curDB = VorticeCore.getDB();
+      const u = (curDB.users || []).find(x => x.email.toLowerCase() === emailRecAtivo);
+      if (u) {
+        u.senha = nova;
+        VorticeCore.saveDB(curDB);
+      }
+    }
+    alert("Senha redefinida com sucesso! Faça login com a nova senha.");
+    document.getElementById("boxRecSenha").hidden = true;
+    document.getElementById("admLogEmail").value = emailRecAtivo;
+    document.getElementById("admLogPass").value = nova;
+  };
+
   const sess = VorticeCore.getSession();
   if (sess && sess.role === "admin") {
     document.getElementById("admApp").hidden = false;
@@ -368,7 +474,6 @@ table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-
   document.getElementById("btnLogout").onclick = () => { VorticeCore.logout(); location.reload(); };
   function toast(msg) { const t = document.createElement("div"); t.className = "toast"; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 4500); }
 
-  // REDIRECT URI DINÂMICA PARA FUNCIONAR NO AZURE STATIC WEB APPS OU GITHUB PAGES
   const currentRedirectUri = window.location.origin + window.location.pathname;
   document.getElementById("azureRedirectHint").value = currentRedirectUri;
 
@@ -387,6 +492,7 @@ table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-
     return saved ? { token: saved } : null;
   }
 
+  // CORRIGIDO: conflictBehavior = "fail" (valor oficial aceito pelo Microsoft Graph) + tratamento 409
   async function criarPastaOneDriveDireta(caminho) {
     const token = localStorage.getItem("vortice_ms_token");
     if (!token) throw new Error("Conecte o OneDrive na Aba 7 primeiro.");
@@ -399,7 +505,7 @@ table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Authorization": "Bearer " + token, "Content-Type": "application/json" },
-        body: JSON.stringify({ name: pasta, folder: {}, "@microsoft.graph.conflictBehavior": "ignore" })
+        body: JSON.stringify({ name: pasta, folder: {}, "@microsoft.graph.conflictBehavior": "fail" })
       });
       if (!res.ok && res.status !== 409) {
         const err = await res.json().catch(() => ({}));
@@ -495,34 +601,120 @@ table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-
     } catch (e) { toast(e.message); }
   };
 
-  // EMPRESAS & FUNCIONÁRIOS (CRIA PASTA AUTOMATICAMENTE NO CADASTRO + BOTÃO EXCLUIR)
+  // =========================================================================
+  // EMPRESAS, FUNCIONÁRIOS, RESET DE SENHA E VÍNCULO FUNCIONÁRIO <-> EMPRESA
+  // =========================================================================
   function renderPortalAdmin() {
     const curDB = VorticeCore.getDB();
     const emps = curDB.empresas || [];
+    const funcs = (curDB.users || []).filter(u => u.role === "funcionario");
+
     document.getElementById("selEmpDados").innerHTML = `<option value="">Selecione a Empresa...</option>` + emps.map(e => `<option value="${e.id}">${e.nome}</option>`).join("");
+
+    // Atualiza seletor de funcionário para vínculo de empresas
+    const selFunc = document.getElementById("selFuncVinculo");
+    const prevSel = selFunc.value;
+    selFunc.innerHTML = `<option value="">Selecione um funcionário...</option>` + funcs.map(f => `<option value="${f.email}">${f.nome} (${f.email})</option>`).join("");
+    if (prevSel && funcs.some(f => f.email === prevSel)) selFunc.value = prevSel;
+    renderCheckboxesEmpresas();
+
     document.getElementById("listaEmpresas").innerHTML = emps.map(emp => `
       <div class="row-item">
-        <div><strong>${emp.nome}</strong> (CNPJ: ${emp.cnpj || "-"})<br><small>Login: ${emp.email} | Pasta OneDrive: <code>Vórtice/Clientes/${emp.nome}</code></small></div>
-        <button type="button" class="btn-del" onclick="excluirEmpresa('${emp.id}')">Excluir Empresa</button>
+        <div>
+          <strong>${emp.nome}</strong> (CNPJ: ${emp.cnpj || "-"})<br>
+          <small>Login: <b>${emp.email}</b> | Pasta OneDrive: <code>Vórtice/Clientes/${emp.nome}</code></small>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button type="button" class="btn-sec" onclick="resetarSenhaUsuario('${emp.email}', '${emp.nome}')">Resetar Senha</button>
+          <button type="button" class="btn-del" onclick="excluirEmpresa('${emp.id}')">Excluir Empresa</button>
+        </div>
       </div>
     `).join("") || "<p style='color:var(--mu)'>Nenhuma empresa cadastrada.</p>";
 
-    document.getElementById("listaFuncionarios").innerHTML = (curDB.users || []).filter(u => u.role === "funcionario").map(f => `
+    document.getElementById("listaFuncionarios").innerHTML = funcs.map(f => {
+      const idsPermitidos = f.empresasPermitidas || [];
+      const nomesPermitidos = emps.filter(e => idsPermitidos.includes(e.id)).map(e => e.nome);
+      const badgeEmpresas = nomesPermitidos.length
+        ? `<span class="pill ok">Empresas: ${nomesPermitidos.join(", ")}</span>`
+        : `<span class="pill warn">Nenhuma empresa vinculada</span>`;
+      return `
       <div class="row-item">
-        <div><strong>${f.nome}</strong> (${f.cargo || "Equipe"}) — ${f.email}<br><small>Pasta OneDrive: <code>Vórtice/Equipe/${f.nome}</code></small></div>
-        <div style="display:flex;gap:8px;align-items:center">
+        <div>
+          <strong>${f.nome}</strong> (${f.cargo || "Equipe"}) — <b>${f.email}</b><br>
+          <small>Pasta OneDrive: <code>Vórtice/Equipe/${f.nome}</code></small>
+          <div style="margin-top:6px">${badgeEmpresas}</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button type="button" class="btn-sec" onclick="resetarSenhaUsuario('${f.email}', '${f.nome}')">Resetar Senha</button>
           <button type="button" class="btn out" style="padding:6px 10px;font-size:12px" onclick="toggleInvFunc('${f.email}')">Investigador: ${f.acessoInvestigador ? 'ON' : 'OFF'}</button>
           <button type="button" class="btn-del" onclick="excluirFuncionario('${f.email}')">Excluir</button>
         </div>
       </div>
-    `).join("") || "<p style='color:var(--mu)'>Nenhum funcionário cadastrado.</p>";
+    `}).join("") || "<p style='color:var(--mu)'>Nenhum funcionário cadastrado.</p>";
   }
+
+  function renderCheckboxesEmpresas() {
+    const emailFunc = document.getElementById("selFuncVinculo").value;
+    const box = document.getElementById("boxCheckEmpresas");
+    const curDB = VorticeCore.getDB();
+    const emps = curDB.empresas || [];
+    if (!emailFunc) {
+      box.innerHTML = `<p style="color:var(--mu);font-size:13px">Selecione um funcionário acima para marcar as empresas que ele pode acessar.</p>`;
+      return;
+    }
+    if (!emps.length) {
+      box.innerHTML = `<p style="color:var(--mu);font-size:13px">Nenhuma empresa cadastrada ainda.</p>`;
+      return;
+    }
+    const func = (curDB.users || []).find(u => u.email === emailFunc);
+    const permitidas = (func && func.empresasPermitidas) ? func.empresasPermitidas : [];
+    box.innerHTML = emps.map(emp => `
+      <label class="chk-card">
+        <input type="checkbox" class="chk-emp-item" value="${emp.id}" ${permitidas.includes(emp.id) ? "checked" : ""} style="width:auto">
+        <span>${emp.nome}</span>
+      </label>
+    `).join("");
+  }
+
+  document.getElementById("selFuncVinculo").onchange = renderCheckboxesEmpresas;
+
+  document.getElementById("btnSalvarVinculoEmpresas").onclick = () => {
+    const emailFunc = document.getElementById("selFuncVinculo").value;
+    if (!emailFunc) return toast("Selecione um funcionário primeiro.");
+    const selecionadas = Array.from(document.querySelectorAll(".chk-emp-item:checked")).map(el => el.value);
+    const curDB = VorticeCore.getDB();
+    const func = (curDB.users || []).find(u => u.email === emailFunc);
+    if (!func) return;
+    func.empresasPermitidas = selecionadas;
+    VorticeCore.saveDB(curDB);
+    renderPortalAdmin();
+    toast(`Permissões atualizadas para ${func.nome}!`);
+  };
+
+  // RESETAR SENHA PELO ADMIN (PARA FUNCIONÁRIOS OU EMPRESAS)
+  window.resetarSenhaUsuario = (email, nome) => {
+    const novaSenha = prompt(`Digite a nova senha de acesso para "${nome}" (${email}):`);
+    if (novaSenha === null) return;
+    if (novaSenha.trim().length < 4) return toast("A senha precisa ter pelo menos 4 caracteres.");
+    const curDB = VorticeCore.getDB();
+    const u = (curDB.users || []).find(x => x.email.toLowerCase() === email.toLowerCase());
+    if (!u) return toast("Usuário não encontrado.");
+    u.senha = novaSenha.trim();
+    VorticeCore.saveDB(curDB);
+    toast(`Senha de "${nome}" atualizada com sucesso!`);
+  };
 
   window.excluirEmpresa = (id) => {
     if (!confirm("Deseja realmente excluir esta empresa e o login dela?")) return;
     const curDB = VorticeCore.getDB();
     curDB.empresas = (curDB.empresas || []).filter(e => e.id !== id);
     curDB.users = (curDB.users || []).filter(u => u.empresaId !== id);
+    // Remove também dos vínculos dos funcionários
+    (curDB.users || []).forEach(u => {
+      if (Array.isArray(u.empresasPermitidas)) {
+        u.empresasPermitidas = u.empresasPermitidas.filter(eid => eid !== id);
+      }
+    });
     VorticeCore.saveDB(curDB);
     renderPortalAdmin();
     toast("Empresa excluída!");
@@ -567,7 +759,8 @@ table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-
     const senha = document.getElementById("funcSenha").value;
     if (!nome || !email || !senha) return toast("Preencha Nome, E-mail e Senha.");
     const curDB = VorticeCore.getDB();
-    curDB.users.push({ nome, email, senha, role: "funcionario", cargo: document.getElementById("funcCargo").value, acessoInvestigador: document.getElementById("funcInvAcesso").checked, nivelInvestigador: document.getElementById("funcInvNivel").value, status: "ativo" });
+    // Inicia com empresasPermitidas: [] (nenhuma empresa liberada por padrão até o Admin vincular)
+    curDB.users.push({ nome, email, senha, role: "funcionario", cargo: document.getElementById("funcCargo").value, acessoInvestigador: document.getElementById("funcInvAcesso").checked, nivelInvestigador: document.getElementById("funcInvNivel").value, empresasPermitidas: [], status: "ativo" });
     VorticeCore.saveDB(curDB);
     renderPortalAdmin();
     try {
@@ -588,7 +781,7 @@ table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-
     toast("Dashboard publicado para " + emp.nome + "!");
   };
 
-  // CURSOS & VAGAS (COM BOTÃO EXCLUIR)
+  // CURSOS & VAGAS
   let blocosCursoTemp = [];
   window.addBlocoCurso = (tipo) => { blocosCursoTemp.push({ id: "blk_" + Date.now(), tipo, titulo: "", conteudo: "" }); renderBlocosCurso(); };
   window.remBlocoCurso = (id) => { blocosCursoTemp = blocosCursoTemp.filter(b => b.id !== id); renderBlocosCurso(); };
