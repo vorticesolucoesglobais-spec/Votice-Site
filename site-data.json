@@ -28,7 +28,13 @@
       "titulo": "Assessoria administrativa e gestão empresarial",
       "resumo": "Implantação de ERP, indicadores, organograma, fluxo de caixa, DRE e processos, para que a diretoria deixe o operacional e decida com dados.",
       "imagem": "./svc-gestao.png",
-      "tags": ["ERP Vórtice", "DRE e fluxo de caixa", "Organograma e cargos", "Custos e precificação", "Reunião semanal de resultados"]
+      "tags": [
+        "ERP Vórtice",
+        "DRE e fluxo de caixa",
+        "Organograma e cargos",
+        "Custos e precificação",
+        "Reunião semanal de resultados"
+      ]
     },
     {
       "id": "ti",
@@ -36,7 +42,13 @@
       "titulo": "Suporte técnico e assessoria de TI",
       "resumo": "Rede estruturada, Wi-Fi corporativo, firewall, VPN, backup em nuvem e monitoramento contínuo com painéis Grafana e Zabbix.",
       "imagem": "./svc-ti.png",
-      "tags": ["Cabeamento e Wi-Fi 6", "Firewall, VPN e VLAN", "Backup AWS / Google", "Segurança e antivírus gerenciado", "Suporte remoto e presencial"]
+      "tags": [
+        "Cabeamento e Wi-Fi 6",
+        "Firewall, VPN e VLAN",
+        "Backup AWS / Google",
+        "Segurança e antivírus gerenciado",
+        "Suporte remoto e presencial"
+      ]
     },
     {
       "id": "redes",
@@ -44,7 +56,13 @@
       "titulo": "Gestão de redes e mídias sociais",
       "resumo": "Plano de conteúdo, produção de vídeo, design, copy, tráfego pago e relatório mensal de desempenho, com foco em geração de clientes.",
       "imagem": "./svc-redes.png",
-      "tags": ["Instagram, TikTok e LinkedIn", "Calendário editorial", "Edição de vídeo", "Tráfego pago", "Relatório mensal"]
+      "tags": [
+        "Instagram, TikTok e LinkedIn",
+        "Calendário editorial",
+        "Edição de vídeo",
+        "Tráfego pago",
+        "Relatório mensal"
+      ]
     },
     {
       "id": "uniformes",
@@ -52,7 +70,12 @@
       "titulo": "Uniformes, estampas e brindes personalizados",
       "resumo": "Produção própria de bordado em Piquet, PV e algodão premium. Polos, camisetas, bonés e ecobags de 10 a 5.000 unidades.",
       "imagem": "./svc-uniformes.png",
-      "tags": ["Bordado em alta definição", "Linha de alta durabilidade", "Entrega para todo o Brasil", "Adequação à necessidade do cliente"]
+      "tags": [
+        "Bordado em alta definição",
+        "Linha de alta durabilidade",
+        "Entrega para todo o Brasil",
+        "Adequação à necessidade do cliente"
+      ]
     },
     {
       "id": "cnc",
@@ -60,7 +83,12 @@
       "titulo": "Usinagem CNC, corte a laser e modelagem 3D",
       "resumo": "Router CNC e Laser Cutter 100W para placas, letras caixa, troféus, displays e protótipos, do projeto em CAD ao acabamento.",
       "imagem": "./svc-cnc.png",
-      "tags": ["MDF, acrílico, ACM e compensado", "Corte e gravação a laser", "Projeto CAD e modelagem 3D", "Do protótipo ao lote"]
+      "tags": [
+        "MDF, acrílico, ACM e compensado",
+        "Corte e gravação a laser",
+        "Projeto CAD e modelagem 3D",
+        "Do protótipo ao lote"
+      ]
     }
   ],
   "cursos": [],
