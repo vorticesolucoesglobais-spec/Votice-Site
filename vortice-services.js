@@ -1,22 +1,34 @@
-/* VORTICE SERVICES v3.0 - OneDrive/Outlook Corrigido, Analytics de Visitantes, Automações & Investigador */
+/* VORTICE SERVICES v4.0 - Microsoft Consumers/OAuth Corrigido, Mercado Pago Pix/Débito, OneDrive & Investigador Massivo */
 window.VorticeServices = (function () {
-  // 1. MICROSOFT GRAPH (ONEDRIVE / OUTLOOK) - FLUXO CORRIGIDO
+  const OUTLOOK_OFICIAL = "vorticesolucoesglobais@outlook.com";
+
+  // 1. MICROSOFT GRAPH (ONEDRIVE & OUTLOOK) - CORRIGIDO PARA @OUTLOOK.COM (CONSUMERS)
   function getRedirectUri() {
     return window.location.origin + "/Votice-Site/admin/index.html";
   }
 
+  function resolverTenantMicrosoft(tenantRaw) {
+    const t = (tenantRaw || "").trim();
+    // GUID válido tem exatamente 36 caracteres; para @outlook.com usa-se 'consumers'
+    const guidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!t || t === "common" || t === "consumers" || !guidRegex.test(t)) {
+      return "consumers";
+    }
+    return t;
+  }
+
   function getMsAuthUrl() {
     const s = VorticeCore.getSecrets();
-    if (!s.msClientId) {
-      throw new Error("Cole primeiro o MS_CLIENT_ID na aba 7 e clique em 'Salvar Todas as Chaves'.");
+    if (!s.msClientId || !s.msClientId.trim()) {
+      throw new Error("Cole primeiro o Microsoft Client ID na Aba 7 e clique em 'Salvar Todas as Chaves'.");
     }
-    const tenant = (s.msTenantId && s.msTenantId.trim()) ? s.msTenantId.trim() : "common";
+    const tenant = resolverTenantMicrosoft(s.msTenantId);
     const redirectUri = getRedirectUri();
     const scopes = encodeURIComponent("openid profile email User.Read Files.ReadWrite Calendars.ReadWrite Mail.Send");
     const state = "vortice_" + Date.now();
     sessionStorage.setItem("vortice_ms_state", state);
 
-    return `https://login.microsoftonline.com/${tenant}/oauth2/v2.0/authorize?client_id=${encodeURIComponent(s.msClientId.trim())}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scopes}&state=${state}&prompt=select_account`;
+    return `https://login.microsoftonline.com/${tenant}/oauth2/v2.0/authorize?client_id=${encodeURIComponent(s.msClientId.trim())}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scopes}&state=${state}&login_hint=${encodeURIComponent(OUTLOOK_OFICIAL)}&prompt=select_account`;
   }
 
   function captureMsTokenFromHash() {
@@ -50,7 +62,7 @@ window.VorticeServices = (function () {
   async function graphRequest(endpoint, method = "GET", body = null, contentType = "application/json") {
     const s = VorticeCore.getSecrets();
     const token = s.msAccessToken;
-    if (!token) throw new Error("OneDrive desconectado. Vá na aba 7 e clique em 'Conectar / Autorizar OneDrive & Outlook'.");
+    if (!token) throw new Error("OneDrive desconectado. Vá na Aba 7 e clique em '2º Conectar / Autorizar OneDrive & Outlook'.");
 
     const headers = { Authorization: `Bearer ${token}` };
     if (body && contentType) headers["Content-Type"] = contentType;
@@ -63,7 +75,7 @@ window.VorticeServices = (function () {
 
     if (res.status === 401) {
       VorticeCore.saveSecrets({ msAccessToken: "" });
-      throw new Error("Sessão Microsoft expirada. Clique novamente em 'Conectar / Autorizar OneDrive & Outlook'.");
+      throw new Error("Sessão Microsoft expirada. Clique novamente em '2º Conectar / Autorizar OneDrive & Outlook'.");
     }
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
@@ -91,6 +103,15 @@ window.VorticeServices = (function () {
     return currentPath;
   }
 
+  async function inicializarEstruturaOneDrive() {
+    await ensureOneDriveFolder("Vórtice");
+    await ensureOneDriveFolder("Vórtice/Clientes");
+    await ensureOneDriveFolder("Vórtice/Analytics");
+    await ensureOneDriveFolder("Vórtice/Contratações");
+    await ensureOneDriveFolder("Vórtice/Investigador");
+    return true;
+  }
+
   async function uploadToOneDrive(folderPath, fileName, fileBlobOrText, contentType = "application/octet-stream") {
     await ensureOneDriveFolder(folderPath);
     const fullPath = `${folderPath}/${fileName}`;
@@ -103,12 +124,12 @@ window.VorticeServices = (function () {
   }
 
   async function sendOutlookMail(toEmail, subject, htmlBody) {
-    if (!toEmail) return;
+    const destino = (toEmail || OUTLOOK_OFICIAL).trim();
     return await graphRequest("/me/sendMail", "POST", {
       message: {
         subject,
         body: { contentType: "HTML", content: htmlBody },
-        toRecipients: [{ emailAddress: { address: toEmail } }]
+        toRecipients: [{ emailAddress: { address: destino } }]
       },
       saveToSentItems: true
     });
@@ -119,6 +140,7 @@ window.VorticeServices = (function () {
     try {
       const db = VorticeCore.getDB();
       const cfg = db.notificacoes || {};
+      const emailDestino = (cfg.emailAlerta && cfg.emailAlerta.trim()) ? cfg.emailAlerta.trim() : OUTLOOK_OFICIAL;
       const ev = (cfg.eventos && cfg.eventos[eventoKey]) || { email: true, whatsapp: false };
 
       if (ev.whatsapp && cfg.whatsappUrl && cfg.whatsappNumero) {
@@ -133,8 +155,8 @@ window.VorticeServices = (function () {
         }).catch(() => {});
       }
 
-      if (ev.email && cfg.emailAlerta) {
-        await sendOutlookMail(cfg.emailAlerta, titulo, `<pre style="font-family:sans-serif">${mensagem}</pre>`).catch(() => {});
+      if (ev.email !== false && emailDestino) {
+        await sendOutlookMail(emailDestino, titulo, `<div style="font-family:sans-serif;line-height:1.6"><h3>${titulo}</h3><pre style="white-space:pre-wrap;font-family:sans-serif">${mensagem}</pre></div>`);
       }
 
       (cfg.webhooksExtras || []).forEach((wh) => {
@@ -153,7 +175,7 @@ window.VorticeServices = (function () {
     }
   }
 
-  // 3. RASTREADOR DE VISITANTES -> PLANILHA ONEDRIVE + E-MAIL AUTOMÁTICO (ABANDONO / DESCONTO)
+  // 3. RASTREADOR DE VISITANTES -> PLANILHA ONEDRIVE + E-MAIL AUTOMÁTICO
   async function registrarVisita(infoExtra = {}) {
     try {
       const db = VorticeCore.getDB();
@@ -181,10 +203,9 @@ window.VorticeServices = (function () {
       };
 
       db.visitantes.unshift(registro);
-      if (db.visitantes.length > 1000) db.visitantes.pop();
+      if (db.visitantes.length > 1500) db.visitantes.pop();
       VorticeCore.saveDB(db);
 
-      // Atualiza planilha CSV no OneDrive automaticamente (se conectado)
       if (VorticeCore.getSecrets().msAccessToken) {
         const cabecalho = "Data/Hora;Nome;E-mail;WhatsApp;Página;Ação;Item de Interesse;Idioma;Origem\n";
         const linhas = db.visitantes.map(v =>
@@ -193,7 +214,6 @@ window.VorticeServices = (function () {
         uploadToOneDrive("Vórtice/Analytics", "Visitantes_e_Leads.csv", "\uFEFF" + cabecalho + linhas, "text/csv;charset=utf-8").catch(() => {});
       }
 
-      // Dispara automação de e-mail se visitante informou e-mail e caiu em regra ativa
       if (perfil.email && db.automacoesEmail) {
         for (const auto of db.automacoesEmail) {
           if (!auto.ativo) continue;
@@ -216,94 +236,230 @@ window.VorticeServices = (function () {
     } catch (e) {}
   }
 
-  // 4. MERCADO PAGO CHECKOUT (API)
-  async function criarCheckoutMercadoPago(titulo, valor, emailPagador) {
+  // 4. MERCADO PAGO CHECKOUT PRO (PIX + DÉBITO + CRÉDITO + BOLETO HABILITADOS)
+  async function criarCheckoutMercadoPago(titulo, valor, emailPagador, nomePagador) {
     const s = VorticeCore.getSecrets();
-    if (!s.mpAccessToken) {
+    if (!s.mpAccessToken || !s.mpAccessToken.trim()) {
       throw new Error("Configure o Access Token do Mercado Pago no Painel Admin (Aba 6).");
     }
+    const payload = {
+      items: [
+        {
+          id: "VORTICE_" + Date.now(),
+          title: titulo,
+          description: "Vórtice Soluções Globais — " + titulo,
+          quantity: 1,
+          currency_id: "BRL",
+          unit_price: Number(Number(valor).toFixed(2))
+        }
+      ],
+      payer: {
+        name: nomePagador || "Cliente Vórtice",
+        email: emailPagador || OUTLOOK_OFICIAL
+      },
+      payment_methods: {
+        excluded_payment_methods: [],
+        excluded_payment_types: [],
+        installments: 12
+      },
+      statement_descriptor: "VORTICE GLOBAL",
+      back_urls: {
+        success: window.location.origin + "/Votice-Site/cursos/?status=aprovado",
+        failure: window.location.origin + "/Votice-Site/cursos/?status=falha",
+        pending: window.location.origin + "/Votice-Site/cursos/?status=pendente"
+      },
+      auto_return: "approved"
+    };
+
     const res = await fetch("https://api.mercadopago.com/checkout/preferences", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${s.mpAccessToken}`,
+        Authorization: `Bearer ${s.mpAccessToken.trim()}`,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        items: [{ title: titulo, quantity: 1, currency_id: "BRL", unit_price: Number(valor) }],
-        payer: emailPagador ? { email: emailPagador } : undefined,
-        back_urls: {
-          success: window.location.origin + "/Votice-Site/cursos/?status=aprovado",
-          failure: window.location.origin + "/Votice-Site/cursos/?status=falha",
-          pending: window.location.origin + "/Votice-Site/cursos/?status=pendente"
-        },
-        auto_return: "approved"
-      })
+      body: JSON.stringify(payload)
     });
+
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
-      throw new Error(err.message || "Erro ao gerar link de pagamento no Mercado Pago.");
+      throw new Error(err.message || "Erro ao gerar checkout no Mercado Pago. Verifique se o Access Token é de Produção e se há chave Pix cadastrada na conta.");
     }
     const data = await res.json();
     return s.mpModo === "teste" ? data.sandbox_init_point : data.init_point;
   }
 
-  // 5. INVESTIGADOR 10.0 (IBGE + AZURE MAPS)
+  // 5. INVESTIGADOR 10.0 — MOTOR MASSIVO DE INTELIGÊNCIA B2B (IBGE + AZURE MAPS + OPENSTREETMAP FALLBACK)
+  const MAPA_MACRORREGIOES = {
+    norte: 1, nordeste: 2, sudeste: 3, sul: 4, "centro-oeste": 5, centrooeste: 5
+  };
+
   async function buscarCidadesIBGE(filtros) {
+    const param = (filtros.param || "").trim();
     if (filtros.modo === "cidade_unica") {
-      return filtros.cidadeUnica ? [{ nome: filtros.cidadeUnica.trim(), populacao: "Verificado" }] : [];
+      if (!param) throw new Error("Digite o nome da cidade (ex: Porto Feliz - SP).");
+      return [{ nome: param, uf: (param.split("-")[1] || "BR").trim().toUpperCase() }];
     }
     if (filtros.modo === "varias_cidades") {
-      return (filtros.listaCidades || "").split("\n").map(c => c.trim()).filter(Boolean).map(nome => ({ nome, populacao: "Verificado" }));
+      const lista = param.split(/[\n,;]+/).map(c => c.trim()).filter(Boolean);
+      if (!lista.length) throw new Error("Digite pelo menos uma cidade.");
+      return lista.map(nome => ({ nome, uf: (nome.split("-")[1] || "BR").trim().toUpperCase() }));
     }
-    let url = "https://servicodados.ibge.gov.br/api/v1/localidades/municipios";
-    if (filtros.modo === "estado" && filtros.estado) {
-      url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${filtros.estado}/municipios`;
-    } else if (filtros.modo === "macrorregiao" && filtros.macrorregiao) {
-      url = `https://servicodados.ibge.gov.br/api/v1/localidades/regioes/${filtros.macrorregiao}/municipios`;
-    }
-    const res = await fetch(url);
-    if (!res.ok) throw new Error("Falha ao consultar lista oficial de cidades do IBGE.");
-    const municipios = await res.json();
-    return municipios.map(m => ({
-      id: m.id,
-      nome: `${m.nome} - ${m.microrregiao?.mesorregiao?.UF?.sigla || ""}`,
-      uf: m.microrregiao?.mesorregiao?.UF?.sigla || ""
-    }));
-  }
 
-  async function buscarEmpresasAzureMaps(termo, cidade, limite = 20) {
-    const key = VorticeCore.getSecrets().azureMapsKey;
-    if (!key) throw new Error("Configure a Chave do Azure Maps na Aba 7.");
-    const query = encodeURIComponent(`${termo} ${cidade} Brasil`);
-    const url = `https://atlas.microsoft.com/search/poi/json?api-version=1.0&subscription-key=${key}&query=${query}&countrySet=BR&limit=${limite}`;
+    let url = "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome";
+    if (filtros.modo === "estado") {
+      const uf = param.toUpperCase().slice(0, 2);
+      if (!uf) throw new Error("Informe a sigla do Estado (ex: SP, RJ, MG, PR).");
+      url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios?orderBy=nome`;
+    } else if (filtros.modo === "macrorregiao") {
+      const idReg = MAPA_MACRORREGIOES[param.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")] || 3;
+      url = `https://servicodados.ibge.gov.br/api/v1/localidades/regioes/${idReg}/municipios?orderBy=nome`;
+    }
+
     const res = await fetch(url);
-    if (!res.ok) throw new Error("Erro ao consultar Azure Maps.");
-    const data = await res.json();
-    return (data.results || []).map(item => {
-      const nome = item.poi?.name || "NÃO ENCONTRADO";
-      const telRaw = item.poi?.phone || "";
-      const linkProva = item.poi?.url || `https://www.bing.com/maps?q=${encodeURIComponent(nome + " " + cidade)}`;
-      return {
-        nome,
-        telefone: telRaw ? `${telRaw} (Fonte: Azure Maps - ${linkProva})` : "NÃO ENCONTRADO",
-        endereco: item.address?.freeformAddress || "NÃO ENCONTRADO",
-        linkMapa: linkProva
-      };
+    if (!res.ok) throw new Error("Falha ao consultar lista oficial de municípios no IBGE.");
+    const municipios = await res.json();
+    return municipios.map(m => {
+      const uf = m.microrregiao?.mesorregiao?.UF?.sigla || "";
+      return { id: m.id, nome: uf ? `${m.nome} - ${uf}` : m.nome, uf };
     });
   }
 
+  function calcularAderenciaVortice(nome, categoria, siteUrl, tel) {
+    const texto = `${nome} ${categoria}`.toLowerCase();
+    const oportunidades = [];
+    if (/ind[uú]stria|metal[uú]rgica|f[aá]brica|usinagem|pl[aá]stico|embalag/i.test(texto)) {
+      oportunidades.push("Gestão Empresarial & ERP", "Uniformes Industriais", "Usinagem CNC / Corte a Laser", "Suporte TI & Infra");
+    } else if (/cl[ií]nica|hospital|sa[uú]de|odont|laborat/i.test(texto)) {
+      oportunidades.push("Uniformes / Jalecos Bordados", "Assessoria Administrativa", "Gestão de Redes Sociais", "Segurança LGPD & TI");
+    } else if (/com[eé]rcio|loja|mercado|supermercado|restaurante|padaria|confeitaria/i.test(texto)) {
+      oportunidades.push("Gestão de Redes Sociais", "Uniformes Personalizados", "BPO Financeiro & Fluxo de Caixa");
+    } else if (/igreja|minist[eé]rio|associa[cç][aã]o|instituto|escola|col[eé]gio/i.test(texto)) {
+      oportunidades.push("Uniformes & Brindes", "Letras Caixa / Troféus CNC", "Assessoria Administrativa", "Gestão de Mídias");
+    } else {
+      oportunidades.push("Assessoria Administrativa", "Suporte Técnico de TI", "Gestão de Redes Sociais");
+    }
+
+    let score = 4; // Base por existir em fonte pública oficial
+    const provas = [];
+    if (tel && tel !== "NÃO ENCONTRADO") { score += 3; provas.push("Telefone comercial verificado"); }
+    if (siteUrl && /^https?:\/\//i.test(siteUrl)) { score += 3; provas.push("Website oficial ativo"); }
+    else { oportunidades.push("Criação / Gestão Digital"); }
+
+    const classificacao = score >= 9 ? "OURO" : score >= 7 ? "PRATA" : "BRONZE";
+    return { score, classificacao, oportunidades, provas };
+  }
+
+  async function investigarCidadeDetalhado(termo, cidadeObj, limite = 25) {
+    const key = (VorticeCore.getSecrets().azureMapsKey || "").trim();
+    const resultadosBrutos = [];
+    const vistos = new Set();
+
+    // 1. Consulta Principal: Azure Maps POI Search (múltiplas variações do termo)
+    if (key) {
+      const consultas = [
+        `${termo} ${cidadeObj.nome} Brasil`,
+        `${termo} em ${cidadeObj.nome}`
+      ];
+      for (const qText of consultas) {
+        if (resultadosBrutos.length >= limite) break;
+        const url = `https://atlas.microsoft.com/search/poi/json?api-version=1.0&subscription-key=${encodeURIComponent(key)}&query=${encodeURIComponent(qText)}&countrySet=BR&limit=${Math.min(limite, 50)}`;
+        try {
+          const res = await fetch(url);
+          if (res.ok) {
+            const data = await res.json();
+            for (const item of (data.results || [])) {
+              const nome = (item.poi?.name || "").trim();
+              if (!nome || vistos.has(nome.toLowerCase())) continue;
+              vistos.add(nome.toLowerCase());
+              const tel = (item.poi?.phone || "").trim();
+              const site = (item.poi?.url || "").trim();
+              const end = item.address?.freeformAddress || cidadeObj.nome;
+              const cat = (item.poi?.categories || []).join(", ") || termo;
+              const lat = item.position?.lat || "";
+              const lon = item.position?.lon || "";
+              const linkMapa = site && /^https?:\/\//i.test(site)
+                ? site
+                : `https://www.bing.com/maps?q=${encodeURIComponent(nome + " " + end)}`;
+
+              const analise = calcularAderenciaVortice(nome, cat, site, tel);
+              resultadosBrutos.push({
+                nome,
+                cidade: cidadeObj.nome,
+                telefone: tel || "NÃO ENCONTRADO",
+                website: site || "NÃO ENCONTRADO",
+                endereco: end,
+                categoria: cat,
+                coordenadas: lat && lon ? `${lat}, ${lon}` : "-",
+                linkProva: linkMapa,
+                fonte: "Azure Maps / Bing Places",
+                score: analise.score,
+                classificacao: analise.classificacao,
+                modulosRecomendados: analise.oportunidades,
+                statusRevisao: "Aguardando Revisão"
+              });
+            }
+          }
+        } catch (e) {}
+      }
+    }
+
+    // 2. Camada Complementar Gratuita: OpenStreetMap Nominatim (garante resultados mesmo sem chave Azure Maps)
+    if (resultadosBrutos.length < 5) {
+      try {
+        const nomUrl = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&extratags=1&limit=${Math.min(limite, 30)}&q=${encodeURIComponent(termo + " " + cidadeObj.nome + " Brasil")}`;
+        const nomRes = await fetch(nomUrl, { headers: { "Accept-Language": "pt-BR" } });
+        if (nomRes.ok) {
+          const nomData = await nomRes.json();
+          for (const item of nomData) {
+            const nome = (item.name || (item.display_name || "").split(",")[0] || "").trim();
+            if (!nome || vistos.has(nome.toLowerCase())) continue;
+            vistos.add(nome.toLowerCase());
+            const ext = item.extratags || {};
+            const tel = ext.phone || ext["contact:phone"] || ext["contact:whatsapp"] || "NÃO ENCONTRADO";
+            const site = ext.website || ext["contact:website"] || "";
+            const end = item.display_name || cidadeObj.nome;
+            const linkMapa = site && /^https?:\/\//i.test(site)
+              ? site
+              : `https://www.openstreetmap.org/?mlat=${item.lat}&mlon=${item.lon}#map=18/${item.lat}/${item.lon}`;
+
+            const analise = calcularAderenciaVortice(nome, item.type || termo, site, tel);
+            resultadosBrutos.push({
+              nome,
+              cidade: cidadeObj.nome,
+              telefone: tel,
+              website: site || "NÃO ENCONTRADO",
+              endereco: end,
+              categoria: item.type || termo,
+              coordenadas: `${item.lat}, ${item.lon}`,
+              linkProva: linkMapa,
+              fonte: "OpenStreetMap Oficial",
+              score: analise.score,
+              classificacao: analise.classificacao,
+              modulosRecomendados: analise.oportunidades,
+              statusRevisao: "Aguardando Revisão"
+            });
+          }
+        }
+      } catch (e) {}
+    }
+
+    return resultadosBrutos.slice(0, limite);
+  }
+
   return {
+    OUTLOOK_OFICIAL,
     getRedirectUri,
     getMsAuthUrl,
     captureMsTokenFromHash,
     graphRequest,
     ensureOneDriveFolder,
+    inicializarEstruturaOneDrive,
     uploadToOneDrive,
     sendOutlookMail,
     sendNotification,
     registrarVisita,
     criarCheckoutMercadoPago,
     buscarCidadesIBGE,
-    buscarEmpresasAzureMaps
+    investigarCidadeDetalhado
   };
 })();
