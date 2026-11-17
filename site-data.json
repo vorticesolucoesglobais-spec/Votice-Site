@@ -18,7 +18,7 @@
     "blocoLivreHome": ""
   },
   "abasVisiveis": {
-    "portal": true,
+    "portal": false,
     "cursos": true,
     "contratacoes": true
   },
