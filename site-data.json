@@ -1,0 +1,103 @@
+{
+  "identidade": {
+    "nomeSite": "Vórtice Soluções Globais",
+    "nomeCurto": "Vórtice",
+    "slogan": "Eficiência, Tecnologia e Produção",
+    "subtituloHero": "Uma única empresa para cuidar da Gestão, Tecnologia e Produção do seu negócio.",
+    "tituloSecundarioHero": "Transformamos gestão, tecnologia e produção em crescimento sustentável",
+    "textoHero": "Na Vórtice Soluções Globais, unimos Gestão Empresarial, Tecnologia e Produção em um ecossistema completo de soluções. Com sede no estado de São Paulo, atendemos empresas em todo o território nacional e mantemos contratos e projetos na América do Norte.",
+    "logoUrl": "./logo.png",
+    "emblemaUrl": "./emblema.png",
+    "corPrincipal": "#2f6fb8",
+    "corFundo": "#0a0d12",
+    "whatsapp": "5511921913395",
+    "email": "vorticesolucoesglobais@gmail.com",
+    "linkedin": "https://www.linkedin.com/company/vortice-solucoes-globais",
+    "cnpj": "65.576.566/0001-01",
+    "horario": "Segunda a Sábado, das 8h às 18h."
+  },
+  "abasVisiveis": {
+    "portal": true,
+    "cursos": true,
+    "contratacoes": true
+  },
+  "servicos": [
+    {
+      "id": "gestao",
+      "categoria": "Consultoria",
+      "titulo": "Assessoria administrativa e gestão empresarial",
+      "resumo": "Implantação de ERP, indicadores, organograma, fluxo de caixa, DRE e processos, para que a diretoria deixe o operacional e decida com dados.",
+      "imagem": "./svc-gestao.png",
+      "tags": ["ERP Vórtice", "DRE e fluxo de caixa", "Organograma e cargos", "Custos e precificação", "Reunião semanal de resultados"]
+    },
+    {
+      "id": "ti",
+      "categoria": "Tecnologia",
+      "titulo": "Suporte técnico e assessoria de TI",
+      "resumo": "Rede estruturada, Wi-Fi corporativo, firewall, VPN, backup em nuvem e monitoramento contínuo com painéis Grafana e Zabbix.",
+      "imagem": "./svc-ti.png",
+      "tags": ["Cabeamento e Wi-Fi 6", "Firewall, VPN e VLAN", "Backup AWS / Google", "Segurança e antivírus gerenciado", "Suporte remoto e presencial"]
+    },
+    {
+      "id": "redes",
+      "categoria": "Comunicação",
+      "titulo": "Gestão de redes e mídias sociais",
+      "resumo": "Plano de conteúdo, produção de vídeo, design, copy, tráfego pago e relatório mensal de desempenho, com foco em geração de clientes.",
+      "imagem": "./svc-redes.png",
+      "tags": ["Instagram, TikTok e LinkedIn", "Calendário editorial", "Edição de vídeo", "Tráfego pago", "Relatório mensal"]
+    },
+    {
+      "id": "uniformes",
+      "categoria": "Indústria",
+      "titulo": "Uniformes, estampas e brindes personalizados",
+      "resumo": "Produção própria de bordado em Piquet, PV e algodão premium. Polos, camisetas, bonés e ecobags de 10 a 5.000 unidades.",
+      "imagem": "./svc-uniformes.png",
+      "tags": ["Bordado em alta definição", "Linha de alta durabilidade", "Entrega para todo o Brasil", "Adequação à necessidade do cliente"]
+    },
+    {
+      "id": "cnc",
+      "categoria": "Indústria",
+      "titulo": "Usinagem CNC, corte a laser e modelagem 3D",
+      "resumo": "Router CNC e Laser Cutter 100W para placas, letras caixa, troféus, displays e protótipos, do projeto em CAD ao acabamento.",
+      "imagem": "./svc-cnc.png",
+      "tags": ["MDF, acrílico, ACM e compensado", "Corte e gravação a laser", "Projeto CAD e modelagem 3D", "Do protótipo ao lote"]
+    }
+  ],
+  "cursos": [],
+  "mentorias": [
+    {
+      "id": "ment-online",
+      "titulo": "Mentoria Online 1h",
+      "descricao": "Sessão individual por videochamada (Microsoft Teams).",
+      "preco": 500,
+      "tipo": "Online",
+      "imagemFundo": "",
+      "usarApiMP": true,
+      "linkManual": "",
+      "ativo": true
+    },
+    {
+      "id": "ment-presencial",
+      "titulo": "Mentoria Presencial na sua empresa",
+      "descricao": "Um dia com o Mathews dentro da sua operação.",
+      "preco": 2500,
+      "tipo": "Presencial",
+      "imagemFundo": "",
+      "usarApiMP": true,
+      "linkManual": "",
+      "ativo": true
+    },
+    {
+      "id": "ment-mensal",
+      "titulo": "Acompanhamento Mensal",
+      "descricao": "Reuniões recorrentes e plano de ação.",
+      "preco": 1500,
+      "tipo": "Mensal",
+      "imagemFundo": "",
+      "usarApiMP": true,
+      "linkManual": "",
+      "ativo": true
+    }
+  ],
+  "vagas": []
+}
