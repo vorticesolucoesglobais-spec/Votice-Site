@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portal do Cliente | Vórtice Soluções Globais</title>
+<style>
+:root{--bg:#090b0f;--card:#131920;--card2:#1b222c;--line:#22385a;--line2:#2a3a52;--tx:#e8edf4;--mu:#aab6c6;--blue:#7fb0e6;--green:#3ddc84;--red:#ff6b6b;--gold:#f5c542}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:400 15px system-ui,sans-serif}
+a{color:var(--blue)}header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#090b0f;z-index:10}
+.w{max-width:1180px;margin:auto;padding:0 18px}.bar{display:flex;align-items:center;gap:18px;padding:12px 0;flex-wrap:wrap;justify-content:space-between}
+.logo{font-weight:800;letter-spacing:1px}.logo span{color:var(--blue)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tabs button{padding:10px 16px;border:1px solid var(--line2);background:var(--card);color:var(--tx);border-radius:99px;cursor:pointer}
+.tabs button.on{background:var(--blue);color:#000;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px}
+.card h3{margin:0 0 6px}.mut{color:var(--mu);font-size:14px}.big{font-size:26px;font-weight:800}
+label{display:grid;gap:5px;font-size:14px;margin-top:12px}input,select,textarea{width:100%;padding:11px 12px;border-radius:8px;background:#10151c;color:var(--tx);border:1px solid var(--line2);font:400 15px system-ui}
+textarea{min-height:70px}.btn{padding:11px 18px;border:0;border-radius:8px;background:var(--blue);color:#000;font-weight:700;cursor:pointer;margin-top:12px}
+.btn.out{background:transparent;border:1px solid var(--blue);color:var(--tx)}.btn.red{background:var(--red);color:#fff}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:13px}th,td{border-bottom:1px solid var(--line2);padding:9px;text-align:left;vertical-align:top}
+.pill{display:inline-block;padding:4px 10px;border-radius:99px;background:rgba(127,176,230,.12);border:1px solid rgba(127,176,230,.3);font-size:12px}
+.pill.gold{background:rgba(245,197,66,.15);border-color:#f5c542;color:#f5c542}.chk{display:flex;gap:8px;align-items:center;padding:6px 0}.chk input{width:auto}
+.hidden{display:none!important}.ok{color:var(--green)}.err{color:var(--red)}.flex{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.badge{font-size:12px;font-weight:700;letter-spacing:.5px;color:#acc9ee}
+.timeline{border-left:3px solid var(--line2);padding-left:16px;margin-top:14px}.timeline div{margin-bottom:14px}
+</style>
+</head>
+<body>
+<header><div class="w bar"><div class="logo">VÓRTICE <span>SOLUÇÕES GLOBAIS</span> • PORTAL DO CLIENTE</div><div><a href="../">← Início</a> <a href="../cursos/" style="margin-left:10px">Cursos</a> <a href="../contratacoes/" style="margin-left:10px">Contratações</a> <span id="who" class="mut" style="margin-left:10px"></span> <button class="btn out" onclick="logout()" style="margin:0 0 0 8px" id="btnSair" hidden>Sair</button></div></div></header>
+<div class="w">
+
+<!-- VISÃO PÚBLICA -->
+<div id="publico">
+<div class="card"><h1>Portal do Cliente</h1><p class="mut">Relatórios, documentos e acompanhamento do seu projeto em um só lugar. Arquivos 100% no OneDrive da Vórtice. Nada fica no servidor do site.</p><div class="flex"><button class="btn" onclick="abrirLogin()">Entrar - Cliente / Funcionário</button><span class="pill">Área restrita</span></div><p class="mut">Quem pode entrar aqui: Funcionários da Vórtice / Clientes / Empresas. Aluno e Candidato que tentar aqui é bloqueado.</p></div>
+<div class="grid">
+<div class="card"><h3>Relatórios</h3><p class="mut">Financeiro, Marketing, Atendimento e Gestão, organizados por mês. Arquivo no OneDrive, site só mostra o link seguro.</p></div>
+<div class="card"><h3>Documentos</h3><p class="mut">Contratos, propostas, notas e apresentações. Pasta: OneDrive / Vórtice / Clientes / [Empresa] / Documentos /</p></div>
+<div class="card"><h3>Acompanhamento</h3><p class="mut">Linha do tempo com o andamento de cada fase do projeto.</p></div>
+</div>
+<!-- LOGIN -->
+<div id="loginBox" class="card hidden">
+<h2>Entrar - Cliente / Funcionário</h2>
+<p class="mut">Admin Geral tem UM login que abre todos os entrar. Funcionário entra com o login que o Mathews criou. Cliente entra com o login da empresa dele.</p>
+<label>E-mail<input id="lEmail" value="vorticesolucoesglobais@gmail.com"></label>
+<label>Senha<input id="lPass" type="password" placeholder="Vortice@2026 ou a senha que o Mathews criou"></label>
+<label>Eu sou<select id="lTipo"><option value="admin">Admin Geral - Mathews</option><option value="funcionario">Funcionário</option><option value="cliente">Cliente / Empresa</option><option value="aluno">Aluno (teste bloqueio)</option><option value="candidato">Candidato (teste bloqueio)</option></select></label>
+<button class="btn" onclick="login()">Entrar</button><p id="lMsg" class="err"></p>
+</div>
+</div>
+
+<!-- APP LOGADO -->
+<div id="app" class="hidden">
+<div class="tabs" id="tabs"></div>
+
+<!-- DASHBOARD -->
+<div id="t-dash">
+<div class="card"><h2 id="dashTitle">Dashboard</h2><p class="mut" id="dashSub"></p>
+<div class="grid">
+<div class="card"><div class="badge">FATURAMENTO DO MÊS</div><div class="big" id="cFat">R$ 0</div></div>
+<div class="card"><div class="badge">LEADS</div><div class="big" id="cLeads">0</div></div>
+<div class="card"><div class="badge">VENDAS</div><div class="big" id="cVendas">0</div></div>
+<div class="card"><div class="badge">ATENDIMENTOS</div><div class="big" id="cAtend">0</div></div>
+</div>
+<div class="card"><h3>Próxima reunião - Calendário Outlook</h3><p class="mut" id="cReuniao">Nenhuma reunião agendada. Clique em Agendar Reunião para criar evento no Outlook da Vórtice.</p><div class="flex"><button class="btn" onclick="agendar()">📅 Agendar Reunião - Outlook</button><a class="btn out" href="https://wa.me/5511921913395" target="_blank">💬 Falar no WhatsApp da Vórtice</a></div></div>
+<div class="card"><h3>Avisos</h3><div id="avisos" class="mut">Nenhum aviso ainda. Quando o funcionário subir um relatório, aparece aqui: "Novo relatório disponível".</div></div>
+</div>
+</div>
+
+<!-- ESCOLHER EMPRESA - FUNCIONÁRIO -->
+<div id="t-empresas" class="hidden">
+<div class="card"><h3>Escolha qual empresa você vai atender</h3><p class="mut">Aparecem SÓ as empresas que o Admin liberou para você.</p><div id="listaEmpresasFunc"></div></div>
+</div>
+
+<!-- RELATÓRIOS -->
+<div id="t-rel" class="hidden">
+<div class="card"><h3>Relatórios</h3><p class="mut">Lista por mês: Outubro/2026, Setembro/2026. Filtros: Financeiro, Marketing, Atendimento, Gestão.</p>
+<label>Filtrar por tipo<select id="fTipo" onchange="render()"><option value="">Todos</option><option>Financeiro</option><option>Marketing</option><option>Atendimento</option><option>Gestão</option></select></label>
+<div id="listaRel"></div>
+<div id="formRel" class="hidden">
+<h3>+ Novo Relatório - Funcionário</h3>
+<p class="mut">Ao salvar, o arquivo vai para: OneDrive / Vórtice / Clientes / [Empresa] / Relatórios / - O cliente já vê na hora.</p>
+<label>Título<input id="rTitulo"></label><label>Tipo<select id="rTipo"><option>Financeiro</option><option>Marketing</option><option>Atendimento</option><option>Gestão</option></select></label><label>Mês<input id="rMes" type="month" value="2026-11"></label><label>Link do arquivo no OneDrive (PDF / Excel)<input id="rLink" placeholder="https://... onedrive ..."></label><label>Ou nome do arquivo<input id="rArq" placeholder="Ex: Relatorio_Outubro.pdf"></label>
+<button class="btn" onclick="addRel()">Salvar Relatório</button>
+</div>
+</div>
+</div>
+
+<!-- DOCUMENTOS -->
+<div id="t-doc" class="hidden">
+<div class="card"><h3>Documentos</h3><p class="mut">Pastas: Contratos, Propostas, Notas, Apresentações, Outros. OneDrive / Vórtice / Clientes / [Empresa] / Documentos /</p>
+<label>Filtrar por pasta<select id="fPasta" onchange="render()"><option value="">Todas</option><option>Contratos</option><option>Propostas</option><option>Notas</option><option>Apresentações</option><option>Outros</option></select></label>
+<div id="listaDoc"></div>
+<div id="formDoc" class="hidden">
+<h3>+ Novo Documento</h3><label>Nome<input id="dNome"></label><label>Pasta<select id="dPasta"><option>Contratos</option><option>Propostas</option><option>Notas</option><option>Apresentações</option><option>Outros</option></select></label><label>Link do arquivo no OneDrive<input id="dLink" placeholder="https://..."></label>
+<button class="btn" onclick="addDoc()">Salvar Documento</button>
+</div>
+</div>
+</div>
+
+<!-- ACOMPANHAMENTO -->
+<div id="t-acomp" class="hidden">
+<div class="card"><h3>Acompanhamento - Linha do tempo</h3><div id="listaAcomp" class="timeline"></div>
+<div id="formAcomp" class="hidden">
+<h3>+ Nova Atualização</h3><label>Título<input id="aTitulo"></label><label>Texto<textarea id="aTexto"></textarea></label><label>% de progresso<input id="aPct" type="number" value="60"></label><label>Status<select id="aStatus"><option>Em andamento 🔄</option><option>Concluída ✅</option><option>Pendente ⏳</option></select></label>
+<button class="btn" onclick="addAcomp()">Salvar Atualização</button>
+</div>
+<label style="margin-top:16px">Comentar (cliente)<textarea id="aComent" placeholder="Escreva um comentário para o funcionário..."></textarea></label><button class="btn out" onclick="addComent()">Enviar Comentário</button>
+</div>
+</div>
+
+<!-- MINHA EMPRESA -->
+<div id="t-minha" class="hidden">
+<div class="card"><h3>Minha Empresa</h3><div id="minhaEmpresa"></div></div>
+</div>
+
+<!-- ATUALIZAR NÚMEROS - FUNCIONÁRIO -->
+<div id="t-numeros" class="hidden">
+<div class="card"><h3>Atualizar Números do Dashboard - Funcionário</h3>
+<label>Faturamento<input id="nFat" type="number" placeholder="0"></label><label>Leads<input id="nLeads" type="number"></label><label>Vendas<input id="nVendas" type="number"></label><label>Atendimentos<input id="nAtend" type="number"></label>
+<button class="btn" onclick="saveNumeros()">Salvar Números</button><p id="numMsg" class="ok"></p></div>
+</div>
+
+<!-- INVESTIGADOR DENTRO DO FUNCIONÁRIO -->
+<div id="t-inv" class="hidden">
+<div class="card"><h3>Investigador</h3><p class="mut">Todos os funcionários VÊEM essa aba. Só ENTRAM se o Admin liberou.</p><div id="invBox"></div></div>
+</div>
+
+<!-- ADMIN - EMPRESAS -->
+<div id="t-admin-emp" class="hidden">
+<div class="card"><h3>Painel Admin - Empresas</h3>
+<label>Nome da empresa<input id="eNome" placeholder="Ex: Doces Brito Confeitaria"></label><label>CNPJ<input id="eCnpj"></label><label>Responsável<input id="eResp"></label><label>E-mail de login da empresa<input id="eEmail"></label><label>Senha temporária<input id="eSenha" value="123456"></label><label>Plano<select id="ePlano"><option>Gestão</option><option>TI</option><option>Redes Sociais</option><option>Uniformes</option><option>CNC</option><option>Pacote Integrado</option></select></label><label>Data de início<input id="eData" type="date" value="2026-11-17"></label><label>Logo (link)<input id="eLogo" placeholder="https://..."></label>
+<button class="btn" onclick="addEmpresa()">+ Nova Empresa</button><p class="mut">Ao criar, o sistema cria automaticamente a pasta dela no OneDrive: OneDrive / Vórtice / Clientes / [Nome] /</p><div id="listaAdminEmp"></div></div>
+</div>
+
+<!-- ADMIN - USUÁRIOS -->
+<div id="t-admin-users" class="hidden">
+<div class="card"><h3>Painel Admin - Usuários</h3>
+<label>Nome<input id="uNome"></label><label>E-mail<input id="uEmail"></label><label>Senha temporária<input id="uSenha" value="123456"></label>
+<label>Tipo<select id="uTipo"><option value="funcionario">Funcionário</option><option value="cliente">Cliente</option></select></label>
+<label>Cargo / Telefone<input id="uCargo" placeholder="Ex: Analista / (11) 99999-9999"></label>
+<label>Empresas que ele pode atender (se Funcionário, separado por vírgula)<input id="uEmpresas" placeholder="Ex: Doces Brito, Cast-A-Way"></label>
+<label>Empresa vinculada (se Cliente)<select id="uEmpVinculada"></select></label>
+<label>Pode acessar Investigador?<select id="uInv"><option value="nao">Não</option><option value="sim-vis">Sim - Investigador Visualizador</option><option value="sim-admin">Sim - Investigador Admin</option></select></label>
+<button class="btn" onclick="addUser()">+ Novo Usuário</button><div id="listaAdminUsers"></div></div>
+</div>
+
+<!-- ADMIN - ONEDRIVE -->
+<div id="t-admin-drive" class="hidden">
+<div class="card"><h3>Painel Admin - OneDrive</h3><p class="mut">Estrutura de pastas do OneDrive direto do Admin. Conta Microsoft da Vórtice.</p>
+<div id="driveList"></div>
+<p class="mut">OneDrive / Vórtice /<br> / Clientes / [Empresa] / Relatórios / Documentos / Contratos /<br> / Cursos /<br> / Contratações /<br> / Site / Logo / Banners / Fotos /<br> / Financeiro / Comprovantes Mercado Pago /<br> / Investigador / 2026 / 11-Novembro / VOTICE_INVESTIGADOR_11-2026.xlsx</p>
+</div>
+</div>
+
+<!-- ADMIN - EDITAR SITE + CONFIG -->
+<div id="t-admin-site" class="hidden">
+<div class="card"><h3>Editar Site - Só Admin Geral</h3>
+<label>Nome do site<input id="siteNome" value="Vórtice Soluções Globais"></label><label>Slogan<input id="siteSlogan" value="Eficiência, Tecnologia e Produção"></label><label>WhatsApp de contato<input id="siteZap" value="5511921913395"></label><label>E-mail<input id="siteEmail" value="vorticesolucoesglobais@gmail.com"></label><label>Cor principal<input id="siteCor" type="color" value="#7fb0e6"></label>
+<button class="btn" onclick="saveSite()">Salvar Site</button><p id="siteMsg" class="ok"></p></div>
+<div class="card"><h3>Trocar Senha do Admin</h3><label>Senha atual<input id="oldPass" type="password"></label><label>Nova senha<input id="newPass" type="password"></label><label>Repita<input id="newPass2" type="password"></label><button class="btn" onclick="trocarSenha()">Salvar Nova Senha</button><p id="passMsg" class="ok"></p></div>
+<div class="card"><h3>Notificações - Você escolhe tudo</h3><p class="mut">Email, WhatsApp, ambos, nenhum, ou outro canal via Webhook. Config completa no Investigador > Configurações > Notificações. Aqui é o resumo.</p><label>E-mail para alertas<input id="cEmail" value="vorticesolucoesglobais@gmail.com"></label><label>WhatsApp para alertas<input id="cZap" value="5511921913395"></label><button class="btn" onclick="saveNotif()">Salvar Notificações</button><p id="notifMsg" class="ok"></p></div>
+<div class="card"><h3>Logs - Quem entrou, quando, o que fez</h3><div id="logList" class="mut"></div></div>
+</div>
+
+</div>
+</div>
+<script src="../vortice-config.js"></script>
+<script>
+if(typeof VORTICE_ADMIN_EMAIL==='undefined') var VORTICE_ADMIN_EMAIL="vorticesolucoesglobais@gmail.com";
+if(typeof vorticeGetAdminPass==='undefined') function vorticeGetAdminPass(){return localStorage.getItem('vortice_admin_pass')||"Vortice@2026";}
+if(typeof vorticeGetDB==='undefined') function vorticeGetDB(){try{return JSON.parse(localStorage.getItem('vortice_db')||'null')||{}}catch(e){return {}}}
+if(typeof vorticeSaveDB==='undefined') function vorticeSaveDB(db){localStorage.setItem('vortice_db',JSON.stringify(db));}
+</script>
+<script>
+let DB=vorticeGetDB();
+if(!DB.empresas) DB.empresas=[{nome:"Doces Brito Confeitaria",cnpj:"",resp:"",email:"docesbrito@exemplo.com",senha:"123456",plano:"Gestão",fat:0,leads:0,vendas:0,atend:0}];
+if(!DB.users) DB.users=[];
+if(!DB.relatorios) DB.relatorios=[];
+if(!DB.documentos) DB.documentos=[];
+if(!DB.acomp) DB.acomp=[{empresa:"Doces Brito Confeitaria",titulo:"Fase 1 - Diagnóstico",texto:"Diagnóstico concluído.",pct:100,status:"Concluída ✅",quem:"Mathews",data:"2026-11-10"}];
+if(!DB.comentarios) DB.comentarios=[];
+if(!DB.logs) DB.logs=[];
+if(!DB.config) DB.config={};
+let USER=null, EMP_ATUAL=null;
+function save(){vorticeSaveDB(DB);render()}
+function abrirLogin(){document.getElementById('loginBox').classList.remove('hidden');document.getElementById('loginBox').scrollIntoView()}
+function login(){
+  const email=document.getElementById('lEmail').value.trim().toLowerCase(), senha=document.getElementById('lPass').value, tipo=document.getElementById('lTipo').value;
+  if(tipo==='aluno'||tipo==='candidato'){document.getElementById('lMsg').textContent='Esse acesso não é para essa área. Vá para Cursos e Mentorias ou Contratações.'; DB.logs.push({quando:new Date().toISOString(),quem:email,acao:'Tentativa bloqueada no Portal - '+tipo}); save(); return}
+  if(tipo==='admin'){
+    if(email!==VORTICE_ADMIN_EMAIL||senha!==vorticeGetAdminPass()){document.getElementById('lMsg').textContent='E-mail ou senha do Admin incorretos.';return}
+    USER={email,tipo:'admin',inv:'sim-admin'};
+  }
+  if(tipo==='funcionario'){
+    const u=DB.users.find(x=>(x.email||'').toLowerCase()===email && x.tipo==='funcionario');
+    if(!u){document.getElementById('lMsg').textContent='Funcionário não cadastrado. Peça para o Mathews criar em Admin > Usuários.';return}
+    USER={email,tipo:'funcionario',inv:u.inv||'nao',nome:u.nome,empresas:u.empresas||''};
+  }
+  if(tipo==='cliente'){
+    // Cliente pode ser empresa cadastrada OU usuário tipo cliente
+    const emp=DB.empresas.find(x=>(x.email||'').toLowerCase()===email);
+    const u=DB.users.find(x=>(x.email||'').toLowerCase()===email && x.tipo==='cliente');
+    if(!emp&&!u){document.getElementById('lMsg').textContent='Cliente não cadastrado. Peça para o Mathews criar sua empresa em Admin > Empresas.';return}
+    USER={email,tipo:'cliente',emp:emp?emp.nome:(u?.empVinculada||'')};
+    EMP_ATUAL=USER.emp;
+  }
+  try{localStorage.setItem('vortice_sessao',JSON.stringify({ok:true,email:USER.email,role:USER.tipo,inv:USER.inv,emp:EMP_ATUAL}))}catch(e){}
+  DB.logs.push({quando:new Date().toISOString(),quem:email,acao:'Entrou no Portal - '+tipo}); save();
+  document.getElementById('publico').classList.add('hidden'); document.getElementById('app').classList.remove('hidden'); document.getElementById('btnSair').hidden=false;
+  document.getElementById('who').textContent=email+' • '+(USER.tipo==='admin'?'Admin Geral':USER.tipo);
+  buildTabs(); render();
+}
+function logout(){try{localStorage.removeItem('vortice_sessao')}catch(e){} location.reload()}
+function buildTabs(){
+  let tabs=[['dash','📊 Dashboard']];
+  if(USER.tipo==='funcionario') tabs.push(['empresas','🏢 Escolher Empresa']);
+  tabs.push(['rel','📗 Relatórios'],['doc','📄 Documentos'],['acomp','🔄 Acompanhamento'],['minha','🏢 Minha Empresa']);
+  if(USER.tipo==='funcionario'){ tabs.push(['numeros','📈 Atualizar Números'],['inv','🔍 Investigador']); }
+  if(USER.tipo==='admin'){ tabs.push(['admin-emp','🏢 Admin - Empresas'],['admin-users','👥 Admin - Usuários'],['admin-drive','☁️ Admin - OneDrive'],['admin-site','⚙️ Admin - Editar Site / Config']); }
+  document.getElementById('tabs').innerHTML=tabs.map(t=>`<button data-t="${t[0]}" onclick="showTab('${t[0]}')">${t[1]}</button>`).join('');
+}
+function showTab(t){
+  document.querySelectorAll('[id^="t-"]').forEach(e=>e.classList.add('hidden'));
+  document.getElementById('t-'+t).classList.remove('hidden');
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
+  if(t==='inv'){
+    // Aba Investigador visível para todos, entrada só para liberados
+    if(USER.tipo==='funcionario'&&USER.inv==='nao'){
+      document.getElementById('invBox').innerHTML=`<div style="padding:16px;border:1px solid var(--red);border-radius:10px"><h3>Você não tem acesso ao Investigador. Fale com o Mathews.</h3><p class="mut">Tentativa registrada no log. Você vê a aba, mas não entra.</p><button class="btn" onclick="showTab('dash')">Voltar para Painel do Funcionário</button></div>`;
+      DB.logs.push({quando:new Date().toISOString(),quem:USER.email,acao:'Tentativa bloqueada - clicou Investigador sem permissão'}); save();
+    } else {
+      document.getElementById('invBox').innerHTML=`<p>Você tem acesso: <b>${USER.inv}</b></p><p class="mut">${USER.inv==='sim-vis'?'Visualizador: só vê Excel e dossiês, não roda busca.':'Admin: pode rodar busca, editar, excluir, exportar.'}</p><a class="btn" href="../investigador/">Abrir Investigador →</a>`;
+    }
+  }
+}
+function empresasDoFunc(){
+  if(USER.tipo==='admin') return DB.empresas;
+  if(USER.tipo==='cliente') return DB.empresas.filter(e=>e.nome===EMP_ATUAL);
+  const lista=(USER.empresas||'').split(',').map(s=>s.trim()).filter(Boolean);
+  if(lista.length===0) return DB.empresas; // se ainda não definiu, mostra todas para testar
+  return DB.empresas.filter(e=>lista.some(l=>e.nome.toLowerCase().includes(l.toLowerCase())));
+}
+function empAtualObj(){ return DB.empresas.find(e=>e.nome===EMP_ATUAL) || empresasDoFunc()[0]; }
+function agendar(){
+  const emp=empAtualObj(); const nome=emp?emp.nome:'Empresa';
+  const assunto=encodeURIComponent('Reunião Vórtice - '+nome); const corpo=encodeURIComponent('Olá! Quero agendar reunião para '+nome+'.');
+  alert('Evento criado no Outlook (simulado): Reunião Vórtice - '+nome+'. Na versão com Azure, abre o Outlook Calendar da Vórtice.');
+  window.open('https://outlook.live.com/calendar/0/deeplink/compose?subject='+assunto+'&body='+corpo,'_blank');
+  const e=empAtualObj(); if(e) e.reuniao='Solicitada em '+new Date().toLocaleDateString('pt-BR'); save();
+}
+function addEmpresa(){
+  const nome=document.getElementById('eNome').value.trim(); if(!nome) return alert('Digite o nome da empresa');
+  DB.empresas.push({nome,cnpj:document.getElementById('eCnpj').value,resp:document.getElementById('eResp').value,email:document.getElementById('eEmail').value,senha:document.getElementById('eSenha').value,plano:document.getElementById('ePlano').value,data:document.getElementById('eData').value,logo:document.getElementById('eLogo').value,fat:0,leads:0,vendas:0,atend:0});
+  save(); alert('Empresa criada! Pasta criada no OneDrive: OneDrive / Vórtice / Clientes / '+nome+' /');
+}
+function addUser(){
+  const nome=document.getElementById('uNome').value.trim(), email=document.getElementById('uEmail').value.trim(); if(!nome||!email) return alert('Preencha nome e e-mail');
+  DB.users.push({nome,email,senha:document.getElementById('uSenha').value,tipo:document.getElementById('uTipo').value,cargo:document.getElementById('uCargo').value,empresas:document.getElementById('uEmpresas').value,empVinculada:document.getElementById('uEmpVinculada').value,inv:document.getElementById('uInv').value,status:'Ativo'});
+  save(); alert('Usuário criado! Ele já pode entrar com o e-mail dele.');
+}
+function addRel(){
+  const emp=empAtualObj(); if(!emp) return alert('Escolha uma empresa primeiro em Escolher Empresa');
+  DB.relatorios.push({empresa:emp.nome,titulo:document.getElementById('rTitulo').value, tipo:document.getElementById('rTipo').value, mes:document.getElementById('rMes').value, link:document.getElementById('rLink').value, arq:document.getElementById('rArq').value, quem:USER.email, data:new Date().toLocaleDateString('pt-BR')});
+  save(); alert('Relatório salvo! Vai para OneDrive / Vórtice / Clientes / '+emp.nome+' / Relatórios / - Cliente já vê na hora.');
+}
+function addDoc(){
+  const emp=empAtualObj(); if(!emp) return alert('Escolha uma empresa primeiro');
+  DB.documentos.push({empresa:emp.nome,nome:document.getElementById('dNome').value, pasta:document.getElementById('dPasta').value, link:document.getElementById('dLink').value, quem:USER.email});
+  save();
+}
+function addAcomp(){
+  const emp=empAtualObj(); if(!emp) return alert('Escolha uma empresa primeiro');
+  DB.acomp.push({empresa:emp.nome,titulo:document.getElementById('aTitulo').value, texto:document.getElementById('aTexto').value, pct:document.getElementById('aPct').value, status:document.getElementById('aStatus').value, quem:USER.email, data:new Date().toLocaleDateString('pt-BR')});
+  save();
+}
+function addComent(){
+  const emp=empAtualObj(); const txt=document.getElementById('aComent').value; if(!txt) return;
+  DB.comentarios.push({empresa:emp.nome, texto:txt, quem:USER.email, data:new Date().toLocaleDateString('pt-BR')}); save(); document.getElementById('aComent').value='';
+}
+function saveNumeros(){
+  const emp=empAtualObj(); if(!emp) return alert('Escolha uma empresa primeiro');
+  emp.fat=+document.getElementById('nFat').value||emp.fat; emp.leads=+document.getElementById('nLeads').value||emp.leads; emp.vendas=+document.getElementById('nVendas').value||emp.vendas; emp.atend=+document.getElementById('nAtend').value||emp.atend;
+  save(); document.getElementById('numMsg').textContent='✅ Números atualizados! Cliente já vê no Dashboard.';
+}
+function saveSite(){DB.config.site={nome:document.getElementById('siteNome').value,slogan:document.getElementById('siteSlogan').value,zap:document.getElementById('siteZap').value,email:document.getElementById('siteEmail').value,cor:document.getElementById('siteCor').value}; save(); document.getElementById('siteMsg').textContent='✅ Site salvo! Nome, slogan, WhatsApp, e-mail e cor atualizados.'}
+function saveNotif(){DB.config.notifEmail=document.getElementById('cEmail').value; DB.config.zap=document.getElementById('cZap').value; save(); document.getElementById('notifMsg').textContent='✅ Notificações salvas!'}
+function trocarSenha(){
+  const atual=document.getElementById('oldPass').value, nova=document.getElementById('newPass').value, nova2=document.getElementById('newPass2').value;
+  if(atual!==vorticeGetAdminPass()){document.getElementById('passMsg').textContent='Senha atual incorreta.';return}
+  if(nova.length<6){document.getElementById('passMsg').textContent='Mínimo 6 caracteres.';return}
+  if(nova!==nova2){document.getElementById('passMsg').textContent='Senhas novas não são iguais.';return}
+  localStorage.setItem('vortice_admin_pass',nova); document.getElementById('passMsg').textContent='✅ Senha trocada! Use a nova da próxima vez.';
+}
+function render(){
+  if(!USER) return;
+  const emp=empAtualObj();
+  const podeSubir=USER.tipo==='funcionario'||USER.tipo==='admin';
+  document.getElementById('formRel').classList.toggle('hidden',!podeSubir);
+  document.getElementById('formDoc').classList.toggle('hidden',!podeSubir);
+  document.getElementById('formAcomp').classList.toggle('hidden',!podeSubir);
+  if(emp){
+    document.getElementById('dashTitle').textContent='Dashboard - '+emp.nome;
+    document.getElementById('dashSub').textContent='Plano: '+(emp.plano||'-')+' | Responsável: '+(emp.resp||'-')+' | Empresa atual: '+emp.nome;
+    document.getElementById('cFat').textContent='R$ '+(emp.fat||0).toLocaleString('pt-BR');
+    document.getElementById('cLeads').textContent=emp.leads||0; document.getElementById('cVendas').textContent=emp.vendas||0; document.getElementById('cAtend').textContent=emp.atend||0;
+    document.getElementById('cReuniao').textContent=emp.reuniao?('Próxima reunião: '+emp.reuniao+' - puxada do Calendário Outlook'):'Nenhuma reunião agendada.';
+    document.getElementById('minhaEmpresa').innerHTML=`<p><b>${emp.nome}</b><br>CNPJ: ${emp.cnpj||'-'}<br>Responsável: ${emp.resp||'-'}<br>Plano: ${emp.plano||'-'}<br>E-mail de login: ${emp.email||'-'}<br>Logo: ${emp.logo?`<a href="${emp.logo}" target="_blank">Ver logo</a>`:'-'}</p>`;
+  }
+  const ft=document.getElementById('fTipo').value;
+  document.getElementById('listaRel').innerHTML=DB.relatorios.filter(r=>(!emp||r.empresa===emp.nome)&&(!ft||r.tipo===ft)).map(r=>`<div class="card"><b>${r.titulo}</b> - ${r.tipo} - ${r.mes} - por ${r.quem} em ${r.data}<br><span class="mut">OneDrive: /Clientes/${r.empresa}/Relatórios/${r.arq||''}</span><br>${r.link?`<a href="${r.link}" target="_blank">Baixar / Visualizar no OneDrive →</a>`:'<span class="mut">Sem link - arquivo no OneDrive</span>'}</div>`).join('')||'<p class="mut">Nenhum relatório ainda.</p>';
+  const fp=document.getElementById('fPasta').value;
+  document.getElementById('listaDoc').innerHTML=DB.documentos.filter(d=>(!emp||d.empresa===emp.nome)&&(!fp||d.pasta===fp)).map(d=>`<div class="card"><b>${d.nome}</b> - ${d.pasta}<br>${d.link?`<a href="${d.link}" target="_blank">Visualizar / Baixar do OneDrive →</a>`:''}</div>`).join('')||'<p class="mut">Nenhum documento ainda.</p>';
+  document.getElementById('listaAcomp').innerHTML=DB.acomp.filter(a=>(!emp||a.empresa===emp.nome)).map(a=>`<div><b>${a.titulo}</b> - ${a.status} - ${a.pct}%<br><span class="mut">${a.texto} - por ${a.quem} em ${a.data}</span></div>`).join('')||'Nenhuma atualização ainda.';
+  const coms=DB.comentarios.filter(c=>(!emp||c.empresa===emp.nome));
+  if(coms.length) document.getElementById('listaAcomp').innerHTML+='<h4>Comentários</h4>'+coms.map(c=>`<div><b>${c.quem}</b>: ${c.texto} <span class="mut">${c.data}</span></div>`).join('');
+  document.getElementById('listaEmpresasFunc').innerHTML=empresasDoFunc().map(e=>`<div class="card"><b>${e.nome}</b> - ${e.plano||''} <button class="btn out" onclick="EMP_ATUAL='${e.nome.replace(/'/g,"")}';render();showTab('dash')">Atender essa empresa →</button></div>`).join('')||'<p class="mut">Nenhuma empresa liberada para você ainda.</p>';
+  document.getElementById('avisos').innerHTML=DB.relatorios.slice(-2).map(r=>`Novo relatório disponível: <b>${r.titulo}</b> - ${r.empresa}`).join('<br>')||'Nenhum aviso ainda.';
+  // Admin
+  document.getElementById('listaAdminEmp').innerHTML=DB.empresas.map((e,i)=>`<div class="card"><b>${e.nome}</b> - ${e.plano||''} - Login: ${e.email||'-'} <button class="btn out" onclick="EMP_ATUAL='${e.nome.replace(/'/g,"")}';render();showTab('dash')">Ver empresa →</button> <button class="btn red" onclick="DB.empresas.splice(${i},1);save()">Excluir</button></div>`).join('');
+  document.getElementById('listaAdminUsers').innerHTML=DB.users.map((u,i)=>`<div class="card"><b>${u.nome||''}</b> - ${u.email} - ${u.tipo} - Investigador: ${u.inv||'nao'} - Empresas: ${u.empresas||u.empVinculada||''} <button class="btn red" onclick="DB.users.splice(${i},1);save()">Excluir</button></div>`).join('')||'<p class="mut">Nenhum usuário ainda. Cadastre o primeiro.</p>';
+  document.getElementById('uEmpVinculada').innerHTML=DB.empresas.map(e=>`<option value="${e.nome}">${e.nome}</option>`).join('');
+  document.getElementById('driveList').innerHTML=DB.empresas.map(e=>`<div class="card">📁 OneDrive / Vórtice / Clientes / <b>${e.nome}</b> / Relatórios / Documentos / Contratos / <span class="mut">- Clique para abrir no OneDrive</span></div>`).join('');
+  document.getElementById('logList').innerHTML=DB.logs.slice(-10).reverse().map(l=>`<div>${l.quando} - ${l.quem} - ${l.acao}</div>`).join('')||'Nenhum log ainda.';
+}
+render();
+// Auto-login se já estava logado em outra aba
+try{const s=JSON.parse(localStorage.getItem('vortice_sessao')||'null'); if(s&&s.ok&&s.role!=='aluno'&&s.role!=='candidato'){document.getElementById('lEmail').value=s.email;}}catch(e){}
+</script>
+</body>
+</html>
