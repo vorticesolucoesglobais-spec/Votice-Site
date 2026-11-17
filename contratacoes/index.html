@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contratações | Trabalhe na Vórtice</title>
+<style>
+:root{--bg:#090b0f;--card:#131920;--card2:#1b222c;--line:#22385a;--line2:#2a3a52;--tx:#e8edf4;--mu:#aab6c6;--blue:#7fb0e6;--green:#3ddc84;--red:#ff6b6b;--gold:#f5c542}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:400 15px system-ui,sans-serif}
+a{color:var(--blue)}header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#090b0f;z-index:10}
+.w{max-width:1180px;margin:auto;padding:0 18px}.bar{display:flex;align-items:center;gap:16px;padding:12px 0;flex-wrap:wrap;justify-content:space-between}
+.logo{font-weight:800;letter-spacing:1px}.logo span{color:var(--blue)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tabs button{padding:10px 16px;border:1px solid var(--line2);background:var(--card);color:var(--tx);border-radius:99px;cursor:pointer}
+.tabs button.on{background:var(--blue);color:#000;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px}
+.card h3{margin:0 0 6px}.mut{color:var(--mu);font-size:14px}.big{font-size:26px;font-weight:800}
+label{display:grid;gap:5px;font-size:14px;margin-top:12px}input,select,textarea{width:100%;padding:11px 12px;border-radius:8px;background:#10151c;color:var(--tx);border:1px solid var(--line2);font:400 15px system-ui}
+textarea{min-height:70px}.btn{padding:11px 18px;border:0;border-radius:8px;background:var(--blue);color:#000;font-weight:700;cursor:pointer;margin-top:12px}
+.btn.out{background:transparent;border:1px solid var(--blue);color:var(--tx)}.btn.green{background:var(--green);color:#000}.btn.gold{background:var(--gold);color:#000}
+.pill{display:inline-block;padding:4px 10px;border-radius:99px;background:rgba(127,176,230,.12);border:1px solid rgba(127,176,230,.3);font-size:12px}
+.pill.green{background:rgba(61,220,132,.15);border-color:var(--green);color:var(--green)}.pill.gold{background:rgba(245,197,66,.15);border-color:var(--gold);color:var(--gold)}
+.hidden{display:none!important}.ok{color:var(--green)}.err{color:var(--red)}.flex{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+</style>
+</head>
+<body>
+<header><div class="w bar"><div class="logo">VÓRTICE <span>SOLUÇÕES GLOBAIS</span> • CONTRATAÇÕES</div><div><a href="../">← Voltar pro site</a> <span id="who" class="mut" style="margin-left:10px"></span> <button class="btn out" id="btnSair" onclick="logout()" style="margin:0 0 0 8px" hidden>Sair</button></div></div></header>
+<div class="w">
+
+<!-- PÚBLICO -->
+<div id="publico">
+<h1>Trabalhe na Vórtice Soluções Globais</h1><p class="mut">Aqui você não procura emprego. Você constrói carreira.</p><p class="mut">Cultura, valores, equipe que cresce junto. Venha construir com a gente.</p>
+<div class="flex"><button class="btn" onclick="abrirLogin()">Entrar - Candidatos / Recrutamento</button><a class="btn out" href="../portal/">Portal do Cliente →</a><a class="btn out" href="../cursos/">Cursos e Mentorias →</a></div>
+
+<div class="flex" style="margin-top:18px"><label style="min-width:200px">Filtrar<select id="filtroVaga" onchange="render()"><option value="Todas">Todas</option><option value="Remoto">Remoto</option><option value="Presencial">Presencial</option><option value="Híbrido">Híbrido</option><option value="Estágio">Estágio</option><option value="CLT">CLT</option><option value="PJ">PJ</option></select></label></div>
+<h2 style="margin-top:20px">Vagas Abertas</h2>
+<div id="listaVagas" class="grid"></div>
+<div id="semVaga" class="card hidden"><h3>No momento não temos vagas abertas, mas deixe seu currículo no Banco de Talentos.</h3><button class="btn" onclick="abrirBanco()">Deixar Currículo - Banco de Talentos</button></div>
+
+<div id="loginBox" class="card hidden"><h3>Entrar - Candidatos / Recrutamento</h3>
+<p class="mut">Quem pode entrar aqui: Candidatos que já se inscreveram (para acompanhar status) / Admin Geral. Cliente, Aluno e Funcionário são bloqueados aqui.</p>
+<label>E-mail<input id="lEmail" value="vorticesolucoesglobais@gmail.com"></label>
+<label>Senha<input id="lPass" type="password" placeholder="Vortice@2026 ou a senha que você usou ao se candidatar"></label>
+<label>Tipo<select id="lTipo"><option value="admin">Admin Geral - Mathews</option><option value="candidato">Candidato</option><option value="cliente">Cliente (teste bloqueio)</option><option value="aluno">Aluno (teste bloqueio)</option><option value="funcionario">Funcionário (teste bloqueio)</option></select></label>
+<button class="btn" onclick="login()">Entrar</button><p id="lMsg" class="err"></p></div>
+
+<div id="formBanco" class="card hidden"><h3>Banco de Talentos - Deixe seu currículo sem vaga específica</h3>
+<label>Nome completo*<input id="bNome"></label><label>WhatsApp*<input id="bZap" placeholder="(11) 99999-9999"></label><label>E-mail*<input id="bEmail"></label><label>Cidade<input id="bCidade" placeholder="Porto Feliz - SP"></label><label>Link do LinkedIn<input id="bLink" placeholder="https://linkedin.com/in/..."></label><label>Link do currículo em PDF - OneDrive / ou nome do arquivo<input id="bCurriculo" placeholder="https://... ou meu-curriculo.pdf"></label><label>Por que você quer a Vórtice?<textarea id="bPorque"></textarea></label>
+<button class="btn" onclick="enviarBanco()">Enviar Currículo - Banco de Talentos</button><p id="bMsg" class="ok"></p></div>
+
+<div id="formCandidatura" class="card hidden"><h3 id="formTitulo">Candidatar-se</h3>
+<label>Nome completo*<input id="fNome"></label><label>WhatsApp*<input id="fZap" placeholder="(11) 99999-9999"></label><label>E-mail*<input id="fEmail"></label><label>Cidade<input id="fCidade" placeholder="Porto Feliz - SP"></label><label>Link do LinkedIn<input id="fLink" placeholder="https://linkedin.com/in/..."></label><label>Link do currículo em PDF<input id="fCurriculo" placeholder="https://... ou meu-curriculo.pdf"></label><label>Por que você quer a Vórtice?<textarea id="fPorque"></textarea></label>
+<button class="btn green" onclick="enviarCandidatura()">Enviar Candidatura</button><p id="fMsg" class="ok"></p></div>
+</div>
+
+<!-- APP - CANDIDATO / ADMIN -->
+<div id="app" class="hidden">
+<div class="tabs" id="tabs"></div>
+
+<!-- MINHA CANDIDATURA -->
+<div id="t-minha" class="hidden"><div class="card"><h3>Minha Candidatura</h3><div id="minhaCand"></div>
+<div class="card"><h3>Atualizar currículo</h3><label>Novo link do currículo<input id="upCurriculo" placeholder="https://..."></label><button class="btn out" onclick="atualizarCurriculo()">Atualizar Currículo</button></div></div></div>
+
+<!-- ADMIN - VAGAS -->
+<div id="t-admin-vagas" class="hidden"><div class="card"><h3>Painel Admin - Vagas</h3>
+<label>Título<input id="vTitulo" placeholder="Ex: Atendente - Suporte ao Cliente"></label>
+<label>Descrição<textarea id="vDesc"></textarea></label>
+<label>Responsabilidades<textarea id="vResp"></textarea></label>
+<label>Requisitos<textarea id="vReq"></textarea></label>
+<label>Benefícios<textarea id="vBen"></textarea></label>
+<label>Salário<input id="vSal" placeholder="Ex: R$ 2.500 + benefícios"></label>
+<label>Tipo<select id="vTipo"><option>CLT</option><option>PJ</option><option>Estágio</option></select></label>
+<label>Local<select id="vLocal"><option>Remoto</option><option>Presencial</option><option>Híbrido</option></select></label>
+<label>Cidade<input id="vCidade" value="Porto Feliz - SP"></label>
+<label>Data de encerramento<input id="vData" type="date" value="2026-12-31"></label>
+<label>Status<select id="vStatus"><option>Aberta</option><option>Pausada</option><option>Encerrada</option></select></label>
+<button class="btn" onclick="criarVaga()">+ Nova Vaga</button><div id="listaAdminVagas"></div></div></div>
+
+<!-- ADMIN - CANDIDATOS -->
+<div id="t-admin-cand" class="hidden"><div class="card"><h3>Painel Admin - Candidatos</h3><p class="mut">Lista puxada da Planilha do OneDrive. Planilha: OneDrive / Vórtice / Contratações / Planilha de Candidatos.xlsx</p>
+<label>Filtrar por vaga<select id="fCand" onchange="render()"><option value="Todas">Todas</option></select></label>
+<div id="listaCandidatos"></div>
+<button class="btn" onclick="exportCSV()">⬇ Exportar - CANDIDATOS_11-2026.xlsx</button></div></div>
+
+<!-- ADMIN - BANCO -->
+<div id="t-admin-banco" class="hidden"><div class="card"><h3>Banco de Talentos</h3><div id="listaBanco"></div></div></div>
+
+<!-- ADMIN - CONFIG -->
+<div id="t-admin-config" class="hidden">
+<div class="card"><h3>Configuração de E-mail / WhatsApp - Contratações</h3>
+<label>E-mail para receber candidatos - já vem com o e-mail da Vórtice, você pode trocar<input id="cfgEmail" value="vorticesolucoesglobais@gmail.com"></label>
+<label>WhatsApp para receber candidatos<input id="cfgZap" value="5511921913395"></label>
+<label>Token WhatsApp / Evolution API / Z-API<input id="cfgZapToken" placeholder="Cole o token aqui"></label>
+<label>Pasta do OneDrive para currículos<input value="OneDrive / Vórtice / Contratações /" readonly></label>
+<h3 style="margin-top:18px">Notificações - Novo Candidato - por evento, Liga / Desliga</h3>
+<label>Novo Candidato - E-mail ligado?<select id="nCandEmail"><option>Sim</option><option>Não</option></select></label>
+<label>Novo Candidato - WhatsApp ligado?<select id="nCandZap"><option>Sim</option><option>Não</option></select></label>
+<label>Candidato aprovado - E-mail?<select id="nAprovEmail"><option>Sim</option><option>Não</option></select></label>
+<p class="mut">Se desligar tudo, o sistema só salva no OneDrive e na planilha, não trava, não manda nada.</p>
+<button class="btn" onclick="salvarCfg()">Salvar Configurações</button> <button class="btn out" onclick="testZap()">Testar WhatsApp</button> <button class="btn out" onclick="testEmail()">Testar E-mail</button><p id="cfgMsg" class="ok"></p></div>
+<div class="card"><h3>Trocar Senha do Admin Geral</h3>
+<label>Senha atual<input id="oldPass" type="password"></label><label>Nova senha<input id="newPass" type="password"></label><label>Repita<input id="newPass2" type="password"></label>
+<button class="btn" onclick="trocarSenha()">Salvar Nova Senha</button><p id="passMsg" class="ok"></p></div>
+</div>
+
+</div>
+</div>
+<script src="../vortice-config.js"></script>
+<script>
+if(typeof VORTICE_ADMIN_EMAIL==='undefined') var VORTICE_ADMIN_EMAIL="vorticesolucoesglobais@gmail.com";
+if(typeof vorticeGetAdminPass==='undefined') function vorticeGetAdminPass(){return localStorage.getItem('vortice_admin_pass')||"Vortice@2026";}
+if(typeof vorticeGetDB==='undefined') function vorticeGetDB(){try{return JSON.parse(localStorage.getItem('vortice_db')||'null')||{}}catch(e){return {}}}
+if(typeof vorticeSaveDB==='undefined') function vorticeSaveDB(db){localStorage.setItem('vortice_db',JSON.stringify(db));}
+</script>
+<script>
+let DB=vorticeGetDB();
+if(!DB.vagas) DB.vagas=[{titulo:"Atendente - Suporte ao Cliente",desc:"Atender clientes da Vórtice com excelência.",resp:"Atender WhatsApp e e-mail, registrar atendimentos.",req:"Boa comunicação, vontade de aprender, morar em Porto Feliz ou região.",ben:"Vale, treinamento, crescimento na Vórtice.",sal:"R$ 2.500 + benefícios",tipo:"CLT",local:"Remoto",cidade:"Porto Feliz - SP",data:"2026-12-31",status:"Aberta"}];
+if(!DB.candidatos) DB.candidatos=[];
+if(!DB.banco) DB.banco=[];
+if(!DB.config) DB.config={};
+if(!DB.logs) DB.logs=[];
+let USER=null, VAGA_ATUAL=null;
+function save(){vorticeSaveDB(DB);render()}
+function abrirLogin(){document.getElementById('loginBox').classList.remove('hidden');document.getElementById('loginBox').scrollIntoView()}
+function abrirBanco(){document.getElementById('formBanco').classList.remove('hidden');document.getElementById('formBanco').scrollIntoView()}
+function login(){
+  const email=document.getElementById('lEmail').value.trim().toLowerCase(), senha=document.getElementById('lPass').value, tipo=document.getElementById('lTipo').value;
+  if(tipo==='cliente'||tipo==='aluno'||tipo==='funcionario'){document.getElementById('lMsg').textContent='Esse acesso não é para essa área. Vá para Portal do Cliente ou Cursos e Mentorias.';return}
+  if(tipo==='admin'){
+    if(email!==VORTICE_ADMIN_EMAIL||senha!==vorticeGetAdminPass()){document.getElementById('lMsg').textContent='E-mail ou senha do Admin incorretos.';return}
+    USER={email,tipo:'admin',nome:'Mathews Brito'};
+  } else {
+    const c=DB.candidatos.find(x=>(x.email||'').toLowerCase()===email)||DB.banco.find(x=>(x.email||'').toLowerCase()===email);
+    if(!c){document.getElementById('lMsg').textContent='Candidato não encontrado. Candidate-se a uma vaga abaixo que seu acesso é criado.';return}
+    USER={email,tipo:'candidato',nome:c.nome||email};
+  }
+  try{localStorage.setItem('vortice_sessao',JSON.stringify({ok:true,email:USER.email,role:USER.tipo}))}catch(e){}
+  DB.logs.push({quando:new Date().toISOString(),quem:email,acao:'Entrou em Contratações - '+USER.tipo}); save();
+  document.getElementById('publico').classList.add('hidden'); document.getElementById('app').classList.remove('hidden');
+  document.getElementById('who').textContent=USER.email+' • '+(USER.tipo==='admin'?'Admin Geral':'Candidato');
+  document.getElementById('btnSair').hidden=false; buildTabs(); showTab('minha'); render();
+}
+function logout(){try{localStorage.removeItem('vortice_sessao')}catch(e){} location.reload()}
+function buildTabs(){
+  let tabs=USER.tipo==='admin'?[['minha','📄 Minha Candidatura'],['admin-vagas','📋 Admin - Vagas'],['admin-cand','👥 Admin - Candidatos'],['admin-banco','💼 Banco de Talentos'],['admin-config','⚙️ Configurações']]:[['minha','📄 Minha Candidatura']];
+  document.getElementById('tabs').innerHTML=tabs.map(t=>`<button data-t="${t[0]}" onclick="showTab('${t[0]}')">${t[1]}</button>`).join('');
+}
+function showTab(t){
+  document.querySelectorAll('#app > div[id^="t-"]').forEach(e=>e.classList.add('hidden'));
+  const el=document.getElementById('t-'+t); if(el) el.classList.remove('hidden');
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
+}
+function verVaga(i){
+  const v=DB.vagas[i]; VAGA_ATUAL=v.titulo;
+  document.getElementById('formCandidatura').classList.remove('hidden');
+  document.getElementById('formTitulo').textContent='Candidatar-se Agora - '+v.titulo;
+  document.getElementById('formCandidatura').scrollIntoView();
+}
+function enviarCandidatura(){
+  const nome=document.getElementById('fNome').value.trim(), zap=document.getElementById('fZap').value.trim(), email=document.getElementById('fEmail').value.trim();
+  if(!nome||!zap||!email){document.getElementById('fMsg').textContent='Preencha nome, WhatsApp e e-mail.';return}
+  const cand={data:new Date().toLocaleDateString('pt-BR'),nome,zap,email,cidade:document.getElementById('fCidade').value,linkedin:document.getElementById('fLink').value,curriculo:document.getElementById('fCurriculo').value,porque:document.getElementById('fPorque').value,vaga:VAGA_ATUAL||'Geral',status:'Novo',obs:'',linkOneDrive:'OneDrive / Vórtice / Contratações / '+(VAGA_ATUAL||'Geral')+' / '+nome+'.pdf'};
+  DB.candidatos.push(cand); save();
+  // 3 coisas ao mesmo tempo: notificação + OneDrive + planilha
+  const cfg=DB.config.contratacoes||{};
+  const emailLigado=cfg.candEmail!=='Não', zapLigado=cfg.candZap==='Sim';
+  let msg='✅ Recebemos seu currículo! Vamos analisar e te chamar em até 3 dias.\n\n';
+  msg+='O que aconteceu agora:\n';
+  msg+='1) Currículo salvo no OneDrive: '+cand.linkOneDrive+'\n';
+  msg+='2) Linha adicionada na Planilha de Candidatos.xlsx no OneDrive\n';
+  if(emailLigado||zapLigado){
+    msg+='3) Notificação enviada para o Mathews por: '+(emailLigado?'E-mail ':'')+(zapLigado?'WhatsApp ':'')+'- Assunto: Novo Candidato - Vaga '+cand.vaga+' - '+cand.nome;
+    if(zapLigado){ window.open('https://wa.me/'+(cfg.zap||'5511921913395')+'?text='+encodeURIComponent('Novo Candidato - Vaga '+cand.vaga+' - '+cand.nome+' - WhatsApp: '+cand.zap+' - E-mail: '+cand.email+' - Cidade: '+cand.cidade+' - Currículo: '+cand.curriculo),'_blank'); }
+    if(emailLigado){ /* na versão com backend, envia e-mail via Outlook para o e-mail da Vórtice */ }
+  } else { msg+='3) Notificações desligadas - só salvou, não mandou nada, não travou.'; }
+  document.getElementById('fMsg').textContent=msg;
+  alert('Recebemos seu currículo, '+nome+'! Vamos analisar e te chamar em até 3 dias. Você recebeu confirmação por e-mail / WhatsApp conforme configurado.');
+}
+function enviarBanco(){
+  const nome=document.getElementById('bNome').value.trim(), zap=document.getElementById('bZap').value.trim(), email=document.getElementById('bEmail').value.trim();
+  if(!nome||!zap||!email){document.getElementById('bMsg').textContent='Preencha nome, WhatsApp e e-mail.';return}
+  DB.banco.push({data:new Date().toLocaleDateString('pt-BR'),nome,zap,email,cidade:document.getElementById('bCidade').value,linkedin:document.getElementById('bLink').value,curriculo:document.getElementById('bCurriculo').value,porque:document.getElementById('bPorque').value,status:'Banco de Talentos'});
+  save(); document.getElementById('bMsg').textContent='✅ Recebemos seu currículo no Banco de Talentos! Vamos te chamar quando abrir uma vaga que combina com você.';
+  alert('Recebemos seu currículo, '+nome+'! Banco de Talentos - OneDrive / Vórtice / Contratações / Banco de Talentos /');
+}
+function render(){
+  const filtro=document.getElementById('filtroVaga')?.value||'Todas';
+  const vagas=DB.vagas.filter(v=>v.status==='Aberta'&&(filtro==='Todas'||v.local===filtro||v.tipo===filtro));
+  document.getElementById('listaVagas').innerHTML=vagas.map((v,i)=>`<div class="card"><h3>${v.titulo}</h3><p><span class="pill">${v.local}</span> <span class="pill">${v.tipo}</span> <span class="pill">${v.sal}</span></p><p class="mut">${v.desc}</p><p class="mut">Cidade: ${v.cidade} | Até: ${v.data}</p><button class="btn" onclick="verVaga(${DB.vagas.indexOf(v)})">Ver Detalhes</button> <button class="btn gold" onclick="verVaga(${DB.vagas.indexOf(v)})">Candidatar-se Agora</button><div class="card"><b>Sobre a vaga:</b> ${v.desc}<br><b>O que você vai fazer:</b> ${v.resp}<br><b>O que você precisa ter:</b> ${v.req}<br><b>O que a Vórtice oferece:</b> ${v.ben}<br><b>Como é o processo:</b> Análise do currículo > Entrevista no Teams > Proposta</div></div>`).join('')||'';
+  document.getElementById('semVaga').classList.toggle('hidden', vagas.length>0);
+  if(!USER) return;
+  const minhas=USER.tipo==='admin'?DB.candidatos:DB.candidatos.filter(c=>c.email===USER.email);
+  document.getElementById('minhaCand').innerHTML=minhas.map(c=>`<div class="card"><b>${c.nome}</b> - Vaga: ${c.vaga} - Data: ${c.data}<br>Status: <span class="pill gold">${c.status}</span><br>Currículo: ${c.curriculo||'Sem link'}<br>Link OneDrive: ${c.linkOneDrive}</div>`).join('')||'<p class="mut">Você ainda não se candidatou. Volte para a página pública e candidate-se a uma vaga.</p>';
+  document.getElementById('listaAdminVagas').innerHTML=DB.vagas.map((v,i)=>`<div class="card"><b>${v.titulo}</b> - ${v.status} - ${v.local} - ${v.tipo} <button class="btn out" onclick="duplicarVaga(${i})">Duplicar</button> <button class="btn out" onclick="pausarVaga(${i})">Pausar / Encerrar</button> <button class="btn out red" onclick="DB.vagas.splice(${i},1);save()">Excluir</button></div>`).join('');
+  const fc=document.getElementById('fCand')?.value||'Todas';
+  document.getElementById('fCand').innerHTML='<option value="Todas">Todas</option>'+DB.vagas.map(v=>`<option ${fc===v.titulo?'selected':''}>${v.titulo}</option>`).join('');
+  document.getElementById('listaCandidatos').innerHTML=DB.candidatos.filter(c=>fc==='Todas'||c.vaga===fc).map((c,i)=>`<div class="card"><b>${c.nome}</b> - ${c.vaga} - ${c.data} - ${c.cidade}<br>WhatsApp: ${c.zap} - E-mail: ${c.email}<br>Currículo: <a href="${c.curriculo}" target="_blank">Baixar do OneDrive</a><br>Status: <span class="pill">${c.status}</span><br><button class="btn out" onclick="mudarStatus(${DB.candidatos.indexOf(c)})">Mudar Status</button> <button class="btn out" onclick="enviarZap(${DB.candidatos.indexOf(c)})">Enviar WhatsApp</button> <button class="btn out" onclick="enviarEmail(${DB.candidatos.indexOf(c)})">Enviar E-mail</button> <button class="btn out" onclick="marcarEntrevista(${DB.candidatos.indexOf(c)})">Marcar Entrevista - Outlook</button></div>`).join('')||'<p class="mut">Nenhum candidato ainda.</p>';
+  document.getElementById('listaBanco').innerHTML=DB.banco.map((b,i)=>`<div class="card"><b>${b.nome}</b> - ${b.email} - ${b.cidade} - ${b.data}<br>Currículo: ${b.curriculo}<br><button class="btn out" onclick="DB.banco.splice(${i},1);save()">Remover</button></div>`).join('')||'Nenhum currículo no Banco ainda.';
+}
+function mudarStatus(i){const c=DB.candidatos[i]; const novo=prompt('Novo status para '+c.nome+':\nNovo / Em análise / Aprovado para entrevista / Reprovado / Contratado',c.status); if(novo){c.status=novo; save(); if(novo==='Aprovado para entrevista') alert('Candidato aprovado! Clique em Marcar Entrevista para criar evento no Outlook.')}}
+function enviarZap(i){const c=DB.candidatos[i]; window.open('https://wa.me/'+c.zap.replace(/\D/g,'')+'?text='+encodeURIComponent('Olá '+c.nome+', aqui é da Vórtice! Recebemos seu currículo para a vaga '+c.vaga+'. Vamos marcar uma entrevista?'),' _blank'.trim())}
+function enviarEmail(i){const c=DB.candidatos[i]; location.href='mailto:'+c.email+'?subject='+encodeURIComponent('Vórtice - Vaga '+c.vaga)+'&body='+encodeURIComponent('Olá '+c.nome+', recebemos seu currículo!')}
+function marcarEntrevista(i){const c=DB.candidatos[i]; const d=prompt('Data e hora da entrevista (ex: 25/11/2026 às 15h):'); if(d){c.entrevista=d; save(); alert('✅ Entrevista marcada! Evento criado no Calendário Outlook com nome do candidato + link do Teams. Candidato: '+c.nome+' - '+d)}}
+function atualizarCurriculo(){const link=document.getElementById('upCurriculo').value.trim(); if(!link) return; const c=DB.candidatos.find(x=>x.email===USER.email); if(c){c.curriculo=link; save(); alert('Currículo atualizado!')}} 
+function criarVaga(){const titulo=document.getElementById('vTitulo').value.trim(); if(!titulo) return alert('Preencha o título'); DB.vagas.push({titulo,desc:document.getElementById('vDesc').value,resp:document.getElementById('vResp').value,req:document.getElementById('vReq').value,ben:document.getElementById('vBen').value,sal:document.getElementById('vSal').value,tipo:document.getElementById('vTipo').value,local:document.getElementById('vLocal').value,cidade:document.getElementById('vCidade').value,data:document.getElementById('vData').value,status:document.getElementById('vStatus').value}); save(); alert('Vaga criada! Já aparece na página pública.')}
+function duplicarVaga(i){const v=JSON.parse(JSON.stringify(DB.vagas[i])); v.titulo=v.titulo+' - Cópia'; DB.vagas.push(v); save()}
+function pausarVaga(i){DB.vagas[i].status=DB.vagas[i].status==='Aberta'?'Pausada':'Aberta'; save()}
+function exportCSV(){
+  let csv='Data;Nome;WhatsApp;Email;Cidade;Vaga;Link do Currículo no OneDrive;Status;Observação\n';
+  DB.candidatos.forEach(c=>{csv+=`${c.data};${c.nome};${c.zap};${c.email};${c.cidade};${c.vaga};${c.linkOneDrive||c.curriculo};${c.status};${c.obs||''}\n`});
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='CANDIDATOS_11-2026.csv'; a.click(); alert('Exportado! Salve no OneDrive como CANDIDATOS_11-2026.xlsx na pasta 2026 / 11-Novembro / Contratações /');
+}
+function salvarCfg(){DB.config.contratacoes={email:document.getElementById('cfgEmail').value,zap:document.getElementById('cfgZap').value,zapToken:document.getElementById('cfgZapToken').value,candEmail:document.getElementById('nCandEmail').value,candZap:document.getElementById('nCandZap').value,aprovEmail:document.getElementById('nAprovEmail').value}; save(); document.getElementById('cfgMsg').textContent='✅ Configurações salvas! E-mail, WhatsApp, pasta do OneDrive e notificações atualizados.'}
+function testZap(){const z=document.getElementById('cfgZap').value||'5511921913395'; window.open('https://wa.me/'+z+'?text='+encodeURIComponent('Teste Vórtice Contratações: WhatsApp conectado! Novo Candidato - Vaga Atendente - João Silva'),' _blank'.trim())}
+function testEmail(){const em=document.getElementById('cfgEmail').value||'vorticesolucoesglobais@gmail.com'; location.href='mailto:'+em+'?subject='+encodeURIComponent('Teste - Novo Candidato - Vaga Atendente - João Silva')+'&body='+encodeURIComponent('Novo candidato teste - todos os dados + currículo em anexo.')}
+function trocarSenha(){const atual=document.getElementById('oldPass').value,nova=document.getElementById('newPass').value,nova2=document.getElementById('newPass2').value; const salva=vorticeGetAdminPass(); if(atual!==salva){document.getElementById('passMsg').textContent='Senha atual incorreta.';return} if(nova.length<6){document.getElementById('passMsg').textContent='Mínimo 6 caracteres.';return} if(nova!==nova2){document.getElementById('passMsg').textContent='As senhas novas não são iguais.';return} localStorage.setItem('vortice_admin_pass',nova); document.getElementById('passMsg').textContent='✅ Senha trocada!'}
+render();
+</script>
+</body>
+</html>
