@@ -30,28 +30,33 @@
 </script>
 <link rel="stylesheet" href="./site.css">
 <style>
-.ar .area-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:22px 0 8px}
-.ar .g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:22px}
-.ar .cd{border:1px solid var(--rule);border-radius:4px;padding:22px;background:#fff}
-.ar .cd h3{font-size:19px}.ar .cd p{color:var(--mu);font-size:15px}.ar .cd b{color:var(--ink)}
-.ar .em{border:1px dashed #9aa8b9;border-radius:4px;padding:22px;color:var(--mu);margin-top:18px}
-.ar .pl{display:inline-block;font-size:12px;padding:2px 10px;border-radius:99px;background:#fff;border:1px solid var(--rule)}
-.ar form.fm{display:grid;gap:12px;max-width:640px;margin-top:18px}.ar form.fm label{font-size:14px;font-weight:500;display:grid;gap:4px}
-.ar form.fm input,.ar form.fm textarea{width:100%;padding:11px 12px;border:1px solid #9aa8b9;border-radius:4px;font:inherit;background:#fff}
-#dlgL{border:1px solid var(--rule);border-radius:6px;padding:26px;max-width:420px;width:92%}#dlgL::backdrop{background:rgba(9,11,15,.6)}
-#dlgL form{display:grid;gap:12px}#dlgL label{font-size:14px;font-weight:500;display:grid;gap:4px}#dlgL input{padding:11px 12px;border:1px solid #9aa8b9;border-radius:4px;font:inherit}
-.lmsg{font-size:14px;padding:10px 12px;border-radius:4px;background:#fdecea;color:#8a1f17}
-</style>
-<style>
 nav{white-space:nowrap}nav a.ta{color:#fff;font-weight:600}
 @media(min-width:861px){
 .bar{flex-wrap:wrap;row-gap:0}
 nav.areas{order:2;margin-left:auto}#lg{order:2}
 nav.mn{order:3;width:100%;margin:0;border-top:1px solid #22385a}
 html{scroll-padding-top:124px}
+.steps{grid-template-columns:repeat(5,1fr)}
 }
+/* abas Portal / Cursos / Contratações: mesmo tema escuro e azul-aço do site */
 .view .ar{min-height:62vh}
-@media(min-width:861px){.steps{grid-template-columns:repeat(5,1fr)}}
+.ar .area-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:26px 0 8px}
+.ar .g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:22px}
+.ar .cd{padding:26px;border-radius:10px;background:linear-gradient(160deg,#1b222c 0%,#131920 100%);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 32px rgba(0,0,0,.30);transition:transform .25s,border-color .25s}
+.ar .cd:hover{transform:translateY(-2px);border-color:rgba(127,176,230,.38)}
+.ar .cd h3{font-size:19px;color:var(--ink)}.ar .cd p{color:var(--mu);font-size:15px;margin-top:6px}.ar .cd p b{color:var(--ink);font-size:18px}.ar .cd .btn{margin-top:14px}
+.ar a.cd{display:block;text-decoration:none}
+.ar .em{margin-top:20px;padding:22px 24px;border:1px dashed var(--line2);border-radius:10px;background:rgba(255,255,255,.02);color:var(--mu)}
+.ar .pl{display:inline-block;padding:6px 14px;border:1px solid rgba(127,176,230,.30);background:rgba(127,176,230,.08);border-radius:99px;color:#acc9ee;font-size:12px;font-weight:600}
+.ar h3.sub{margin-top:36px}
+.ar form.fm{display:grid;gap:14px;max-width:660px;margin-top:22px;padding:28px;border-radius:10px;background:linear-gradient(160deg,#1b222c 0%,#131920 100%);border:1px solid var(--line)}
+.ar form.fm label{font-size:14px;font-weight:500;display:grid;gap:5px;color:var(--tx)}
+.ar form.fm input,.ar form.fm textarea{width:100%;padding:11px 12px;border-radius:6px;font:400 16px "IBM Plex Sans",sans-serif;background:#10151c;color:#e8edf4;border:1px solid var(--line2)}
+#dlgL{margin:auto;background:#141a22;color:var(--tx);border:1px solid var(--line2);border-radius:12px;padding:28px;max-width:420px;width:92%;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+#dlgL::backdrop{background:rgba(5,7,10,.72);backdrop-filter:blur(3px)}
+#dlgL form{display:grid;gap:14px}#dlgL h3{color:var(--ink);margin:0}
+#dlgL label{font-size:14px;font-weight:500;display:grid;gap:5px}#dlgL input{padding:11px 12px;border-radius:6px;font:400 16px "IBM Plex Sans",sans-serif;width:100%;background:#10151c;color:#e8edf4;border:1px solid var(--line2)}
+.lmsg{font-size:14px;padding:10px 12px;border-radius:6px;background:rgba(220,80,70,.14);color:#ffb4ad;border:1px solid rgba(220,80,70,.3)}
 </style>
 
 </head>
@@ -138,7 +143,7 @@ html{scroll-padding-top:124px}
 
 <section id="sobre" class="alt"><div class="w about"><img src="./foto.jpg" alt="Mathews Brito, fundador da Vórtice" width="260" height="325" loading="lazy"><div>
 <h2>Institucional</h2>
-<p>Fundada em <strong style="color:#0d47a1">2021 por <span translate="no">Mathews Brito</span></strong>, a <span translate="no">Vórtice</span> Soluções Globais nasceu para integrar Gestão Empresarial, Tecnologia e Produção em uma única estrutura estratégica. Com sede no estado de São Paulo, expandimos nossa atuação para clientes em diversas regiões do Brasil e internacionalmente na América do Norte alem de Suporte Técnico Global. Nosso objetivo é oferecer soluções completas para empresas que buscam crescimento sustentável, profissionalização de processos e resultados mensuráveis.</p>
+<p>Fundada em <strong style="color:#7fb0e6">2021 por <span translate="no">Mathews Brito</span></strong>, a <span translate="no">Vórtice</span> Soluções Globais nasceu para integrar Gestão Empresarial, Tecnologia e Produção em uma única estrutura estratégica. Com sede no estado de São Paulo, expandimos nossa atuação para clientes em diversas regiões do Brasil e internacionalmente na América do Norte alem de Suporte Técnico Global. Nosso objetivo é oferecer soluções completas para empresas que buscam crescimento sustentável, profissionalização de processos e resultados mensuráveis.</p>
 <div class="qt">“Nosso objetivo é entregar soluções que gerem resultado real, unindo gestão, tecnologia e produção em um único ecossistema de crescimento.”<small><span translate="no">Mathews Brito</span>, Fundador da <span translate="no">Vórtice</span> Soluções Globais</small></div>
 <div class="gb"><h3>Nosso Diferencial</h3><p style="margin-top:0">Enquanto a maioria das empresas atua em apenas uma área específica, a <span translate="no">Vórtice</span> integra Gestão Empresarial, Assessoria Administrativa, Tecnologia, Segurança Cibernética, Produção CNC, Uniformes Corporativos e Marketing Digital em uma única estrutura operacional.<br><br>Isso permite que nossos clientes encontrem diversas soluções estratégicas em um único parceiro de negócios, reduzindo custos, simplificando processos e aumentando a eficiência operacional.</p></div>
 <div class="pr"><div><h3>Missão</h3><p>Otimizar processos, elevar a produtividade e sustentar o crescimento das empresas com tecnologia e produção de alta performance.</p></div><div><h3>Visão</h3><p>Ser referência nacional em integração de gestão, tecnologia e produção para empresas em expansão.</p></div><div><h3>Valores</h3><p>Resultado, transparência, inovação contínua, atendimento humano e compromisso com o crescimento do cliente.</p></div></div>
@@ -203,8 +208,8 @@ html{scroll-padding-top:124px}
 <div class="view" id="v-cursos" hidden><section id="cursos" class="ar"><div class="w">
 <h2>Cursos e Mentorias</h2><p class="lead">Vórtice Academy: aprenda a gerir, vender e automatizar.</p>
 <div class="area-top"><span class="pl">Área restrita</span><button type="button" class="btn" data-entrar="cursos">Entrar - Aluno / Contratante</button></div>
-<h3 style="margin-top:28px">Cursos</h3><div class="em">Os cursos serão publicados em breve. Fale com a gente para entrar na lista de espera.</div>
-<h3 style="margin-top:34px">Mentorias</h3>
+<h3 class="sub">Cursos</h3><div class="em">Os cursos serão publicados em breve. Fale com a gente para entrar na lista de espera.</div>
+<h3 class="sub">Mentorias</h3>
 <div class="g3"><div class="cd"><h3>Mentoria Online 1h</h3><p>Sessão individual por videochamada.</p><p><b>R$ 500</b></p><a class="btn out" data-wa="mentoria online" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Agendar</a></div>
 <div class="cd"><h3>Mentoria Presencial na sua empresa</h3><p>Um dia com o Mathews dentro da sua operação.</p><p><b>R$ 2.500 / dia</b></p><a class="btn out" data-wa="mentoria presencial" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Agendar</a></div>
 <div class="cd"><h3>Acompanhamento Mensal</h3><p>Reuniões recorrentes e plano de ação.</p><p><b>R$ 1.500 / mês</b></p><a class="btn out" data-wa="acompanhamento mensal" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Contratar</a></div></div>
@@ -224,7 +229,7 @@ html{scroll-padding-top:124px}
 <dialog id="dlgL"><form id="fl" method="dialog"><h3 id="dlgT">Entrar</h3><label>E-mail<input id="lgE" type="email" required autocomplete="username"></label><label>Senha<input id="lgP" type="password" required autocomplete="current-password"></label><p class="lmsg" id="lgM" hidden></p><button class="btn" type="submit">Entrar</button><button class="btn out" type="button" id="lgX">Cancelar</button></form></dialog>
 
 
-<footer><div class="w"><nav class="fl" aria-label="Áreas"><a href="#portal">Portal do Cliente</a><a href="#cursos">Cursos e Mentorias</a><a href="#contratacoes">Contratações</a></nav><nav class="fl" aria-label="Serviços"><a href="./gestao-empresarial/index.html">Assessoria administrativa e gestão empresarial</a><a href="./assessoria-ti/index.html">Suporte técnico e assessoria de TI</a><a href="./gestao-redes-sociais/index.html">Gestão de redes e mídias sociais</a><a href="./uniformes-corporativos/index.html">Uniformes, estampas e brindes personalizados</a><a href="./usinagem-cnc/index.html">Usinagem CNC, corte a laser e modelagem 3D</a></nav><div style="font-weight:800;color:#0d47a1;letter-spacing:1px;margin-bottom:6px"><span translate="no">VÓRTICE</span> SOLUÇÕES GLOBAIS LTDA</div><div style="line-height:1.7">Desde 2021 integrando Gestão Empresarial, Tecnologia e Produção. Sede em São Paulo • Atendimento Nacional • Projetos na América do Norte.<br>CNPJ 65.576.566/0001-01 · © 2021-<span id="yr">2026</span> Todos os direitos reservados</div>
+<footer><div class="w"><nav class="fl" aria-label="Áreas"><a href="#portal">Portal do Cliente</a><a href="#cursos">Cursos e Mentorias</a><a href="#contratacoes">Contratações</a></nav><nav class="fl" aria-label="Serviços"><a href="./gestao-empresarial/index.html">Assessoria administrativa e gestão empresarial</a><a href="./assessoria-ti/index.html">Suporte técnico e assessoria de TI</a><a href="./gestao-redes-sociais/index.html">Gestão de redes e mídias sociais</a><a href="./uniformes-corporativos/index.html">Uniformes, estampas e brindes personalizados</a><a href="./usinagem-cnc/index.html">Usinagem CNC, corte a laser e modelagem 3D</a></nav><div style="font-weight:800;color:#7fb0e6;letter-spacing:1px;margin-bottom:6px"><span translate="no">VÓRTICE</span> SOLUÇÕES GLOBAIS LTDA</div><div style="line-height:1.7">Desde 2021 integrando Gestão Empresarial, Tecnologia e Produção. Sede em São Paulo • Atendimento Nacional • Projetos na América do Norte.<br>CNPJ 65.576.566/0001-01 · © 2021-<span id="yr">2026</span> Todos os direitos reservados</div>
 <details id="privacidade"><summary>Política de Privacidade (LGPD)</summary>
 <p><strong>Controlador:</strong> <span translate="no">Vórtice</span> Soluções Globais, CNPJ 65.576.566/0001-01, São Paulo - SP.</p>
 <p><strong>Dados coletados:</strong> nome, e-mail, telefone, empresa, cargo, serviço de interesse e a mensagem enviada no formulário.</p>
@@ -274,9 +279,18 @@ document.getElementById('fl').onsubmit=async e=>{e.preventDefault();m.hidden=fal
  try{const r=await fetch('/api/v/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({email:lgE.value,password:lgP.value,area})});
   const j=await r.json().catch(()=>null);
   if(!j)throw 0;
-  if(j.ok){m.textContent='Acesso confirmado.';location.href='#'+area;d.close();return}
+  if(j.ok){d.close();painel(j,area);location.hash='#'+area;return}
   m.textContent=j.msg||'Não foi possível entrar.'}
  catch(x){m.textContent='O acesso restrito ainda está sendo ativado neste endereço. Fale com a Vórtice pelo WhatsApp para receber seu acesso.'}};
+
+const NOMES={portal:['Relatórios','Documentos','Acompanhamento'],cursos:['Meus Cursos','Minhas Mentorias'],contratacoes:['Status da candidatura','Meu currículo']};
+const esc=t=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function painel(j,a){const v=document.getElementById('v-'+a),box=v.querySelector('.w');
+ let h='<span class="pl">'+esc(j.role==='admin'?'Admin Geral':j.role)+'</span><h2 style="margin-top:14px">Olá, '+esc(j.nome||'')+'</h2><div class="g3">'+NOMES[a].map(n=>'<div class="cd"><h3>'+n+'</h3><p>Em preparação neste endereço.</p></div>').join('');
+ if(a==='portal'&&(j.role==='funcionario'||j.role==='admin'))h+='<a class="cd" href="./investigador/"><h3>Investigador</h3><p>Acesso conforme a liberação do Admin.</p></a>';
+ h+='</div><p style="margin-top:26px"><button type="button" class="btn out" id="sair">Sair</button></p>';
+ box.innerHTML=h;document.getElementById('sair').onclick=async()=>{try{await fetch('/api/v/auth/logout',{method:'POST',credentials:'same-origin'})}catch(e){}location.href='./index.html#'+a;location.reload()}}
+fetch('/api/v/auth/me',{credentials:'same-origin'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.ok){const ar={funcionario:'portal',cliente:'portal',aluno:'cursos',candidato:'contratacoes'};const a=j.role==='admin'?(['portal','cursos','contratacoes'].find(k=>location.hash==='#'+k)||'portal'):ar[j.role];if(a)painel(j,a)}}).catch(()=>{});
 const f=document.getElementById('fc');
 function txt(){const v=Object.fromEntries(new FormData(f));return 'Candidatura - '+(v.vaga||'Banco de Talentos')+'\nNome: '+v.nome+'\nWhatsApp: '+v.wpp+'\nE-mail: '+v.email+'\nCidade: '+(v.cidade||'')+'\nLinkedIn: '+(v.lin||'')+'\nPor que a Vórtice: '+(v.porque||'')}
 f.onsubmit=e=>{e.preventDefault();if(f.website.value)return;window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(txt()),'_blank','noopener')};
