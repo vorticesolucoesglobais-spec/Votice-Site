@@ -33,7 +33,7 @@ form.fm{display:grid;gap:14px;max-width:680px;margin-top:24px;padding:28px;borde
 <main class="ar alt">
   <div class="w" id="candBox">
     <h2>Trabalhe na <span translate="no">Vórtice</span> Soluções Globais</h2>
-    <p class="lead">Aqui você não procura emprego. Você constrói carreira.</p>
+    <p class="lead">Oportunidades CLT, PJ, Contrato, Temporário e Estágio.</p>
     <div class="area-top">
       <span class="pl">Área restrita</span>
       <button type="button" class="btn" id="btnEntrarCand">Entrar - Candidatos / Recrutamento</button>
@@ -44,6 +44,16 @@ form.fm{display:grid;gap:14px;max-width:680px;margin-top:24px;padding:28px;borde
     <form class="fm" id="fc">
       <h3>Envie sua Candidatura / Banco de Talentos</h3>
       <label>Vaga de interesse<input name="vaga" id="inpVaga" placeholder="Em branco = Banco de Talentos"></label>
+      <label>Modalidade desejada
+        <select name="regime">
+          <option value="Qualquer">Qualquer modalidade</option>
+          <option value="CLT">CLT</option>
+          <option value="PJ">PJ</option>
+          <option value="Contrato">Contrato</option>
+          <option value="Temporário">Temporário</option>
+          <option value="Estágio">Estágio</option>
+        </select>
+      </label>
       <label>Nome completo *<input name="nome" required></label>
       <label>WhatsApp *<input name="wpp" type="tel" required></label>
       <label>E-mail *<input name="email" type="email" required></label>
@@ -76,6 +86,10 @@ form.fm{display:grid;gap:14px;max-width:680px;margin-top:24px;padding:28px;borde
 <script>
 (async function(){
   const data = await VorticeCore.loadSiteData("..") || {};
+  if (typeof VorticeServices !== "undefined") {
+    VorticeServices.registrarVisita({ pagina: "/contratacoes/", acao: "Visualizou vagas" });
+  }
+
   const dlg = document.getElementById("dlgL"), msg = document.getElementById("lgM");
   document.getElementById("btnEntrarCand").onclick = () => { msg.hidden = true; dlg.showModal(); };
   document.getElementById("lgX").onclick = () => dlg.close();
@@ -87,7 +101,7 @@ form.fm{display:grid;gap:14px;max-width:680px;margin-top:24px;padding:28px;borde
       <h3 style="margin-top:10px">${v.titulo}</h3>
       <p style="color:var(--mu);margin-top:6px">${v.descricao}</p>
       <p style="margin-top:8px"><b>${v.salario || "A combinar"}</b></p>
-      <button type="button" class="btn out" style="margin-top:12px" onclick="document.getElementById('inpVaga').value='${v.titulo}';document.getElementById('fc').scrollIntoView()">Candidatar-se Agora</button>
+      <button type="button" class="btn out" style="margin-top:12px" onclick="document.getElementById('inpVaga').value='${v.titulo} (${v.tipo})';document.getElementById('fc').scrollIntoView()">Candidatar-se Agora</button>
     </div>
   `).join("") : `<div class="cd"><p>No momento não temos vagas abertas, mas deixe seu currículo abaixo no Banco de Talentos.</p></div>`;
 
@@ -96,21 +110,24 @@ form.fm{display:grid;gap:14px;max-width:680px;margin-top:24px;padding:28px;borde
     const f = e.target;
     const fd = new FormData(f);
     const vaga = fd.get("vaga") || "Banco de Talentos";
+    const regime = fd.get("regime");
     const nome = fd.get("nome");
+    const email = fd.get("email");
+    const wpp = fd.get("wpp");
     const pdfFile = document.getElementById("cvPdf").files[0];
 
-    // 1. Tenta salvar currículo no OneDrive
+    await VorticeServices.registrarVisita({ nome, email, whatsapp: wpp, pagina: "/contratacoes/", acao: "Enviou currículo", item: `${vaga} (${regime})` });
+
     if (pdfFile) {
       try {
         await VorticeServices.uploadToOneDrive(`Vórtice/Contratações/${vaga}`, `${nome}.pdf`, pdfFile);
       } catch (err) {}
     }
 
-    // 2. Dispara notificação pelo canal configurado no Admin (Email, WhatsApp, ambos ou nenhum)
     await VorticeServices.sendNotification(
       "novoCandidato",
-      `Novo Candidato - ${vaga} - ${nome}`,
-      `Nome: ${nome}\nWhatsApp: ${fd.get("wpp")}\nE-mail: ${fd.get("email")}\nCidade: ${fd.get("cidade") || "-"}\nLinkedIn: ${fd.get("lin") || "-"}\nMotivo: ${fd.get("porque") || "-"}`
+      `Novo Candidato - ${vaga} (${regime}) - ${nome}`,
+      `Nome: ${nome}\nRegime: ${regime}\nWhatsApp: ${wpp}\nE-mail: ${email}\nCidade: ${fd.get("cidade") || "-"}\nLinkedIn: ${fd.get("lin") || "-"}\nMotivo: ${fd.get("porque") || "-"}`
     );
 
     const fb = document.getElementById("candFeedback");
