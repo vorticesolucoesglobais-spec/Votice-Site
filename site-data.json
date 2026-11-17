@@ -155,5 +155,15 @@
       "ativo": true
     }
   ],
-  "vagas": []
+  "vagas": [
+    {
+      "id": "vag_1794947273504",
+      "titulo": "adm",
+      "tipo": "CLT",
+      "local": "Remoto",
+      "salario": "1600",
+      "descricao": "varios",
+      "status": "Aberta"
+    }
+  ]
 }
