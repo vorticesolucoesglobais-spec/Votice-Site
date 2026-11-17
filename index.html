@@ -58,16 +58,15 @@ html{scroll-padding-top:124px}
 #dlgL label{font-size:14px;font-weight:500;display:grid;gap:5px}#dlgL input{padding:11px 12px;border-radius:6px;font:400 16px "IBM Plex Sans",sans-serif;width:100%;background:#10151c;color:#e8edf4;border:1px solid var(--line2)}
 .lmsg{font-size:14px;padding:10px 12px;border-radius:6px;background:rgba(220,80,70,.14);color:#ffb4ad;border:1px solid rgba(220,80,70,.3)}
 </style>
-
 </head>
 <body>
 <header>
 <div class="w bar">
 <a href="#inicio"><img src="./logo.png" alt="Vórtice Soluções Globais"></a>
 <nav class="mn" aria-label="Principal"><a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#depoimentos">Depoimentos</a><a href="#diferenciais">Diferenciais</a><a href="#sobre">Institucional</a><a href="#onde">Onde Atuamos</a><a href="#faq">FAQ</a><a href="#contato">Contato</a></nav>
-<nav class="areas" aria-label="Áreas do site"><a class="ta" href="#portal">Portal do Cliente</a><a class="ta" href="#cursos">Cursos e Mentorias</a><a class="ta" href="#contratacoes">Contratações</a></nav>
+<!-- EDITADO: agora aponta para as pastas reais ./portal/ ./cursos/ ./contratacoes/ -->
+<nav class="areas" aria-label="Áreas do site"><a class="ta" href="./portal/">Portal do Cliente</a><a class="ta" href="./cursos/">Cursos e Mentorias</a><a class="ta" href="./contratacoes/">Contratações</a></nav>
 <div id="lg" class="lgm notranslate" translate="no"></div>
-
 </div>
 </header>
 
@@ -199,10 +198,12 @@ html{scroll-padding-top:124px}
 </section>
 <section class="cta"><div class="w"><h2>Pronto para transformar sua operação?</h2><p class="lead">Se sua empresa precisa de mais organização, tecnologia, produtividade e resultados, a <span translate="no">Vórtice</span> está pronta para ajudar. Atuamos presencialmente em São Paulo, atendemos clientes em todo o Brasil e desenvolvemos projetos internacionais na América do Norte.</p><div class="acts"><a class="btn" href="#contato">Solicitar Diagnóstico Gratuito</a></div></div></section>
 </div>
+<!-- MANTIDO: views internas #portal / #cursos / #contratacoes continuam existindo como fallback, mas o menu principal agora vai para as pastas reais -->
 <div class="view" id="v-portal" hidden><section id="portal" class="ar alt"><div class="w">
 <h2>Portal do Cliente</h2><p class="lead">Relatórios, documentos e acompanhamento do seu projeto em um só lugar.</p>
 <div class="area-top"><span class="pl">Área restrita</span><button type="button" class="btn" data-entrar="portal">Entrar - Cliente / Funcionário</button></div>
 <div class="g3"><div class="cd"><h3>Relatórios</h3><p>Financeiro, Marketing, Atendimento e Gestão, organizados por mês.</p></div><div class="cd"><h3>Documentos</h3><p>Contratos, propostas, notas e apresentações da sua empresa.</p></div><div class="cd"><h3>Acompanhamento</h3><p>Linha do tempo com o andamento de cada fase do projeto.</p></div></div>
+<p style="margin-top:18px"><a class="btn" href="./portal/">Abrir Portal completo →</a></p>
 </div></section>
 </div>
 <div class="view" id="v-cursos" hidden><section id="cursos" class="ar"><div class="w">
@@ -213,6 +214,7 @@ html{scroll-padding-top:124px}
 <div class="g3"><div class="cd"><h3>Mentoria Online 1h</h3><p>Sessão individual por videochamada.</p><p><b>R$ 500</b></p><a class="btn out" data-wa="mentoria online" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Agendar</a></div>
 <div class="cd"><h3>Mentoria Presencial na sua empresa</h3><p>Um dia com o Mathews dentro da sua operação.</p><p><b>R$ 2.500 / dia</b></p><a class="btn out" data-wa="mentoria presencial" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Agendar</a></div>
 <div class="cd"><h3>Acompanhamento Mensal</h3><p>Reuniões recorrentes e plano de ação.</p><p><b>R$ 1.500 / mês</b></p><a class="btn out" data-wa="acompanhamento mensal" href="https://wa.me/5511921913395" target="_blank" rel="noopener">Contratar</a></div></div>
+<p style="margin-top:18px"><a class="btn" href="./cursos/">Abrir Cursos completo →</a></p>
 </div></section>
 </div>
 <div class="view" id="v-contratacoes" hidden><section id="contratacoes" class="ar alt"><div class="w">
@@ -223,13 +225,13 @@ html{scroll-padding-top:124px}
 <label>Vaga de interesse<input name="vaga" placeholder="Em branco = Banco de Talentos"></label><label>Nome completo *<input name="nome" required></label><label>WhatsApp *<input name="wpp" type="tel" required></label><label>E-mail *<input name="email" type="email" required></label><label>Cidade<input name="cidade"></label><label>LinkedIn<input name="lin" type="url"></label><label>Por que você quer a Vórtice?<textarea name="porque" rows="4"></textarea></label>
 <div class="acts" style="margin-top:0"><button class="btn" type="submit">Enviar pelo WhatsApp</button><button class="btn out" type="button" id="cmail">Enviar por e-mail</button></div>
 <p class="nt" style="font-size:13px;color:var(--mu)">O currículo em PDF pode ser anexado ao e-mail ou enviado na conversa do WhatsApp. Veja a <a href="#privacidade">Política de Privacidade</a>.</p></form>
+<p style="margin-top:18px"><a class="btn" href="./contratacoes/">Abrir Contratações completo →</a></p>
 </div></section>
 </div>
 </main>
 <dialog id="dlgL"><form id="fl" method="dialog"><h3 id="dlgT">Entrar</h3><label>E-mail<input id="lgE" type="email" required autocomplete="username"></label><label>Senha<input id="lgP" type="password" required autocomplete="current-password"></label><p class="lmsg" id="lgM" hidden></p><button class="btn" type="submit">Entrar</button><button class="btn out" type="button" id="lgX">Cancelar</button></form></dialog>
 
-
-<footer><div class="w"><nav class="fl" aria-label="Áreas"><a href="#portal">Portal do Cliente</a><a href="#cursos">Cursos e Mentorias</a><a href="#contratacoes">Contratações</a></nav><nav class="fl" aria-label="Serviços"><a href="./gestao-empresarial/index.html">Assessoria administrativa e gestão empresarial</a><a href="./assessoria-ti/index.html">Suporte técnico e assessoria de TI</a><a href="./gestao-redes-sociais/index.html">Gestão de redes e mídias sociais</a><a href="./uniformes-corporativos/index.html">Uniformes, estampas e brindes personalizados</a><a href="./usinagem-cnc/index.html">Usinagem CNC, corte a laser e modelagem 3D</a></nav><div style="font-weight:800;color:#7fb0e6;letter-spacing:1px;margin-bottom:6px"><span translate="no">VÓRTICE</span> SOLUÇÕES GLOBAIS LTDA</div><div style="line-height:1.7">Desde 2021 integrando Gestão Empresarial, Tecnologia e Produção. Sede em São Paulo • Atendimento Nacional • Projetos na América do Norte.<br>CNPJ 65.576.566/0001-01 · © 2021-<span id="yr">2026</span> Todos os direitos reservados</div>
+<footer><div class="w"><nav class="fl" aria-label="Áreas"><a href="./portal/">Portal do Cliente</a><a href="./cursos/">Cursos e Mentorias</a><a href="./contratacoes/">Contratações</a></nav><nav class="fl" aria-label="Serviços"><a href="#servicos">Assessoria administrativa e gestão empresarial</a><a href="#servicos">Suporte técnico e assessoria de TI</a><a href="#servicos">Gestão de redes e mídias sociais</a><a href="#servicos">Uniformes, estampas e brindes personalizados</a><a href="#servicos">Usinagem CNC, corte a laser e modelagem 3D</a></nav><div style="font-weight:800;color:#7fb0e6;letter-spacing:1px;margin-bottom:6px"><span translate="no">VÓRTICE</span> SOLUÇÕES GLOBAIS LTDA</div><div style="line-height:1.7">Desde 2021 integrando Gestão Empresarial, Tecnologia e Produção. Sede em São Paulo • Atendimento Nacional • Projetos na América do Norte.<br>CNPJ 65.576.566/0001-01 · © 2021-<span id="yr">2026</span> Todos os direitos reservados</div>
 <details id="privacidade"><summary>Política de Privacidade (LGPD)</summary>
 <p><strong>Controlador:</strong> <span translate="no">Vórtice</span> Soluções Globais, CNPJ 65.576.566/0001-01, São Paulo - SP.</p>
 <p><strong>Dados coletados:</strong> nome, e-mail, telefone, empresa, cargo, serviço de interesse e a mensagem enviada no formulário.</p>
@@ -244,6 +246,18 @@ html{scroll-padding-top:124px}
 
 <a class="fab" data-wa="" href="https://wa.me/5511921913395" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.49 2 2 6.5 2 12.05c0 1.77.46 3.5 1.34 5.03L2 22l5.04-1.32a9.87 9.87 0 0 0 4.71 1.2h.02c5.54 0 10.04-4.5 10.04-10.04 0-2.68-1.04-5.2-2.93-7.1l-.03-.03zM12.03 20.03h-.01a8.18 8.18 0 0 1-4.17-1.14l-.3-.18-3 .79.79-2.93-.2-.3A8.19 8.19 0 0 1 3.86 12c0-4.56 3.71-8.27 8.28-8.27 2.21 0 4.29.86 5.85 2.43a8.22 8.22 0 0 1 2.42 5.85c0 4.56-3.72 8.27-8.28 8.27zm4.54-6.19c-.25-.12-1.47-.73-1.7-.81-.23-.09-.39-.12-.56.12-.17.25-.65.81-.8.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.53.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg></a>
 
+<!-- CONFIG COMPARTILHADA: faz o index ler as mesmas pastas -->
+<script src="./vortice-config.js"></script>
+<script>
+// FALLBACK: se o vortice-config.js ainda não foi criado, usa esses valores para não travar
+if(typeof WA==='undefined') var WA="5511921913395";
+if(typeof MAIL==='undefined') var MAIL="vorticesolucoesglobais@gmail.com";
+if(typeof CFG==='undefined') var CFG={LEAD_API:""};
+if(typeof track==='undefined') function track(){}
+if(typeof VORTICE_ADMIN_EMAIL==='undefined') var VORTICE_ADMIN_EMAIL="vorticesolucoesglobais@gmail.com";
+if(typeof vorticeGetAdminPass==='undefined') function vorticeGetAdminPass(){return localStorage.getItem('vortice_admin_pass')||"Vortice@2026";}
+if(typeof vorticeGetDB==='undefined') function vorticeGetDB(){try{return JSON.parse(localStorage.getItem('vortice_db')||'{"empresas":[],"users":[],"config":{}}')}catch(e){return {empresas:[],users:[],config:{}}}}
+</script>
 <script src="./site.js"></script>
 <script>
 const f=document.getElementById('f');
@@ -275,26 +289,56 @@ const AREA={portal:'Entrar - Cliente / Funcionário',cursos:'Entrar - Aluno / Co
 let area='portal';const d=document.getElementById('dlgL'),m=document.getElementById('lgM');
 document.querySelectorAll('[data-entrar]').forEach(b=>b.onclick=()=>{area=b.dataset.entrar;document.getElementById('dlgT').textContent=AREA[area];m.hidden=true;d.showModal()});
 document.getElementById('lgX').onclick=()=>d.close();
-document.getElementById('fl').onsubmit=async e=>{e.preventDefault();m.hidden=false;m.textContent='Verificando...';
- try{const r=await fetch('/api/v/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({email:lgE.value,password:lgP.value,area})});
+// EDITADO: login agora lê as pastas primeiro (localStorage compartilhado) e só depois tenta a API do Azure
+document.getElementById('fl').onsubmit=async e=>{
+  e.preventDefault();m.hidden=false;m.textContent='Verificando...';
+  const email=(document.getElementById('lgE').value||'').trim().toLowerCase();
+  const pass=document.getElementById('lgP').value;
+  // 1) ADMIN GERAL - mesmo login das pastas
+  if(email===VORTICE_ADMIN_EMAIL && pass===vorticeGetAdminPass()){
+    d.close();painel({ok:true,role:'admin',nome:'Mathews Brito'},area);return;
+  }
+  // 2) FUNCIONÁRIO / CLIENTE / ALUNO / CANDIDATO cadastrados nas pastas
+  try{
+    const db=vorticeGetDB();
+    const u=(db.users||[]).find(x=>(x.email||'').toLowerCase()===email);
+    if(u && pass){
+      // Se o usuário for de outra área, bloqueia como no seu prompt
+      const mapa={funcionario:'portal',cliente:'portal',aluno:'cursos',candidato:'contratacoes'};
+      if(mapa[u.tipo||u.role] && mapa[u.tipo||u.role]!==area && u.tipo!=='admin'){
+        m.textContent='Esse acesso não é para essa área. Vá para Cursos e Mentorias ou Contratações.';return;
+      }
+      d.close();painel({ok:true,role:u.tipo||u.role||'funcionario',nome:u.nome||email},area);return;
+    }
+  }catch(err){}
+  // 3) Fallback API Azure (quando existir)
+  try{const r=await fetch('/api/v/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({email:document.getElementById('lgE').value,password:document.getElementById('lgP').value,area})});
   const j=await r.json().catch(()=>null);
-  if(!j)throw 0;
-  if(j.ok){d.close();painel(j,area);location.hash='#'+area;return}
-  m.textContent=j.msg||'Não foi possível entrar.'}
- catch(x){m.textContent='O acesso restrito ainda está sendo ativado neste endereço. Fale com a Vórtice pelo WhatsApp para receber seu acesso.'}};
+  if(j&&j.ok){d.close();painel(j,area);return}
+  m.textContent=(j&&j.msg)||'E-mail ou senha incorretos. Se você é Admin, use vorticesolucoesglobais@gmail.com / Vortice@2026 (ou a senha que você trocou).';}
+  catch(x){m.textContent='E-mail ou senha incorretos. Se você é Admin, use vorticesolucoesglobais@gmail.com / Vortice@2026 (ou a senha que você trocou).';}
+};
 
 const NOMES={portal:['Relatórios','Documentos','Acompanhamento'],cursos:['Meus Cursos','Minhas Mentorias'],contratacoes:['Status da candidatura','Meu currículo']};
 const esc=t=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function painel(j,a){const v=document.getElementById('v-'+a),box=v.querySelector('.w');
- let h='<span class="pl">'+esc(j.role==='admin'?'Admin Geral':j.role)+'</span><h2 style="margin-top:14px">Olá, '+esc(j.nome||'')+'</h2><div class="g3">'+NOMES[a].map(n=>'<div class="cd"><h3>'+n+'</h3><p>Em preparação neste endereço.</p></div>').join('');
+ let h='<span class="pl">'+esc(j.role==='admin'?'Admin Geral':j.role)+'</span><h2 style="margin-top:14px">Olá, '+esc(j.nome||'')+'</h2><div class="g3">'+NOMES[a].map(n=>'<div class="cd"><h3>'+n+'</h3><p>Em preparação neste endereço. <a href="./'+a+'/">Abrir versão completa →</a></p></div>').join('');
  if(a==='portal'&&(j.role==='funcionario'||j.role==='admin'))h+='<a class="cd" href="./investigador/"><h3>Investigador</h3><p>Acesso conforme a liberação do Admin.</p></a>';
  h+='</div><p style="margin-top:26px"><button type="button" class="btn out" id="sair">Sair</button></p>';
  box.innerHTML=h;document.getElementById('sair').onclick=async()=>{try{await fetch('/api/v/auth/logout',{method:'POST',credentials:'same-origin'})}catch(e){}location.href='./index.html#'+a;location.reload()}}
+try{
+  const db=vorticeGetDB();
+  // Se já houver sessão salva nas pastas, não força login de novo
+  const sess=JSON.parse(localStorage.getItem('vortice_sessao')||'null');
+  if(sess&&sess.ok){const ar={funcionario:'portal',cliente:'portal',aluno:'cursos',candidato:'contratacoes'};const a=sess.role==='admin'?(['portal','cursos','contratacoes'].find(k=>location.hash==='#'+k)||'portal'):ar[sess.role];if(a)painel(sess,a)}
+}catch(e){}
 fetch('/api/v/auth/me',{credentials:'same-origin'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.ok){const ar={funcionario:'portal',cliente:'portal',aluno:'cursos',candidato:'contratacoes'};const a=j.role==='admin'?(['portal','cursos','contratacoes'].find(k=>location.hash==='#'+k)||'portal'):ar[j.role];if(a)painel(j,a)}}).catch(()=>{});
-const f=document.getElementById('fc');
-function txt(){const v=Object.fromEntries(new FormData(f));return 'Candidatura - '+(v.vaga||'Banco de Talentos')+'\nNome: '+v.nome+'\nWhatsApp: '+v.wpp+'\nE-mail: '+v.email+'\nCidade: '+(v.cidade||'')+'\nLinkedIn: '+(v.lin||'')+'\nPor que a Vórtice: '+(v.porque||'')}
-f.onsubmit=e=>{e.preventDefault();if(f.website.value)return;window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(txt()),'_blank','noopener')};
-document.getElementById('cmail').onclick=()=>{if(!f.reportValidity()||f.website.value)return;location.href='mailto:'+MAIL+'?subject='+encodeURIComponent('Candidatura - '+(f.vaga.value||'Banco de Talentos')+' - '+f.nome.value)+'&body='+encodeURIComponent(txt())};
+const f2=document.getElementById('fc');
+function txt(){const v=Object.fromEntries(new FormData(f2));return 'Candidatura - '+(v.vaga||'Banco de Talentos')+'\nNome: '+v.nome+'\nWhatsApp: '+v.wpp+'\nE-mail: '+v.email+'\nCidade: '+(v.cidade||'')+'\nLinkedIn: '+(v.lin||'')+'\nPor que a Vórtice: '+(v.porque||'')}
+if(f2){
+f2.onsubmit=e=>{e.preventDefault();if(f2.website.value)return;window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(txt()),'_blank','noopener')};
+document.getElementById('cmail').onclick=()=>{if(!f2.reportValidity()||f2.website.value)return;location.href='mailto:'+MAIL+'?subject='+encodeURIComponent('Candidatura - '+(f2.vaga.value||'Banco de Talentos')+' - '+f2.nome.value)+'&body='+encodeURIComponent(txt())};
+}
 })();
 </script>
 <script>
@@ -303,7 +347,8 @@ const AB=['portal','cursos','contratacoes'],vm=document.getElementById('v-main')
 function rota(first){
   const h=decodeURIComponent(location.hash.slice(1)),ab=AB.includes(h)?h:null;
   vm.hidden=!!ab;AB.forEach(a=>{document.getElementById('v-'+a).hidden=a!==ab});
-  document.querySelectorAll('header nav a').forEach(l=>{l.classList.toggle('on',!!ab&&l.hash==='#'+ab);if(ab&&l.hash==='#'+ab)l.setAttribute('aria-current','page');else l.removeAttribute('aria-current')});
+  // MANTIDO: só marca o menu interno, não interfere nos links ./portal/ etc
+  document.querySelectorAll('header nav.mn a').forEach(l=>{l.classList.toggle('on',!!ab&&l.hash==='#'+ab);if(ab&&l.hash==='#'+ab)l.setAttribute('aria-current','page');else l.removeAttribute('aria-current')});
   if(ab){scrollTo(0,0);document.title=document.querySelector('#v-'+ab+' h2').textContent+' | Vórtice Soluções Globais'}
   else{document.title='Vórtice Soluções Globais | Gestão, Tecnologia e Produção';const t=h&&document.getElementById(h);if(t)t.scrollIntoView();else if(!first)scrollTo(0,0)}
 }
