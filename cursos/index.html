@@ -1,275 +1,128 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cursos e Mentorias | Vórtice Academy</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cursos e Mentorias | Vórtice Soluções Globais</title>
+<link rel="icon" href="../favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
 <style>
-:root{--bg:#090b0f;--card:#131920;--card2:#1b222c;--line:#22385a;--line2:#2a3a52;--tx:#e8edf4;--mu:#aab6c6;--blue:#7fb0e6;--green:#3ddc84;--red:#ff6b6b;--gold:#f5c542}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:400 15px system-ui,sans-serif}
-a{color:var(--blue)}header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#090b0f;z-index:10}
-.w{max-width:1180px;margin:auto;padding:0 18px}.bar{display:flex;align-items:center;gap:16px;padding:12px 0;flex-wrap:wrap;justify-content:space-between}
-.logo{font-weight:800;letter-spacing:1px}.logo span{color:var(--blue)}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tabs button{padding:10px 16px;border:1px solid var(--line2);background:var(--card);color:var(--tx);border-radius:99px;cursor:pointer}
-.tabs button.on{background:var(--blue);color:#000;font-weight:700}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-.card{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px}
-.card h3{margin:0 0 6px}.mut{color:var(--mu);font-size:14px}.big{font-size:26px;font-weight:800}
-label{display:grid;gap:5px;font-size:14px;margin-top:12px}input,select,textarea{width:100%;padding:11px 12px;border-radius:8px;background:#10151c;color:var(--tx);border:1px solid var(--line2);font:400 15px system-ui}
-textarea{min-height:70px}.btn{padding:11px 18px;border:0;border-radius:8px;background:var(--blue);color:#000;font-weight:700;cursor:pointer;margin-top:12px}
-.btn.out{background:transparent;border:1px solid var(--blue);color:var(--tx)}.btn.green{background:var(--green);color:#000}.btn.gold{background:var(--gold);color:#000}
-.pill{display:inline-block;padding:4px 10px;border-radius:99px;background:rgba(127,176,230,.12);border:1px solid rgba(127,176,230,.3);font-size:12px}
-.hidden{display:none!important}.ok{color:var(--green)}.err{color:var(--red)}.flex{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.progress{height:10px;background:#10151c;border-radius:99px;overflow:hidden;margin:10px 0}.progress div{height:100%;background:var(--green)}
-.cert{border:2px solid var(--gold);border-radius:12px;padding:24px;text-align:center;background:#fff;color:#111;margin-top:14px}
+.ar{min-height:70vh;padding:48px 0}
+.area-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:22px 0}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin-top:20px}
+.cd{padding:26px;border-radius:10px;background:linear-gradient(160deg,#1b222c 0%,#131920 100%);border:1px solid var(--line);background-size:cover;background-position:center;position:relative;overflow:hidden}
+.cd.has-bg::before{content:"";position:absolute;inset:0;background:rgba(10,13,18,.78);z-index:0}
+.cd>*{position:relative;z-index:1}
+.pl{display:inline-block;padding:6px 14px;border:1px solid rgba(127,176,230,.30);background:rgba(127,176,230,.08);border-radius:99px;color:#acc9ee;font-size:12px;font-weight:600}
+#dlgL{margin:auto;background:#141a22;color:var(--tx);border:1px solid var(--line2);border-radius:12px;padding:28px;max-width:420px;width:92%}
+#dlgL::backdrop{background:rgba(5,7,10,.75)}
+.lmsg{font-size:14px;padding:10px 12px;border-radius:6px;background:rgba(220,80,70,.14);color:#ffb4ad;border:1px solid rgba(220,80,70,.3)}
+.bar{flex-wrap:wrap;row-gap:0}nav.areas{order:2;margin-left:auto}#lg{order:2}nav.mn{order:3;width:100%;margin:0;border-top:1px solid #22385a}
 </style>
 </head>
 <body>
-<header><div class="w bar"><div class="logo">VÓRTICE <span>ACADEMY</span> • CURSOS E MENTORIAS</div><div><a href="../">← Voltar pro site</a> <span id="who" class="mut" style="margin-left:10px"></span> <button class="btn out" id="btnSair" onclick="logout()" style="margin:0 0 0 8px" hidden>Sair</button></div></div></header>
-<div class="w">
+<header>
+  <div class="w bar">
+    <a href="../index.html"><img src="../logo.png" alt="Vórtice Soluções Globais"></a>
+    <nav class="mn"><a href="../index.html#inicio">Início</a><a href="../index.html#servicos">Serviços</a><a href="../index.html#depoimentos">Depoimentos</a><a href="../index.html#diferenciais">Diferenciais</a><a href="../index.html#sobre">Institucional</a><a href="../index.html#onde">Onde Atuamos</a><a href="../index.html#faq">FAQ</a><a href="../index.html#contato">Contato</a></nav>
+    <nav class="areas"><a href="../portal/">Portal do Cliente</a><a class="on" href="./">Cursos e Mentorias</a><a href="../contratacoes/">Contratações</a></nav>
+    <div id="lg" class="lgm notranslate" translate="no"></div>
+  </div>
+</header>
 
-<!-- PÚBLICO -->
-<div id="publico">
-<h1>Vórtice Academy - Aprenda a gerir, vender e automatizar</h1><p class="mut">Cursos + Mentorias com certificado, material no OneDrive e agendamento no Outlook.</p>
-<div class="flex"><button class="btn" onclick="abrirLogin()">Entrar - Aluno / Contratante</button><a class="btn out" href="../portal/">Portal do Cliente →</a><a class="btn out" href="../contratacoes/">Contratações →</a></div>
+<main class="ar">
+  <div class="w" id="cursosBox">
+    <h2><span translate="no">Vórtice Academy</span> — Cursos e Mentorias</h2>
+    <p class="lead">Aprenda a gerir, vender e automatizar com quem executa na prática.</p>
+    <div class="area-top">
+      <span class="pl">Área restrita</span>
+      <button type="button" class="btn" id="btnEntrarCursos">Entrar - Aluno / Contratante de Mentoria</button>
+    </div>
 
-<h2 style="margin-top:28px">Cursos</h2>
-<div id="listaCursosPublico" class="grid"></div>
+    <h3 style="margin-top:32px">Cursos Disponíveis</h3>
+    <div class="g3" id="vitrineCursos"></div>
 
-<h2 style="margin-top:28px">Mentorias</h2>
-<div id="listaMentoriasPublico" class="grid"></div>
+    <h3 style="margin-top:42px">Mentorias Executivas</h3>
+    <div class="g3" id="vitrineMentorias"></div>
+  </div>
+</main>
 
-<div id="loginBox" class="card hidden"><h3>Entrar - Aluno / Contratante</h3>
-<p class="mut">Quem pode entrar aqui: Alunos que compraram curso / Contratantes que compraram mentoria / Admin Geral. Funcionário, Cliente e Candidato são bloqueados aqui.</p>
-<label>E-mail<input id="lEmail" value="vorticesolucoesglobais@gmail.com"></label>
-<label>Senha<input id="lPass" type="password" placeholder="Vortice@2026 ou sua senha"></label>
-<label>Tipo<select id="lTipo"><option value="admin">Admin Geral - Mathews</option><option value="aluno">Aluno / Contratante de Mentoria</option><option value="funcionario">Funcionário (teste bloqueio)</option><option value="cliente">Cliente (teste bloqueio)</option><option value="candidato">Candidato (teste bloqueio)</option></select></label>
-<button class="btn" onclick="login()">Entrar</button><p id="lMsg" class="err"></p>
-<p class="mut">Aluno novo: compre um curso abaixo que seu acesso é criado. Ou crie conta em "Criar conta de aluno" no Admin.</p>
-</div>
-</div>
+<dialog id="dlgL">
+  <form id="fl" style="display:grid;gap:14px">
+    <h3>Entrar - Aluno / Contratante</h3>
+    <label>E-mail da Compra<input id="lgE" type="email" required></label>
+    <label>Senha<input id="lgP" type="password" required></label>
+    <p class="lmsg" id="lgM" hidden></p>
+    <button class="btn" type="submit">Entrar</button>
+    <button class="btn out" type="button" id="lgX">Cancelar</button>
+  </form>
+</dialog>
 
-<!-- APP -->
-<div id="app" class="hidden">
-<div class="tabs" id="tabs"></div>
-
-<!-- MEUS CURSOS -->
-<div id="t-meus" class="hidden">
-<div class="card"><h3>Meus Cursos</h3><p class="mut">Só os cursos que você comprou e o Mathews liberou.</p><div id="meusCursos"></div></div>
-<div id="dentroCurso"></div>
-</div>
-
-<!-- MINHAS MENTORIAS -->
-<div id="t-ment" class="hidden">
-<div class="card"><h3>Minhas Mentorias</h3><div id="minhasMentorias"></div></div>
-</div>
-
-<!-- CERTIFICADOS -->
-<div id="t-cert" class="hidden"><div class="card"><h3>Meus Certificados</h3><div id="meusCerts"></div></div></div>
-
-<!-- ADMIN - CURSOS -->
-<div id="t-admin-cursos" class="hidden">
-<div class="card"><h3>Painel Admin - Cursos</h3>
-<label>Nome do curso<input id="cNome" placeholder="Ex: Gestão para Pequenas Empresas"></label>
-<label>Descrição<textarea id="cDesc"></textarea></label>
-<label>Preço - R$<input id="cPreco" type="number" value="297"></label>
-<label>Foto de capa - link<input id="cFoto" placeholder="https://..."></label>
-<label>Duração<input id="cDur" placeholder="Ex: 4h - 12 aulas"></label>
-<label>Categoria<input id="cCat" placeholder="Ex: Gestão"></label>
-<label>Status<select id="cStatus"><option>Publicado</option><option>Rascunho</option><option>Pausado</option></select></label>
-<label>Pagamento<select id="cPag"><option value="api">Mercado Pago API - Ativado</option><option value="link">Link Manual</option></select></label>
-<label>Link Manual (se usar Link Manual)<input id="cLink" placeholder="https://mpago.la/..."></label>
-<button class="btn" onclick="criarCurso()">+ Novo Curso</button><div id="listaAdminCursos"></div></div>
-
-<div class="card"><h3>+ Nova Aula dentro do curso</h3>
-<label>Escolha o curso<select id="aCurso"></select></label>
-<label>Título da aula<input id="aTitulo" placeholder="Ex: Aula 1 - Como organizar o financeiro"></label>
-<label>Vídeo - link OneDrive ou YouTube não listado<input id="aVideo" placeholder="https://..."></label>
-<label>Duração<input id="aDur" placeholder="Ex: 18 min"></label>
-<label>PDF de apoio - link OneDrive<input id="aPdf" placeholder="https://..."></label>
-<label>Ordem<input id="aOrdem" type="number" value="1"></label>
-<label>Liberada?<select id="aLib"><option>Sim</option><option>Não</option></select></label>
-<button class="btn" onclick="criarAula()">+ Nova Aula</button></div>
-</div>
-
-<!-- ADMIN - ALUNOS -->
-<div id="t-admin-alunos" class="hidden"><div class="card"><h3>Painel Admin - Alunos</h3>
-<label>Nome do aluno<input id="alNome" placeholder="Ex: João Silva"></label>
-<label>E-mail que ele usou na compra<input id="alEmail" placeholder="joao@..."></label>
-<label>Senha temporária<input id="alSenha" placeholder="Senha temporária"></label>
-<label>Liberar curso<select id="alCurso"></select></label>
-<button class="btn" onclick="criarAluno()">+ Novo Aluno / Liberar curso manualmente</button><div id="listaAlunos"></div></div></div>
-
-<!-- ADMIN - MENTORIAS -->
-<div id="t-admin-ment" class="hidden"><div class="card"><h3>Painel Admin - Mentorias</h3>
-<label>Nome<input id="mNome" placeholder="Ex: Mentoria Online 1h"></label>
-<label>Descrição<textarea id="mDesc"></textarea></label>
-<label>Valor - R$<input id="mValor" type="number" value="500"></label>
-<label>Duração<input id="mDur" placeholder="Ex: 1h"></label>
-<label>Tipo<select id="mTipo"><option>Online</option><option>Presencial</option><option>Mensal</option></select></label>
-<label>Link de Pagamento Mercado Pago (se Link Manual)<input id="mLink" placeholder="https://mpago.la/..."></label>
-<button class="btn" onclick="criarMentoria()">+ Novo Tipo de Mentoria</button><div id="listaAdminMentorias"></div>
-<h3 style="margin-top:20px">Mentorias agendadas</h3><div id="listaAgendadas"></div></div></div>
-
-<!-- ADMIN - CERTIFICADOS / PAGAMENTOS -->
-<div id="t-admin-config" class="hidden">
-<div class="card"><h3>Modelo do Certificado - você edita tudo</h3>
-<label>Texto do certificado<textarea id="certTexto">Certificamos que o aluno concluiu o curso com aproveitamento.</textarea></label>
-<label>Logo - link<input id="certLogo" placeholder="https://..."></label>
-<label>Assinatura<input id="certAss" value="Mathews Brito - CEO Vórtice Soluções Globais"></label>
-<label>Cor<input id="certCor" type="color" value="#f5c542"></label>
-<button class="btn" onclick="salvarCertModelo()">Salvar Modelo</button></div>
-
-<div class="card"><h3>Pagamentos - Mercado Pago API</h3>
-<p class="mut">Você pega em: Mercado Pago > Seu negócio > Desenvolvedores / Suas integrações > Credenciais > Copia Public Key e Access Token de Produção e cola aqui.</p>
-<label>Public Key<input id="mpPub" placeholder="APP_USR-..."></label>
-<label>Access Token<input id="mpToken" placeholder="APP_USR-..."></label>
-<label>Client ID (opcional)<input id="mpId"></label>
-<label>Client Secret (opcional)<input id="mpSecret"></label>
-<label>Modo<select id="mpModo"><option>Teste</option><option>Produção</option></select></label>
-<label>Usar<select id="mpUso"><option value="api">API</option><option value="link">Link Manual</option></select></label>
-<p class="mut">Webhook URL - copie e cole no Mercado Pago: <b>https://seusite.com.br/api/mercadopago/webhook</b></p>
-<p>Status: <span id="mpStatus">🔴 Desconectado</span></p>
-<button class="btn" onclick="salvarMP()">Salvar e Conectar</button></div>
-
-<div class="card"><h3>Notificações - Cursos</h3>
-<label>E-mail para alertas<input id="cEmail" value="vorticesolucoesglobais@gmail.com"></label>
-<label>WhatsApp<input id="cZap" value="5511921913395"></label>
-<label>Venda de curso - E-mail ligado?<select id="nVendaEmail"><option>Sim</option><option>Não</option></select></label>
-<label>Venda de curso - WhatsApp ligado?<select id="nVendaZap"><option>Sim</option><option>Não</option></select></label>
-<label>Mentoria agendada - E-mail?<select id="nMentEmail"><option>Sim</option><option>Não</option></select></label>
-<button class="btn" onclick="salvarNotif()">Salvar Notificações</button><p id="notifMsg" class="ok"></p></div>
-
-<div class="card"><h3>Trocar Senha do Admin Geral</h3>
-<label>Senha atual<input id="oldPass" type="password"></label><label>Nova senha<input id="newPass" type="password"></label><label>Repita<input id="newPass2" type="password"></label>
-<button class="btn" onclick="trocarSenha()">Salvar Nova Senha</button><p id="passMsg" class="ok"></p></div>
-</div>
-
-</div>
-</div>
-<script src="../vortice-config.js"></script>
+<footer><div class="w"><div><span translate="no">VÓRTICE</span> SOLUÇÕES GLOBAIS LTDA · CNPJ 65.576.566/0001-01</div></div></footer>
+<div id="gt"></div>
+<script src="../vortice-core.js"></script>
+<script src="../vortice-services.js"></script>
+<script src="../lang.js"></script>
 <script>
-if(typeof VORTICE_ADMIN_EMAIL==='undefined') var VORTICE_ADMIN_EMAIL="vorticesolucoesglobais@gmail.com";
-if(typeof vorticeGetAdminPass==='undefined') function vorticeGetAdminPass(){return localStorage.getItem('vortice_admin_pass')||"Vortice@2026";}
-if(typeof vorticeGetDB==='undefined') function vorticeGetDB(){try{return JSON.parse(localStorage.getItem('vortice_db')||'null')||{}}catch(e){return {}}}
-if(typeof vorticeSaveDB==='undefined') function vorticeSaveDB(db){localStorage.setItem('vortice_db',JSON.stringify(db));}
-</script>
-<script>
-let DB=vorticeGetDB();
-if(!DB.cursos) DB.cursos=[{nome:"Gestão para Pequenas Empresas",desc:"Aprenda a gerir, vender e automatizar sua empresa.",preco:297,foto:"",dur:"4h - 12 aulas",cat:"Gestão",status:"Publicado",pag:"api",link:"",aulas:[{titulo:"Aula 1 - Como organizar o financeiro",video:"",dur:"18 min",pdf:"",ordem:1,lib:"Sim"},{titulo:"Aula 2 - Como vender mais no WhatsApp",video:"",dur:"22 min",pdf:"",ordem:2,lib:"Sim"}]}];
-if(!DB.mentoriasTipos) DB.mentoriasTipos=[{nome:"Mentoria Online 1h",desc:"1h online com Mathews, com plano de ação.",valor:500,dur:"1h",tipo:"Online",link:""},{nome:"Mentoria Presencial na Sua Empresa",desc:"1 dia na sua empresa.",valor:2500,dur:"1 dia",tipo:"Presencial",link:""},{nome:"Acompanhamento Mensal",desc:"Acompanhamento mensal completo.",valor:1500,dur:"Mensal",tipo:"Mensal",link:""}];
-if(!DB.alunos) DB.alunos=[];
-if(!DB.mentoriasAgendadas) DB.mentoriasAgendadas=[];
-if(!DB.certificados) DB.certificados=[];
-if(!DB.config) DB.config={};
-if(!DB.logs) DB.logs=[];
-let USER=null;
-function save(){vorticeSaveDB(DB);render()}
-function abrirLogin(){document.getElementById('loginBox').classList.remove('hidden');document.getElementById('loginBox').scrollIntoView()}
-function login(){
-  const email=document.getElementById('lEmail').value.trim().toLowerCase(), senha=document.getElementById('lPass').value, tipo=document.getElementById('lTipo').value;
-  if(tipo==='funcionario'||tipo==='cliente'||tipo==='candidato'){document.getElementById('lMsg').textContent='Esse acesso não é para essa área. Vá para Portal do Cliente ou Contratações.';return}
-  if(tipo==='admin'){
-    if(email!==VORTICE_ADMIN_EMAIL||senha!==vorticeGetAdminPass()){document.getElementById('lMsg').textContent='E-mail ou senha do Admin incorretos.';return}
-    USER={email,tipo:'admin',nome:'Mathews Brito'};
-  } else {
-    const a=DB.alunos.find(x=>(x.email||'').toLowerCase()===email);
-    if(!a){document.getElementById('lMsg').textContent='Aluno não encontrado. Compre um curso abaixo que seu acesso é criado, ou peça para o Mathews liberar.';return}
-    USER={email,tipo:'aluno',nome:a.nome||email,curso:a.curso||''};
-  }
-  try{localStorage.setItem('vortice_sessao',JSON.stringify({ok:true,email:USER.email,role:USER.tipo}))}catch(e){}
-  DB.logs.push({quando:new Date().toISOString(),quem:email,acao:'Entrou em Cursos - '+USER.tipo}); save();
-  document.getElementById('publico').classList.add('hidden'); document.getElementById('app').classList.remove('hidden');
-  document.getElementById('who').textContent=USER.email+' • '+(USER.tipo==='admin'?'Admin Geral':'Aluno');
-  document.getElementById('btnSair').hidden=false; buildTabs(); showTab('meus'); render();
-}
-function logout(){try{localStorage.removeItem('vortice_sessao')}catch(e){} location.reload()}
-function buildTabs(){
-  let tabs=USER.tipo==='admin'?[['meus','📚 Meus Cursos'],['ment','💬 Minhas Mentorias'],['cert','🏆 Certificados'],['admin-cursos','⚙️ Admin - Cursos'],['admin-alunos','👥 Admin - Alunos'],['admin-ment','📅 Admin - Mentorias'],['admin-config','⚙️ Configurações']]:[['meus','📚 Meus Cursos'],['ment','💬 Minhas Mentorias'],['cert','🏆 Certificados']];
-  document.getElementById('tabs').innerHTML=tabs.map(t=>`<button data-t="${t[0]}" onclick="showTab('${t[0]}')">${t[1]}</button>`).join('');
-}
-function showTab(t){
-  document.querySelectorAll('#app > div[id^="t-"]').forEach(e=>e.classList.add('hidden'));
-  const el=document.getElementById('t-'+t); if(el) el.classList.remove('hidden');
-  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
-}
-function comprarCurso(nome,preco){
-  const email=prompt('Seu e-mail para criar o acesso (o mesmo que você vai usar para entrar):'); if(!email) return;
-  const mp=DB.config.mp||{};
-  if(DB.config.mpUso==='link'||!mp.pub){
-    const c=DB.cursos.find(x=>x.nome===nome);
-    if(c&&c.link){window.open(c.link,'_blank');}
-    alert('Pagamento via Link Manual: depois de pagar, o Mathews libera seu acesso. Ou, se já pagou, fale com o Mathews. Seu acesso será criado como: '+email);
-  } else {
-    alert('Checkout Mercado Pago API abriria agora para: '+nome+' - R$ '+preco+' - Modo: '+(mp.modo||'Teste')+'. Após o pagamento, o Webhook libera seu acesso sozinho e você recebe notificação por E-mail / WhatsApp conforme você configurou.');
-  }
-  // Simulação de liberação - na versão com backend real, o Webhook faz isso sozinho
-  if(!DB.alunos.find(a=>a.email===email)){DB.alunos.push({nome:email.split('@')[0],email,curso:nome,progresso:0,quiz:false}); save();}
-  alert('✅ Acesso criado / liberado para '+email+' no curso '+nome+'. Agora clique em Entrar - Aluno e entre com esse e-mail.');
-}
-function comprarMentoria(nome,valor){
-  const email=prompt('Seu e-mail para agendar:'); if(!email) return;
-  const data=prompt('Escolha data e hora livre no Outlook (ex: 25/11/2026 às 15h):'); if(!data) return;
-  const tipo=DB.mentoriasTipos.find(m=>m.nome===nome)?.tipo||'Online';
-  DB.mentoriasAgendadas.push({nome,email,mentoria:nome,valor,data,tipo,link:tipo==='Online'?'https://teams.microsoft.com/l/meetup - link gerado no Outlook':'Presencial - endereço a combinar',status:'Confirmada'});
-  save(); alert('✅ Mentoria comprada e agendada! Evento criado no Outlook da Vórtice em '+data+'. Você recebeu confirmação por E-mail / WhatsApp. Link Teams: '+ (tipo==='Online'?'Enviado por e-mail':'-'));
-}
-function render(){
-  document.getElementById('listaCursosPublico').innerHTML=DB.cursos.filter(c=>c.status==='Publicado').map(c=>`<div class="card"><h3>${c.nome}</h3><p class="mut">${c.desc}</p><p class="mut">${c.dur} | ${c.cat} | ${(c.aulas||[]).length} aulas</p><div class="big">R$ ${c.preco}</div><button class="btn gold" onclick="comprarCurso('${c.nome.replace(/'/g,"")}',${c.preco})">Comprar - Mercado Pago</button> <button class="btn out" onclick="document.getElementById('loginBox').classList.remove('hidden');document.getElementById('loginBox').scrollIntoView()">Ver Curso</button></div>`).join('')||'<p class="mut">Nenhum curso publicado ainda.</p>';
-  document.getElementById('listaMentoriasPublico').innerHTML=DB.mentoriasTipos.map(m=>`<div class="card"><h3>${m.nome}</h3><p class="mut">${m.desc}</p><p class="mut">${m.tipo} - ${m.dur}</p><div class="big">R$ ${m.valor}</div><button class="btn" onclick="comprarMentoria('${m.nome.replace(/'/g,"")}',${m.valor})">Comprar / Agendar</button></div>`).join('');
-  if(!USER) return;
-  let meus=USER.tipo==='admin'?DB.cursos:DB.cursos.filter(c=>DB.alunos.find(a=>a.email===USER.email&&a.curso===c.nome));
-  document.getElementById('meusCursos').innerHTML=meus.map(c=>{
-    const al=DB.alunos.find(a=>a.email===USER.email&&a.curso===c.nome)||{progresso:0,quiz:false};
-    const prog=USER.tipo==='admin'?100:(al.progresso||0);
-    return `<div class="card"><b>${c.nome}</b> - ${c.dur}<div class="progress"><div style="width:${prog}%"></div></div><p class="mut">Você completou ${prog}%</p><button class="btn" onclick="abrirCurso('${c.nome.replace(/'/g,"")}')">Continuar →</button></div>`;
-  }).join('')||'<p class="mut">Você ainda não tem curso liberado. Compre um curso na página pública.</p>';
-  document.getElementById('minhasMentorias').innerHTML=(USER.tipo==='admin'?DB.mentoriasAgendadas:DB.mentoriasAgendadas.filter(m=>m.email===USER.email)).map(m=>`<div class="card"><b>${m.mentoria}</b> - ${m.data} - ${m.tipo}<br>Link: ${m.link}<br>Status: ${m.status}<br><span class="mut">Material no OneDrive: OneDrive / Vórtice / Cursos / [Curso] / Materiais /</span></div>`).join('')||'<p class="mut">Nenhuma mentoria agendada.</p>';
-  document.getElementById('meusCerts').innerHTML=(USER.tipo==='admin'?DB.certificados:DB.certificados.filter(c=>c.email===USER.email)).map(c=>`<div class="cert"><h2>🏆 CERTIFICADO</h2><p>Certificamos que <b>${c.nome}</b> concluiu o curso</p><h3>${c.curso}</h3><p>Carga horária: ${c.carga} | Data: ${c.data}</p><p>Assinatura: ${c.assinatura}</p><p>Código de validação: <b>${c.codigo}</b></p><button class="btn" onclick="window.print()">Baixar PDF</button></div>`).join('')||'<p class="mut">Nenhum certificado ainda. Termine 100% + quiz para gerar.</p>';
-  document.getElementById('listaAdminCursos').innerHTML=DB.cursos.map((c,i)=>`<div class="card"><b>${c.nome}</b> - R$ ${c.preco} - ${c.status} - ${(c.aulas||[]).length} aulas <button class="btn out red" onclick="DB.cursos.splice(${i},1);save()">Excluir</button> <button class="btn out" onclick="duplicarCurso(${i})">Duplicar</button></div>`).join('');
-  document.getElementById('listaAlunos').innerHTML=DB.alunos.map((a,i)=>`<div class="card"><b>${a.nome}</b> - ${a.email} - Curso: ${a.curso} - Progresso: ${a.progresso||0}% - Quiz: ${a.quiz?'Feito ✅':'Pendente'} <button class="btn out" onclick="liberarAluno(${i})">Liberar / Bloquear</button> <button class="btn out" onclick="gerarCertManual(${i})">Gerar certificado manual</button></div>`).join('')||'Nenhum aluno ainda.';
-  document.getElementById('listaAdminMentorias').innerHTML=DB.mentoriasTipos.map((m,i)=>`<div class="card"><b>${m.nome}</b> - R$ ${m.valor} - ${m.tipo} <button class="btn out red" onclick="DB.mentoriasTipos.splice(${i},1);save()">Excluir</button></div>`).join('');
-  document.getElementById('listaAgendadas').innerHTML=DB.mentoriasAgendadas.map((m,i)=>`<div class="card"><b>${m.nome}</b> - ${m.email} - ${m.mentoria} - ${m.data} - ${m.status} <button class="btn out" onclick="DB.mentoriasAgendadas[${i}].status='Confirmada';save()">Confirmar</button> <button class="btn out" onclick="remarcar(${i})">Remarcar</button> <button class="btn out red" onclick="DB.mentoriasAgendadas.splice(${i},1);save()">Cancelar</button></div>`).join('')||'Nenhuma agendada.';
-  document.getElementById('aCurso').innerHTML=DB.cursos.map(c=>`<option>${c.nome}</option>`).join('');
-  document.getElementById('alCurso').innerHTML=DB.cursos.map(c=>`<option>${c.nome}</option>`).join('');
-}
-function abrirCurso(nome){
-  const c=DB.cursos.find(x=>x.nome===nome); if(!c) return;
-  const al=DB.alunos.find(a=>a.email===USER.email&&a.curso===nome);
-  document.getElementById('dentroCurso').innerHTML=`<div class="card"><h3>Dentro do Curso - ${c.nome}</h3><p class="mut">Vídeo pode estar no OneDrive ou YouTube não listado. Material de apoio em PDF no OneDrive.</p>${(c.aulas||[]).map((a,i)=>`<div class="card"><b>Aula ${a.ordem} - ${a.titulo}</b> - ${a.dur} - Liberada: ${a.lib}<br>${a.video?`<a class="btn out" href="${a.video}" target="_blank">▶ Assistir vídeo</a>`: '<span class="mut">Vídeo no OneDrive - link em breve</span>'} ${a.pdf?`<a class="btn out" href="${a.pdf}" target="_blank">⬇ Baixar PDF - OneDrive</a>`:''} <button class="btn out" onclick="concluirAula('${nome}',${i})">Marcar como concluída</button></div>`).join('')}
-  <h3>Quiz no final do módulo</h3><p class="mut">Pergunta: Qual é o primeiro passo para organizar uma pequena empresa?</p><button class="btn out" onclick="fazerQuiz('${nome}')">Fazer Quiz - Resposta: Organizar o financeiro</button>
-  <div id="quizMsg"></div>
-  <button class="btn gold" onclick="gerarCertificado('${nome}')">🏆 Gerar Meu Certificado - precisa de 100% + quiz</button></div>`;
-  document.getElementById('dentroCurso').scrollIntoView();
-}
-function concluirAula(nome,i){
-  if(USER.tipo==='admin'){alert('Admin não precisa concluir aula.');return}
-  const al=DB.alunos.find(a=>a.email===USER.email&&a.curso===nome); if(!al) return;
-  const c=DB.cursos.find(x=>x.nome===nome); const total=c.aulas.length; al.progresso=Math.min(100, Math.round(((i+1)/total)*100)); save(); alert('Aula concluída! Progresso: '+al.progresso+'%'); abrirCurso(nome);
-}
-function fazerQuiz(nome){
-  const al=DB.alunos.find(a=>a.email===USER.email&&a.curso===nome); if(al) al.quiz=true; save();
-  document.getElementById('quizMsg').innerHTML='<p class="ok">✅ Quiz concluído! Agora, se você está em 100%, pode gerar seu certificado.</p>';
-}
-function gerarCertificado(nome){
-  const al=DB.alunos.find(a=>a.email===USER.email&&a.curso===nome); if(!al){alert('Você precisa estar matriculado.');return}
-  if((al.progresso||0)<100||!al.quiz){alert('Você precisa terminar 100% + quiz para gerar. Seu progresso: '+(al.progresso||0)+'%, Quiz: '+(al.quiz?'Feito':'Pendente'));return}
-  const codigo='VORTICE-'+Date.now().toString().slice(-6);
-  DB.certificados.push({nome:USER.nome||USER.email,email:USER.email,curso:nome,carga:DB.cursos.find(c=>c.nome===nome)?.dur||'4h',data:new Date().toLocaleDateString('pt-BR'),assinatura:'Mathews Brito - CEO Vórtice Soluções Globais',codigo});
-  save(); alert('✅ Certificado gerado! Código: '+codigo+'. PDF salvo no OneDrive: Vórtice / Cursos / '+nome+' / Certificados /'); showTab('cert');
-}
-function gerarCertManual(i){const a=DB.alunos[i]; const codigo='VORTICE-'+Date.now().toString().slice(-6); DB.certificados.push({nome:a.nome,email:a.email,curso:a.curso,carga:'4h',data:new Date().toLocaleDateString('pt-BR'),assinatura:'Mathews Brito',codigo}); save(); alert('Certificado manual gerado para '+a.nome)}
-function liberarAluno(i){DB.alunos[i].bloqueado=!DB.alunos[i].bloqueado; save(); alert(DB.alunos[i].bloqueado?'Aluno bloqueado.':'Aluno liberado.')}
-function criarCurso(){const nome=document.getElementById('cNome').value.trim(); if(!nome) return alert('Preencha o nome'); DB.cursos.push({nome,desc:document.getElementById('cDesc').value,preco:Number(document.getElementById('cPreco').value||0),foto:document.getElementById('cFoto').value,dur:document.getElementById('cDur').value,cat:document.getElementById('cCat').value,status:document.getElementById('cStatus').value,pag:document.getElementById('cPag').value,link:document.getElementById('cLink').value,aulas:[]}); save(); alert('Curso criado!')}
-function duplicarCurso(i){const c=JSON.parse(JSON.stringify(DB.cursos[i])); c.nome=c.nome+' - Cópia'; DB.cursos.push(c); save()}
-function criarAula(){const nome=document.getElementById('aCurso').value; const c=DB.cursos.find(x=>x.nome===nome); if(!c) return; if(!c.aulas) c.aulas=[]; c.aulas.push({titulo:document.getElementById('aTitulo').value,video:document.getElementById('aVideo').value,dur:document.getElementById('aDur').value,pdf:document.getElementById('aPdf').value,ordem:Number(document.getElementById('aOrdem').value||1),lib:document.getElementById('aLib').value}); save(); alert('Aula criada!')}
-function criarAluno(){const email=document.getElementById('alEmail').value.trim(); if(!email) return alert('Preencha o e-mail'); DB.alunos.push({nome:document.getElementById('alNome').value,email,senha:document.getElementById('alSenha').value,curso:document.getElementById('alCurso').value,progresso:0,quiz:false}); save(); alert('Aluno criado e curso liberado!')}
-function criarMentoria(){const nome=document.getElementById('mNome').value.trim(); if(!nome) return alert('Preencha o nome'); DB.mentoriasTipos.push({nome,desc:document.getElementById('mDesc').value,valor:Number(document.getElementById('mValor').value||0),dur:document.getElementById('mDur').value,tipo:document.getElementById('mTipo').value,link:document.getElementById('mLink').value}); save(); alert('Mentoria criada!')}
-function remarcar(i){const d=prompt('Nova data e hora:',DB.mentoriasAgendadas[i].data); if(d){DB.mentoriasAgendadas[i].data=d; DB.mentoriasAgendadas[i].status='Remarcada'; save(); alert('Remarcada! Evento atualizado no Outlook.')}}
-function salvarCertModelo(){DB.config.cert={texto:document.getElementById('certTexto').value,logo:document.getElementById('certLogo').value,assinatura:document.getElementById('certAss').value,cor:document.getElementById('certCor').value}; save(); alert('Modelo do certificado salvo!')}
-function salvarMP(){DB.config.mp={pub:document.getElementById('mpPub').value,token:document.getElementById('mpToken').value,id:document.getElementById('mpId').value,secret:document.getElementById('mpSecret').value,modo:document.getElementById('mpModo').value}; DB.config.mpUso=document.getElementById('mpUso').value; save(); document.getElementById('mpStatus').textContent=document.getElementById('mpPub').value?'🟢 Conectado - Mercado Pago API ativa':'🔴 Desconectado'; alert('Mercado Pago salvo!')}
-function salvarNotif(){DB.config.notifCursos={email:document.getElementById('cEmail').value,zap:document.getElementById('cZap').value,vendaEmail:document.getElementById('nVendaEmail').value,vendaZap:document.getElementById('nVendaZap').value,mentEmail:document.getElementById('nMentEmail').value}; save(); document.getElementById('notifMsg').textContent='✅ Notificações de Cursos salvas!'}
-function trocarSenha(){const atual=document.getElementById('oldPass').value,nova=document.getElementById('newPass').value,nova2=document.getElementById('newPass2').value; const salva=vorticeGetAdminPass(); if(atual!==salva){document.getElementById('passMsg').textContent='Senha atual incorreta.';return} if(nova.length<6){document.getElementById('passMsg').textContent='Mínimo 6 caracteres.';return} if(nova!==nova2){document.getElementById('passMsg').textContent='As senhas novas não são iguais.';return} localStorage.setItem('vortice_admin_pass',nova); document.getElementById('passMsg').textContent='✅ Senha trocada!'}
-render();
+(async function(){
+  const data = await VorticeCore.loadSiteData("..") || {};
+  const dlg = document.getElementById("dlgL"), msg = document.getElementById("lgM");
+  document.getElementById("btnEntrarCursos").onclick = () => { msg.hidden = true; dlg.showModal(); };
+  document.getElementById("lgX").onclick = () => dlg.close();
+
+  // Renderiza Cursos
+  const cursos = data.cursos || [];
+  document.getElementById("vitrineCursos").innerHTML = cursos.length ? cursos.map(c => {
+    const bgStyle = (c.layout === "imagem_fundo" && c.imagemFundo) ? `style="background-image:url('${c.imagemFundo}')"` : "";
+    const cls = (c.layout === "imagem_fundo" && c.imagemFundo) ? "cd has-bg" : "cd";
+    const precoTxt = c.preco > 0 ? `R$ ${Number(c.preco).toFixed(2).replace('.', ',')}` : "Gratuito";
+    const acao = (!c.usarApiMP && c.linkManual)
+      ? `<a class="btn" href="${c.linkManual}" target="_blank" rel="noopener">Comprar / Inscrever-se</a>`
+      : `<button class="btn" onclick="iniciarCheckoutMP('${c.titulo}', ${c.preco})">Comprar Agora</button>`;
+    return `<div class="${cls}" ${bgStyle}>
+      <span class="pl">${c.duracao || "Curso Online"}</span>
+      <h3 style="margin-top:10px">${c.titulo}</h3>
+      <p style="color:var(--mu);margin-top:6px">${c.descricao || ""}</p>
+      <p style="font-size:20px;font-weight:700;color:#fff;margin:12px 0">${precoTxt}</p>
+      ${acao}
+    </div>`;
+  }).join("") : `<div class="cd"><p>Os cursos estão sendo preparados. Fale com nossa equipe para entrar na lista de espera.</p></div>`;
+
+  // Renderiza Mentorias
+  const mentorias = (data.mentorias || []).filter(m => m.ativo !== false);
+  document.getElementById("vitrineMentorias").innerHTML = mentorias.map(m => {
+    const acao = (!m.usarApiMP && m.linkManual)
+      ? `<a class="btn out" href="${m.linkManual}" target="_blank" rel="noopener">Agendar / Pagar</a>`
+      : `<button class="btn out" onclick="iniciarCheckoutMP('${m.titulo}', ${m.preco})">Comprar / Agendar</button>`;
+    return `<div class="cd">
+      <span class="pl">${m.tipo}</span>
+      <h3 style="margin-top:10px">${m.titulo}</h3>
+      <p style="color:var(--mu);margin-top:6px">${m.descricao}</p>
+      <p style="font-size:20px;font-weight:700;color:#fff;margin:12px 0">R$ ${Number(m.preco).toFixed(2).replace('.', ',')}</p>
+      ${acao}
+    </div>`;
+  }).join("");
+
+  window.iniciarCheckoutMP = async (itemNome, valor) => {
+    await VorticeServices.sendNotification("vendaCurso", "Interesse de Compra", `Item: ${itemNome} | Valor: R$ ${valor}`);
+    window.open(`https://wa.me/5511921913395?text=${encodeURIComponent("Olá! Quero adquirir: " + itemNome + " (R$ " + valor + ")")}`, "_blank");
+  };
+
+  document.getElementById("fl").onsubmit = (e) => {
+    e.preventDefault();
+    const res = VorticeCore.login(document.getElementById("lgE").value, document.getElementById("lgP").value, "cursos");
+    if (!res.ok) { msg.textContent = res.msg; msg.hidden = false; return; }
+    if (res.sessao.role === "admin") { location.href = "../admin/index.html"; return; }
+    dlg.close();
+    document.getElementById("cursosBox").innerHTML = `
+      <span class="pl">Área do Aluno</span>
+      <h2 style="margin-top:12px">Olá, ${res.sessao.nome}</h2>
+      <p class="lead">Seus cursos e mentorias liberados aparecem abaixo.</p>
+      <div class="g3"><div class="cd"><h3>Meus Cursos</h3><p>Acesse suas aulas, materiais em PDF e certificado.</p></div><div class="cd"><h3>Minhas Mentorias</h3><p>Consulte horários agendados no <span translate="no">Outlook</span> e link do <span translate="no">Teams</span>.</p></div></div>
+      <p style="margin-top:24px"><button class="btn out" onclick="VorticeCore.logout();location.reload()">Sair</button></p>`;
+  };
+})();
 </script>
 </body>
 </html>
