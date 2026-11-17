@@ -45,6 +45,17 @@ table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-
   </div>
 </header>
 
+  <section id="admLoginBox" hidden style="max-width:440px;margin:60px auto;padding:28px;border-radius:12px;background:#141a22;border:1px solid #2b3a4f">
+  <h2>Acesso Admin Geral</h2>
+  <p style="font-size:14px;color:var(--mu);margin-top:6px">Entre com seu e-mail e senha de administrador para liberar o painel.</p>
+  <form id="formAdmLogin" style="display:grid;gap:14px;margin-top:18px">
+    <label>E-mail Admin<input id="admLogEmail" type="email" value="vorticesolucoesglobais@outlook.com" required></label>
+    <label>Senha<input id="admLogPass" type="password" required></label>
+    <p id="admLogErr" style="color:#ff7675;font-size:13px" hidden></p>
+    <button type="submit" class="btn">Entrar no Painel Admin</button>
+  </form>
+</section>
+  
 <main class="adm-wrap" id="admApp" hidden>
   <div class="adm-tabs">
     <button type="button" class="adm-tab active" data-tab="site">1. Editar Site (Livre)</button>
@@ -425,13 +436,28 @@ table.tbl th,table.tbl td{padding:8px 10px;border-bottom:1px solid #223042;text-
     });
   });
 
-  const sess = VorticeCore.getSession();
-  if (!sess || sess.role !== "admin") {
-    alert("Acesso restrito ao Admin Geral.");
-    location.href = "../index.html";
+const sess = VorticeCore.getSession();
+  if (sess && sess.role === "admin") {
+    document.getElementById("admApp").hidden = false;
+  } else {
+    document.getElementById("admLoginBox").hidden = false;
+    document.getElementById("formAdmLogin").onsubmit = (e) => {
+      e.preventDefault();
+      const res = VorticeCore.login(
+        document.getElementById("admLogEmail").value,
+        document.getElementById("admLogPass").value,
+        "admin"
+      );
+      if (res.ok && res.sessao.role === "admin") {
+        location.reload();
+      } else {
+        const errEl = document.getElementById("admLogErr");
+        errEl.textContent = res.msg || "Credenciais inválidas.";
+        errEl.hidden = false;
+      }
+    };
     return;
   }
-  document.getElementById("admApp").hidden = false;
 
   document.getElementById("btnLogout").onclick = () => {
     VorticeCore.logout();
