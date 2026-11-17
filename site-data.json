@@ -92,7 +92,34 @@
       ]
     }
   ],
-  "cursos": [],
+  "cursos": [
+    {
+      "id": "cur_1794940091579",
+      "titulo": "basico",
+      "preco": 1,
+      "duracao": "",
+      "imagemCapa": "",
+      "usarApiMP": true,
+      "linkManual": "",
+      "descricao": "",
+      "blocos": [],
+      "avaliacao": {
+        "ativa": false,
+        "notaMinima": 70,
+        "questoes": []
+      },
+      "certificado": {
+        "modo": "upload",
+        "assinatura": "",
+        "textoModelo": "Certificamos que {{ALUNO}} concluiu com êxito o curso {{CURSO}}, com carga horária total de {{HORAS}}, finalizado em {{DATA}} pela Vórtice Soluções Globais.",
+        "corFundo": "#0f1724",
+        "corBorda": "#2f6fb8",
+        "arquivoBase": "",
+        "posY": 48,
+        "fontSize": 28
+      }
+    }
+  ],
   "mentorias": [
     {
       "id": "ment-online",
