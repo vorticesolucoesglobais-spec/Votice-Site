@@ -32,15 +32,15 @@
 <main class="ar alt">
   <div class="w" id="portalBox">
     <h2>Portal do Cliente</h2>
-    <p class="lead">Relatórios, documentos e acompanhamento do seu projeto em um só lugar, sincronizados com o <span translate="no">OneDrive</span>.</p>
+    <p class="lead">Acompanhe os dashboards, levantamentos, indicadores e faturamento da sua operação em tempo real.</p>
     <div class="area-top">
       <span class="pl">Área restrita</span>
       <button type="button" class="btn" id="btnEntrarPortal">Entrar - Cliente / Funcionário</button>
     </div>
     <div class="g3">
-      <div class="cd"><h3>Relatórios</h3><p>Financeiro, Marketing, Atendimento e Gestão, organizados por mês direto do <span translate="no">OneDrive</span>.</p></div>
-      <div class="cd"><h3>Documentos</h3><p>Contratos, propostas, notas e apresentações da sua empresa em pastas seguras.</p></div>
-      <div class="cd"><h3>Acompanhamento</h3><p>Linha do tempo com o andamento de cada fase do projeto e próxima reunião no <span translate="no">Outlook</span>.</p></div>
+      <div class="cd"><h3>Dashboards & KPIs</h3><p>Indicadores de desempenho financeiro, comercial e operacional atualizados pela equipe.</p></div>
+      <div class="cd"><h3>Levantamentos</h3><p>Diagnósticos, auditorias e relatórios executivos consolidados por período.</p></div>
+      <div class="cd"><h3>Faturamento & Status</h3><p>Acompanhamento de receitas, metas e evolução de cada etapa do projeto.</p></div>
     </div>
   </div>
 </main>
@@ -64,6 +64,10 @@
 <script>
 (async function(){
   await VorticeCore.loadSiteData("..");
+  if (typeof VorticeServices !== "undefined") {
+    VorticeServices.registrarVisita({ pagina: "/portal/", acao: "Visualizou página" });
+  }
+
   const dlg = document.getElementById("dlgL"), msg = document.getElementById("lgM");
   document.getElementById("btnEntrarPortal").onclick = () => { msg.hidden = true; dlg.showModal(); };
   document.getElementById("lgX").onclick = () => dlg.close();
@@ -73,45 +77,92 @@
     const box = document.getElementById("portalBox");
     const db = VorticeCore.getDB();
 
+    // VISÃO DA EMPRESA (CLIENTE): APENAS DASHBOARDS, LEVANTAMENTOS E FATURAMENTO (SEM ACESSO AO ONEDRIVE)
     if (sess.role === "cliente") {
-      const emp = (db.empresas || []).find(e => e.id === sess.empresaId) || { nome: sess.nome };
+      const emp = (db.empresas || []).find(e => e.id === sess.empresaId) || { nome: sess.nome, dadosPainel: [] };
+      const dados = emp.dadosPainel || [];
+      const ultimoFat = dados.length ? (dados[0].faturamento || "Em atualização") : "Em atualização";
+      const ultimoStatus = dados.length ? (dados[0].status || "Ativo") : "Em implantação";
+
       box.innerHTML = `
-        <span class="pl">Painel do Cliente</span>
+        <span class="pl">Painel Executivo da Empresa</span>
         <h2 style="margin-top:12px">${emp.nome}</h2>
-        <p class="lead">Bem-vindo, ${sess.nome}. Seus arquivos estão sincronizados em <code>OneDrive / Vórtice / Clientes / ${emp.nome}</code>.</p>
+        <p class="lead">Plano: <strong>${emp.plano || "Corporativo"}</strong> · Responsável: ${emp.responsavel || sess.nome}</p>
         <div class="g3">
-          <div class="cd"><h3>Relatórios Mensais</h3><p>Acesse os relatórios enviados pela equipe Vórtice.</p><button class="btn out" onclick="alert('Conecte o OneDrive no Admin para listar os PDFs em tempo real.')">Ver Relatórios</button></div>
-          <div class="cd"><h3>Documentos & Contratos</h3><p>Contratos, propostas e notas fiscais.</p><button class="btn out" onclick="alert('Pasta: /Vórtice/Clientes/${emp.nome}/Documentos')">Abrir Pasta</button></div>
-          <div class="cd"><h3>Próxima Reunião (Outlook)</h3><p>Agende ou consulte sua reunião com o especialista.</p><a class="btn" href="https://wa.me/5511921913395" target="_blank">Falar no WhatsApp</a></div>
+          <div class="cd"><small style="color:var(--mu)">Faturamento / Receita do Período</small><h3 style="font-size:26px;color:#7bed9f;margin-top:6px">${ultimoFat}</h3></div>
+          <div class="cd"><small style="color:var(--mu)">Status da Operação</small><h3 style="font-size:22px;margin-top:6px">${ultimoStatus}</h3></div>
+          <div class="cd"><small style="color:var(--mu)">Levantamentos Publicados</small><h3 style="font-size:26px;margin-top:6px">${dados.length}</h3></div>
         </div>
-        <p style="margin-top:24px"><button class="btn out" id="btnSair">Sair</button></p>`;
-    } else if (sess.role === "funcionario") {
+        <h3 style="margin-top:34px">Histórico de Levantamentos & Indicadores</h3>
+        <div class="g3">
+          ${dados.length ? dados.map(d => `
+            <div class="cd">
+              <span class="pl">${d.data}</span>
+              <h3 style="margin-top:10px">${d.titulo || "Levantamento Operacional"}</h3>
+              ${d.faturamento ? `<p style="color:#7bed9f;font-weight:600;margin-top:6px">Faturamento: ${d.faturamento}</p>` : ""}
+              <p style="margin-top:8px">${d.resumo || ""}</p>
+            </div>
+          `).join("") : `<div class="cd"><p>Nossa equipe está consolidando os primeiros levantamentos e dashboards da sua operação.</p></div>`}
+        </div>
+        <p style="margin-top:26px"><button class="btn out" id="btnSair">Sair</button></p>`;
+    }
+    // VISÃO DO FUNCIONÁRIO: ALIMENTA DASHBOARDS DA EMPRESA + ACESSO AO ONEDRIVE INTERNO
+    else if (sess.role === "funcionario") {
       const empresas = db.empresas || [];
       let abaInvHtml = "";
       if (sess.acessoInvestigador) {
         abaInvHtml = `<div class="cd" style="border-color:#7fb0e6"><h3>Votice Investigador 10.0</h3><p>Acesso liberado pelo Admin (Nível: ${sess.nivelInvestigador}).</p><a class="btn" href="../admin/index.html#investigador">Abrir Investigador</a></div>`;
       }
       box.innerHTML = `
-        <span class="pl">Painel do Funcionário</span>
+        <span class="pl">Painel do Colaborador Vórtice</span>
         <h2 style="margin-top:12px">Olá, ${sess.nome}</h2>
-        <p class="lead">Escolha uma empresa abaixo para subir relatórios ou documentos direto no <span translate="no">OneDrive</span>.</p>
+        <p class="lead">Alimente os dashboards das empresas clientes ou envie arquivos para as pastas internas no <span translate="no">OneDrive</span>.</p>
+        <div class="cd" style="margin-top:18px">
+          <h3>Publicar Levantamento / Faturamento no Painel da Empresa</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+            <select id="funcSelEmp"><option value="">Selecione a Empresa...</option>${empresas.map(e => `<option value="${e.id}">${e.nome}</option>`).join("")}</select>
+            <input id="funcFat" placeholder="Faturamento / Receita (ex: R$ 45.000,00)">
+            <input id="funcTit" placeholder="Título do Levantamento">
+            <input id="funcSt" placeholder="Status do Projeto">
+          </div>
+          <textarea id="funcRes" rows="2" placeholder="Resumo executivo para o cliente..." style="margin-top:10px;width:100%"></textarea>
+          <button type="button" class="btn" id="btnFuncPub" style="margin-top:10px">Publicar no Painel da Empresa</button>
+        </div>
         <div class="g3">
-          ${empresas.map(e => `<div class="cd"><h3>${e.nome}</h3><p>Plano: ${e.plano || "Padrão"}</p><button class="btn out" onclick="subirArquivoEmpresa('${e.nome}')">+ Subir Relatório / Documento</button></div>`).join("") || "<div class='cd'><p>Nenhuma empresa cadastrada ainda.</p></div>"}
+          ${empresas.map(e => `<div class="cd"><h3>${e.nome}</h3><p>Pasta Interna OneDrive (Oculta ao cliente)</p><button class="btn out" onclick="subirArquivoInterno('${e.nome}')">+ Enviar Arquivo ao OneDrive</button></div>`).join("") || "<div class='cd'><p>Nenhuma empresa cadastrada.</p></div>"}
           ${abaInvHtml}
         </div>
         <p style="margin-top:24px"><button class="btn out" id="btnSair">Sair</button></p>`;
+
+      document.getElementById("btnFuncPub").onclick = () => {
+        const empId = document.getElementById("funcSelEmp").value;
+        if (!empId) return alert("Selecione a empresa.");
+        const curDB = VorticeCore.getDB();
+        const emp = curDB.empresas.find(x => x.id === empId);
+        if (!emp) return;
+        emp.dadosPainel = emp.dadosPainel || [];
+        emp.dadosPainel.unshift({
+          data: new Date().toLocaleDateString("pt-BR"),
+          faturamento: document.getElementById("funcFat").value,
+          titulo: document.getElementById("funcTit").value,
+          status: document.getElementById("funcSt").value,
+          resumo: document.getElementById("funcRes").value
+        });
+        VorticeCore.saveDB(curDB);
+        alert("Dados publicados no dashboard da empresa " + emp.nome + "!");
+      };
     }
     document.getElementById("btnSair").onclick = () => { VorticeCore.logout(); location.reload(); };
   }
 
-  window.subirArquivoEmpresa = (nomeEmp) => {
+  window.subirArquivoInterno = (nomeEmp) => {
     const inp = document.createElement("input");
     inp.type = "file";
     inp.onchange = async () => {
       if (!inp.files[0]) return;
       try {
-        await VorticeServices.uploadToOneDrive(`Vórtice/Clientes/${nomeEmp}/Relatórios`, inp.files[0].name, inp.files[0]);
-        alert("Arquivo enviado com sucesso para o OneDrive da empresa " + nomeEmp + "!");
+        await VorticeServices.uploadToOneDrive(`Vórtice/Clientes/${nomeEmp}/Levantamentos_Internos`, inp.files[0].name, inp.files[0]);
+        alert("Arquivo salvo na pasta interna do OneDrive (" + nomeEmp + ")!");
       } catch (e) { alert(e.message); }
     };
     inp.click();
