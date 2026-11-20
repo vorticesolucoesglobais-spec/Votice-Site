@@ -1,0 +1,10 @@
+SITE VÓRTICE — VERSÃO MOSTRADOR BLINDADA (LAYOUT ORIGINAL PRESERVADO)
+
+O que foi mantido do layout original:
+- Todo o design, cores, fontes, imagens (logo.png, emblema.png, foto.jpg, svc-*.png), seções da Home (Início, Serviços, Depoimentos, Diferenciais, Institucional, Onde Atuamos, FAQ, Contato), tradutor multi-idiomas (lang.js), botão flutuante e links de WhatsApp, formulário de proposta (WhatsApp e E-mail) e link do LinkedIn institucional.
+
+O que foi modificado por segurança e conforme solicitado:
+1. Removidos completamente os módulos de acesso restrito, senhas, bancos locais e o Investigador 10.0 (pastas admin/, investigador/, portal/ e arquivos vortice-config.js, vortice-core.js, vortice-services.js, app.js).
+2. Aba Vagas (contratacoes/index.html e #contratacoes): exibe exclusivamente o link oficial https://www.linkedin.com/hiring/posted-jobs/ com estrutura preparada para futura integração com o LinkedIn.
+3. Aba Cursos (cursos/index.html e #cursos): exibe exclusivamente o link oficial http://app.hotmart.com/products/producer.
+4. Arquivo staticwebapp.config.json blindado com headers de segurança (Content-Security-Policy, X-Frame-Options: DENY, X-Content-Type-Options: nosniff, Referrer-Policy, Permissions-Policy e Strict-Transport-Security) e bloqueio das rotas antigas (/admin/*, /investigador/*, /portal/*).

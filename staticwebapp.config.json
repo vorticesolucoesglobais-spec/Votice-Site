@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json.schemastore.org/staticwebapp.config.json",
+  "routes": [
+    {
+      "route": "/admin/*",
+      "redirect": "/index.html",
+      "statusCode": 302
+    },
+    {
+      "route": "/investigador/*",
+      "redirect": "/index.html",
+      "statusCode": 302
+    },
+    {
+      "route": "/portal/*",
+      "redirect": "/index.html",
+      "statusCode": 302
+    },
+    {
+      "route": "/api/*",
+      "statusCode": 404
+    }
+  ],
+  "globalHeaders": {
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://translate.googleapis.com https://translate-pa.googleapis.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://wa.me mailto:; object-src 'none';",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+    "X-XSS-Protection": "1; mode=block"
+  },
+  "mimeTypes": {
+    ".json": "application/json",
+    ".svg": "image/svg+xml"
+  }
+}

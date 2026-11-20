@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /investigador/
+Disallow: /admin/
+Disallow: /portal/
+Sitemap: https://vorticesolucoesglobais-spec.github.io/Votice-Site/sitemap.xml

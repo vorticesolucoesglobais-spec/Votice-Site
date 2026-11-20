@@ -1,0 +1,28 @@
+{
+  "identidade": {
+    "nomeSite": "Vórtice Soluções Globais",
+    "nomeCurto": "Vórtice",
+    "slogan": "Eficiência, Tecnologia e Produção",
+    "subtituloHero": "Uma única empresa para cuidar da Gestão, Tecnologia e Produção do seu negócio.",
+    "tituloSecundarioHero": "Transformamos gestão, tecnologia e produção em crescimento sustentável",
+    "textoHero": "Na Vórtice Soluções Globais, unimos Gestão Empresarial, Tecnologia e Produção em um ecossistema completo de soluções. Com sede no estado de São Paulo, atendemos empresas em todo o território nacional e mantemos contratos e projetos na América do Norte.",
+    "logoUrl": "./logo.png",
+    "emblemaUrl": "./emblema.png",
+    "whatsapp": "5511921913395",
+    "email": "vorticesolucoesglobais@gmail.com",
+    "linkedinEmpresa": "https://www.linkedin.com/company/vortice-solucoes-globais",
+    "cnpj": "65.576.566/0001-01",
+    "horario": "Segunda a Sábado, das 8h às 18h."
+  },
+  "integracoes": {
+    "linkedinVagas": {
+      "modo": "link_unico",
+      "urlUnicaExibida": "https://www.linkedin.com/hiring/posted-jobs/",
+      "sincronizacaoFuturaHabilitada": true
+    },
+    "hotmartCursos": {
+      "modo": "link_unico",
+      "urlUnicaExibida": "http://app.hotmart.com/products/producer"
+    }
+  }
+}
