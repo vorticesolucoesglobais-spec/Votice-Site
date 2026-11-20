@@ -1,1 +1,0 @@
-{"globalHeaders": {"X-Content-Type-Options": "nosniff", "X-Frame-Options": "DENY", "Referrer-Policy": "strict-origin-when-cross-origin"}, "platform": {"apiRuntime": "node:18"}, "routes": [{"route": "/investigador/*", "headers": {"X-Robots-Tag": "noindex, nofollow", "Cache-Control": "no-store"}}, {"route": "/api/*", "headers": {"Cache-Control": "no-store"}}]}
