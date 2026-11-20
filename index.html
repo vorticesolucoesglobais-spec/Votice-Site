@@ -69,7 +69,7 @@ h2{font-size:clamp(22px,2.5vw,28px);margin-bottom:10px}
 h3{font-size:17.5px;margin-bottom:8px}
 .lead{font-size:15px;line-height:1.55;max-width:64ch}
 .eyebrow,.badge{font-size:11px;padding:4px 12px;margin-bottom:10px}
-.btn{padding:9px 18px;font-size:13.5px;gap:8px;border-radius:5px}
+.btn{padding:9px 18px;font-size:13.5px;gap:8px;border-radius:5px;cursor:pointer}
 .acts{gap:10px;margin-top:22px}
 
 /* Seção inicial (Hero): sem quadrado em .pp e emblema ao lado do texto */
@@ -168,6 +168,19 @@ footer{padding:24px 0;font-size:13px}
 .fab{width:46px;height:46px;right:16px;bottom:16px}
 .fab svg{width:23px;height:23px}
 
+/* Modal de envio de E-mail (fallback universal para desktop/webmail) */
+.em-modal[hidden]{display:none}
+.em-modal{position:fixed;inset:0;z-index:9999;background:rgba(5,8,13,.78);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:16px}
+.em-box{width:100%;max-width:440px;background:linear-gradient(160deg,#1a222d 0%,#111720 100%);border:1px solid #2b4263;border-radius:10px;padding:22px;color:#e8edf4;box-shadow:0 20px 50px rgba(0,0,0,.55)}
+.em-hd{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.em-hd h3{margin:0;font-size:17px;color:#fff}
+.em-x{background:none;border:1px solid #2c3e58;color:#b8c4d4;border-radius:6px;width:30px;height:30px;font-size:16px;cursor:pointer;line-height:1}
+.em-x:hover{color:#fff;border-color:#7fb0e6}
+.em-addr{display:block;margin:10px 0 14px;padding:9px 12px;border-radius:6px;background:#0d1219;border:1px solid rgba(127,176,230,.32);color:#7fb0e6;font-family:monospace;font-size:13px;word-break:break-all}
+.em-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.em-grid .btn{width:100%;justify-content:center;padding:9px 12px;font-size:13px}
+.em-grid .full{grid-column:1/-1}
+
 /* Abas internas (#cursos / #contratacoes) */
 .view .ar{min-height:62vh}
 .ar .g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:18px}
@@ -206,6 +219,7 @@ footer{padding:24px 0;font-size:13px}
   .hv{font-size:15.5px}
   .hero h2{font-size:16px}
   .acts .btn{width:100%;justify-content:center}
+  .em-grid{grid-template-columns:1fr}
   .fab{width:44px;height:44px;right:14px;bottom:14px}
   .fab svg{width:22px;height:22px}
 }
@@ -307,7 +321,7 @@ footer{padding:24px 0;font-size:13px}
 <h2>Solicite uma proposta</h2>
 <p class="lead">Descreva o cenário e o objetivo. Respondemos em até 2 horas úteis.</p>
 <div class="cols">
-<form id="f" novalidate>
+<form id="f">
 <div class="f2">
 <label>Nome completo *<input name="nome" autocomplete="name" minlength="2" maxlength="120" required></label>
 <label>E-mail corporativo *<input name="email" type="email" autocomplete="email" maxlength="140" required></label>
@@ -395,6 +409,25 @@ footer{padding:24px 0;font-size:13px}
 
 <div id="ck" class="ck" hidden><p>Usamos cookies de medição para entender como o site é utilizado. Veja a <a href="#privacidade">Política de Privacidade</a>.</p><div class="acts" style="margin:0"><button class="btn" id="ckY">Aceitar</button><button class="btn out" id="ckN">Recusar</button></div></div>
 
+<!-- Painel universal de envio de E-mail (funciona mesmo sem app de e-mail configurado no PC) -->
+<div id="emModal" class="em-modal" role="dialog" aria-modal="true" aria-labelledby="emTitle" hidden>
+  <div class="em-box">
+    <div class="em-hd">
+      <h3 id="emTitle">Enviar E-mail para a Vórtice</h3>
+      <button type="button" class="em-x" id="emClose" aria-label="Fechar">×</button>
+    </div>
+    <p style="font-size:13.5px;color:#b8c4d4;margin:0">Caso seu computador não abra o aplicativo de e-mail automaticamente, escolha uma das opções abaixo:</p>
+    <span class="em-addr" id="emAddrTxt">vorticesolucoesglobais@gmail.com</span>
+    <div class="em-grid">
+      <a class="btn" id="emGmailBtn" href="https://mail.google.com/mail/?view=cm&fs=1&to=vorticesolucoesglobais@gmail.com" target="_blank" rel="noopener noreferrer">Abrir no Gmail</a>
+      <a class="btn out" id="emOutlookBtn" href="https://outlook.live.com/mail/0/deeplink/compose?to=vorticesolucoesglobais@gmail.com" target="_blank" rel="noopener noreferrer">Abrir no Outlook</a>
+      <button type="button" class="btn out" id="emCopyAddr">Copiar e-mail</button>
+      <button type="button" class="btn out" id="emCopyMsg">Copiar mensagem</button>
+      <a class="btn dk full" id="emMailtoDirect" href="mailto:vorticesolucoesglobais@gmail.com">Tentar app padrão do dispositivo</a>
+    </div>
+  </div>
+</div>
+
 <a class="fab" data-wa="" href="https://wa.me/5511921913395" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.49 2 2 6.5 2 12.05c0 1.77.46 3.5 1.34 5.03L2 22l5.04-1.32a9.87 9.87 0 0 0 4.71 1.2h.02c5.54 0 10.04-4.5 10.04-10.04 0-2.68-1.04-5.2-2.93-7.1l-.03-.03zM12.03 20.03h-.01a8.18 8.18 0 0 1-4.17-1.14l-.3-.18-3 .79.79-2.93-.2-.3A8.19 8.19 0 0 1 3.86 12c0-4.56 3.71-8.27 8.28-8.27 2.21 0 4.29.86 5.85 2.43a8.22 8.22 0 0 1 2.42 5.85c0 4.56-3.72 8.27-8.28 8.27zm4.54-6.19c-.25-.12-1.47-.73-1.7-.81-.23-.09-.39-.12-.56.12-.17.25-.65.81-.8.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.53.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg></a>
 
 <script src="./site.js"></script>
@@ -402,8 +435,8 @@ footer{padding:24px 0;font-size:13px}
 (function(){
   'use strict';
   const PAGE_LOAD_TS = Date.now();
-  const COOLDOWN_MS = 15000;
-  const MAX_SESSION_SENDS = 5;
+  const COOLDOWN_MS = 10000;
+  const MAX_SESSION_SENDS = 8;
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
   const SAFE_WA = (typeof WA !== 'undefined' && /^\d{10,15}$/.test(String(WA))) ? String(WA) : '5511921913395';
@@ -412,7 +445,9 @@ footer{padding:24px 0;font-size:13px}
     'https://wa.me',
     'https://api.whatsapp.com',
     'https://app.hotmart.com',
-    'https://www.linkedin.com'
+    'https://www.linkedin.com',
+    'https://mail.google.com',
+    'https://outlook.live.com'
   ]);
 
   /* Blindagem de links externos contra tabnabbing e adulteração de destino */
@@ -446,6 +481,104 @@ footer{padding:24px 0;font-size:13px}
     linkGuard.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['href', 'target'] });
   }
 
+  /* Sistema universal de envio de e-mail (mailto + webmail + cópia rápida) */
+  const emModal = document.getElementById('emModal');
+  const emAddrTxt = document.getElementById('emAddrTxt');
+  const emGmailBtn = document.getElementById('emGmailBtn');
+  const emOutlookBtn = document.getElementById('emOutlookBtn');
+  const emMailtoDirect = document.getElementById('emMailtoDirect');
+  const emCopyAddr = document.getElementById('emCopyAddr');
+  const emCopyMsg = document.getElementById('emCopyMsg');
+  let lastPreparedEmail = { subject: 'Solicitação de Diagnóstico - Vórtice', body: 'Olá, Vórtice! Gostaria de solicitar um diagnóstico gratuito.' };
+
+  function buildMailtoHref(subject, body) {
+    const shortBody = String(body || '').slice(0, 1400);
+    return 'mailto:' + SAFE_MAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(shortBody);
+  }
+
+  function triggerMailto(href) {
+    try {
+      const tmp = document.createElement('a');
+      tmp.href = href;
+      tmp.style.display = 'none';
+      document.body.appendChild(tmp);
+      tmp.click();
+      tmp.remove();
+    } catch (e) {
+      try { location.href = href; } catch (err) {}
+    }
+  }
+
+  function openEmailAssistant(opts) {
+    const subject = (opts && opts.subject) ? opts.subject : 'Contato pelo site - Vórtice';
+    const body = (opts && opts.body) ? opts.body : 'Olá, Vórtice! Gostaria de mais informações sobre seus serviços.';
+    lastPreparedEmail = { subject, body };
+
+    const mailtoUrl = buildMailtoHref(subject, body);
+    emAddrTxt.textContent = SAFE_MAIL;
+    emGmailBtn.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(SAFE_MAIL) + '&su=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    emOutlookBtn.href = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + encodeURIComponent(SAFE_MAIL) + '&subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    emMailtoDirect.href = mailtoUrl;
+    emCopyAddr.textContent = 'Copiar e-mail';
+    emCopyMsg.textContent = 'Copiar mensagem';
+
+    triggerMailto(mailtoUrl);
+    emModal.hidden = false;
+  }
+
+  document.getElementById('emClose').addEventListener('click', () => { emModal.hidden = true; });
+  emModal.addEventListener('click', e => { if (e.target === emModal) emModal.hidden = true; });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !emModal.hidden) emModal.hidden = true; });
+
+  function copyText(text, btn, defaultLabel) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copiado!';
+        setTimeout(() => { btn.textContent = defaultLabel; }, 2200);
+      }).catch(() => fallbackCopy(text, btn, defaultLabel));
+    } else {
+      fallbackCopy(text, btn, defaultLabel);
+    }
+  }
+
+  function fallbackCopy(text, btn, defaultLabel) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); btn.textContent = 'Copiado!'; } catch (e) {}
+    ta.remove();
+    setTimeout(() => { btn.textContent = defaultLabel; }, 2200);
+  }
+
+  emCopyAddr.addEventListener('click', () => copyText(SAFE_MAIL, emCopyAddr, 'Copiar e-mail'));
+  emCopyMsg.addEventListener('click', () => copyText('Para: ' + SAFE_MAIL + '\nAssunto: ' + lastPreparedEmail.subject + '\n\n' + lastPreparedEmail.body, emCopyMsg, 'Copiar mensagem'));
+
+  /* Conecta os botões de e-mail da abertura e dos canais oficiais */
+  const heroMailBtn = document.getElementById('heroMailBtn');
+  if (heroMailBtn) {
+    heroMailBtn.addEventListener('click', e => {
+      e.preventDefault();
+      openEmailAssistant({
+        subject: 'Solicitação de Diagnóstico - Vórtice',
+        body: 'Olá, Vórtice! Gostaria de solicitar um diagnóstico gratuito para minha empresa.'
+      });
+    });
+  }
+
+  const sideMailLink = document.getElementById('sideMailLink');
+  if (sideMailLink) {
+    sideMailLink.addEventListener('click', e => {
+      e.preventDefault();
+      openEmailAssistant({
+        subject: 'Contato pelo site - Vórtice Soluções Globais',
+        body: 'Olá, Vórtice! Entrei em contato pelo site e gostaria de falar com a equipe.'
+      });
+    });
+  }
+
   /* Sanitização e validação antifraude do formulário */
   const f = document.getElementById('f');
 
@@ -464,7 +597,10 @@ footer{padding:24px 0;font-size:13px}
   }
 
   function checkRateLimit() {
-    if (Date.now() - PAGE_LOAD_TS < 2500) return false;
+    if (Date.now() - PAGE_LOAD_TS < 1500) {
+      alert('Aguarde um instante antes de enviar o formulário.');
+      return false;
+    }
     try {
       const last = Number(sessionStorage.getItem('vortice_last_send') || 0);
       const count = Number(sessionStorage.getItem('vortice_send_count') || 0);
@@ -491,6 +627,8 @@ footer{padding:24px 0;font-size:13px}
 
   function formValid() {
     if (f.website && f.website.value) return false;
+    if (!f.reportValidity()) return false;
+
     const nome = cleanField(f.nome.value, 120, false);
     const email = cleanField(f.email.value, 140, false);
     const tel = cleanPhone(f.tel.value);
@@ -498,7 +636,6 @@ footer{padding:24px 0;font-size:13px}
     const svc = cleanField(f.svc.value, 120, false);
     const texto = cleanField(f.msg.value, 2000, true);
 
-    if (!f.reportValidity()) return false;
     if (nome.length < 2) { f.nome.focus(); return false; }
     if (!EMAIL_RE.test(email)) { f.email.focus(); return false; }
     if (telDigits.length < 8 || telDigits.length > 15) { f.tel.focus(); return false; }
@@ -568,7 +705,10 @@ footer{padding:24px 0;font-size:13px}
     registerSend();
     sendLead('email');
     if (typeof track === 'function') track('envio_formulario');
-    location.href = 'mailto:' + SAFE_MAIL + '?subject=' + encodeURIComponent('Solicitação de proposta - Vórtice') + '&body=' + encodeURIComponent(buildMessage());
+    openEmailAssistant({
+      subject: 'Solicitação de proposta - Vórtice',
+      body: buildMessage()
+    });
   });
 
   /* Navegação ativa e revelação suave das seções */
