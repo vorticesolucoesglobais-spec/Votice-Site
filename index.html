@@ -30,51 +30,172 @@
 </script>
 <link rel="stylesheet" href="./site.css">
 <style>
-nav{white-space:nowrap}nav a.ta{color:#fff;font-weight:600}
+/* ===== Escala visual refinada e executiva ===== */
+html{scroll-padding-top:96px;max-width:100%;overflow-x:clip}
+body{font-size:14.5px;line-height:1.6;max-width:100%;overflow-x:clip}
+.w{max-width:1080px;padding:0 22px}
+
+/* Cabeçalho e navegação mais compactos */
+.bar{padding-top:7px;padding-bottom:7px;gap:12px}
+.bar img{height:38px!important;width:auto!important;max-width:none!important}
+nav{white-space:nowrap}
+nav a{padding:7px 9px;font-size:13px}
+nav a.ta{color:#fff;font-weight:600}
+.lgb{padding:6px 9px;font-size:12px;gap:6px}
+.fg{width:19px;height:13px}
+.lgl button{padding:6px 9px;font-size:12px}
+
 @media(min-width:861px){
-.bar{flex-wrap:wrap;row-gap:0}
-nav.areas{order:2;margin-left:auto}#lg{order:2}
-nav.mn{order:3;width:100%;margin:0;border-top:1px solid #22385a}
-html{scroll-padding-top:124px}
-.steps{grid-template-columns:repeat(5,1fr)}
+  .bar{flex-wrap:wrap;row-gap:2px}
+  nav.areas{order:2;margin-left:auto}#lg{order:2}
+  nav.mn{order:3;width:100%;margin:0;padding-top:2px;border-top:1px solid #22385a}
+  .steps{grid-template-columns:repeat(5,1fr)}
 }
-/* Abas internas (#cursos / #contratacoes): mesmo tema escuro e azul-aço do site */
-.view .ar{min-height:62vh}
-.ar .g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:22px}
-.ar .cd{padding:26px;border-radius:10px;background:linear-gradient(160deg,#1b222c 0%,#131920 100%);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 32px rgba(0,0,0,.30);transition:transform .25s,border-color .25s}
-.ar .cd:hover{transform:translateY(-2px);border-color:rgba(127,176,230,.38)}
-.ar .cd h3{font-size:19px;color:#fff}.ar .cd p{color:#b8c4d4;font-size:15px;margin-top:6px}.ar .cd a.link-oficial{display:inline-block;margin-top:12px;padding:10px 14px;border-radius:6px;background:#10151c;border:1px solid rgba(127,176,230,.35);color:#7fb0e6;font-family:monospace;font-size:14px;word-break:anywhere}.ar .cd .btn{margin-top:14px}
-.ar .pl{display:inline-block;padding:6px 14px;border:1px solid rgba(127,176,230,.30);background:rgba(127,176,230,.08);border-radius:99px;color:#acc9ee;font-size:12px;font-weight:600}
-/* Garante remoção do quadrado em .pp, emblema ao lado do texto e responsividade mobile */
-.hero p.pp{background:none;border:none;box-shadow:none;padding:0;transition:none}
-.emb{width:100%;max-width:330px;height:auto;justify-self:center;align-self:center;display:block;-webkit-mask-image:radial-gradient(closest-side,#000 68%,transparent 100%);mask-image:radial-gradient(closest-side,#000 68%,transparent 100%)}
-html,body{max-width:100%;overflow-x:clip}
-.side a span,.side p,footer details p,.hero p.pp{overflow-wrap:anywhere;word-break:normal}
+
+/* Tipografia e botões proporcionais */
+h2{font-size:clamp(22px,2.5vw,28px);margin-bottom:10px}
+h3{font-size:17.5px;margin-bottom:8px}
+.lead{font-size:15px;line-height:1.55;max-width:64ch}
+.eyebrow,.badge{font-size:11px;padding:4px 12px;margin-bottom:10px}
+.btn{padding:9px 18px;font-size:13.5px;gap:8px;border-radius:5px}
+.acts{gap:10px;margin-top:22px}
+
+/* Seção inicial (Hero): sem quadrado em .pp e emblema ao lado do texto */
+.hero{padding:56px 0 52px}
+.hero .w{grid-template-columns:1.55fr .75fr;gap:40px;align-items:center}
 .hero .w>div{min-width:0}
+.hero h1{font-size:clamp(26px,3.4vw,38px);line-height:1.15;margin-bottom:14px}
+.hv{margin-top:0;font-size:16.5px;line-height:1.42;max-width:60ch}
+.hero h2{font-size:17px;margin:14px 0 8px}
+.hero p.pp{background:none;border:none;box-shadow:none;padding:0;transition:none;font-size:14.5px;line-height:1.62;max-width:64ch;overflow-wrap:anywhere;word-break:normal}
+.emb{width:100%;max-width:260px;height:auto;justify-self:center;align-self:center;display:block;-webkit-mask-image:radial-gradient(closest-side,#000 68%,transparent 100%);mask-image:radial-gradient(closest-side,#000 68%,transparent 100%)}
+
+/* Faixa de números e credenciais */
+.facts .w{gap:16px;padding-top:18px;padding-bottom:18px}
+.sn{font-size:21px}
+.sl{font-size:10.5px}
+.cred{padding:15px 20px;margin-top:20px;gap:8px 18px;font-size:13px}
+
+/* Seções gerais e cartões */
+section{padding:54px 0}
+.card{padding:22px 24px}
+
+/* Serviços */
+.svc{grid-template-columns:210px 1fr;gap:28px;padding:20px 22px;margin-top:14px}
+.svc:first-of-type{margin-top:24px}
+.svc small{font-size:12.5px;margin-bottom:4px}
+.svc p{font-size:14px;line-height:1.58}
+.tags{margin:12px 0 18px;gap:4px 20px;font-size:13.5px}
+.dt{margin-top:14px;font-size:13.5px}
+.dtc{margin-top:12px;padding:14px 18px}
+.dtc h3{font-size:14.5px;margin:12px 0 4px}
+.dtc p{font-size:13.5px;margin-top:6px}
+.dtc li{padding:5px 0 5px 16px;font-size:13.5px}
+.dtc li:before{top:13px;width:5px;height:5px}
+
+/* Depoimentos */
+.dg{gap:14px;margin-top:22px!important}
+.tc{padding:18px 20px;font-size:14px;line-height:1.58}
+.tc .st{font-size:13px}
+.tc p{margin-top:8px}
+
+/* Diferenciais e Como Funciona */
+.g2{gap:8px 20px;font-size:14px;margin-top:18px!important}
+#diferenciais h2[style]{margin-top:40px!important}
+.steps{gap:16px;margin-top:22px}
+.steps li{padding-top:40px}
+.steps li:before{font-size:24px}
+.steps li:after{top:14px;left:42px}
+.steps h3{font-size:15.5px;margin-bottom:4px}
+.steps p{font-size:13.5px;line-height:1.5}
+
+/* Institucional e Onde Atuamos */
+.about{grid-template-columns:210px 1fr;gap:36px}
+.about p{font-size:14px;margin-top:10px}
+.qt{margin-top:14px;padding-left:14px;font-size:14px}
+.qt small{font-size:12.5px;margin-top:4px}
+.gb{margin-top:16px;padding:15px 18px}
+.gb h3{font-size:16px}
+.gb p{font-size:13.5px}
+.pr{gap:20px;margin-top:22px}
+.pr div{padding-top:12px}
+.pr h3{font-size:15.5px}
+.pr p{font-size:13.5px}
+#onde .card{margin-top:26px!important}
+#onde h3{font-size:18px!important}
+#onde p{font-size:14px}
+#onde .g2{font-size:13.5px!important;margin-top:14px!important}
+
+/* FAQ */
+.fq{padding:12px 16px;margin-top:8px}
+.fq summary{font-size:14.5px}
+.fq p{font-size:13.5px;margin-top:8px;line-height:1.55}
+
+/* Contato e Canais Oficiais */
+.cols{grid-template-columns:1.35fr .65fr;gap:36px;margin-top:24px}
+form{gap:12px}
+.f2{gap:12px}
+label{font-size:13px;gap:4px}
+input,select,textarea{padding:9px 12px;font-size:14px}
+textarea{min-height:100px}
+.nt{font-size:12px}
+.side{padding:22px}
+.side h3{font-size:17px}
+.side a{padding:10px 0;gap:12px;font-size:14px}
+.side a span,.side p,footer details p{overflow-wrap:anywhere;word-break:normal}
+.ic2{width:36px;height:36px;border-radius:8px}
+.ic2 svg{width:18px;height:18px}
+.side p{font-size:13px;margin-top:14px;line-height:1.6}
+
+/* CTA, Rodapé, Cookies e Botão Flutuante */
+.cta{padding:48px 0}
+footer{padding:24px 0;font-size:13px}
+.fl{gap:6px 18px;margin-bottom:12px}
+.ck{padding:12px 20px;font-size:13px}
+.ck .btn{padding:7px 14px;font-size:13px}
+.fab{width:46px;height:46px;right:16px;bottom:16px}
+.fab svg{width:23px;height:23px}
+
+/* Abas internas (#cursos / #contratacoes) */
+.view .ar{min-height:62vh}
+.ar .g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:18px}
+.ar .cd{padding:22px;border-radius:10px;background:linear-gradient(160deg,#1b222c 0%,#131920 100%);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 32px rgba(0,0,0,.30);transition:transform .25s,border-color .25s}
+.ar .cd:hover{transform:translateY(-2px);border-color:rgba(127,176,230,.38)}
+.ar .cd h3{font-size:17.5px;color:#fff}.ar .cd p{color:#b8c4d4;font-size:14px;margin-top:6px}.ar .cd a.link-oficial{display:inline-block;margin-top:10px;padding:8px 12px;border-radius:6px;background:#10151c;border:1px solid rgba(127,176,230,.35);color:#7fb0e6;font-family:monospace;font-size:13px;word-break:anywhere}.ar .cd .btn{margin-top:12px}
+.ar .pl{display:inline-block;padding:4px 12px;border:1px solid rgba(127,176,230,.30);background:rgba(127,176,230,.08);border-radius:99px;color:#acc9ee;font-size:11px;font-weight:600}
+
+/* Ajustes específicos para dispositivos móveis */
 @media(max-width:860px){
-  .bar{flex-wrap:wrap;gap:8px 12px}
+  html{scroll-padding-top:104px}
+  section{padding:42px 0}
+  .bar{flex-wrap:wrap;gap:6px 10px}
   nav.areas{order:2;width:auto;margin-left:auto;overflow-x:visible}
   #lg{order:2}
   nav.mn{order:3;width:100%;margin:0;padding-top:4px;border-top:1px solid #22385a;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   nav.mn::-webkit-scrollbar{display:none}
-  .hero .w{grid-template-columns:1fr;gap:28px;text-align:left}
-  .emb{max-width:200px;justify-self:center;order:-1}
-  .facts .w{grid-template-columns:1fr 1fr;gap:18px}
-  .cols{grid-template-columns:1fr;gap:32px}
+  .hero{padding:40px 0 42px}
+  .hero .w{grid-template-columns:1fr;gap:22px;text-align:left}
+  .emb{max-width:170px;justify-self:center;order:-1}
+  .facts .w{grid-template-columns:1fr 1fr;gap:14px}
+  .svc{grid-template-columns:1fr;gap:16px;padding:18px}
+  .svc .im{max-width:130px}
+  .about{grid-template-columns:1fr;gap:22px}
+  .about img{max-width:170px}
+  .cols{grid-template-columns:1fr;gap:28px}
+  input,select,textarea{font-size:16px}
 }
 @media(max-width:480px){
   .w{padding:0 16px}
   .bar{gap:6px 8px}
-  .bar img{height:32px!important}
-  nav.areas a{padding:6px 8px;font-size:13px}
-  .lgb{padding:6px 8px;font-size:12px;gap:5px}
-  .fg{width:18px;height:12px}
-  .hero{padding:44px 0 48px}
-  .hv{font-size:17px}
-  .hero h2{font-size:19px}
+  .bar img{height:30px!important}
+  nav.areas a{padding:5px 7px;font-size:12.5px}
+  .lgb{padding:5px 7px;font-size:11.5px;gap:5px}
+  .fg{width:17px;height:11px}
+  .hv{font-size:15.5px}
+  .hero h2{font-size:16px}
   .acts .btn{width:100%;justify-content:center}
-  .fab{width:48px;height:48px;right:14px;bottom:14px}
-  .fab svg{width:24px;height:24px}
+  .fab{width:44px;height:44px;right:14px;bottom:14px}
+  .fab svg{width:22px;height:22px}
 }
 </style>
 </head>
@@ -154,9 +275,9 @@ html,body{max-width:100%;overflow-x:clip}
 </div>
 </section>
 
-<section id="depoimentos" class="alt"><div class="w"><span class="badge">Depoimentos</span><h2>Casos Reais de Clientes Atendidos pela <span translate="no">Vórtice</span></h2><p class="lead">Ao longo dos últimos 5 anos, a <span translate="no">Vórtice</span> Soluções Globais participou da transformação de empresas, organizações e instituições no Brasil e no exterior, atuando em gestão empresarial, tecnologia, produção e marketing digital.</p><div class="dg rv" style="margin-top:32px"><div class="tc"><span class="st">★★★★★</span><p>A parceria com a <span translate="no">Vórtice</span> foi fundamental para a evolução da nossa empresa. Recebemos apoio em gestão empresarial, assessoria administrativa, suporte técnico e uniformização corporativa. O atendimento próximo e o compromisso com resultados fizeram toda a diferença para nosso crescimento.</p><br><strong>Doces Brito Confeitaria</strong><br><small>Assessoria Administrativa • Gestão Empresarial • Uniformes • Suporte Técnico</small></div><div class="tc"><span class="st">★★★★★</span><p>A <span translate="no">Vórtice</span> atua como parceira estratégica da Cast-A-Way, empresa canadense com operações internacionais, prestando suporte técnico especializado para colaboradores distribuídos em diferentes países. O atendimento abrange usuários de múltiplas localidades, garantindo padronização, estabilidade operacional e rápida resolução de incidentes em toda a estrutura tecnológica da organização.<br><br>Além do suporte técnico global, a <span translate="no">Vórtice</span> realiza o acompanhamento contínuo da segurança cibernética corporativa, apoiando a proteção de ativos digitais, monitoramento de ambientes, aplicação de boas práticas de segurança da informação e mitigação de riscos em toda a infraestrutura da empresa.<br><br>A combinação entre gestão empresarial, suporte técnico internacional e cybersecurity transformou a <span translate="no">Vórtice</span> em um parceiro essencial para a sustentação e evolução das operações globais da Cast-A-Way.</p><br><strong>Cast-A-Way (Canadá)</strong><br><small>Gestão Empresarial • Suporte Técnico Internacional • Segurança Cibernética Global • Infraestrutura Corporativa</small></div><div class="tc"><span class="st">★★★★★</span><p>A <span translate="no">Vórtice</span> contribuiu diretamente para a evolução do ministério, desde os uniformes personalizados até TI, CNC Router e gestão de redes sociais. O resultado foi uma operação mais organizada e uma presença digital muito mais profissional.</p><br><strong>A.D. Missão Resgate - Ministério Cabreúva</strong><br><small>Uniformes • Assessoria de TI • CNC Router • Gestão de Redes Sociais</small></div></div></div></section>
+<section id="depoimentos" class="alt"><div class="w"><span class="badge">Depoimentos</span><h2>Casos Reais de Clientes Atendidos pela <span translate="no">Vórtice</span></h2><p class="lead">Ao longo dos últimos 5 anos, a <span translate="no">Vórtice</span> Soluções Globais participou da transformação de empresas, organizações e instituições no Brasil e no exterior, atuando em gestão empresarial, tecnologia, produção e marketing digital.</p><div class="dg rv" style="margin-top:22px"><div class="tc"><span class="st">★★★★★</span><p>A parceria com a <span translate="no">Vórtice</span> foi fundamental para a evolução da nossa empresa. Recebemos apoio em gestão empresarial, assessoria administrativa, suporte técnico e uniformização corporativa. O atendimento próximo e o compromisso com resultados fizeram toda a diferença para nosso crescimento.</p><br><strong>Doces Brito Confeitaria</strong><br><small>Assessoria Administrativa • Gestão Empresarial • Uniformes • Suporte Técnico</small></div><div class="tc"><span class="st">★★★★★</span><p>A <span translate="no">Vórtice</span> atua como parceira estratégica da Cast-A-Way, empresa canadense com operações internacionais, prestando suporte técnico especializado para colaboradores distribuídos em diferentes países. O atendimento abrange usuários de múltiplas localidades, garantindo padronização, estabilidade operacional e rápida resolução de incidentes em toda a estrutura tecnológica da organização.<br><br>Além do suporte técnico global, a <span translate="no">Vórtice</span> realiza o acompanhamento contínuo da segurança cibernética corporativa, apoiando a proteção de ativos digitais, monitoramento de ambientes, aplicação de boas práticas de segurança da informação e mitigação de riscos em toda a infraestrutura da empresa.<br><br>A combinação entre gestão empresarial, suporte técnico internacional e cybersecurity transformou a <span translate="no">Vórtice</span> em um parceiro essencial para a sustentação e evolução das operações globais da Cast-A-Way.</p><br><strong>Cast-A-Way (Canadá)</strong><br><small>Gestão Empresarial • Suporte Técnico Internacional • Segurança Cibernética Global • Infraestrutura Corporativa</small></div><div class="tc"><span class="st">★★★★★</span><p>A <span translate="no">Vórtice</span> contribuiu diretamente para a evolução do ministério, desde os uniformes personalizados até TI, CNC Router e gestão de redes sociais. O resultado foi uma operação mais organizada e uma presença digital muito mais profissional.</p><br><strong>A.D. Missão Resgate - Ministério Cabreúva</strong><br><small>Uniformes • Assessoria de TI • CNC Router • Gestão de Redes Sociais</small></div></div></div></section>
 
-<section id="diferenciais"><div class="w"><div class="card"><span class="badge">Diferenciais <span translate="no">Vórtice</span></span><h2>Por Que a <span translate="no">Vórtice</span> é Diferente?</h2><p class="lead">Uma única empresa para cuidar da Gestão, Tecnologia e Produção do seu negócio.</p><div class="g2 rv" style="margin-top:24px"><div>Gestão Empresarial</div><div>Assessoria Administrativa</div><div>Tecnologia Corporativa</div><div>Segurança Cibernética</div><div>Gestão de Redes Sociais</div><div>Produção CNC e Automação</div><div>Uniformes Corporativos</div><div>Atendimento Nacional</div><div>Projetos na América do Norte</div><div>Atendimento Direto com Especialistas</div></div></div><h2 style="margin-top:64px">Como Funciona</h2><ol class="steps rv"><li><h3>Diagnóstico Gratuito</h3><p>Entendemos sua operação, desafios e objetivos.</p></li><li><h3>Planejamento Estratégico</h3><p>Desenhamos a solução mais adequada para sua realidade.</p></li><li><h3>Implantação</h3><p>Executamos com acompanhamento próximo.</p></li><li><h3>Monitoramento</h3><p>Indicadores, relatórios e suporte contínuo.</p></li><li><h3>Crescimento</h3><p>Resultados sustentáveis e evolução constante.</p></li></ol></div></section>
+<section id="diferenciais"><div class="w"><div class="card"><span class="badge">Diferenciais <span translate="no">Vórtice</span></span><h2>Por Que a <span translate="no">Vórtice</span> é Diferente?</h2><p class="lead">Uma única empresa para cuidar da Gestão, Tecnologia e Produção do seu negócio.</p><div class="g2 rv" style="margin-top:18px"><div>Gestão Empresarial</div><div>Assessoria Administrativa</div><div>Tecnologia Corporativa</div><div>Segurança Cibernética</div><div>Gestão de Redes Sociais</div><div>Produção CNC e Automação</div><div>Uniformes Corporativos</div><div>Atendimento Nacional</div><div>Projetos na América do Norte</div><div>Atendimento Direto com Especialistas</div></div></div><h2 style="margin-top:40px">Como Funciona</h2><ol class="steps rv"><li><h3>Diagnóstico Gratuito</h3><p>Entendemos sua operação, desafios e objetivos.</p></li><li><h3>Planejamento Estratégico</h3><p>Desenhamos a solução mais adequada para sua realidade.</p></li><li><h3>Implantação</h3><p>Executamos com acompanhamento próximo.</p></li><li><h3>Monitoramento</h3><p>Indicadores, relatórios e suporte contínuo.</p></li><li><h3>Crescimento</h3><p>Resultados sustentáveis e evolução constante.</p></li></ol></div></section>
 
 <section id="sobre" class="alt"><div class="w about"><img src="./foto.jpg" alt="Mathews Brito, fundador da Vórtice" width="260" height="325" loading="lazy"><div>
 <h2>Institucional</h2>
@@ -165,7 +286,7 @@ html,body{max-width:100%;overflow-x:clip}
 <div class="gb"><h3>Nosso Diferencial</h3><p style="margin-top:0">Enquanto a maioria das empresas atua em apenas uma área específica, a <span translate="no">Vórtice</span> integra Gestão Empresarial, Assessoria Administrativa, Tecnologia, Segurança Cibernética, Produção CNC, Uniformes Corporativos e Marketing Digital em uma única estrutura operacional.<br><br>Isso permite que nossos clientes encontrem diversas soluções estratégicas em um único parceiro de negócios, reduzindo custos, simplificando processos e aumentando a eficiência operacional.</p></div>
 <div class="pr"><div><h3>Missão</h3><p>Otimizar processos, elevar a produtividade e sustentar o crescimento das empresas com tecnologia e produção de alta performance.</p></div><div><h3>Visão</h3><p>Ser referência nacional em integração de gestão, tecnologia e produção para empresas em expansão.</p></div><div><h3>Valores</h3><p>Resultado, transparência, inovação contínua, atendimento humano e compromisso com o crescimento do cliente.</p></div></div>
 </div></div>
-<div class="w" id="onde"><div class="card" style="margin-top:40px"><span class="badge">Onde Atuamos</span><h3 style="font-size:22px">Presença Local, Nacional e Internacional</h3><p style="color:#d5dae3">A <span translate="no">Vórtice</span> Soluções Globais possui sede no estado de São Paulo, onde concentra parte de suas operações presenciais. Também atendemos clientes em todo o Brasil por meio de consultoria, gestão empresarial, assessoria administrativa, suporte técnico, marketing digital, uniformização corporativa e produção industrial. Além do mercado nacional, mantemos contratos e projetos na América do Norte além de Suporte Técnico global, ampliando nossa experiência internacional e capacidade de atender organizações de diferentes segmentos e portes.</p><div class="g2" style="margin-top:20px;font-size:15px"><div><strong>SEDE:</strong> São Paulo - Brasil</div><div><strong>ATENDIMENTO:</strong> Todo o território nacional</div><div><strong>ATUAÇÃO INTERNACIONAL:</strong> América do Norte</div><div><strong>CLIENTES:</strong> Empresas, indústrias, organizações sem fins lucrativos e instituições religiosas</div></div></div></div></section>
+<div class="w" id="onde"><div class="card" style="margin-top:26px"><span class="badge">Onde Atuamos</span><h3 style="font-size:18px">Presença Local, Nacional e Internacional</h3><p style="color:#d5dae3">A <span translate="no">Vórtice</span> Soluções Globais possui sede no estado de São Paulo, onde concentra parte de suas operações presenciais. Também atendemos clientes em todo o Brasil por meio de consultoria, gestão empresarial, assessoria administrativa, suporte técnico, marketing digital, uniformização corporativa e produção industrial. Além do mercado nacional, mantemos contratos e projetos na América do Norte além de Suporte Técnico global, ampliando nossa experiência internacional e capacidade de atender organizações de diferentes segmentos e portes.</p><div class="g2" style="margin-top:14px;font-size:13.5px"><div><strong>SEDE:</strong> São Paulo - Brasil</div><div><strong>ATENDIMENTO:</strong> Todo o território nacional</div><div><strong>ATUAÇÃO INTERNACIONAL:</strong> América do Norte</div><div><strong>CLIENTES:</strong> Empresas, indústrias, organizações sem fins lucrativos e instituições religiosas</div></div></div></div></section>
 
 <section id="faq"><div class="w"><span class="badge">Perguntas Frequentes</span><h2>Perguntas Frequentes</h2><details class="fq" open><summary>A <span translate="no">Vórtice</span> atende apenas em São Paulo?</summary><p>Nossa sede está localizada no Estado de São Paulo, onde realizamos atendimentos presenciais regulares. Também atendemos empresas em todo o território nacional de forma remota e, em projetos estratégicos ou de grande porte, nossa equipe realiza visitas presenciais diretamente na localidade do cliente.</p></details><details class="fq"><summary>Vocês atendem clientes internacionais?</summary><p>Sim. Atualmente mantemos contratos e projetos internacionais na América do Norte, oferecendo suporte tecnológico, gestão empresarial, segurança cibernética e consultoria especializada para operações internacionais.</p></details><details class="fq"><summary>Posso contratar mais de um serviço?</summary><p>Sim. Muitos clientes utilizam duas ou mais soluções da <span translate="no">Vórtice</span> simultaneamente. Nosso diferencial é justamente integrar Gestão Empresarial, Tecnologia e Produção dentro da mesma estrutura operacional.</p></details><details class="fq"><summary>A <span translate="no">Vórtice</span> atende pequenas empresas?</summary><p>Sim. Atendemos pequenos negócios, empresas em crescimento, indústrias, instituições religiosas, profissionais autônomos e organizações de médio porte.</p></details><details class="fq"><summary>Como funciona a Assessoria Empresarial?</summary><p>Inicialmente realizamos um diagnóstico da operação do cliente. A partir dessa análise, desenvolvemos processos, indicadores, relatórios gerenciais, controles financeiros e ferramentas que ajudam a empresa a crescer de forma organizada e sustentável.</p></details><details class="fq"><summary>A <span translate="no">Vórtice</span> fornece suporte técnico contínuo?</summary><p>Sim. Oferecemos suporte remoto e presencial, monitoramento de infraestrutura, administração de redes, segurança cibernética, backup corporativo e acompanhamento contínuo das operações de TI.</p></details><details class="fq"><summary>Vocês desenvolvem projetos personalizados?</summary><p>Sim. Cada empresa possui necessidades específicas. Todos os projetos são avaliados individualmente para que possamos apresentar uma solução adequada à realidade e aos objetivos do cliente.</p></details><details class="fq"><summary>Como funcionam os projetos CNC?</summary><p>Basta enviar uma foto, desenho ou arquivo técnico. Nossa equipe analisa a demanda, elabora o projeto quando necessário e produz as peças utilizando tecnologia CNC Router, laser e outros processos industriais.</p></details><details class="fq"><summary>Os uniformes são produzidos pela própria <span translate="no">Vórtice</span>?</summary><p>Trabalhamos com produção própria e parceiros homologados para garantir qualidade, padronização e acabamento profissional em todos os uniformes corporativos.</p></details><details class="fq"><summary>Quanto tempo leva para receber uma proposta?</summary><p>Após entendermos sua necessidade, normalmente enviamos um diagnóstico inicial e uma proposta personalizada em até 24 horas úteis.</p></details><details class="fq"><summary>Quem será meu contato dentro da <span translate="no">Vórtice</span>?</summary><p>Prezamos pelo relacionamento próximo com nossos clientes. Dependendo do projeto, o atendimento pode ser realizado diretamente pelo fundador <span translate="no">Mathews Brito</span> ou por especialistas responsáveis pela execução da solução contratada.</p></details><details class="fq"><summary>Por que escolher a <span translate="no">Vórtice</span>?</summary><p>Porque reunimos Gestão Empresarial, Assessoria Administrativa, Tecnologia, Segurança Cibernética, Redes Sociais, Uniformes Corporativos e Produção CNC em uma única empresa. Isso significa menos fornecedores, mais integração e mais resultados para o seu negócio.</p></details></div></section>
 
@@ -206,7 +327,7 @@ html,body{max-width:100%;overflow-x:clip}
 
 <aside class="side">
 <h3>Canais oficiais</h3>
-<a data-wa="" href="https://wa.me/5511921913395" target="_blank" rel="noopener noreferrer" style="margin-top:14px"><i class="ic2"><svg viewBox="0 0 24 24"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.49 2 2 6.5 2 12.05c0 1.77.46 3.5 1.34 5.03L2 22l5.04-1.32a9.87 9.87 0 0 0 4.71 1.2h.02c5.54 0 10.04-4.5 10.04-10.04 0-2.68-1.04-5.2-2.93-7.1l-.03-.03zM12.03 20.03h-.01a8.18 8.18 0 0 1-4.17-1.14l-.3-.18-3 .79.79-2.93-.2-.3A8.19 8.19 0 0 1 3.86 12c0-4.56 3.71-8.27 8.28-8.27 2.21 0 4.29.86 5.85 2.43a8.22 8.22 0 0 1 2.42 5.85c0 4.56-3.72 8.27-8.28 8.27zm4.54-6.19c-.25-.12-1.47-.73-1.7-.81-.23-.09-.39-.12-.56.12-.17.25-.65.81-.8.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.53.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg></i><span><strong>WhatsApp</strong><small id="sideWppTxt">(11) 92191-3395</small></span></a>
+<a data-wa="" href="https://wa.me/5511921913395" target="_blank" rel="noopener noreferrer" style="margin-top:10px"><i class="ic2"><svg viewBox="0 0 24 24"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.49 2 2 6.5 2 12.05c0 1.77.46 3.5 1.34 5.03L2 22l5.04-1.32a9.87 9.87 0 0 0 4.71 1.2h.02c5.54 0 10.04-4.5 10.04-10.04 0-2.68-1.04-5.2-2.93-7.1l-.03-.03zM12.03 20.03h-.01a8.18 8.18 0 0 1-4.17-1.14l-.3-.18-3 .79.79-2.93-.2-.3A8.19 8.19 0 0 1 3.86 12c0-4.56 3.71-8.27 8.28-8.27 2.21 0 4.29.86 5.85 2.43a8.22 8.22 0 0 1 2.42 5.85c0 4.56-3.72 8.27-8.28 8.27zm4.54-6.19c-.25-.12-1.47-.73-1.7-.81-.23-.09-.39-.12-.56.12-.17.25-.65.81-.8.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.53.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg></i><span><strong>WhatsApp</strong><small id="sideWppTxt">(11) 92191-3395</small></span></a>
 <a id="sideMailLink" href="mailto:vorticesolucoesglobais@gmail.com"><i class="ic2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></i><span><strong>E-mail</strong><small id="sideMailTxt">vorticesolucoesglobais@gmail.com</small></span></a>
 <a id="sideLinkedinLink" href="https://www.linkedin.com/company/vortice-solucoes-globais" target="_blank" rel="noopener noreferrer"><i class="ic2"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></i><span><strong>LinkedIn</strong><small><span translate="no">Vórtice</span> Soluções Globais</small></span></a>
 <p id="sideHorarioTxt">Segunda a Sábado, das 8h às 18h.<br>Sede: São Paulo - Brasil<br>Atendimento: todo o Brasil<br>Projetos internacionais: América do Norte<br>CNPJ 65.576.566/0001-01</p>
@@ -223,13 +344,13 @@ html,body{max-width:100%;overflow-x:clip}
 <div class="g3">
   <div class="cd">
     <span class="pl">Plataforma Oficial • Hotmart</span>
-    <h3 style="margin-top:12px">Catálogo Oficial de Cursos</h3>
+    <h3 style="margin-top:10px">Catálogo Oficial de Cursos</h3>
     <p>Acesse diretamente nossa área oficial de cursos na Hotmart pelo link abaixo:</p>
     <div><a class="link-oficial" href="http://app.hotmart.com/products/producer" target="_blank" rel="noopener noreferrer">http://app.hotmart.com/products/producer</a></div>
     <a class="btn" href="http://app.hotmart.com/products/producer" target="_blank" rel="noopener noreferrer">Acessar Cursos na Hotmart</a>
   </div>
 </div>
-<p style="margin-top:18px"><a class="btn out" href="./cursos/">Abrir página de Cursos →</a></p>
+<p style="margin-top:16px"><a class="btn out" href="./cursos/">Abrir página de Cursos →</a></p>
 </div></section>
 </div>
 
@@ -238,13 +359,13 @@ html,body{max-width:100%;overflow-x:clip}
 <div class="g3">
   <div class="cd">
     <span class="pl">Recrutamento Oficial • LinkedIn</span>
-    <h3 style="margin-top:12px">Vagas Publicadas no LinkedIn</h3>
+    <h3 style="margin-top:10px">Vagas Publicadas no LinkedIn</h3>
     <p>Consulte as oportunidades disponíveis e acompanhe nossas vagas pelo link oficial abaixo:</p>
     <div><a class="link-oficial" href="https://www.linkedin.com/hiring/posted-jobs/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/hiring/posted-jobs/</a></div>
     <a class="btn" href="https://www.linkedin.com/hiring/posted-jobs/" target="_blank" rel="noopener noreferrer">Acessar Vagas no LinkedIn</a>
   </div>
 </div>
-<p style="margin-top:18px"><a class="btn out" href="./contratacoes/">Abrir página de Vagas →</a></p>
+<p style="margin-top:16px"><a class="btn out" href="./contratacoes/">Abrir página de Vagas →</a></p>
 </div></section>
 </div>
 </main>
