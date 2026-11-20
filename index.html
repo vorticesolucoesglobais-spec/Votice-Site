@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://www.googletagmanager.com https://www.clarity.ms https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https:; frame-src 'self' https://translate.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
 <title>Vórtice Soluções Globais | Gestão, Tecnologia e Produção</title>
 <meta name="description" content="Consultoria operacional, infraestrutura de TI, comunicação corporativa, uniformes bordados e usinagem CNC/laser. Atendimento em todo o Brasil.">
 <meta property="og:type" content="website">
@@ -17,6 +20,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+<script>
+/* Proteção anti-clickjacking: impede incorporação do site em iframes de terceiros */
+(function(){
+  if (window.top !== window.self) {
+    try { window.top.location.replace(window.self.location.href); }
+    catch (e) { document.documentElement.style.display = 'none'; }
+  }
+})();
+</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"Vórtice Soluções Globais","legalName":"Vórtice Soluções Globais LTDA","url":"https://vorticesolucoesglobais-spec.github.io/Votice-Site/","logo":"https://vorticesolucoesglobais-spec.github.io/Votice-Site/logo.png","foundingDate":"2021","founder":{"@type":"Person","name":"Mathews Brito"},"telephone":"+5511921913395","email":"vorticesolucoesglobais@gmail.com","address":{"@type":"PostalAddress","addressRegion":"SP","addressCountry":"BR"}}
 </script>
@@ -295,13 +307,13 @@ footer{padding:24px 0;font-size:13px}
 <h2>Solicite uma proposta</h2>
 <p class="lead">Descreva o cenário e o objetivo. Respondemos em até 2 horas úteis.</p>
 <div class="cols">
-<form id="f">
+<form id="f" novalidate>
 <div class="f2">
-<label>Nome completo *<input name="nome" autocomplete="name" maxlength="120" required></label>
+<label>Nome completo *<input name="nome" autocomplete="name" minlength="2" maxlength="120" required></label>
 <label>E-mail corporativo *<input name="email" type="email" autocomplete="email" maxlength="140" required></label>
 </div>
 <div class="f2">
-<label>Telefone ou WhatsApp *<input name="tel" type="tel" autocomplete="tel" placeholder="(11) 99999-9999" maxlength="30" required></label>
+<label>Telefone ou WhatsApp *<input name="tel" type="tel" autocomplete="tel" placeholder="(11) 99999-9999" pattern="[0-9+\-\s().]{8,30}" maxlength="30" required></label>
 <label>Empresa<input name="empresa" autocomplete="organization" maxlength="120"></label>
 </div>
 <label>Cargo<input name="cargo" autocomplete="organization-title" maxlength="100"></label>
@@ -317,7 +329,7 @@ footer{padding:24px 0;font-size:13px}
 </select></label>
 <label>Porte da empresa<select name="porte"><option value="">Selecione</option><option>Até 10 colaboradores</option><option>11 a 50 colaboradores</option><option>51 a 200 colaboradores</option><option>Mais de 200 colaboradores</option></select></label>
 <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-<label>Cenário e objetivo *<textarea name="msg" placeholder="Qual é o desafio atual e que resultado a empresa espera nos próximos 90 dias?" maxlength="2000" required></textarea></label>
+<label>Cenário e objetivo *<textarea name="msg" placeholder="Qual é o desafio atual e que resultado a empresa espera nos próximos 90 dias?" minlength="10" maxlength="2000" required></textarea></label>
 <div class="acts" style="margin-top:4px">
 <button class="btn" type="submit">Enviar pelo WhatsApp</button>
 <button class="btn out" type="button" id="mail">Enviar por e-mail</button>
@@ -338,7 +350,7 @@ footer{padding:24px 0;font-size:13px}
 <section class="cta"><div class="w"><h2>Pronto para transformar sua operação?</h2><p class="lead">Se sua empresa precisa de mais organização, tecnologia, produtividade e resultados, a <span translate="no">Vórtice</span> está pronta para ajudar. Atuamos presencialmente em São Paulo, atendemos clientes em todo o Brasil e desenvolvemos projetos internacionais na América do Norte.</p><div class="acts"><a class="btn" href="#contato">Solicitar Diagnóstico Gratuito</a></div></div></section>
 </div>
 
-<!-- Views internas de fallback (#cursos / #contratacoes) sem senhas, com links oficiais únicos -->
+<!-- Views internas de fallback (#cursos / #contratacoes) -->
 <div class="view" id="v-cursos" hidden><section id="cursos" class="ar"><div class="w">
 <h2>Cursos</h2><p class="lead">Acesse nossa vitrine oficial de cursos e treinamentos na Hotmart.</p>
 <div class="g3">
@@ -346,8 +358,8 @@ footer{padding:24px 0;font-size:13px}
     <span class="pl">Plataforma Oficial • Hotmart</span>
     <h3 style="margin-top:10px">Catálogo Oficial de Cursos</h3>
     <p>Acesse diretamente nossa área oficial de cursos na Hotmart pelo link abaixo:</p>
-    <div><a class="link-oficial" href="http://app.hotmart.com/products/producer" target="_blank" rel="noopener noreferrer">http://app.hotmart.com/products/producer</a></div>
-    <a class="btn" href="http://app.hotmart.com/products/producer" target="_blank" rel="noopener noreferrer">Acessar Cursos na Hotmart</a>
+    <div><a class="link-oficial" href="https://app.hotmart.com/products/producer" target="_blank" rel="noopener noreferrer">https://app.hotmart.com/products/producer</a></div>
+    <a class="btn" href="https://app.hotmart.com/products/producer" target="_blank" rel="noopener noreferrer">Acessar Cursos na Hotmart</a>
   </div>
 </div>
 <p style="margin-top:16px"><a class="btn out" href="./cursos/">Abrir página de Cursos →</a></p>
@@ -387,54 +399,192 @@ footer{padding:24px 0;font-size:13px}
 
 <script src="./site.js"></script>
 <script>
-const f = document.getElementById('f');
-function cleanField(val, max) {
-  return String(val || '').replace(/[<>]/g, '').trim().slice(0, max);
-}
-function formValid() {
-  if (!f.reportValidity()) return false;
-  if (f.website.value) return false;
-  const nome = cleanField(f.nome.value, 120);
-  const email = cleanField(f.email.value, 140);
-  const tel = cleanField(f.tel.value, 30);
-  const svc = cleanField(f.svc.value, 120);
-  const texto = cleanField(f.msg.value, 2000);
-  return Boolean(nome && email && tel && svc && texto);
-}
-function msg() {
-  const d = new FormData(f);
-  return `Olá, Vórtice! Vim pelo site.\n\nNome: ${cleanField(d.get('nome'), 120)}\nE-mail: ${cleanField(d.get('email'), 140)}\nTelefone: ${cleanField(d.get('tel'), 30)}\nEmpresa: ${cleanField(d.get('empresa'), 120) || '-'}\nCargo: ${cleanField(d.get('cargo'), 100) || '-'}\nPorte: ${cleanField(d.get('porte'), 80) || '-'}\nServiço: ${cleanField(d.get('svc'), 120)}\n\n${cleanField(d.get('msg'), 2000)}`;
-}
-function lead(canal) {
-  if (!CFG.LEAD_API) return;
-  const d = Object.fromEntries(new FormData(f)), q = new URLSearchParams(location.search);
-  ['utm_source','utm_medium','utm_campaign'].forEach(k => d[k] = q.get(k) || '');
-  d.canal = canal; d.pagina = location.href; d.origem = document.referrer; d.data = new Date().toISOString();
-  try { fetch(CFG.LEAD_API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d), keepalive: true }).catch(() => {}); } catch (e) {}
-}
-f.addEventListener('submit', e => {
-  e.preventDefault();
-  if (!formValid()) return;
-  lead('whatsapp');
-  track('envio_formulario');
-  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg()), '_blank', 'noopener,noreferrer');
-});
-document.getElementById('mail').addEventListener('click', () => {
-  if (!formValid()) return;
-  lead('email');
-  track('envio_formulario');
-  location.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent('Solicitação de proposta - Vórtice') + '&body=' + encodeURIComponent(msg());
-});
+(function(){
+  'use strict';
+  const PAGE_LOAD_TS = Date.now();
+  const COOLDOWN_MS = 15000;
+  const MAX_SESSION_SENDS = 5;
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-const links = [...document.querySelectorAll('nav.mn a')];
-const io = new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting) links.forEach(l => l.classList.toggle('on', l.hash === '#' + e.target.id));
-}), { rootMargin: '-45% 0px -50% 0px' });
-document.querySelectorAll('main section').forEach(s => io.observe(s));
-document.querySelectorAll('.rv').forEach(e => {
-  const o = new IntersectionObserver(r => r.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); o.disconnect(); } }), { threshold: .15 });
-  o.observe(e);
-});
+  const SAFE_WA = (typeof WA !== 'undefined' && /^\d{10,15}$/.test(String(WA))) ? String(WA) : '5511921913395';
+  const SAFE_MAIL = (typeof MAIL !== 'undefined' && EMAIL_RE.test(String(MAIL))) ? String(MAIL) : 'vorticesolucoesglobais@gmail.com';
+  const ALLOWED_EXT_ORIGINS = Object.freeze([
+    'https://wa.me',
+    'https://api.whatsapp.com',
+    'https://app.hotmart.com',
+    'https://www.linkedin.com'
+  ]);
+
+  /* Blindagem de links externos contra tabnabbing e adulteração de destino */
+  function hardenLinks() {
+    document.querySelectorAll('a[target="_blank"]').forEach(a => {
+      a.setAttribute('rel', 'noopener noreferrer');
+      try {
+        const u = new URL(a.href, location.origin);
+        if (u.origin !== location.origin && !ALLOWED_EXT_ORIGINS.includes(u.origin)) {
+          a.removeAttribute('href');
+        }
+      } catch (e) {
+        a.removeAttribute('href');
+      }
+    });
+    document.querySelectorAll('a[data-wa]').forEach(a => {
+      try {
+        const u = new URL(a.href);
+        if (!u.pathname.startsWith('/' + SAFE_WA)) {
+          a.href = 'https://wa.me/' + SAFE_WA;
+        }
+      } catch (e) {
+        a.href = 'https://wa.me/' + SAFE_WA;
+      }
+    });
+  }
+  hardenLinks();
+
+  if (typeof MutationObserver !== 'undefined') {
+    const linkGuard = new MutationObserver(() => hardenLinks());
+    linkGuard.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['href', 'target'] });
+  }
+
+  /* Sanitização e validação antifraude do formulário */
+  const f = document.getElementById('f');
+
+  function stripControl(str) {
+    return String(str || '').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '');
+  }
+
+  function cleanField(val, max, allowNewlines) {
+    let s = stripControl(val).replace(/[<>]/g, '');
+    if (!allowNewlines) s = s.replace(/[\r\n]+/g, ' ');
+    return s.trim().slice(0, max);
+  }
+
+  function cleanPhone(val) {
+    return cleanField(val, 30, false).replace(/[^0-9+\-\s().]/g, '');
+  }
+
+  function checkRateLimit() {
+    if (Date.now() - PAGE_LOAD_TS < 2500) return false;
+    try {
+      const last = Number(sessionStorage.getItem('vortice_last_send') || 0);
+      const count = Number(sessionStorage.getItem('vortice_send_count') || 0);
+      if (count >= MAX_SESSION_SENDS) {
+        alert('Limite de envios nesta sessão atingido. Utilize nossos canais diretos ao lado.');
+        return false;
+      }
+      if (last && Date.now() - last < COOLDOWN_MS) {
+        const wait = Math.ceil((COOLDOWN_MS - (Date.now() - last)) / 1000);
+        alert('Aguarde ' + wait + ' segundos antes de realizar um novo envio.');
+        return false;
+      }
+    } catch (e) {}
+    return true;
+  }
+
+  function registerSend() {
+    try {
+      const count = Number(sessionStorage.getItem('vortice_send_count') || 0);
+      sessionStorage.setItem('vortice_last_send', String(Date.now()));
+      sessionStorage.setItem('vortice_send_count', String(count + 1));
+    } catch (e) {}
+  }
+
+  function formValid() {
+    if (f.website && f.website.value) return false;
+    const nome = cleanField(f.nome.value, 120, false);
+    const email = cleanField(f.email.value, 140, false);
+    const tel = cleanPhone(f.tel.value);
+    const telDigits = tel.replace(/\D/g, '');
+    const svc = cleanField(f.svc.value, 120, false);
+    const texto = cleanField(f.msg.value, 2000, true);
+
+    if (!f.reportValidity()) return false;
+    if (nome.length < 2) { f.nome.focus(); return false; }
+    if (!EMAIL_RE.test(email)) { f.email.focus(); return false; }
+    if (telDigits.length < 8 || telDigits.length > 15) { f.tel.focus(); return false; }
+    if (!svc || texto.length < 10) { f.msg.focus(); return false; }
+    return checkRateLimit();
+  }
+
+  function buildMessage() {
+    const d = new FormData(f);
+    return (
+      'Olá, Vórtice! Vim pelo site.\n\n' +
+      'Nome: ' + cleanField(d.get('nome'), 120, false) + '\n' +
+      'E-mail: ' + cleanField(d.get('email'), 140, false) + '\n' +
+      'Telefone: ' + cleanPhone(d.get('tel')) + '\n' +
+      'Empresa: ' + (cleanField(d.get('empresa'), 120, false) || '-') + '\n' +
+      'Cargo: ' + (cleanField(d.get('cargo'), 100, false) || '-') + '\n' +
+      'Porte: ' + (cleanField(d.get('porte'), 80, false) || '-') + '\n' +
+      'Serviço: ' + cleanField(d.get('svc'), 120, false) + '\n\n' +
+      cleanField(d.get('msg'), 2000, true)
+    );
+  }
+
+  function sendLead(canal) {
+    if (typeof CFG === 'undefined' || !CFG.LEAD_API) return;
+    try {
+      const apiUrl = new URL(CFG.LEAD_API, location.origin);
+      if (apiUrl.protocol !== 'https:') return;
+      const d = new FormData(f), q = new URLSearchParams(location.search);
+      const payload = {
+        nome: cleanField(d.get('nome'), 120, false),
+        email: cleanField(d.get('email'), 140, false),
+        tel: cleanPhone(d.get('tel')),
+        empresa: cleanField(d.get('empresa'), 120, false),
+        cargo: cleanField(d.get('cargo'), 100, false),
+        porte: cleanField(d.get('porte'), 80, false),
+        svc: cleanField(d.get('svc'), 120, false),
+        msg: cleanField(d.get('msg'), 2000, true),
+        canal: canal,
+        pagina: location.origin + location.pathname,
+        data: new Date().toISOString()
+      };
+      ['utm_source','utm_medium','utm_campaign'].forEach(k => {
+        payload[k] = cleanField(q.get(k) || '', 80, false);
+      });
+      fetch(apiUrl.href, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        credentials: 'omit',
+        referrerPolicy: 'no-referrer',
+        keepalive: true
+      }).catch(() => {});
+    } catch (e) {}
+  }
+
+  f.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!formValid()) return;
+    registerSend();
+    sendLead('whatsapp');
+    if (typeof track === 'function') track('envio_formulario');
+    window.open('https://wa.me/' + SAFE_WA + '?text=' + encodeURIComponent(buildMessage()), '_blank', 'noopener,noreferrer');
+  });
+
+  document.getElementById('mail').addEventListener('click', () => {
+    if (!formValid()) return;
+    registerSend();
+    sendLead('email');
+    if (typeof track === 'function') track('envio_formulario');
+    location.href = 'mailto:' + SAFE_MAIL + '?subject=' + encodeURIComponent('Solicitação de proposta - Vórtice') + '&body=' + encodeURIComponent(buildMessage());
+  });
+
+  /* Navegação ativa e revelação suave das seções */
+  const links = [...document.querySelectorAll('nav.mn a')];
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(l => l.classList.toggle('on', l.hash === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('main section').forEach(s => io.observe(s));
+
+  document.querySelectorAll('.rv').forEach(e => {
+    const o = new IntersectionObserver(r => r.forEach(x => {
+      if (x.isIntersecting) { x.target.classList.add('in'); o.disconnect(); }
+    }), { threshold: .15 });
+    o.observe(e);
+  });
+})();
 </script>
 <script>
 (function(){
